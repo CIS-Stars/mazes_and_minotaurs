@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorControlHighlight"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Character Creator"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar_title"/>
+        </android.support.v7.widget.Toolbar>
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <ImageButton
+                android:id="@+id/magician_button"
+                android:layout_width="123dp"
+                android:layout_height="204dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/MazesWarrior"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="135dp"
+                android:layout_height="204dp"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/MazesMagician"
+                tools:layout_editor_absoluteX="133dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <ImageButton
+                android:id="@+id/specialist_button"
+                android:layout_width="123dp"
+                android:layout_height="206dp"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/MazesSpecialist"
+                tools:layout_editor_absoluteX="257dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
