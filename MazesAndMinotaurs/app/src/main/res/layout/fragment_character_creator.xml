@@ -42,7 +42,7 @@
                 android:layout_column="0"
                 android:layout_row="1"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/MazesWarrior"
+                app:srcCompat="@drawable/mazes_warrior"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="254dp" />
 
@@ -53,7 +53,7 @@
                 android:layout_column="1"
                 android:layout_row="1"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/MazesMagician"
+                app:srcCompat="@drawable/mazes_magician"
                 tools:layout_editor_absoluteX="133dp"
                 tools:layout_editor_absoluteY="254dp" />
 
@@ -64,7 +64,7 @@
                 android:layout_column="2"
                 android:layout_row="1"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/MazesSpecialist"
+                app:srcCompat="@drawable/mazes_specialist"
                 tools:layout_editor_absoluteX="257dp"
                 tools:layout_editor_absoluteY="254dp" />
 

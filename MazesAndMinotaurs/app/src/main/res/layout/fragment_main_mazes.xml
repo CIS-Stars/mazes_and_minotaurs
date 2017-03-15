@@ -42,7 +42,7 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="378dp"
-        app:srcCompat="@drawable/MazesPMCutImage"
+        app:srcCompat="@drawable/mazes_cover_image"
         android:scaleType="fitCenter"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
