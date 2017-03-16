@@ -24,9 +24,21 @@
                 android:layout_height="wrap_content"
                 android:text="Character Creator"
                 android:layout_gravity="center"
+                android:textSize="24dp"
                 android:id="@+id/toolbar_title"/>
         </android.support.v7.widget.Toolbar>
 
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_row="2"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Select Class Type:"/>
 
         <GridLayout
             android:layout_width="match_parent"
@@ -34,17 +46,6 @@
             android:layout_weight="1"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
-
-            <ImageButton
-                android:id="@+id/magician_button"
-                android:layout_width="123dp"
-                android:layout_height="204dp"
-                android:layout_column="0"
-                android:layout_row="1"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/mazes_warrior"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="254dp" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
@@ -60,13 +61,69 @@
             <ImageButton
                 android:id="@+id/specialist_button"
                 android:layout_width="123dp"
-                android:layout_height="206dp"
+                android:layout_height="204dp"
                 android:layout_column="2"
                 android:layout_row="1"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/mazes_specialist"
                 tools:layout_editor_absoluteX="257dp"
                 tools:layout_editor_absoluteY="254dp" />
+
+            <ImageButton
+                android:id="@+id/magician_button"
+                android:layout_width="123dp"
+                android:layout_height="204dp"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mazes_warrior"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="254dp"/>
+
+            <RadioGroup
+                android:id="@+id/warrior_radio"
+                android:layout_width="match_parent"
+                android:layout_height="241dp"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_row="3"
+                android:layout_rowSpan="3">
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Amazons"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Barbarians"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Centaurs"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nobles"/>
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Spearmen"/>
+            </RadioGroup>
 
         </GridLayout>
 
