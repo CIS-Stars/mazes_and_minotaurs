@@ -3,7 +3,7 @@ package com.example.cis.mazeminotaurs;
 import java.util.Random;
 
 /**
- * Created by tschmidt on 3/18/2017.
+ * Created by Thorin Schmidt on 3/18/2017.
  */
 
 public class AttributeScoreGenerator {
