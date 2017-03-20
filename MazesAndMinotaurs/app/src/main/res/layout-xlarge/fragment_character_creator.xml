@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorControlHighlight"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Character Creator"
+                android:layout_gravity="center"
+                android:textSize="24dp"
+                android:id="@+id/toolbar_title"/>
+        </android.support.v7.widget.Toolbar>
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="3"
+            android:layout_row="2"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Select Class Type:"
+            android:textSize="30dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <RadioGroup
+                android:id="@+id/warrior_radio_set"
+                android:layout_width="match_parent"
+                android:layout_height="542dp"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_row="2"
+                android:layout_rowSpan="3"
+                android:visibility="visible">
+
+                <RadioButton
+                    android:id="@+id/amazon_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Amazons"
+                    android:textSize="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/barbarian_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Barbarians"
+                    android:textSize="30dp" />
+
+                <RadioButton
+                    android:id="@+id/centaur_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Centaurs"
+                    android:textSize="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/noble_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nobles"
+                    android:textSize="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/spear_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Spearmen"
+                    android:textSize="30dp" />
+
+            </RadioGroup>
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="268dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mazes_magician"
+                tools:layout_editor_absoluteX="133dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <ImageButton
+                android:id="@+id/specialist_button"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mazes_specialist"
+                tools:layout_editor_absoluteX="257dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:layout_weight="1"
+                android:text="Select Class:"
+                android:textSize="30dp"
+                android:visibility="invisible" />
+
+            <RadioGroup
+                android:id="@+id/magician_radio_set"
+                android:layout_width="match_parent"
+                android:layout_height="542dp"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_row="2"
+                android:layout_rowSpan="3"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/elementalist_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Elementalists"
+                    android:textSize="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/lyrist_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Lyrists"
+                    android:textSize="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/nymph_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nymphs"
+                    android:textSize="30dp" />
+
+                <RadioButton
+                    android:id="@+id/priest_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Priests"
+                    android:textSize="30dp" />
+
+                <RadioButton
+                    android:id="@+id/sorcerer_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sorcerers" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/specialist_radio_set"
+                android:layout_width="match_parent"
+                android:layout_height="542dp"
+                android:layout_column="0"
+                android:layout_columnSpan="3"
+                android:layout_row="2"
+                android:layout_rowSpan="3"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/hunter_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hunters"
+                    android:textSize="30dp"/>
+
+                <RadioButton
+                    android:id="@+id/thief_radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Thieves"
+                    android:textSize="30dp"/>
+            </RadioGroup>
+
+            <ImageButton
+                android:id="@+id/magician_button"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/mazes_warrior"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
