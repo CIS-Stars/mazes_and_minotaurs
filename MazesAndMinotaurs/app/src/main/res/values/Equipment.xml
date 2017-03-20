@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Equipment names -->
+    <!-- Armor -->
+    <string name="boeotian">Boeotian Helmet</string>
+    <string name="breastplate">Bresatplate</string>
+    <string name="helmet">Helmet</string>
+    <string name="linothorax">Linothorax</string>
+    <string name="peltast">Peltast Shield</string>
+    <string name="shield">Shield</string>
+
+    <!--Melee Weapons -->
+    <string name="axe">Axe</string>
+    <string name="barb_axe">Barbarian Axe</string>
+    <string name="barb_club">Barbarian Cudgel</string>
+    <string name="barb_mace">Barbarian Mace</string>
+    <string name="barb_sword">Barbarian Sword</string>
+    <string name="club">Club</string>
+    <string name="dagger">Dagger</string>
+    <string name="mace">Mace</string>
+    <string name="spear">Spear</string>
+    <string name="sword">Sword</string>
+
+    <!-- Missile Weapons -->
+    <string name="arrow">Arrow</string>
+    <string name="bow">Bow</string>
+    <string name="javelin">Javelin</string>
+    <string name="sling">Sling</string>
+    <string name="slingshot">Sling Shot</string>
+
+    <!-- Stuff! -->
+    <string name="rowboat">Rowing Boat</string>
+    <string name="small_sail">Small Sailing Ship</string>
+    <string name="merchant_ship">Merchant Ship</string>
+    <string name="war_galley">War Galley</string>
+    <string name="horse">Horse</string>
+    <string name="warhorse">War Horse</string>
+    <string name="mule">Mule</string>
+    <string name="staff">Staff</string>
+    <string name="oil_flask">Flask of Oil</string>
+    <string name="torch">Torch</string>
+    <string name="flint_and_tinder">Flint &amp; Tinder</string>
+    <string name="rope">Rope (30 ft)</string>
+    <string name="bedroll">Bedroll</string>
+    <string name="rations">Day\'s Rations</string>
+    <string name="waterskin">Waterskin</string>
+
+    <!-- Food and Lodging -->
+    <string name="lodging">Night\'s Lodging</string>
+    <string name="meal">One Meal (with Wine)</string>
+    <string name="wine_jug">Jug of Wine</string>
+
+
+</resources>

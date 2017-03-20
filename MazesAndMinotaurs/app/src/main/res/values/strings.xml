@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">MazeMinotaurs</string>
+    <!--  Updated to a more visually appealing name
+    <string name="app_name">MazeMinotaurs</string> -->
+    <string name="app_name">Mazes &amp; Minotaurs</string>
     <string name="action_help">Help</string>
+
+
+
 </resources>
