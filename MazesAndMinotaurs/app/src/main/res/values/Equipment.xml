@@ -42,11 +42,11 @@
     <string name="flint_and_tinder">Flint &amp; Tinder</string>
     <string name="rope">Rope (30 ft)</string>
     <string name="bedroll">Bedroll</string>
-    <string name="rations">Day&#39;s Rations</string>
+    <string name="rations">Day\'s Rations</string>
     <string name="waterskin">Waterskin</string>
 
     <!-- Food and Lodging -->
-    <string name="lodging">Night&#39;s Lodging</string>
+    <string name="lodging">Night\'s Lodging</string>
     <string name="meal">One Meal (with Wine)</string>
     <string name="wine_jug">Jug of Wine</string>
 
