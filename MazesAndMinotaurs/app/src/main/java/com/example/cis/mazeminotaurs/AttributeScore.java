@@ -7,9 +7,9 @@ package com.example.cis.mazeminotaurs;
 public class AttributeScore {
 
     //instance variables
-    int score;
-    int modifier;
-    String description;
+    int mScore;
+    int mModifier;
+    String mDescription;
 
     //private methods
 
@@ -37,66 +37,66 @@ public class AttributeScore {
      */
     private void updateModifier(){
 
-        if(this.score <= 2){
-            this.modifier = -4;
-            this.description = "Abysmal";
+        if(this.mScore <= 2){
+            this.mModifier = -4;
+            this.mDescription = "Abysmal";
         }
-        else if(this.score <= 4){
-            this.modifier = -3;
-            this.description = "Pathetic";
+        else if(this.mScore <= 4){
+            this.mModifier = -3;
+            this.mDescription = "Pathetic";
         }
-        else if(this.score <= 6){
-            this.modifier = -2;
-            this.description = "Inferior";
+        else if(this.mScore <= 6){
+            this.mModifier = -2;
+            this.mDescription = "Inferior";
         }
-        else if(this.score <= 8){
-            this.modifier = -1;
-            this.description = "Poor";
+        else if(this.mScore <= 8){
+            this.mModifier = -1;
+            this.mDescription = "Poor";
         }
-        else if(this.score <= 12){
-            this.modifier = 0;
-            this.description = "Average";
+        else if(this.mScore <= 12){
+            this.mModifier = 0;
+            this.mDescription = "Average";
         }
-        else if(this.score <= 14){
-            this.modifier = 1;
-            this.description = "Good";
+        else if(this.mScore <= 14){
+            this.mModifier = 1;
+            this.mDescription = "Good";
         }
-        else if(this.score <= 16){
-            this.modifier = 2;
-            this.description = "Superior";
+        else if(this.mScore <= 16){
+            this.mModifier = 2;
+            this.mDescription = "Superior";
         }
-        else if(this.score <= 18){
-            this.modifier = 3;
-            this.description = "Exceptional";
+        else if(this.mScore <= 18){
+            this.mModifier = 3;
+            this.mDescription = "Exceptional";
         }
-        else if(this.score <= 20){
-            this.modifier = 4;
-            this.description = "Extraordinary";
+        else if(this.mScore <= 20){
+            this.mModifier = 4;
+            this.mDescription = "Extraordinary";
         }
         else{
-            this.modifier = 5;
-            this.description = "Legendary";
+            this.mModifier = 5;
+            this.mDescription = "Legendary";
         }
     }
 
     //public methods
 
     public AttributeScore(int score) {
-        this.score = score;
+        this.mScore = score;
         this.updateModifier();
     }
 
     public int getScore() {
-        return score;
+        return mScore;
     }
 
     public void setScore(int score) {
-        this.score = score;
+        this.mScore = score;
         this.updateModifier();
     }
 
     public int getModifier() {
-        return modifier;
+        return mModifier;
     }
 
     /*  USE updateModifier() INSTEAD
@@ -105,7 +105,7 @@ public class AttributeScore {
     }*/
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     /* USE updateModifier() INSTEAD

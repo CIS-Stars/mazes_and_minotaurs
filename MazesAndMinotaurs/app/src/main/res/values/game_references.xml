@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are replacements for the enumerated types originally in Character.java-->
+    <!-- Class Names -->
+    <string name="amazon">Amazon</string>
+    <string name="amazon_b">Amazon (Alt)</string>
+    <string name="archer">Archer</string>
+    <string name="barbarian">Barbarian</string>
+    <string name="beastmaster">Beastmaster</string>
+    <string name="cavalryman">Cavalryman</string>
+    <string name="centaur">Centaur</string>
+    <string name="elementalist">Elementalist</string>
+    <string name="hunter">Hunter</string>
+    <string name="lyrist">Lyrist</string>
+    <string name="noble">Noble</string>
+    <string name="nymph">Nymph</string>
+    <string name="priest">Priest</string>
+    <string name="priestess">Priestess</string>
+    <string name="shapeshifter">Shapeshifter</string>
+    <string name="sorceror">Sorcerer</string>
+    <string name="sorceress">Sorceress</string>
+    <string name="spearman">Spearman</string>
+    <string name="thief">Thief</string>
+
+    <!-- Deities -->
+    <string name="aphrodite">Aphrodite</string>
+    <string name="apollo">Apollo</string>
+    <string name="ares">Ares</string>
+    <string name="artemis">Artemis</string>
+    <string name="athena">Athena</string>
+    <string name="demeter">Demeter</string>
+    <string name="hephaestus">Hephasetus</string>
+    <string name="hera">Hera</string>
+    <string name="hermes">Hermes</string>
+    <string name="hestia">Hestia</string>
+    <string name="poseidon">Poseidon</string>
+    <string name="zeus">Zeus</string>
+
+    <!-- Nymph Kin Names -->
+    <string name="dryad">Dryad</string>
+    <string name="helead">Helead</string>
+    <string name="naiad">Naiad</string>
+    <string name="napaea">Napaea</string>
+    <string name="nereid">Nereid</string>
+    <string name="oread">Oread</string>
+
+    <!-- Elements -->
+    <string name="air">Air</string>
+    <string name="earth">Earth</string>
+    <string name="fire">Fire</string>
+    <string name="water">Water</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+</resources>
