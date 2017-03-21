@@ -8,10 +8,12 @@ public class Equipment {
     //instance variables
     int mResId;
     int mEncumberance;
+    int mQuantity;
     double mCostInSp;
     String mLongDescription;
 
-    public Equipment(int resId, int encumberance, double costInSp, String longDescription) {
+    public Equipment(int resId, int encumberance, int quantity,
+                     double costInSp, String longDescription) {
         mResId = resId;
         mEncumberance = encumberance;
         mCostInSp = costInSp;
@@ -32,6 +34,14 @@ public class Equipment {
 
     public void setEncumberance(int encumberance) {
         mEncumberance = encumberance;
+    }
+
+    public int getQuantity() {
+        return mQuantity;
+    }
+
+    public void setQuantity(int quantity) {
+        mQuantity = quantity;
     }
 
     public double getCostInSp() {
