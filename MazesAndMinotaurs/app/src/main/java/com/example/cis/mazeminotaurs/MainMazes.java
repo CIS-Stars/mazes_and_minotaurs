@@ -14,6 +14,10 @@ public class MainMazes extends AppCompatActivity {
     AttributeScoreGenerator scoreGen = new AttributeScoreGenerator();
     AttributeScore[] testAttributes = scoreGen.nextValidSet();
 
+    Button mNewChara;
+    Button mCharaCont;
+    Button mPlayerManual;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +29,21 @@ public class MainMazes extends AppCompatActivity {
             System.out.println(testAttributes[i].getScore());
         }
 
-        Button newChara = (Button) findViewById(R.id.new_character_bttn);
-        Button charaCont = (Button) findViewById(R.id.character_continue_bttn);
-        Button playerManual = (Button) findViewById(R.id.player_manual_bttn);
-        newChara.setOnClickListener(new View.OnClickListener(){
+        mNewChara = (Button) findViewById(R.id.new_character_bttn);
+        mNewChara.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 setContentView(R.layout.fragment_character_creator);
             }
         });
+
+        mCharaCont = (Button) findViewById(R.id.character_continue_bttn);
+        mCharaCont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_character_sheet);
+            }
+        });
+        mPlayerManual = (Button) findViewById(R.id.player_manual_bttn);
 
     }
 
