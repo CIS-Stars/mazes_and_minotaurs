@@ -13,7 +13,7 @@ All are being used by permission.<br>
 The first app is for players. It will be a way to create and keep character sheets on their device to play on the go.
 The app will incorporate specific die rollers for all actions, plus some generic rollers for unanticipated events.
 
-link to a mockup of the app: https://pr.to/ACJTQQ/
+link to a mockup of the app: https://pr.to/ACJTQQ/ <br>
 link to Trello board: https://trello.com/b/uCLr80Uu/mazes-minotaurs
 
 USER STORY:
