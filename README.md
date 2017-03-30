@@ -18,6 +18,6 @@ link to a mockup of the app: https://pr.to/ACJTQQ/ <br>
 link to Trello board: https://trello.com/b/uCLr80Uu/mazes-minotaurs
 
 ## USER STORY:<br>
-"I need a Mazes & Minotaurs app that allows me to create, delete and choose between characters.  It should have an interactive character sheet that allows me to do all my rolls and checks. I need to be able to download and/or print my charcter sheet if needed. I need links to the Player Manual, and Companion pdf files, as well as a link to the M&M website. There should be a character Journal to record the adventures I have played withthat character, as well as an in-game notebook to record information during play. The app needs to be able to level my character up, and I want a "trphy screen" where I can check off the different monsters, gods, etc. that I slay/encounter/etc."
+"I need a Mazes & Minotaurs app that allows me to create, delete and choose between characters.  It should have an interactive character sheet that allows me to do all my rolls and checks. I need to be able to download and/or print my charcter sheet if needed. I need links to the Player Manual, and Companion pdf files, as well as a link to the M&M website. There should be a character Journal to record the adventures I have played withthat character, as well as an in-game notebook to record information during play. The app needs to be able to level my character up, and I want a "trophy screen" where I can check off the different monsters, gods, etc. that I slay/encounter/etc."
 
 
