@@ -1,6 +1,11 @@
 package com.example.cis.mazeminotaurs.character;
 
-import com.example.cis.mazeminotaurs.character.stats.Core;
+import com.example.cis.mazeminotaurs.Armor;
+import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
+import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.character.classes.Barbarian;
+import com.example.cis.mazeminotaurs.character.classes.BaseClass;
+import com.example.cis.mazeminotaurs.character.stats.Score;
 
 import java.util.HashMap;
 
@@ -9,22 +14,26 @@ import java.util.HashMap;
  */
 
 public class Character {
-    private HashMap<Core, Integer> mCoreStats;
-    private CharClass mClass;
+    private HashMap<Score, Integer> mCoreStats;
+    private BaseClass mCharClass;
+    private Gender mGender;
     private int mAge;
     private String mName;
+    private Armor mHelmet;
+    private Armor mBreastplate;
+    private Armor mShield;
 
     public Character() {
         mAge = 0;
-        mClass = CharClass.AMAZON;
-        for (Core coreStat: Core.values()) {
-            mCoreStats.put(coreStat, 0);
+        setCharClass(new Barbarian(this, R.string.barb_axe, R.string.bow));
+        for (Score scoreStat : Score.values()) {
+            mCoreStats.put(scoreStat, 0);
         }
         mName = "Thorin";
     }
 
-    public int getMod(Core coreStat) {
-        int statValue = mCoreStats.get(coreStat);
+    public int getMod(Score scoreStat) {
+        int statValue = mCoreStats.get(scoreStat);
         if (statValue <= 2) {
             return -4;
         } else if (statValue <= 4) {
@@ -47,27 +56,63 @@ public class Character {
     }
 
     public int getMeleeMod() {
-        return getMod(Core)
+        return getMod(Score.MIGHT) + getMod(Score.GRACE) + getMod(Score.LUCK);
     }
 
-    public Integer getCoreStatScore(Core coreStat) {
-        return mCoreStats.get(coreStat);
+    public int getMissleMod() {
+        return getMod(Score.SKILL) + getMod(Score.WITS) + getMod(Score.LUCK);
     }
 
-    public HashMap<Core, Integer> getCoreStats() {
+    public int getInititive() {
+        return 10 + getMod(Score.SKILL) + getMod(Score.WITS);
+    }
+
+    public int getDC() {
+        return 12 + getMod(Score.LUCK);
+    }
+
+    public int getEDC() {
+        int armorBonus = 0;
+        if (mHelmet != null) {
+            armorBonus += 2;
+        }
+        if (mBreastplate != null) {
+            armorBonus += 2;
+        }
+        if (mShield != null) {
+            armorBonus += 2;
+        }
+
+        return getDC() + armorBonus;
+    }
+
+    public int getHitTotal(){
+        //return mCharClass.getHits() + getMod(Score.MIGHT);
+        return 0;
+    }
+
+    public int getCharisma(){
+        return getMod(Score.WILL) + getMod(Score.GRACE) + getMod(Score.LUCK);
+    }
+
+    public int getCoreStatScore(Score scoreStat) {
+        return mCoreStats.get(scoreStat);
+    }
+
+    public HashMap<Score, Integer> getCoreStats() {
         return mCoreStats;
     }
 
-    public void setCoreStats(HashMap<Core, Integer> coreStats) {
+    public void setCoreStats(HashMap<Score, Integer> coreStats) {
         mCoreStats = coreStats;
     }
 
-    public CharClass getCharClass() {
-        return mClass;
+    public BaseClass getCharClass() {
+        return mCharClass;
     }
 
-    public void setCharClass(CharClass aClass) {
-        mClass = aClass;
+    public void setCharClass(BaseClass aClass) {
+        mCharClass = aClass;
     }
 
     public int getAge() {
