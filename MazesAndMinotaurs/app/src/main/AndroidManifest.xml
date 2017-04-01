@@ -29,9 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ClassConfirmation"
-            android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
     </application>
 
 </manifest>
