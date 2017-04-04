@@ -34,7 +34,7 @@ public class Barbarian extends Warrior {
         setLevel(1);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
-        setResId(R.string.barbarian);
+        setResId(Classes.BARBARIAN.getResId());
         // Cannot set up without Equipment made
         // setStartGear();
         setStartGold(rolledGold * 5);
@@ -48,10 +48,10 @@ public class Barbarian extends Warrior {
     }
 
     public int getBattleMightBonus(){
-        return getCharacter().getMod(Score.MIGHT);
+        return getCharacter().getCoreStatScore(Score.MIGHT).getModifier();
     }
 
     public int getBattleFuryBonus(){
-        return getCharacter().getMod(Score.WILL);
+        return getCharacter().getCoreStatScore(Score.WILL).getModifier();
     }
 }
