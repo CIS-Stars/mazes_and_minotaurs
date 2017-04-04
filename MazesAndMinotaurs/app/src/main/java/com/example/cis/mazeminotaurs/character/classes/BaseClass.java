@@ -124,6 +124,8 @@ public abstract class BaseClass {
         mLevel = level;
     }
 
+    // Dummy Method
+    // Returns the ResId of the level descriptions
     public int getLevelDescription() {
         return -12321;
     }
