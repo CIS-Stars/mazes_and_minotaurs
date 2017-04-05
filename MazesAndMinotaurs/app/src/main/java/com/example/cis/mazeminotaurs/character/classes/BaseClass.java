@@ -82,8 +82,8 @@ public abstract class BaseClass {
         return mCharacter;
     }
 
-    public void setCharacter(Character character) {
-        mCharacter = character;
+    public void setCharacter(Character playerCharacter) {
+        mCharacter = playerCharacter;
     }
 
     public Score[] getPrimaryAttributes() {

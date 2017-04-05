@@ -8,8 +8,10 @@
 
     <ImageView
         android:id="@+id/splash_image"
-        android:contentDescription="@string/description_splash_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/description_splash_screen"
+        android:scaleType="center"
         app:srcCompat="@drawable/mazes_splash_image"/>
+
 </LinearLayout>

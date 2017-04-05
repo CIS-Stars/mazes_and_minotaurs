@@ -15,7 +15,6 @@ import java.util.Arrays;
  */
 
 public class Barbarian extends Warrior {
-
     private ArrayList<Score> mScoreLevelChoice = new ArrayList<>();
 
     public Barbarian(Character character, int choiceWeapon, int startingMissleWeapon) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- These are replacements for the enumerated types originally in Character.java-->
+    <!-- These are replacements for the enumerated types originally in TestCharacter.java-->
     <!-- Class Names -->
     <string name="amazon">Amazon</string>
     <string name="amazon_b">Amazon (Alt)</string>
