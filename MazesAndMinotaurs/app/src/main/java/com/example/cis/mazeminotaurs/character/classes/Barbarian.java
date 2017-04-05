@@ -2,7 +2,7 @@ package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.character.Character;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class Barbarian extends Warrior {
     private ArrayList<Score> mScoreLevelChoice = new ArrayList<>();
 
-    public Barbarian(Character character, int choiceWeapon, int startingMissleWeapon) {
+    public Barbarian(PlayerCharacter playerCharacter, int choiceWeapon, int startingMissleWeapon) {
         Score[] primAttributes = {Score.MIGHT, Score.WILL};
         ArrayList<Integer> wepsOfChoice = new ArrayList<>();
         wepsOfChoice.add(R.string.barb_axe);
@@ -31,7 +31,7 @@ public class Barbarian extends Warrior {
         }
 
         setBasicHits(12);
-        setCharacter(character);
+        setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
         setResId(Classes.BARBARIAN.getResId());

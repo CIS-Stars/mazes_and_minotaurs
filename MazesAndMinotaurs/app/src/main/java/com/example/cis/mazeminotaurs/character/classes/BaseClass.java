@@ -1,7 +1,7 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.Equipment;
-import com.example.cis.mazeminotaurs.character.Character;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public abstract class BaseClass {
     private int mAddedHits = 0;
     private int mBasicHits;
-    private Character mCharacter;
+    private PlayerCharacter mPlayerCharacter;
     private int mExperience = 0;
     private int mLevel = 1;
     private int mEffectiveLevel = 1;
@@ -78,12 +78,12 @@ public abstract class BaseClass {
         mBasicHits = basicHits;
     }
 
-    public Character getCharacter() {
-        return mCharacter;
+    public PlayerCharacter getCharacter() {
+        return mPlayerCharacter;
     }
 
-    public void setCharacter(Character playerCharacter) {
-        mCharacter = playerCharacter;
+    public void setCharacter(PlayerCharacter playerCharacter) {
+        mPlayerCharacter = playerCharacter;
     }
 
     public Score[] getPrimaryAttributes() {

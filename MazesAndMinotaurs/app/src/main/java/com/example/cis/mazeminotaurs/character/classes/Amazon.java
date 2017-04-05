@@ -1,7 +1,7 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.character.Character;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
@@ -11,7 +11,7 @@ import com.example.cis.mazeminotaurs.util.Util;
  */
 
 public class Amazon extends Warrior{
-    public Amazon(Character character) {
+    public Amazon(PlayerCharacter playerCharacter) {
         Score[] primAttributes = {Score.SKILL, Score.GRACE};
 
         int rolledGold = 0;
@@ -21,7 +21,7 @@ public class Amazon extends Warrior{
 
         setAddedHits(0);
         setBasicHits(12);
-        setCharacter(character);
+        setCharacter(playerCharacter);
         setExperience(0);
         setLevel(1);
         setPrimaryAttributes(primAttributes);

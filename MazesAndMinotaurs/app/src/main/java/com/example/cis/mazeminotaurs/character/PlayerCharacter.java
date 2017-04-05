@@ -16,13 +16,8 @@ import java.util.HashMap;
  * Created by jusmith on 3/30/17.
  */
 
-<<<<<<< HEAD:MazesAndMinotaurs/app/src/main/java/com/example/cis/mazeminotaurs/character/Character.java
-public class Character {
-=======
 public class PlayerCharacter {
-    private final String TAG = "PlayerCharacter Class";
 
->>>>>>> 2f6980a2a86150f8f810ee0775cc1434a98701a2:MazesAndMinotaurs/app/src/main/java/com/example/cis/mazeminotaurs/character/PlayerCharacter.java
     private HashMap<Score, AttributeScore> mCoreStats = new HashMap<>();
     private BaseClass mCharClass;
     private Gender mGender;
@@ -33,8 +28,7 @@ public class PlayerCharacter {
     private Armor mBreastplate;
     private Armor mShield;
 
-<<<<<<< HEAD:MazesAndMinotaurs/app/src/main/java/com/example/cis/mazeminotaurs/character/Character.java
-    public Character() {
+    public PlayerCharacter() {
         initalizeMoneyMap();
 
         setAge(0);
@@ -42,13 +36,6 @@ public class PlayerCharacter {
         setName("Thorin");
 
         getMoney().put(Money.SILVER, getCharClass().getStartGold());
-=======
-    public PlayerCharacter() {
-        Log.i(TAG, "Creating PlayerCharacter");
-        setAge(0);
-        setCharClass(new Barbarian(this, R.string.barb_axe, R.string.bow));
-        setName("Thorin");
->>>>>>> 2f6980a2a86150f8f810ee0775cc1434a98701a2:MazesAndMinotaurs/app/src/main/java/com/example/cis/mazeminotaurs/character/PlayerCharacter.java
         
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
@@ -101,7 +88,6 @@ public class PlayerCharacter {
         return getCoreStatScore(Score.WILL).getModifier() +
                 getCoreStatScore(Score.GRACE).getModifier() +
                 getCoreStatScore(Score.LUCK).getModifier();
-<<<<<<< HEAD:MazesAndMinotaurs/app/src/main/java/com/example/cis/mazeminotaurs/character/Character.java
     }
 
     public Gender getGender() {
@@ -164,8 +150,6 @@ public class PlayerCharacter {
 
     public void setShield(Armor shield) {
         mShield = shield;
-=======
->>>>>>> 2f6980a2a86150f8f810ee0775cc1434a98701a2:MazesAndMinotaurs/app/src/main/java/com/example/cis/mazeminotaurs/character/PlayerCharacter.java
     }
 
     public AttributeScore getCoreStatScore(Score scoreStat) {
