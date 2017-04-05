@@ -12,6 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
+import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
+import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
+
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -87,16 +91,15 @@ public class MainMazes extends AppCompatActivity
             } else if (id == R.id.delete_character) {
 
             } else if (id == R.id.player_manual) {
-
+                contentFragment = new PlayerManualFragment();
             } else if (id == R.id.player_comapanion) {
-
+                contentFragment = new CompanionFragment();
             } else if (id == R.id.website) {
-
+                contentFragment = new WebsiteFragment();
             }
 
             if (contentFragment != null){
                 ft.replace(R.id.content_frame, contentFragment);
-                ft.commit();
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
