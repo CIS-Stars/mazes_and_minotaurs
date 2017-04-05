@@ -77,7 +77,7 @@
             </RadioGroup>
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/magician_button"
                 android:layout_width="135dp"
                 android:layout_height="204dp"
                 android:layout_column="1"
@@ -180,7 +180,7 @@
             </RadioGroup>
 
             <ImageButton
-                android:id="@+id/magician_button"
+                android:id="@+id/warrior_button"
                 android:layout_width="123dp"
                 android:layout_height="204dp"
                 android:layout_column="0"
