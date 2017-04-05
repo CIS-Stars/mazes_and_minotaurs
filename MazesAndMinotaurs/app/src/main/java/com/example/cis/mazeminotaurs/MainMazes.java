@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
+
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -81,7 +83,7 @@ public class MainMazes extends AppCompatActivity
             ft.commit();
 
             if (id == R.id.create_character) {
-                // Handle the camera action
+               contentFragment = new CharacterCreationFragment();
             } else if (id == R.id.play_character) {
 
             } else if (id == R.id.delete_character) {
@@ -96,7 +98,6 @@ public class MainMazes extends AppCompatActivity
 
             if (contentFragment != null){
                 ft.replace(R.id.content_frame, contentFragment);
-                ft.commit();
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
