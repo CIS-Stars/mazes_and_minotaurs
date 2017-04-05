@@ -18,6 +18,7 @@ public class Character {
     private HashMap<Score, AttributeScore> mCoreStats = new HashMap<>();
     private BaseClass mCharClass;
     private Gender mGender;
+    private HashMap<Money, Integer> mMoney = new HashMap<>();
     private int mAge;
     private String mName;
     private Armor mHelmet;
@@ -25,9 +26,13 @@ public class Character {
     private Armor mShield;
 
     public Character() {
+        initalizeMoneyMap();
+
         setAge(0);
         setCharClass(new Barbarian(this, R.string.barb_axe, R.string.bow));
         setName("Thorin");
+
+        getMoney().put(Money.SILVER, getCharClass().getStartGold());
         
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
@@ -80,6 +85,68 @@ public class Character {
         return getCoreStatScore(Score.WILL).getModifier() +
                 getCoreStatScore(Score.GRACE).getModifier() +
                 getCoreStatScore(Score.LUCK).getModifier();
+    }
+
+    public Gender getGender() {
+        return mGender;
+    }
+
+    public void setGender(Gender gender) {
+        mGender = gender;
+    }
+
+    public void addMoney(Money money, int amount) {
+        getMoney().put(money, getMoney().get(money) + amount);
+        validateMoney();
+    }
+
+    public HashMap<Money, Integer> getMoney() {
+        return mMoney;
+    }
+
+    private void initalizeMoneyMap() {
+        mMoney.put(Money.COPPER, 0);
+        mMoney.put(Money.SILVER, 0);
+        mMoney.put(Money.GOLD, 0);
+    }
+
+    public void setMoney(HashMap<Money, Integer> money) {
+        mMoney = money;
+    }
+
+    public void validateMoney() {
+        HashMap<Money, Integer> cash = getMoney();
+
+        int tradedUpSilver = cash.get(Money.COPPER) / 100;
+        int tradedUpGold = cash.get(Money.SILVER) / 100;
+
+        cash.put(Money.COPPER, cash.get(Money.COPPER) % 100);
+        cash.put(Money.SILVER, (cash.get(Money.SILVER) % 100) + tradedUpSilver);
+        cash.put(Money.GOLD, cash.get(Money.GOLD) + tradedUpGold);
+    }
+
+    public Armor getHelmet() {
+        return mHelmet;
+    }
+
+    public void setHelmet(Armor helmet) {
+        mHelmet = helmet;
+    }
+
+    public Armor getBreastplate() {
+        return mBreastplate;
+    }
+
+    public void setBreastplate(Armor breastplate) {
+        mBreastplate = breastplate;
+    }
+
+    public Armor getShield() {
+        return mShield;
+    }
+
+    public void setShield(Armor shield) {
+        mShield = shield;
     }
 
     public AttributeScore getCoreStatScore(Score scoreStat) {

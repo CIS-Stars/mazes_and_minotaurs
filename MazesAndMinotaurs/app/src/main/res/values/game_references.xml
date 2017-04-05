@@ -57,6 +57,11 @@
     <string name="female">Female</string>
     <string name="either_gender">Either</string>
 
+    <!-- Money -->
+    <string name="copper">Copper</string>
+    <string name="silver">Silver</string>
+    <string name="gold">Gold</string>
+
     <!-- Level Descriptions -->
     <!-- Warrior Classes -->
     <string name="warrior_one">Local Hero</string>
