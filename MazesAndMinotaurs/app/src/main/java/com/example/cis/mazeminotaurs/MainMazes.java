@@ -11,15 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
+import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
+import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
 
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public PlayerCharacter mCurrentPlayerCharacter;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
+            mCurrentPlayerCharacter = new PlayerCharacter();
+
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -85,15 +93,15 @@ public class MainMazes extends AppCompatActivity
             if (id == R.id.create_character) {
                contentFragment = new CharacterCreationFragment();
             } else if (id == R.id.play_character) {
-
+                contentFragment = new CharacterSheetFragment();
             } else if (id == R.id.delete_character) {
 
             } else if (id == R.id.player_manual) {
-
+                contentFragment = new PlayerManualFragment();
             } else if (id == R.id.player_comapanion) {
-
+                contentFragment = new CompanionFragment();
             } else if (id == R.id.website) {
-
+                contentFragment = new WebsiteFragment();
             }
 
             if (contentFragment != null){

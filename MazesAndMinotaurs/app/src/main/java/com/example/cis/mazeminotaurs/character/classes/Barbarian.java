@@ -1,7 +1,7 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.character.Character;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Barbarian extends Warrior {
 
-    public Barbarian(Character character, int choiceWeapon, int startingMissleWeapon) {
+    public Barbarian(PlayerCharacter playerCharacter, int choiceWeapon, int startingMissleWeapon) {
         Score[] primAttributes = {Score.MIGHT, Score.WILL};
         ArrayList<Integer> wepsOfChoice = new ArrayList<>();
         wepsOfChoice.add(R.string.barb_axe);
@@ -29,12 +29,12 @@ public class Barbarian extends Warrior {
 
         setAddedHits(0);
         setBasicHits(12);
-        setCharacter(character);
+        setPlayerCharacter(playerCharacter);
         setExperience(0);
         setLevel(1);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
-        setResId(R.string.barbarian);
+        setResId(Classes.BARBARIAN.getResId());
         // Cannot set up without Equipment made
         // setStartGear();
         setStartGold(rolledGold * 5);
@@ -48,10 +48,10 @@ public class Barbarian extends Warrior {
     }
 
     public int getBattleMightBonus(){
-        return getCharacter().getMod(Score.MIGHT);
+        return getPlayerCharacter().getCoreStatScore(Score.MIGHT).getModifier();
     }
 
     public int getBattleFuryBonus(){
-        return getCharacter().getMod(Score.WILL);
+        return getPlayerCharacter().getCoreStatScore(Score.WILL).getModifier();
     }
 }

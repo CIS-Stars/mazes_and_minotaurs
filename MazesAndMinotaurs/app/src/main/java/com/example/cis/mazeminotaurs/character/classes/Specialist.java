@@ -7,9 +7,7 @@ package com.example.cis.mazeminotaurs.character.classes;
 public abstract class Specialist extends BaseClass {
     private int mSpecialScoreId;
 
-    public int getSpecialScoreId() {
-        return mSpecialScoreId;
-    }
+    public int getSpecialScoreId() { return mSpecialScoreId; }
 
     public void setSpecialScoreId(int specialScoreId) {
         mSpecialScoreId = specialScoreId;
