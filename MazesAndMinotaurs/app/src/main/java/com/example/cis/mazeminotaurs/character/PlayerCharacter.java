@@ -16,8 +16,8 @@ import java.util.HashMap;
  * Created by jusmith on 3/30/17.
  */
 
-public class Character {
-    private final String TAG = "Character Class";
+public class PlayerCharacter {
+    private final String TAG = "PlayerCharacter Class";
 
     private HashMap<Score, AttributeScore> mCoreStats = new HashMap<>();
     private BaseClass mCharClass;
@@ -28,8 +28,8 @@ public class Character {
     private Armor mBreastplate;
     private Armor mShield;
 
-    public Character() {
-        Log.i(TAG, "Creating Character");
+    public PlayerCharacter() {
+        Log.i(TAG, "Creating PlayerCharacter");
         setAge(0);
         setCharClass(new Barbarian(this, R.string.barb_axe, R.string.bow));
         setName("Thorin");
