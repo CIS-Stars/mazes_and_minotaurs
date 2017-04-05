@@ -11,6 +11,7 @@ public enum Gender {
     FEMALE(R.string.female),
     EITHER(R.string.either_gender);
 
+
     private int mResId;
 
     Gender(int resId) {

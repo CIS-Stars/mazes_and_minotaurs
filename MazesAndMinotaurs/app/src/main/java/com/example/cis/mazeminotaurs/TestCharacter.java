@@ -4,7 +4,7 @@ package com.example.cis.mazeminotaurs;
  * Created by Thorin Schmidt on 3/19/2017.
  */
 
-public class Character {
+public class TestCharacter {
     /* Given examples like QeoQuiz, this can probably be jsut as effectively done with string resources.
        I will leave this here just in case...
      */
@@ -31,4 +31,23 @@ public class Character {
         DRYAD, HELEAD, NAIAD, NAPAEA, NEREID, OREAD
     }
     These are all now string resources */
+
+    //instance fields
+    private int age;
+
+    public TestCharacter(int age) {
+        this.age = age;
+    }
+
+    public TestCharacter() {
+        this.age = 10;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

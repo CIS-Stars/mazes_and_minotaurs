@@ -1,5 +1,7 @@
 package com.example.cis.mazeminotaurs.character;
 
+import android.util.Log;
+
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
@@ -15,6 +17,8 @@ import java.util.HashMap;
  */
 
 public class Character {
+    private final String TAG = "Character Class";
+
     private HashMap<Score, AttributeScore> mCoreStats = new HashMap<>();
     private BaseClass mCharClass;
     private Gender mGender;
@@ -25,6 +29,7 @@ public class Character {
     private Armor mShield;
 
     public Character() {
+        Log.i(TAG, "Creating Character");
         setAge(0);
         setCharClass(new Barbarian(this, R.string.barb_axe, R.string.bow));
         setName("Thorin");

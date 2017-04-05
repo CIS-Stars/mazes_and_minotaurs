@@ -8,8 +8,18 @@
 
     <ImageView
         android:id="@+id/splash_image"
-        android:contentDescription="@string/description_splash_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/description_splash_screen"
+        android:scaleType="center"
         app:srcCompat="@drawable/mazes_splash_image"/>
+
+    <TextView
+        android:id="@+id/splash_character_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"/>
 </LinearLayout>
