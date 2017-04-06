@@ -12,6 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -19,9 +22,14 @@ import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public PlayerCharacter mCurrentPlayerCharacter;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
+            mCurrentPlayerCharacter = new PlayerCharacter();
+
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -87,6 +95,7 @@ public class MainMazes extends AppCompatActivity
             if (id == R.id.create_character) {
                 // Handle the camera action
             } else if (id == R.id.play_character) {
+                contentFragment = new CharacterSheetFragment();
 
             } else if (id == R.id.delete_character) {
 

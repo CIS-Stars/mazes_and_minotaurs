@@ -11,6 +11,7 @@ import android.view.ViewGroup;
  */
 
 public class SplashScreenFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
