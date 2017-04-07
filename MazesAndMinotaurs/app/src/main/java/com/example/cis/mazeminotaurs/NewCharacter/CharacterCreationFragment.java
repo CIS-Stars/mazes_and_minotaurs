@@ -31,6 +31,15 @@ public class CharacterCreationFragment extends Fragment {
     public RadioButton mNobleRadio;
     public RadioButton mSpearRadio;
 
+    public RadioButton mElementalistRadio;
+    public RadioButton mLyristRadio;
+    public RadioButton mNymphRadio;
+    public RadioButton mPriestRadio;
+    public RadioButton mSorcererRadio;
+
+    public RadioButton mHunterRadio;
+    public RadioButton mThiefRadio;
+
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
@@ -44,7 +53,44 @@ public class CharacterCreationFragment extends Fragment {
         mMagicianGroup = (RadioGroup) rootView.findViewById(R.id.magician_radio_set);
         mSpecialistGroup = (RadioGroup) rootView.findViewById(R.id.specialist_radio_set);
 
+        // Radio Buttons for Warrior Group
+        mAmazonRadio = (RadioButton) rootView.findViewById(R.id.amazon_radio);
+        mBarbarianRadio = (RadioButton) rootView.findViewById(R.id.barbarian_radio);
+        mCentaurRadio = (RadioButton) rootView.findViewById(R.id.centaur_radio);
+        mNobleRadio = (RadioButton) rootView.findViewById(R.id.noble_radio);
+        mSpearRadio = (RadioButton) rootView.findViewById(R.id.spear_radio);
+
+        // Radio Buttons for Magician Group
+        mElementalistRadio = (RadioButton) rootView.findViewById(R.id.elementalist_radio);
+        mLyristRadio = (RadioButton) rootView.findViewById(R.id.lyrist_radio);
+        mNymphRadio = (RadioButton) rootView.findViewById(R.id.nymph_radio);
+        mPriestRadio = (RadioButton) rootView.findViewById(R.id.priest_radio);
+        mSorcererRadio = (RadioButton) rootView.findViewById(R.id.sorcerer_radio);
+
+        // Radio Buttons for Specialist Group
+        mHunterRadio = (RadioButton) rootView.findViewById(R.id.hunter_radio);
+        mThiefRadio = (RadioButton) rootView.findViewById(R.id.thief_radio);
+
+        mWarriorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWarriorGroup.setVisibility(View.VISIBLE);
+                mMagicianGroup.setVisibility(View.GONE);
+                mSpecialistGroup.setVisibility(View.GONE);
+            }
+        });
+
+        mMagicianButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mWarriorGroup.setVisibility(View.VISIBLE);
+                mMagicianGroup.setVisibility(View.GONE);
+                mSpecialistGroup.setVisibility(View.GONE);
+            }
+        });
+
 
         return rootView;
     }
+
 }
