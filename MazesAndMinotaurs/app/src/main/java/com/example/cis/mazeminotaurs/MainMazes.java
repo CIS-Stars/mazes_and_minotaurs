@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -20,13 +19,13 @@ import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public PlayerCharacter mCurrentPlayerCharacter;
+    public Portfolio mPortfolio;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            mCurrentPlayerCharacter = new PlayerCharacter();
+            mPortfolio = Portfolio.get();
 
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
