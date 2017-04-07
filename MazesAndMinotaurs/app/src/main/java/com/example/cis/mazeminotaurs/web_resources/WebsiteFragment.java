@@ -25,12 +25,13 @@ public class WebsiteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b) {
         super.onCreateView(li, vg, b);
+        Log.i(TAG, "called super...");
         View rootView = li.inflate(R.layout.fragment_website, vg, false);
+        Log.i(TAG, "inflated view...");
         mPlayerManualWeb = (WebView) rootView.findViewById(R.id.website_web_view);
+        Log.i(TAG, "instantiated WebView...");
         mPlayerManualWeb.loadUrl(mManualUrl);
-
         Log.i(TAG, "performed loadUrl...");
-
 
         return rootView;
 
