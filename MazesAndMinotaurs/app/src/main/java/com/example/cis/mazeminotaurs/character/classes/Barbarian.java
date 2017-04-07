@@ -1,7 +1,6 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
-import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -20,10 +19,9 @@ public class Barbarian extends Warrior {
     public Barbarian(PlayerCharacter playerCharacter, int choiceWeapon, int startingMissleWeapon) {
         Score[] primAttributes = {Score.MIGHT, Score.WILL};
         ArrayList<Integer> wepsOfChoice = new ArrayList<>();
-        wepsOfChoice.add(R.string.barb_axe);
-        wepsOfChoice.add(R.string.barb_club);
-        wepsOfChoice.add(R.string.barb_mace);
-        wepsOfChoice.add(R.string.barb_sword);
+        for (int weaponResId: Util.sBarbWeapons) {
+            wepsOfChoice.add(weaponResId);
+        }
 
         int rolledGold = 0;
         for (int i =0; i < 3; i++) {
@@ -56,16 +54,31 @@ public class Barbarian extends Warrior {
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()){
 
-            Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT};
-            Score selectedScore;
-            if (Arrays.asList(possibleScores).contains(score)) {
-                selectedScore = score;
-            } else {
-                selectedScore = possibleScores[Util.roll(3) - 1];
+            Score[] selectableScores = {Score.SKILL, Score.WILL, Score.MIGHT};
+            ArrayList<Score> possibleScores = new ArrayList<>();
+            for (Score selectScore: selectableScores) {
+                if(!(getCharacter().getScore(selectScore).getScore() >= 20) ||
+                   !(getCharacter().getScore(selectScore).getScore() >= 21 &&
+                    Arrays.asList(getPrimaryAttributes()).contains(selectScore))) {
+                    possibleScores.add(selectScore);
+                }
             }
 
-            AttributeScore selectedAttrScore = getCharacter().getCoreStatScore(selectedScore);
-            AttributeScore luck = getCharacter().getCoreStatScore(Score.LUCK);
+            Score selectedScore;
+            if (possibleScores.contains(score)) {
+                selectedScore = score;
+            } else {
+                selectedScore = possibleScores.get(Util.roll(3) - 1);
+            }
+
+            while (getCharacter().getScore(selectedScore).getScore() >= 20 ||
+                    (getCharacter().getScore(selectedScore).getScore() >= 21 &&
+                    Arrays.asList(getPrimaryAttributes()).contains(selectedScore))) {
+                selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
+            }
+
+            AttributeScore selectedAttrScore = getCharacter().getScore(selectedScore);
+            AttributeScore luck = getCharacter().getScore(Score.LUCK);
 
             luck.setScore(luck.getScore() + 1);
             selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
@@ -79,8 +92,8 @@ public class Barbarian extends Warrior {
     @Override
     public void doLevelDown(){
         if (getLevel() > 1) {
-            AttributeScore luck = getCharacter().getCoreStatScore(Score.LUCK);
-            AttributeScore lastScoreLeveled = getCharacter().getCoreStatScore(getScoreLevelChoice().get(getScoreLevelChoice().size() - 1));
+            AttributeScore luck = getCharacter().getScore(Score.LUCK);
+            AttributeScore lastScoreLeveled = getCharacter().getScore(getScoreLevelChoice().get(getScoreLevelChoice().size() - 1));
 
             setAddedHits(getAddedHits() - 4);
             luck.setScore(luck.getScore() - 1);
@@ -97,10 +110,10 @@ public class Barbarian extends Warrior {
     }
 
     public int getBattleMightBonus(){
-        return getCharacter().getCoreStatScore(Score.MIGHT).getModifier();
+        return getCharacter().getScore(Score.MIGHT).getModifier();
     }
 
     public int getBattleFuryBonus(){
-        return getCharacter().getCoreStatScore(Score.WILL).getModifier();
+        return getCharacter().getScore(Score.WILL).getModifier();
     }
 }

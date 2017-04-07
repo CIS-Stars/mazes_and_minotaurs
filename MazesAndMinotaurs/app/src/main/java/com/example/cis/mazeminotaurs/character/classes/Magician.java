@@ -12,7 +12,7 @@ public abstract class Magician extends BaseClass {
     public int getSpecialTalent(){
         int total = 0;
         for (Score score: getPrimaryAttributes()) {
-            total += getCharacter().getCoreStatScore(score).getModifier();
+            total += getCharacter().getScore(score).getModifier();
         }
         return total;
     }

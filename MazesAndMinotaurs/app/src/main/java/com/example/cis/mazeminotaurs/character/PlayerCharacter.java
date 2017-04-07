@@ -1,7 +1,5 @@
 package com.example.cis.mazeminotaurs.character;
 
-import android.util.Log;
-
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
@@ -18,7 +16,7 @@ import java.util.HashMap;
 
 public class PlayerCharacter {
 
-    private HashMap<Score, AttributeScore> mCoreStats = new HashMap<>();
+    private HashMap<Score, AttributeScore> mScores = new HashMap<>();
     private BaseClass mCharClass;
     private Gender mGender;
     private HashMap<Money, Integer> mMoney = new HashMap<>();
@@ -39,29 +37,29 @@ public class PlayerCharacter {
         
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
-            mCoreStats.put(Score.values()[i], scores[i]);
+            mScores.put(Score.values()[i], scores[i]);
         }
     }
 
     public int getMeleeMod() {
-        return getCoreStatScore(Score.MIGHT).getModifier() +
-                getCoreStatScore(Score.GRACE).getModifier() +
-                getCoreStatScore(Score.LUCK).getModifier();
+        return getScore(Score.MIGHT).getModifier() +
+                getScore(Score.GRACE).getModifier() +
+                getScore(Score.LUCK).getModifier();
     }
 
     public int getMissleMod() {
-        return getCoreStatScore(Score.SKILL).getModifier() +
-                getCoreStatScore(Score.WITS).getModifier() +
-                getCoreStatScore(Score.LUCK).getModifier();
+        return getScore(Score.SKILL).getModifier() +
+                getScore(Score.WITS).getModifier() +
+                getScore(Score.LUCK).getModifier();
     }
 
     public int getInititive() {
-        return 10 + getCoreStatScore(Score.SKILL).getModifier() +
-                getCoreStatScore(Score.WITS).getModifier();
+        return 10 + getScore(Score.SKILL).getModifier() +
+                getScore(Score.WITS).getModifier();
     }
 
     public int getDC() {
-        return 12 + getCoreStatScore(Score.LUCK).getModifier();
+        return 12 + getScore(Score.LUCK).getModifier();
     }
 
     public int getEDC() {
@@ -85,9 +83,9 @@ public class PlayerCharacter {
     }
 
     public int getCharisma(){
-        return getCoreStatScore(Score.WILL).getModifier() +
-                getCoreStatScore(Score.GRACE).getModifier() +
-                getCoreStatScore(Score.LUCK).getModifier();
+        return getScore(Score.WILL).getModifier() +
+                getScore(Score.GRACE).getModifier() +
+                getScore(Score.LUCK).getModifier();
     }
 
     public Gender getGender() {
@@ -152,16 +150,16 @@ public class PlayerCharacter {
         mShield = shield;
     }
 
-    public AttributeScore getCoreStatScore(Score scoreStat) {
-        return mCoreStats.get(scoreStat);
+    public AttributeScore getScore(Score scoreStat) {
+        return mScores.get(scoreStat);
     }
 
-    public HashMap<Score, AttributeScore> getCoreStats() {
-        return mCoreStats;
+    public HashMap<Score, AttributeScore> getScores() {
+        return mScores;
     }
 
-    public void setCoreStats(HashMap<Score, AttributeScore> coreStats) {
-        mCoreStats = coreStats;
+    public void setScores(HashMap<Score, AttributeScore> scores) {
+        mScores = scores;
     }
 
     public BaseClass getCharClass() {
@@ -186,5 +184,11 @@ public class PlayerCharacter {
 
     public void setName(String name) {
         mName = name;
+    }
+
+    protected void printScores() {
+        for (Score score: getScores().keySet()) {
+            System.out.println(score.toString() + ":" + String.valueOf(getScore(score).getScore()));
+        }
     }
 }

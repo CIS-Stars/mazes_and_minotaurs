@@ -32,10 +32,10 @@ public class Amazon extends Warrior{
     }
 
     public int getDeadlyShotBonus(){
-        return getCharacter().getCoreStatScore(Score.SKILL).getModifier();
+        return getCharacter().getScore(Score.SKILL).getModifier();
     }
 
     public int getBattleGraceBonus(){
-        return getCharacter().getCoreStatScore(Score.GRACE).getModifier();
+        return getCharacter().getScore(Score.GRACE).getModifier();
     }
 }
