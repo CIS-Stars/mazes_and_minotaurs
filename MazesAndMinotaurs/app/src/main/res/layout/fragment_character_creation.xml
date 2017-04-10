@@ -79,7 +79,7 @@
             <ImageButton
                 android:id="@+id/magician_button"
                 android:layout_width="135dp"
-                android:layout_height="204dp"
+                android:layout_height="204sp"
                 android:layout_column="1"
                 android:layout_row="0"
                 android:scaleType="fitCenter"
@@ -90,7 +90,7 @@
             <ImageButton
                 android:id="@+id/specialist_button"
                 android:layout_width="123dp"
-                android:layout_height="204dp"
+                android:layout_height="204sp"
                 android:layout_column="2"
                 android:layout_row="0"
                 android:scaleType="fitCenter"
@@ -99,7 +99,7 @@
                 tools:layout_editor_absoluteY="254dp" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/select_class_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -182,7 +182,7 @@
             <ImageButton
                 android:id="@+id/warrior_button"
                 android:layout_width="123dp"
-                android:layout_height="204dp"
+                android:layout_height="204sp"
                 android:layout_column="0"
                 android:layout_row="0"
                 android:scaleType="fitCenter"

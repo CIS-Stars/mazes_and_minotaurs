@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.R;
 
@@ -40,6 +41,8 @@ public class CharacterCreationFragment extends Fragment {
     public RadioButton mHunterRadio;
     public RadioButton mThiefRadio;
 
+    public TextView mSelectClass;
+
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
@@ -71,9 +74,12 @@ public class CharacterCreationFragment extends Fragment {
         mHunterRadio = (RadioButton) rootView.findViewById(R.id.hunter_radio);
         mThiefRadio = (RadioButton) rootView.findViewById(R.id.thief_radio);
 
+        mSelectClass = (TextView) rootView.findViewById(R.id.select_class_view);
+
         mWarriorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mSelectClass.setVisibility(View.VISIBLE);
                 mWarriorGroup.setVisibility(View.VISIBLE);
                 mMagicianGroup.setVisibility(View.GONE);
                 mSpecialistGroup.setVisibility(View.GONE);
@@ -83,11 +89,23 @@ public class CharacterCreationFragment extends Fragment {
         mMagicianButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWarriorGroup.setVisibility(View.VISIBLE);
-                mMagicianGroup.setVisibility(View.GONE);
+                mSelectClass.setVisibility(View.VISIBLE);
+                mWarriorGroup.setVisibility(View.GONE);
+                mMagicianGroup.setVisibility(View.VISIBLE);
                 mSpecialistGroup.setVisibility(View.GONE);
             }
         });
+
+        mSpecialistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSelectClass.setVisibility(View.VISIBLE);
+                mWarriorGroup.setVisibility(View.GONE);
+                mMagicianGroup.setVisibility(View.GONE);
+                mSpecialistGroup.setVisibility(View.VISIBLE);
+            }
+        });
+
 
 
         return rootView;
