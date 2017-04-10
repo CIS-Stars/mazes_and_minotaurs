@@ -35,7 +35,7 @@ public abstract class BaseClass {
     private int mExperience = 0;
     private int mLevel = 1;
     private int mEffectiveLevel = 1;
-    private Score[] mPrimaryAttributes;
+    private ArrayList<Score> mPrimaryAttributes;
     private Gender mRequiredGender;
     private int mResId;
     private ArrayList<Equipment> mStartGear;
@@ -86,11 +86,11 @@ public abstract class BaseClass {
         mPlayerCharacter = playerCharacter;
     }
 
-    public Score[] getPrimaryAttributes() {
+    public ArrayList<Score> getPrimaryAttributes() {
         return mPrimaryAttributes;
     }
 
-    public void setPrimaryAttributes(Score[] primaryAttributes) {
+    public void setPrimaryAttributes(ArrayList<Score> primaryAttributes) {
         mPrimaryAttributes = primaryAttributes;
     }
 

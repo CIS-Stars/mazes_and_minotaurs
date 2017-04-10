@@ -4,6 +4,7 @@ import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.character.classes.Amazon;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -34,7 +35,7 @@ public class PlayerCharacter {
         setName("Thorin");
 
         getMoney().put(Money.SILVER, getCharClass().getStartGold());
-        
+
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
             mScores.put(Score.values()[i], scores[i]);
@@ -77,12 +78,12 @@ public class PlayerCharacter {
         return getDC() + armorBonus;
     }
 
-    public int getHitTotal(){
+    public int getHitTotal() {
         //return mCharClass.getHits() + getMod(Score.MIGHT);
         return 0;
     }
 
-    public int getCharisma(){
+    public int getCharisma() {
         return getScore(Score.WILL).getModifier() +
                 getScore(Score.GRACE).getModifier() +
                 getScore(Score.LUCK).getModifier();
@@ -105,14 +106,14 @@ public class PlayerCharacter {
         return mMoney;
     }
 
+    public void setMoney(HashMap<Money, Integer> money) {
+        mMoney = money;
+    }
+
     private void initalizeMoneyMap() {
         mMoney.put(Money.COPPER, 0);
         mMoney.put(Money.SILVER, 0);
         mMoney.put(Money.GOLD, 0);
-    }
-
-    public void setMoney(HashMap<Money, Integer> money) {
-        mMoney = money;
     }
 
     public void validateMoney() {
@@ -148,6 +149,36 @@ public class PlayerCharacter {
 
     public void setShield(Armor shield) {
         mShield = shield;
+    }
+
+    public boolean canAddToScore(Score score) {
+        boolean isPrimary = getCharClass().getPrimaryAttributes().contains(score);
+        int scoreValue = getScore(score).getScore();
+
+        if (isPrimary) {
+            return scoreValue < 21;
+        } else {
+            return scoreValue < 20;
+        }
+    }
+
+    public void validateScores() {
+        for (Score score: Score.values()) {
+            boolean isPrimary = getCharClass().getPrimaryAttributes().contains(score);
+            int scoreValue = getScore(score).getScore();
+
+            if (isPrimary && scoreValue > 21) {
+                getScore(score).setScore(21);
+            } else if (!isPrimary && scoreValue > 20) {
+                getScore(score).setScore(20);
+            }
+        }
+    }
+
+    protected void debugPrintScores() {
+        for (Score score : getScores().keySet()) {
+            System.out.println(score.toString() + ":" + String.valueOf(getScore(score).getScore()));
+        }
     }
 
     public AttributeScore getScore(Score scoreStat) {
@@ -186,9 +217,4 @@ public class PlayerCharacter {
         mName = name;
     }
 
-    protected void printScores() {
-        for (Score score: getScores().keySet()) {
-            System.out.println(score.toString() + ":" + String.valueOf(getScore(score).getScore()));
-        }
-    }
 }

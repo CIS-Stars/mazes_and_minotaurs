@@ -7,17 +7,21 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * Created by jusmith on 3/31/17.
  */
 
-public class Barbarian extends Warrior {
-    private ArrayList<Score> mScoreLevelChoice = new ArrayList<>();
+public class Barbarian extends Warrior implements Level{
+    private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Barbarian(PlayerCharacter playerCharacter, int choiceWeapon, int startingMissleWeapon) {
-        Score[] primAttributes = {Score.MIGHT, Score.WILL};
+        Score[] primAttrs = {Score.MIGHT, Score.WILL};
+        ArrayList<Score> primAttributes = new ArrayList<>();
+        Collections.addAll(primAttributes, primAttrs);
+
         ArrayList<Integer> wepsOfChoice = new ArrayList<>();
         for (int weaponResId: Util.sBarbWeapons) {
             wepsOfChoice.add(weaponResId);
@@ -45,7 +49,6 @@ public class Barbarian extends Warrior {
         }
     }
 
-    @Override
     public void doLevelUp(){
         Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT};
         doLevelUp(possibleScores[Util.roll(3) - 1]);
@@ -54,12 +57,10 @@ public class Barbarian extends Warrior {
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()){
 
-            Score[] selectableScores = {Score.SKILL, Score.WILL, Score.MIGHT};
+            Score[] choices = {Score.SKILL, Score.WILL, Score.MIGHT};
             ArrayList<Score> possibleScores = new ArrayList<>();
-            for (Score selectScore: selectableScores) {
-                if(!(getCharacter().getScore(selectScore).getScore() >= 20) ||
-                   !(getCharacter().getScore(selectScore).getScore() >= 21 &&
-                    Arrays.asList(getPrimaryAttributes()).contains(selectScore))) {
+            for (Score selectScore: choices) {
+                if(getCharacter().canAddToScore(selectScore)) {
                     possibleScores.add(selectScore);
                 }
             }
@@ -68,44 +69,66 @@ public class Barbarian extends Warrior {
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(3) - 1);
+                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
             }
 
-            while (getCharacter().getScore(selectedScore).getScore() >= 20 ||
-                    (getCharacter().getScore(selectedScore).getScore() >= 21 &&
-                    Arrays.asList(getPrimaryAttributes()).contains(selectedScore))) {
-                selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
+            if (possibleScores.size() > 0) {
+                while (!getCharacter().canAddToScore(selectedScore)) {
+                    selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
+                }
+            }
+
+            // Contains information about changed scores
+            HashMap<Score, Integer> levelData = new HashMap<>();
+
+            if (getCharacter().canAddToScore(Score.LUCK)) {
+                AttributeScore luck = getCharacter().getScore(Score.LUCK);
+                levelData.put(Score.LUCK, luck.getScore());
+                luck.setScore(luck.getScore() + 1);
+            } else {
+                levelData.put(Score.LUCK, 20);
             }
 
             AttributeScore selectedAttrScore = getCharacter().getScore(selectedScore);
-            AttributeScore luck = getCharacter().getScore(Score.LUCK);
 
-            luck.setScore(luck.getScore() + 1);
+            levelData.put(selectedScore, selectedAttrScore.getScore());
+            getScoreLevelChoice().add(levelData);
+
             selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
             setAddedHits(getAddedHits() + 4);
 
             setLevel(getLevel() + 1);
-            getScoreLevelChoice().add(selectedScore);
+            getCharacter().validateScores();
         }
     }
 
-    @Override
     public void doLevelDown(){
         if (getLevel() > 1) {
+            HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
+            Score lastSelectedScore = null;
+            for (Object rawScore: levelData.keySet().toArray()) {
+                Score score = (Score) rawScore;
+                if (score != Score.LUCK) {
+                    lastSelectedScore = score;
+                    break;
+                }
+            }
+
             AttributeScore luck = getCharacter().getScore(Score.LUCK);
-            AttributeScore lastScoreLeveled = getCharacter().getScore(getScoreLevelChoice().get(getScoreLevelChoice().size() - 1));
+            AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
 
             setAddedHits(getAddedHits() - 4);
-            luck.setScore(luck.getScore() - 1);
-            lastScoreLeveled.setScore(lastScoreLeveled.getScore() - 2);
+            luck.setScore(levelData.get(Score.LUCK));
+            lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
+            setLevel(getLevel() - 1);
         }
     }
 
-    public ArrayList<Score> getScoreLevelChoice() {
+    public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
         return mScoreLevelChoice;
     }
 
-    public void setScoreLevelChoice(ArrayList<Score> scoreLevelChoice) {
+    public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
     }
 

@@ -6,13 +6,18 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by jusmith on 4/4/17.
  */
 
 public class Amazon extends Warrior{
     public Amazon(PlayerCharacter playerCharacter) {
-        Score[] primAttributes = {Score.SKILL, Score.GRACE};
+        Score[] primAttrs = {Score.SKILL, Score.GRACE};
+        ArrayList<Score> primAttributes = new ArrayList<>();
+        Collections.addAll(primAttributes, primAttrs);
 
         int rolledGold = 0;
         for (int i = 0; i < 3; i++) {
