@@ -26,21 +26,6 @@ public class CharacterCreationFragment extends Fragment {
     public RadioGroup mMagicianGroup;
     public RadioGroup mSpecialistGroup;
 
-    public RadioButton mAmazonRadio;
-    public RadioButton mBarbarianRadio;
-    public RadioButton mCentaurRadio;
-    public RadioButton mNobleRadio;
-    public RadioButton mSpearRadio;
-
-    public RadioButton mElementalistRadio;
-    public RadioButton mLyristRadio;
-    public RadioButton mNymphRadio;
-    public RadioButton mPriestRadio;
-    public RadioButton mSorcererRadio;
-
-    public RadioButton mHunterRadio;
-    public RadioButton mThiefRadio;
-
     public TextView mSelectClass;
 
     @Override
@@ -55,24 +40,6 @@ public class CharacterCreationFragment extends Fragment {
         mWarriorGroup = (RadioGroup) rootView.findViewById(R.id.warrior_radio_set);
         mMagicianGroup = (RadioGroup) rootView.findViewById(R.id.magician_radio_set);
         mSpecialistGroup = (RadioGroup) rootView.findViewById(R.id.specialist_radio_set);
-
-        // Radio Buttons for Warrior Group
-        mAmazonRadio = (RadioButton) rootView.findViewById(R.id.amazon_radio);
-        mBarbarianRadio = (RadioButton) rootView.findViewById(R.id.barbarian_radio);
-        mCentaurRadio = (RadioButton) rootView.findViewById(R.id.centaur_radio);
-        mNobleRadio = (RadioButton) rootView.findViewById(R.id.noble_radio);
-        mSpearRadio = (RadioButton) rootView.findViewById(R.id.spear_radio);
-
-        // Radio Buttons for Magician Group
-        mElementalistRadio = (RadioButton) rootView.findViewById(R.id.elementalist_radio);
-        mLyristRadio = (RadioButton) rootView.findViewById(R.id.lyrist_radio);
-        mNymphRadio = (RadioButton) rootView.findViewById(R.id.nymph_radio);
-        mPriestRadio = (RadioButton) rootView.findViewById(R.id.priest_radio);
-        mSorcererRadio = (RadioButton) rootView.findViewById(R.id.sorcerer_radio);
-
-        // Radio Buttons for Specialist Group
-        mHunterRadio = (RadioButton) rootView.findViewById(R.id.hunter_radio);
-        mThiefRadio = (RadioButton) rootView.findViewById(R.id.thief_radio);
 
         mSelectClass = (TextView) rootView.findViewById(R.id.select_class_view);
 
@@ -111,4 +78,70 @@ public class CharacterCreationFragment extends Fragment {
         return rootView;
     }
 
+    public void onRadioButtonClicked(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+
+        if(mWarriorGroup.getVisibility() == View.VISIBLE){
+            switch (view.getId()){
+                case R.id.amazon_radio:
+                    if (checked)
+                        // Pull Pop up
+                    break;
+                case R.id.barbarian_radio:
+                    if (checked)
+                        // Pop up
+                    break;
+                case R.id.centaur_radio:
+                    if (checked)
+                        // Pop Up
+                    break;
+                case R.id.noble_radio:
+                    if (checked)
+                        // Pop Up
+                    break;
+                case R.id.spear_radio:
+                    if (checked)
+                        // Pop Up
+                    break;
+            }
+        }
+
+        if(mMagicianGroup.getVisibility() == View.VISIBLE){
+            switch (view.getId()){
+                case R.id.elementalist_radio:
+                    if (checked)
+                        // Pull Pop up
+                        break;
+                case R.id.lyrist_radio:
+                    if (checked)
+                        // Pop up
+                        break;
+                case R.id.nymph_radio:
+                    if (checked)
+                        // Pop Up
+                        break;
+                case R.id.priest_radio:
+                    if (checked)
+                        // Pop Up
+                        break;
+                case R.id.sorcerer_radio:
+                    if (checked)
+                        // Pop Up
+                        break;
+            }
+        }
+
+        if(mSpecialistGroup.getVisibility() == View.VISIBLE){
+            switch (view.getId()) {
+                case R.id.hunter_radio:
+                    if (checked)
+                        // Pull Pop up
+                        break;
+                case R.id.thief_radio:
+                    if (checked)
+                        // Pop up
+                        break;
+            }
+        }
+    }
 }

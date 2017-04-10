@@ -12,7 +12,7 @@ import com.example.cis.mazeminotaurs.R;
  * Created by Chaos on 3/16/2017.
  */
 
-public class ClassConfirmation extends Activity {
+public class ClassConfirmationPopUp extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
