@@ -1,6 +1,7 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,29 +80,31 @@ public class CharacterCreationFragment extends Fragment {
     }
 
     public void onRadioButtonClicked(View view){
+        boolean popTrue = false;
+        String classText = null;
         boolean checked = ((RadioButton) view).isChecked();
 
         if(mWarriorGroup.getVisibility() == View.VISIBLE){
             switch (view.getId()){
                 case R.id.amazon_radio:
                     if (checked)
-                        // Pull Pop up
+                        popTrue = true;
                     break;
                 case R.id.barbarian_radio:
                     if (checked)
-                        // Pop up
+                        popTrue = true;
                     break;
                 case R.id.centaur_radio:
                     if (checked)
-                        // Pop Up
+                        popTrue = true;
                     break;
                 case R.id.noble_radio:
                     if (checked)
-                        // Pop Up
+                        popTrue = true;
                     break;
                 case R.id.spear_radio:
                     if (checked)
-                        // Pop Up
+                        popTrue = true;
                     break;
             }
         }
@@ -110,23 +113,23 @@ public class CharacterCreationFragment extends Fragment {
             switch (view.getId()){
                 case R.id.elementalist_radio:
                     if (checked)
-                        // Pull Pop up
+                        popTrue = true;
                         break;
                 case R.id.lyrist_radio:
                     if (checked)
-                        // Pop up
+                        popTrue = true;
                         break;
                 case R.id.nymph_radio:
                     if (checked)
-                        // Pop Up
+                        popTrue = true;
                         break;
                 case R.id.priest_radio:
                     if (checked)
-                        // Pop Up
+                        popTrue = true;
                         break;
                 case R.id.sorcerer_radio:
                     if (checked)
-                        // Pop Up
+                        popTrue = true;
                         break;
             }
         }
@@ -135,13 +138,15 @@ public class CharacterCreationFragment extends Fragment {
             switch (view.getId()) {
                 case R.id.hunter_radio:
                     if (checked)
-                        // Pull Pop up
+                        popTrue = true;
                         break;
                 case R.id.thief_radio:
                     if (checked)
-                        // Pop up
+                        popTrue = true;
                         break;
             }
         }
+
+
     }
 }
