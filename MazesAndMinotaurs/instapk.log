@@ -1,24 +1,2 @@
-Apr 04, 2017 10:31:57 PM com.pytenlabs.instapk.helpers.LogHelper init
+Apr 11, 2017 9:50:18 AM com.pytenlabs.instapk.helpers.LogHelper init
 INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14
-Apr 04, 2017 10:31:59 PM com.pytenlabs.instapk.helpers.ProjectInfoHelper getProjectDetails
-INFO: ProjectInfo{versionCode=1, versionName='1.0', packageName='com.example.cis.mazeminotaurs', projectName='MazesAndMinotaurs'}
-Apr 04, 2017 10:33:08 PM com.pytenlabs.instapk.helpers.ApiHelper$2 run
-INFO: RES CODE :201
-Apr 04, 2017 10:33:08 PM com.pytenlabs.instapk.helpers.ApiHelper$2 run
-INFO: RES : {"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlQ0UTM2N1lHWSBVNFFSM1E3QTgiLCJ1c2VyX2lkIjoxMTQsImVtYWlsIjoiIiwiZXhwIjoxNDk5MTM5MTg2fQ.arm3xoT-PTxGyCdGIEwwwrBEjLnYlF3v1JNPZ_UavAc", "slack_channel": "C4RFNCFN0", "project_id": "ZXlKcFpDSTZNVEl3ZlE6MWN2Ymd3OjRoNEhFdElNWnB4d3BQOHloRlhvclhrenJoUQ==", "is_new": true}
-Apr 04, 2017 10:33:09 PM com.pytenlabs.instapk.helpers.ApiHelper$3 run
-INFO: RES CODE :200
-Apr 04, 2017 10:33:09 PM com.pytenlabs.instapk.helpers.ApiHelper$3 run
-INFO: RES : {"channels":[{"id":"C4RFNCFN0","name":"apks"},{"id":"C4QSKTAFP","name":"general"},{"id":"C4R2JAN4S","name":"github"},{"id":"C4Q3684D6","name":"random"}],"groups":[]}
-Apr 04, 2017 10:34:02 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: versionCode : 1
-Apr 04, 2017 10:34:02 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: versionName : 1.0
-Apr 04, 2017 10:34:02 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: packageName : com.example.cis.mazeminotaurs
-Apr 04, 2017 10:34:02 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: release_note : Choose "Play Existing Character" to see sheet, also try the player handbook and web links.
-Apr 04, 2017 10:34:27 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
-INFO: RES CODE: 201
-Apr 04, 2017 10:34:27 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
-INFO: RES: {"id":601,"release_note":"Choose \"Play Existing Character\" to see sheet, also try the player handbook and web links.","created_time":"2017-04-05T03:34:25.022689Z"}
