@@ -5,9 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.util.Util;
 
 /**
  * Created by Thorin Schmidt on 4/1/2017.
@@ -20,6 +23,13 @@ public class CharacterSheetFragment extends Fragment {
     TextView mCharacterNameView;
     TextView mCharacterLevelView;
     TextView mCharacterClassView;
+
+    Button mMightButton;
+    Button mSkillButton;
+    Button mWitsButton;
+    Button mLuckButton;
+    Button mWillButton;
+    Button mGraceButton;
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -40,6 +50,15 @@ public class CharacterSheetFragment extends Fragment {
 
         mCharacterClassView = (TextView) rootView.findViewById(R.id.character_class_view);
         mCharacterClassView.setText(mSheetPlayerCharacter.getCharClass().getResId());
+
+        mMightButton = (Button) rootView.findViewById(R.id.might_score_button);
+        mMightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int dieResult = Util.roll(20);
+                Toast.makeText(getContext(), "Might Roll: "+ Integer.toString(dieResult), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 
