@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="amazon_class"></string>
+    <string name="barbarian_class"></string>
+    <string name="centaur_class"></string>
+    <string name="noble_class"></string>
+    <string name="spearman_class"></string>
+    
+    <!-- Magician Classes -->
+    <string name="elementalist_class"></string>
+    <string name="lyrist_class"></string>
+    <string name="nymph_class"></string>
+    <string name="priest_class"></string>
+    <string name="sorcerer_class"></string>
+
+
+    <!-- Specialist Classes -->
+    <string name="hunter_class">
+        Hunters are rural characters skilled in scouting, woodcraft and marksmanship.</string>
+    <string name="thief_class">
+        Thieves are cunning rogues who rely on luck, stealth and trickery to survive the
+        vicissitudes of destiny and fortune.\n
+        \n
+        Despite what their name implies. Thieves are not necessarily treacherous or dishonest and
+        can be as loyal companions of adventure as anyone else once you get to trust them. But
+        getting to trust them is often the problem.
+    </string>
+</resources>

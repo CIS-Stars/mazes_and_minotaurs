@@ -28,6 +28,7 @@ public class CharacterCreationFragment extends Fragment {
     public RadioGroup mSpecialistGroup;
 
     public TextView mSelectClass;
+    public String mClassType;
 
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
@@ -139,14 +140,18 @@ public class CharacterCreationFragment extends Fragment {
                 case R.id.hunter_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.hunter_class);
                         break;
                 case R.id.thief_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.thief_class);
                         break;
             }
         }
 
+        if (popTrue){
 
+        }
     }
 }
