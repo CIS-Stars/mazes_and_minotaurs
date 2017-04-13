@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- These are replacements for the enumerated types originally in TestCharacter.java-->
+    <!-- Attribute Score Names -->
+    <string name="might">Might</string>
+    <string name="skill">String</string>
+    <string name="wits">Wits</string>
+    <string name="luck">Luck</string>
+    <string name="will">Will</string>
+    <string name="grace">Grace</string>
+
     <!-- Class Names -->
     <string name="amazon">Amazon</string>
     <string name="amazon_b">Amazon (Alt)</string>
@@ -86,4 +94,5 @@
     <string name="magic_four">Sage Adept</string>
     <string name="magic_five">Venerable Adept</string>
     <string name="magic_six">Supreme Adept</string>
+
 </resources>
