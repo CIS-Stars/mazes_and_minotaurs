@@ -1,5 +1,6 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -90,23 +91,28 @@ public class CharacterCreationFragment extends Fragment {
                 case R.id.amazon_radio:
                     if (checked)
                         popTrue = true;
-                    break;
+                        mClassType = getResources().getString(R.string.amazon_class);
+                        break;
                 case R.id.barbarian_radio:
                     if (checked)
                         popTrue = true;
-                    break;
+                        mClassType = getResources().getString(R.string.barbarian_class);
+                        break;
                 case R.id.centaur_radio:
                     if (checked)
                         popTrue = true;
-                    break;
+                        mClassType = getResources().getString(R.string.centaur_class);
+                        break;
                 case R.id.noble_radio:
                     if (checked)
                         popTrue = true;
-                    break;
+                        mClassType = getResources().getString(R.string.noble_class);
+                        break;
                 case R.id.spear_radio:
                     if (checked)
                         popTrue = true;
-                    break;
+                        mClassType = getResources().getString(R.string.spearman_class);
+                        break;
             }
         }
 
@@ -115,22 +121,27 @@ public class CharacterCreationFragment extends Fragment {
                 case R.id.elementalist_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.elementalist_class);
                         break;
                 case R.id.lyrist_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.lyrist_class);
                         break;
                 case R.id.nymph_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.nymph_class);
                         break;
                 case R.id.priest_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.priest_class);
                         break;
                 case R.id.sorcerer_radio:
                     if (checked)
                         popTrue = true;
+                        mClassType = getResources().getString(R.string.sorcerer_class);
                         break;
             }
         }
@@ -151,7 +162,6 @@ public class CharacterCreationFragment extends Fragment {
         }
 
         if (popTrue){
-
         }
     }
 }

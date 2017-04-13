@@ -3,6 +3,7 @@ package com.example.cis.mazeminotaurs.NewCharacter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.R;
 
@@ -13,6 +14,9 @@ import com.example.cis.mazeminotaurs.R;
  */
 
 public class ClassConfirmationPopUp extends Activity {
+
+    String classConText;
+    TextView confirmTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +31,8 @@ public class ClassConfirmationPopUp extends Activity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int) (width*.8), (int) (height*.6));
+
+        
+
     }
 }
