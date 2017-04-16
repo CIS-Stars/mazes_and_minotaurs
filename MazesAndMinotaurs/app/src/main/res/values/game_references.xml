@@ -3,7 +3,7 @@
     <!-- These are replacements for the enumerated types originally in TestCharacter.java-->
     <!-- Attribute Score Names -->
     <string name="might">Might</string>
-    <string name="skill">String</string>
+    <string name="skill">Skill</string>
     <string name="wits">Wits</string>
     <string name="luck">Luck</string>
     <string name="will">Will</string>

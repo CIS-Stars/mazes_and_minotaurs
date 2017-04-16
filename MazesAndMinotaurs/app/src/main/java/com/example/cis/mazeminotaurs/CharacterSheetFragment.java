@@ -2,14 +2,15 @@ package com.example.cis.mazeminotaurs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 /**
@@ -17,6 +18,9 @@ import com.example.cis.mazeminotaurs.util.Util;
  */
 
 public class CharacterSheetFragment extends Fragment {
+
+    public static final String ROLL_RESULT = "RollResult";
+    public static final String TAG = "CharacterSheetFragment";
 
     Portfolio mPortfolio;
     PlayerCharacter mSheetPlayerCharacter;
@@ -52,16 +56,74 @@ public class CharacterSheetFragment extends Fragment {
         mCharacterClassView.setText(mSheetPlayerCharacter.getCharClass().getResId());
 
         mMightButton = (Button) rootView.findViewById(R.id.might_score_button);
+        mMightButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getCoreStatScore(Score.MIGHT).getScore()));
         mMightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int dieResult = Util.roll(20);
-                Toast.makeText(getContext(), "Might Roll: "+ Integer.toString(dieResult), Toast.LENGTH_SHORT).show();
+                onScoreClick(Score.MIGHT, "Might");
             }
         });
 
+        mSkillButton = (Button) rootView.findViewById(R.id.skill_score_button);
+        mSkillButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getCoreStatScore(Score.SKILL).getScore()));
+        mSkillButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onScoreClick(Score.SKILL, "Skill");
+            }
+        });
 
+        mWitsButton = (Button) rootView.findViewById(R.id.wits_score_button);
+        mWitsButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getCoreStatScore(Score.WITS).getScore()));
+        mWitsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onScoreClick(Score.WITS, "Wits");
+            }
+        });
+
+        mLuckButton = (Button) rootView.findViewById(R.id.luck_score_button);
+        mLuckButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getCoreStatScore(Score.LUCK).getScore()));
+        mLuckButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onScoreClick(Score.LUCK, "Luck");
+            }
+        });
+
+        mWillButton = (Button) rootView.findViewById(R.id.will_score_button);
+        mWillButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getCoreStatScore(Score.WILL).getScore()));
+        mWillButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onScoreClick(Score.WILL, "Will");
+            }
+        });
+
+        mGraceButton = (Button) rootView.findViewById(R.id.grace_score_button);
+        mGraceButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getCoreStatScore(Score.GRACE).getScore()));
+        mGraceButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onScoreClick(Score.GRACE, "Grace ");
+            }
+        });
 
         return rootView;
+    }
+
+    public void onScoreClick(Score skill, String name){
+        int modifier =  mSheetPlayerCharacter.getCoreStatScore(skill).getModifier();
+        int dieRoll = Util.roll(20);
+        int rollResult = dieRoll + modifier;
+        FragmentManager fm = getFragmentManager();
+        RollResultFragment dialog = RollResultFragment.newInstance(dieRoll, modifier, name);
+        dialog.show(fm, ROLL_RESULT);
     }
 }
