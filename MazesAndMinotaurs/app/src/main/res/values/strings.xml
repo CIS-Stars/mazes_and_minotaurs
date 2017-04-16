@@ -16,4 +16,11 @@
     <string name="mazes_and_minotaurs">Mazes and Minotaurs</string>
     <string name="description_splash_screen">Warriors Attacking a Minotaur</string>
     <string name="description_lgs_logo">LGS Company Logo</string>
+    <string name="saves_title">Saves</string>
+    <string name="athletic_prowess">Athletic Prowess</string>
+    <string name="danger_evasion">Danger Evasion</string>
+    <string name="combat_title">Combat Modifiers</string>
+    <string name="melee">Melee</string>
+    <string name="missile">Missile</string>
+    <string name="initiative">Initiative</string>
 </resources>
