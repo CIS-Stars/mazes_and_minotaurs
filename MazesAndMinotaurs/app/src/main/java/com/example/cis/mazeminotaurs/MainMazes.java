@@ -9,12 +9,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
-
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -22,13 +21,22 @@ import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public PlayerCharacter mCurrentPlayerCharacter;
+    public Portfolio mPortfolio;
+    public EquipmentDB mEquipment;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            mCurrentPlayerCharacter = new PlayerCharacter();
+            mPortfolio = Portfolio.get();
+            mEquipment = EquipmentDB.getInstance();
+
+            try{
+                Log.i("Get Weapon", mEquipment.getWeapon(R.string.barb_axe).getLongDescription());
+            }
+            catch(NullPointerException e){
+                Log.e("Get Weapon", "Failed!");
+            }
 
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -9,7 +9,7 @@
     <string name="peltast">Peltast Shield</string>
     <string name="shield">Shield</string>
 
-    <!--Melee Weapons -->
+    <!--Melee Weapon -->
     <string name="axe">Axe</string>
     <string name="barb_axe">Barbarian Axe</string>
     <string name="barb_club">Barbarian Cudgel</string>
@@ -21,8 +21,8 @@
     <string name="spear">Spear</string>
     <string name="sword">Sword</string>
 
-    <!-- Missile Weapons -->
-    <string name="arrow">Arrow</string>
+    <!-- Missile Weapon -->
+    <string name="arrows">Quiver of Arrows</string>
     <string name="bow">Bow</string>
     <string name="javelin">Javelin</string>
     <string name="sling">Sling</string>
