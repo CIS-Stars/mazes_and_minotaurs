@@ -9,15 +9,33 @@ import java.util.ArrayList;
 
 /**
  * Created by jusmith on 3/31/17.
+ *
+ * Level is the actual of a character
+ * EffectiveLevel is what level the character will be after handling leveling up
+ *
+ * Example of Usage:
+ *   Assume:
+ *     mLevel = 1;
+ *     mExperience = 2000;
+ *     mEffectiveLevel = 3;
+ *   After calling doLevelUp
+ *      mLevel = 2;
+ *      mExperience = 2000;
+ *      mEffectiveLevel = 3;
+ *   After calling doLevelUp
+ *      mLevel = 3;
+ *      mExperience = 2000;
+ *      mEffectiveLevel = 3;
  */
 
 public abstract class BaseClass {
-    private int mAddedHits;
+    private int mAddedHits = 0;
     private int mBasicHits;
     private PlayerCharacter mPlayerCharacter;
-    private int mExperience;
-    private int mLevel;
-    private Score[] mPrimaryAttributes;
+    private int mExperience = 0;
+    private int mLevel = 1;
+    private int mEffectiveLevel = 1;
+    private ArrayList<Score> mPrimaryAttributes;
     private Gender mRequiredGender;
     private int mResId;
     private ArrayList<Equipment> mStartGear;
@@ -25,22 +43,22 @@ public abstract class BaseClass {
 
     public void updateLevel(){
         if (getExperience() < 1000) {
-            setLevel(1);
+            setEffectiveLevel(1);
         }
         if (getExperience() < 2000) {
-            setLevel(2);
+            setEffectiveLevel(2);
         }
         if (getExperience() < 4000) {
-            setLevel(3);
+            setEffectiveLevel(3);
         }
         if (getExperience() < 7000) {
-            setLevel(4);
+            setEffectiveLevel(4);
         }
         if (getExperience() < 10000) {
-            setLevel(5);
+            setEffectiveLevel(5);
         }
         if (getExperience() > 9999) {
-            setLevel(6);
+            setEffectiveLevel(6);
         }
     }
 
@@ -60,19 +78,19 @@ public abstract class BaseClass {
         mBasicHits = basicHits;
     }
 
-    public PlayerCharacter getPlayerCharacter() {
+    public PlayerCharacter getCharacter() {
         return mPlayerCharacter;
     }
 
-    public void setPlayerCharacter(PlayerCharacter playerCharacter) {
+    public void setCharacter(PlayerCharacter playerCharacter) {
         mPlayerCharacter = playerCharacter;
     }
 
-    public Score[] getPrimaryAttributes() {
+    public ArrayList<Score> getPrimaryAttributes() {
         return mPrimaryAttributes;
     }
 
-    public void setPrimaryAttributes(Score[] primaryAttributes) {
+    public void setPrimaryAttributes(ArrayList<Score> primaryAttributes) {
         mPrimaryAttributes = primaryAttributes;
     }
 
@@ -124,9 +142,21 @@ public abstract class BaseClass {
         mLevel = level;
     }
 
+    public int getEffectiveLevel() {
+        return mEffectiveLevel;
+    }
+
+    public void setEffectiveLevel(int effectiveLevel) {
+        mEffectiveLevel = effectiveLevel;
+    }
+
     // Dummy Method
     // Returns the ResId of the level descriptions
     public int getLevelDescription() {
         return -12321;
     }
+
+    // Dummy Methods
+    public void doLevelUp() {}
+    public void doLevelDown() {}
 }

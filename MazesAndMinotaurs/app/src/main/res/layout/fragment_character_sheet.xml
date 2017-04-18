@@ -21,6 +21,7 @@
 
                 <TextView
                     android:id="@+id/character_level_view"
+                    android:background="@drawable/character_sheet_box_white"
                     android:layout_width="68dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -37,16 +38,17 @@
                         android:id="@+id/character_name_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/background_light"
+                        android:background="@drawable/character_sheet_box_black"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textColor="@color/white"/>
 
                     <TextView
-                        android:id="@+id/character_description_view"
+                        android:id="@+id/character_class_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Short Description goes here..."
+                        android:textAlignment="center"
+                        android:background="@drawable/character_sheet_box_gray"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textSize="24sp"/>
 
@@ -54,14 +56,326 @@
 
             </LinearLayout>
 
-            <GridLayout
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+                <!-- Row One -->
+                <TableRow
+                    android:layout_width="match_parent">
 
-                <TextView
-                    android:id="@+id/scores_title_view"
-                    />
-            </GridLayout>
+                    <TextView
+                        android:id="@+id/might_score_title_view"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/might"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/skill_score_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/skill"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/wits_score_title_view"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/wits"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                </TableRow>
+
+                <!-- Row 2 -->
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/might_score_button"
+                        android:layout_width="63dp"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/skill_score_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/wits_score_button"
+                        android:layout_width="63dp"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+                </TableRow>
+
+                <!-- Row 3 -->
+                <TableRow
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:id="@+id/luck_score_title_view"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/luck"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/will_score_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/will"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/grace_score_title_view"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/grace"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                </TableRow>
+
+                <!-- Row 4 -->
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/luck_score_button"
+                        android:layout_width="63dp"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/will_score_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/grace_score_button"
+                        android:layout_width="63dp"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/combat_title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/character_sheet_box_black"
+                android:textColor="@color/white"
+                android:text="@string/combat_title"
+                android:textAlignment="center"
+                android:textSize="24sp"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <!-- Row One -->
+                <TableRow
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:id="@+id/melee_modifier_title_view"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/melee"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/missle_modifier_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/missile"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/initiative_modifier_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/initiative"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+                </TableRow>
+                <!-- Row 2 -->
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/melee_modifier_button"
+                        android:layout_width="63dp"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/missile_modifier_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/initiative_modifier_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/saves_title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/character_sheet_box_black"
+                android:textColor="@color/white"
+                android:text="@string/saves_title"
+                android:textAlignment="center"
+                android:textSize="24sp"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+                <!-- Row One -->
+                <TableRow
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:id="@+id/athletic_prowess_title_view"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/athletic_prowess_short"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/danger_evasion_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/danger_evasion_short"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/mystic_fortitude_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/mystic_fortitude_short"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/physical_vigor_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/physical_vigor_short"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                </TableRow>
+                <!-- Row 2 -->
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/athletic_prowess_button"
+                        android:layout_width="63dp"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/danger_evasion_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/mystic_fortitude_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/physical_vigor_button"
+                        android:layout_width="63dp"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+                </TableRow>
+            </TableLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
