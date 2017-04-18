@@ -1,6 +1,7 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -77,6 +78,7 @@ public class CharacterCreationFragment extends Fragment {
         });
 
 
+        onRadioButtonClicked(rootView);
 
         return rootView;
     }
@@ -162,6 +164,13 @@ public class CharacterCreationFragment extends Fragment {
         }
 
         if (popTrue){
+            moveToClassConfirmationPopUp();
         }
+    }
+
+    private void moveToClassConfirmationPopUp() {
+        Intent i = new Intent(getActivity(), ClassConfirmationPopUp.class);
+        startActivity(i);
+        ((Activity) getActivity()).overridePendingTransition(0,0);
     }
 }

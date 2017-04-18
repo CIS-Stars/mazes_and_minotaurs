@@ -2,6 +2,7 @@ package com.example.cis.mazeminotaurs.NewCharacter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
@@ -21,7 +22,6 @@ public class ClassConfirmationPopUp extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.class_confirmation_popup);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -32,7 +32,9 @@ public class ClassConfirmationPopUp extends Activity {
 
         getWindow().setLayout((int) (width*.8), (int) (height*.6));
 
-        
+
+
+
 
     }
 }
