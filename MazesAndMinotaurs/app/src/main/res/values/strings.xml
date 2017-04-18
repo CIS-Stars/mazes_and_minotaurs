@@ -16,11 +16,22 @@
     <string name="mazes_and_minotaurs">Mazes and Minotaurs</string>
     <string name="description_splash_screen">Warriors Attacking a Minotaur</string>
     <string name="description_lgs_logo">LGS Company Logo</string>
+
     <string name="saves_title">Saves</string>
-    <string name="athletic_prowess">Athletic Prowess</string>
-    <string name="danger_evasion">Danger Evasion</string>
+    <string name="athletic_prowess_long">Athletic Prowess</string>
+    <string name="danger_evasion_long">Danger Evasion</string>
+    <string name="mystic_fortitude_long">Mystic Fortitude</string>
+    <string name="physical_vigor_long">Physical Vigor</string>
+    <string name="personal_charisma_long">Personal Charisma</string>
+    <string name="athletic_prowess_short">A. P.</string>
+    <string name="danger_evasion_short">D. E.</string>
+    <string name="mystic_fortitude_short">M. F.</string>
+    <string name="physical_vigor_short">P. V.</string>
+    <string name="personal_charisma_short">P. C.</string>
+
     <string name="combat_title">Combat Modifiers</string>
     <string name="melee">Melee</string>
     <string name="missile">Missile</string>
     <string name="initiative">Initiative</string>
+
 </resources>

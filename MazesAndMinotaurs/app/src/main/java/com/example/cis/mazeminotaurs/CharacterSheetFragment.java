@@ -36,6 +36,7 @@ public class CharacterSheetFragment extends Fragment {
     Button mGraceButton;
     Button mMeleeButton;
     Button mMissileButton;
+    Button mInitiativeButton;
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -121,7 +122,7 @@ public class CharacterSheetFragment extends Fragment {
         mMeleeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                onAttackClick("Melee");
+                onAttackClick("Melee", false);
             }
         });
 
@@ -130,9 +131,14 @@ public class CharacterSheetFragment extends Fragment {
         mMissileButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                onAttackClick("Missile");
+                onAttackClick("Missile", false);
             }
         });
+
+        mInitiativeButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
+        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInititive()));
+
+
 
         return rootView;
     }
@@ -145,9 +151,12 @@ public class CharacterSheetFragment extends Fragment {
         dialog.show(fm, ROLL_RESULT);
     }
 
-    public void onAttackClick(String attackType){
+    public void onAttackClick(String attackType, boolean wocEquipped){
         int modifier;
-        int dieRoll = Util.roll(20);
+        int attackRoll1 = Util.roll(20);
+        int attackRoll2 = Util.roll(20);
+        int damageRoll1 = Util.roll(6);
+        int damageRoll2 = Util.roll(6);
         if (attackType == "Melee"){
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
@@ -158,7 +167,8 @@ public class CharacterSheetFragment extends Fragment {
             modifier = 0;
         }
         FragmentManager fm = getFragmentManager();
-        RollResultFragment dialog = RollResultFragment.newInstance(dieRoll, modifier, attackType);
+        AttackResultFragment dialog = AttackResultFragment.newInstance(attackRoll1, attackRoll2,
+                damageRoll1, damageRoll2, modifier, attackType, false);
         dialog.show(fm, ROLL_RESULT);
 
     }
