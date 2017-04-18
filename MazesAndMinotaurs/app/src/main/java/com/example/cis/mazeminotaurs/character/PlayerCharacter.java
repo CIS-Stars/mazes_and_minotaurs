@@ -83,6 +83,30 @@ public class PlayerCharacter {
         return 0;
     }
 
+    public int getAthleticProwess(){
+        return getScore(Score.MIGHT).getModifier() +
+                getScore(Score.SKILL).getModifier() +
+                getScore(Score.LUCK).getModifier();
+    }
+
+    public int getDangerEvasion(){
+        return getScore(Score.WITS).getModifier() +
+                getScore(Score.SKILL).getModifier() +
+                getScore(Score.LUCK).getModifier();
+    }
+
+    public int getMysticForitude(){
+        return getScore(Score.WITS).getModifier() +
+                getScore(Score.WILL).getModifier() +
+                getScore(Score.LUCK).getModifier();
+    }
+
+    public int getPhysicalVigor(){
+        return getScore(Score.MIGHT).getModifier() +
+                getScore(Score.WILL).getModifier() +
+                getScore(Score.LUCK).getModifier();
+    }
+
     public int getCharisma() {
         return getScore(Score.WILL).getModifier() +
                 getScore(Score.GRACE).getModifier() +
