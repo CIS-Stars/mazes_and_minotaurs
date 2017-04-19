@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+Apr 19, 2017 7:28:12 AM com.pytenlabs.instapk.helpers.LogHelper init
+INFO: Linux, 3.16.0-4-amd64, amd64, Android Studio AI-162.2228.14
+Apr 19, 2017 7:28:18 AM com.pytenlabs.instapk.helpers.ProjectInfoHelper getProjectDetails
+INFO: ProjectInfo{versionCode=1, versionName='1.0', packageName='com.example.cis.mazeminotaurs', projectName='MazesAndMinotaurs'}
+=======
 Apr 14, 2017 8:03:09 PM com.pytenlabs.instapk.helpers.LogHelper init
 INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14
 Apr 14, 2017 8:03:40 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
@@ -12,3 +18,4 @@ Apr 14, 2017 8:04:19 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
 INFO: RES CODE: 201
 Apr 14, 2017 8:04:19 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
 INFO: RES: {"id":788,"release_note":"I put in a dialog instead of the toasts.  Whatcha think?","created_time":"2017-04-15T01:04:20.469477Z"}
+>>>>>>> upstream/master
