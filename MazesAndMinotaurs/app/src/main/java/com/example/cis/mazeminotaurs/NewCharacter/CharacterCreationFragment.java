@@ -3,7 +3,7 @@ package com.example.cis.mazeminotaurs.NewCharacter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +28,12 @@ public class CharacterCreationFragment extends Fragment {
     public RadioGroup mWarriorGroup;
     public RadioGroup mMagicianGroup;
     public RadioGroup mSpecialistGroup;
+    public RadioGroup mSelectedGroup;
 
     public TextView mSelectClass;
     public String mClassType;
+
+    boolean mPopTrue = false;
 
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
@@ -54,6 +57,7 @@ public class CharacterCreationFragment extends Fragment {
                 mWarriorGroup.setVisibility(View.VISIBLE);
                 mMagicianGroup.setVisibility(View.GONE);
                 mSpecialistGroup.setVisibility(View.GONE);
+                mSelectedGroup = mWarriorGroup;
             }
         });
 
@@ -64,6 +68,7 @@ public class CharacterCreationFragment extends Fragment {
                 mWarriorGroup.setVisibility(View.GONE);
                 mMagicianGroup.setVisibility(View.VISIBLE);
                 mSpecialistGroup.setVisibility(View.GONE);
+                mSelectedGroup = mMagicianGroup;
             }
         });
 
@@ -74,102 +79,94 @@ public class CharacterCreationFragment extends Fragment {
                 mWarriorGroup.setVisibility(View.GONE);
                 mMagicianGroup.setVisibility(View.GONE);
                 mSpecialistGroup.setVisibility(View.VISIBLE);
+                mSelectedGroup = mSpecialistGroup;
             }
         });
 
 
-        onRadioButtonClicked(rootView);
+        mWarriorGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId){
+                    case R.id.amazon_radio:
+                        mClassType = getResources().getString(R.string.amazon_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.barbarian_radio:
+                        mClassType = getResources().getString(R.string.barbarian_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.centaur_radio:
+                        mClassType = getResources().getString(R.string.centaur_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.noble_radio:
+                        mClassType = getResources().getString(R.string.noble_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.spear_radio:
+                        mClassType = getResources().getString(R.string.spearman_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                }
+            }
+        });
+
+        mMagicianGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId){
+                    case R.id.elementalist_radio:
+                        mClassType = getResources().getString(R.string.elementalist_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.lyrist_radio:
+                        mClassType = getResources().getString(R.string.lyrist_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.nymph_radio:
+                        mClassType = getResources().getString(R.string.nymph_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.priest_radio:
+                        mClassType = getResources().getString(R.string.priest_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                    case R.id.sorcerer_radio:
+                        mClassType = getResources().getString(R.string.sorcerer_class);
+                        moveToClassConfirmationPopUp();
+                        break;
+                }
+            }
+        });
+
+        mSpecialistGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                switch (checkedId) {
+                    case R.id.hunter_radio:
+                        mPopTrue = true;
+                        mClassType = getResources().getString(R.string.hunter_class);
+                        break;
+                    case R.id.thief_radio:
+                        mPopTrue = true;
+                        mClassType = getResources().getString(R.string.thief_class);
+                        break;
+                }
+            }
+        });
+
+
+        if (mPopTrue){
+            moveToClassConfirmationPopUp();
+        }
 
         return rootView;
     }
 
-    public void onRadioButtonClicked(View view){
-        boolean popTrue = false;
-        String classText = null;
-        boolean checked = ((RadioButton) view).isChecked();
-
-        if(mWarriorGroup.getVisibility() == View.VISIBLE){
-            switch (view.getId()){
-                case R.id.amazon_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.amazon_class);
-                        break;
-                case R.id.barbarian_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.barbarian_class);
-                        break;
-                case R.id.centaur_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.centaur_class);
-                        break;
-                case R.id.noble_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.noble_class);
-                        break;
-                case R.id.spear_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.spearman_class);
-                        break;
-            }
-        }
-
-        if(mMagicianGroup.getVisibility() == View.VISIBLE){
-            switch (view.getId()){
-                case R.id.elementalist_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.elementalist_class);
-                        break;
-                case R.id.lyrist_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.lyrist_class);
-                        break;
-                case R.id.nymph_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.nymph_class);
-                        break;
-                case R.id.priest_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.priest_class);
-                        break;
-                case R.id.sorcerer_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.sorcerer_class);
-                        break;
-            }
-        }
-
-        if(mSpecialistGroup.getVisibility() == View.VISIBLE){
-            switch (view.getId()) {
-                case R.id.hunter_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.hunter_class);
-                        break;
-                case R.id.thief_radio:
-                    if (checked)
-                        popTrue = true;
-                        mClassType = getResources().getString(R.string.thief_class);
-                        break;
-            }
-        }
-
-        if (popTrue){
-            moveToClassConfirmationPopUp();
-        }
-    }
-
     private void moveToClassConfirmationPopUp() {
         Intent i = new Intent(getActivity(), ClassConfirmationPopUp.class);
+        i.putExtra("mClass", mClassType);
         startActivity(i);
         ((Activity) getActivity()).overridePendingTransition(0,0);
     }
