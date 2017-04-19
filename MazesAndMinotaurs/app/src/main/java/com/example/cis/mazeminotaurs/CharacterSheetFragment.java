@@ -149,10 +149,42 @@ public class CharacterSheetFragment extends Fragment {
         mInitiativeButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
         mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInititive()));
 
+
         mAPbutton = (Button) rootView.findViewById(R.id.athletic_prowess_button);
         mAPbutton.setText(Integer.toString(mSheetPlayerCharacter.getAthleticProwess()));
+        mAPbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mAPbutton.getId(), "AP");
+            }
+        });
 
+        mDEbutton = (Button) rootView.findViewById(R.id.danger_evasion_button);
+        mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
+        mDEbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mDEbutton.getId(), "DE");
+            }
+        });
 
+        mMFbutton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
+        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticForitude()));
+        mMFbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mMFbutton.getId(), "MF");
+            }
+        });
+
+        mPVbutton = (Button) rootView.findViewById(R.id.physical_vigor_button);
+        mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
+        mPVbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mPVbutton.getId(), "PV");
+            }
+        });
 
         return rootView;
     }
@@ -184,6 +216,31 @@ public class CharacterSheetFragment extends Fragment {
         AttackResultFragment dialog = AttackResultFragment.newInstance(attackRoll1, attackRoll2,
                 damageRoll1, damageRoll2, modifier, attackType, wocEquipped);
         dialog.show(fm, ROLL_RESULT);
+    }
 
+    void onSaveClick(int buttonID, String saveName){
+        int modifier;
+        int saveRoll = Util.roll(20);
+        FragmentManager fm = getFragmentManager();
+        SaveResultFragment dialog = null;
+        switch (buttonID){
+            case R.id.athletic_prowess_button:
+                modifier = mSheetPlayerCharacter.getAthleticProwess();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+            case R.id.danger_evasion_button:
+                modifier = mSheetPlayerCharacter.getDangerEvasion();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+            case R.id.mystic_fortitude_button:
+                modifier = mSheetPlayerCharacter.getMysticForitude();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+            case R.id.physical_vigor_button:
+                modifier = mSheetPlayerCharacter.getPhysicalVigor();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+        }
+        dialog.show(fm, ROLL_RESULT);
     }
 }
