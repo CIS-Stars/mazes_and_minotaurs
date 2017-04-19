@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="amazon_class">
+        Amazons are female warriors; they may be seen as the female equivalents of Barbarians,
+        but rely more on skill and grace than on brute strength.
+    </string>
+    <string name="barbarian_class">
+        Barbarians are savage warriors from uncivilized lands - or regarded as such by members of
+        the dominant Greek-like culture. In the fantasy world of Mythika, most Barbarian
+        player-characters come from the nothern wild lands of Hyperborea. In other universes,
+        they may include Celts, Goths, Cimbrians and, of course, Cimmerians.\n
+        \n
+        Barbarians are born fighters, whose ferocity in battle largely makes up for their lack of
+        military discipline.
+    </string>
+    <string name="centaur_class">
+        Centaurs are the famous men-horses of legend, well-known for their recklessness and fiery
+        temper. Centaur player-characters are assumed to belong to the nobler (or less beastly)
+        breeds of their race.
+    </string>
+    <string name="noble_class">
+        Nobles are the members of the ruling families of kingdoms and city-states. They are often
+        seen as proud and haughty (some Noble families even claim to descend from deities!) but also
+        tend to show a very strong sense of duty to their people and nation.
+    </string>
+    <string name="spearman_class">
+        The Spearman (or hoplite) is an elite soldier who relies on his training and discipline on
+        the battlefield. His favorite weapons are the spear and the shield.
+    </string>
+    
+    <!-- Magician Classes -->
+    <string name="elementalist_class">
+        Elementalists are magician who draw their powers from the four classical elements defined by
+        Greek philosophers: fire, water, earth, and air.
+    </string>
+    <string name="lyrist_class">
+        Lyrists are wandering poets, musicians and storytellers with the Gift of Orpheus, which
+        allows them to work magic through their mastery of the oratory  and musical arts.\n
+        \n
+        Their name comes from the lyre, their musical instrument as well as the symbol of their role
+        as recipients of divine inspiration. All civilized people consider Lyrists to be as sacred
+        as Priests.
+    </string>
+    <string name="nymph_class">
+        Nymphs are nature spirits who act as protectors of forests, rivers, mountains, caverns, the
+        ocean and other sanctuaries of Nature.\n
+        \n
+        The vast majority of Nymphs tends to be sedentary creatures but some of the younger ones
+        sometimes leave their natural habitat to wander the world, out of sheer curiosity for
+        mortals.
+    </string>
+    <string name="priest_class">
+        Priests are devoted to the service and worship of a specific God or Goddess (chosen by the
+        player or rolled randomly on Table 2B). Although most Priests live in temples or other
+        sacred places, some of them are chosen by their god to lead a more adventurous life,
+        going on quests, missions and expeditions.
+    </string>
+    <string name="sorcerer_class">
+        Sorcerers are adepts of the magical arts who use their arcane powers to confuse and
+        manipulate the minds, emotions and perceptions of other persons. Most Sorcerers are seen
+        with mistrust and defiance by most people, even by other magicians. Mythic characters like
+        Circe the Witch and Queen Medea are good examples of Sorceresses.
+    </string>
+
+
+    <!-- Specialist Classes -->
+    <string name="hunter_class">
+        Hunters are rural characters skilled in scouting, woodcraft and marksmanship.</string>
+    <string name="thief_class">
+        Thieves are cunning rogues who rely on luck, stealth and trickery to survive the
+        vicissitudes of destiny and fortune.\n
+        \n
+        Despite what their name implies. Thieves are not necessarily treacherous or dishonest and
+        can be as loyal companions of adventure as anyone else once you get to trust them. But
+        getting to trust them is often the problem.
+    </string>
+</resources>

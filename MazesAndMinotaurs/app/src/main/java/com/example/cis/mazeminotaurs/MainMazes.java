@@ -12,7 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -100,10 +101,9 @@ public class MainMazes extends AppCompatActivity
             ft.commit();
 
             if (id == R.id.create_character) {
-                // Handle the camera action
+               contentFragment = new CharacterCreationFragment();
             } else if (id == R.id.play_character) {
                 contentFragment = new CharacterSheetFragment();
-
             } else if (id == R.id.delete_character) {
 
             } else if (id == R.id.player_manual) {
