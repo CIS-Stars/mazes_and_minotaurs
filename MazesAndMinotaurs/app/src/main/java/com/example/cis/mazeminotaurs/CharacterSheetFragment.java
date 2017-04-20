@@ -127,7 +127,7 @@ public class CharacterSheetFragment extends Fragment {
         });
 
         mMissileButton = (Button) rootView.findViewById(R.id.missile_modifier_button);
-        mMissileButton.setText(Integer.toString(mSheetPlayerCharacter.getMissleMod()));
+        mMissileButton.setText(Integer.toString(mSheetPlayerCharacter.getMissileMod()));
         mMissileButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -136,7 +136,7 @@ public class CharacterSheetFragment extends Fragment {
         });
 
         mInitiativeButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
-        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInititive()));
+        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInitiative()));
 
 
 

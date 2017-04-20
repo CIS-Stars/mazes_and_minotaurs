@@ -3,38 +3,97 @@ package com.example.cis.mazeminotaurs.character;
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
+import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.character.classes.Amazon;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+// TODO: Make the equipment equipped
+// TODO: Create the method that checks if the weapon equipped is the weapon of choice
+
 /**
- * Created by jusmith on 3/30/17.
+ * Used to hold the data of a player's character.
+ * @author Justin Smith
  */
 
 public class PlayerCharacter {
-
+    /**
+     * The character's attribute scores.
+     */
     private HashMap<Score, AttributeScore> mScores = new HashMap<>();
+
+    /**
+     * The character class's i.e. Barbarian
+     */
     private BaseClass mCharClass;
+
+    /**
+     * The character's gender(MALE or FEMALE)
+     */
     private Gender mGender;
+
+    /**
+     * The character's money.
+     */
     private HashMap<Money, Integer> mMoney = new HashMap<>();
+
+    /**
+     * The character's age.
+     */
     private int mAge;
+
+    /**
+     * The character's name.
+     */
     private String mName;
+
+    /**
+     * All of the items that the character is holding.
+     */
+    private ArrayList<Equipment> mInventory = new ArrayList<>();
+
+    /**
+     * The character's equipped weapon.
+     */
+    private Equipment mWeapon;
+
+    /**
+     * The helmet that the character is currently wearing.
+     */
     private Armor mHelmet;
+
+    /**
+     * The breastplate that the character is currently wearing.
+     */
     private Armor mBreastplate;
+
+    /**
+     * The shield that the character is currently wearing.
+     */
     private Armor mShield;
 
+    /**
+     * Blank character constructor.
+     */
     public PlayerCharacter() {
-        initalizeMoneyMap();
+        initializeMoneyMap();
+
+        EquipmentDB equipmentDB = EquipmentDB.getInstance();
 
         setAge(0);
-        setCharClass(new Barbarian(this, R.string.barb_axe, R.string.bow));
+        // Purposely inputting improper argument
+        setCharClass(new Barbarian(this, equipmentDB.getWeapon(R.string.barb_axe),
+                                         equipmentDB.getWeapon(R.string.barb_axe)));
         setName("Thorin");
 
         getMoney().put(Money.SILVER, getCharClass().getStartGold());
+
+        getInventory().addAll(getCharClass().getStartGear());
 
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
@@ -42,27 +101,47 @@ public class PlayerCharacter {
         }
     }
 
+    /**
+     * Gets the modifier for melee attacks.
+     * @return      int, the melee modifier
+     */
     public int getMeleeMod() {
         return getScore(Score.MIGHT).getModifier() +
                 getScore(Score.GRACE).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
-    public int getMissleMod() {
+    /**
+     * Gets the modifier for missile attacks.
+     * @return      int, the missile modifier
+     */
+    public int getMissileMod() {
         return getScore(Score.SKILL).getModifier() +
                 getScore(Score.WITS).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
-    public int getInititive() {
+    /**
+     * Gets initiative of the character.
+     * @return      int, initiative.
+     */
+    public int getInitiative() {
         return 10 + getScore(Score.SKILL).getModifier() +
                 getScore(Score.WITS).getModifier();
     }
 
+    /**
+     * Gets the defense class of the character.
+     * @return      int, defense class
+     */
     public int getDC() {
         return 12 + getScore(Score.LUCK).getModifier();
     }
 
+    /**
+     * Gets the effective defense class of the character.
+     * @return      int, effective defense class
+     */
     public int getEDC() {
         int armorBonus = 0;
         if (mHelmet != null) {
@@ -78,35 +157,59 @@ public class PlayerCharacter {
         return getDC() + armorBonus;
     }
 
+    /**
+     * Gets the total hits of the character
+     * @return      int, total hits.
+     */
     public int getHitTotal() {
         //return mCharClass.getHits() + getMod(Score.MIGHT);
         return 0;
     }
 
+    /**
+     * Gets the athletic prowess save score of the character.
+     * @return      int, athletic prowess score
+     */
     public int getAthleticProwess(){
         return getScore(Score.MIGHT).getModifier() +
                 getScore(Score.SKILL).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
+    /**
+     * Gets the danger evasion save score of the character.
+     * @return      int, danger evasion score
+     */
     public int getDangerEvasion(){
         return getScore(Score.WITS).getModifier() +
                 getScore(Score.SKILL).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
-    public int getMysticForitude(){
+    /**
+     * Gets the mystic fortitude save score of the character.
+     * @return      int, mystic fortitude score
+     */
+    public int getMysticFortitude(){
         return getScore(Score.WITS).getModifier() +
                 getScore(Score.WILL).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
+    /**
+     * Gets the physical vigor save score of the character.
+     * @return      int, physical vigor score
+     */
     public int getPhysicalVigor(){
         return getScore(Score.MIGHT).getModifier() +
                 getScore(Score.WILL).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
+    /**
+     * Gets the charisma score of the character.
+     * @return      int, charisma score
+     */
     public int getCharisma() {
         return getScore(Score.WILL).getModifier() +
                 getScore(Score.GRACE).getModifier() +
@@ -121,6 +224,11 @@ public class PlayerCharacter {
         mGender = gender;
     }
 
+    /**
+     * Helper method to add money easier to the character and automatically validate.
+     * @param money The key of the money map to add to.
+     * @param amount The amount of money to add the value.
+     */
     public void addMoney(Money money, int amount) {
         getMoney().put(money, getMoney().get(money) + amount);
         validateMoney();
@@ -133,13 +241,17 @@ public class PlayerCharacter {
     public void setMoney(HashMap<Money, Integer> money) {
         mMoney = money;
     }
-
-    private void initalizeMoneyMap() {
+    /**
+     * Places the correct keys and values inside of the character's mMoney attribute.
+     */
+    private void initializeMoneyMap() {
         mMoney.put(Money.COPPER, 0);
         mMoney.put(Money.SILVER, 0);
         mMoney.put(Money.GOLD, 0);
     }
-
+    /**
+     * Automatically converts the cash that a player character is holding
+     */
     public void validateMoney() {
         HashMap<Money, Integer> cash = getMoney();
 
@@ -175,6 +287,11 @@ public class PlayerCharacter {
         mShield = shield;
     }
 
+    /**
+     * Checks if a score is maxed out
+     * @param   score The score to check
+     * @return  true if score is not maxed out else false
+     */
     public boolean canAddToScore(Score score) {
         boolean isPrimary = getCharClass().getPrimaryAttributes().contains(score);
         int scoreValue = getScore(score).getScore();
@@ -186,6 +303,9 @@ public class PlayerCharacter {
         }
     }
 
+    /**
+     * Checks if any score contained in the mScores attribute is over the max value.
+     */
     public void validateScores() {
         for (Score score: Score.values()) {
             boolean isPrimary = getCharClass().getPrimaryAttributes().contains(score);
@@ -199,6 +319,9 @@ public class PlayerCharacter {
         }
     }
 
+    /**
+     * Prints the value of every score contained in the mScores attribute
+     */
     protected void debugPrintScores() {
         for (Score score : getScores().keySet()) {
             System.out.println(score.toString() + ":" + String.valueOf(getScore(score).getScore()));
@@ -218,6 +341,10 @@ public class PlayerCharacter {
     }
 
     public BaseClass getCharClass() {
+        if (mCharClass == null) {
+            setCharClass(new Barbarian(this, EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
+                                             EquipmentDB.getInstance().getWeapon(R.string.barb_axe)));
+        }
         return mCharClass;
     }
 
@@ -241,4 +368,11 @@ public class PlayerCharacter {
         mName = name;
     }
 
+    public ArrayList<Equipment> getInventory() {
+        return mInventory;
+    }
+
+    public void setInventory(ArrayList<Equipment> inventory) {
+        mInventory = inventory;
+    }
 }
