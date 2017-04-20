@@ -6,8 +6,12 @@ import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
+import com.example.cis.mazeminotaurs.character.classes.Magician;
+import com.example.cis.mazeminotaurs.character.classes.Specialist;
+import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
 import java.util.ArrayList;
@@ -103,7 +107,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the modifier for melee attacks.
-     * @return      int, the melee modifier
+     * @return      the melee modifier
      */
     public int getMeleeMod() {
         return getScore(Score.MIGHT).getModifier() +
@@ -113,7 +117,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the modifier for missile attacks.
-     * @return      int, the missile modifier
+     * @return      the missile modifier
      */
     public int getMissileMod() {
         return getScore(Score.SKILL).getModifier() +
@@ -123,7 +127,7 @@ public class PlayerCharacter {
 
     /**
      * Gets initiative of the character.
-     * @return      int, initiative.
+     * @return      initiative.
      */
     public int getInitiative() {
         return 10 + getScore(Score.SKILL).getModifier() +
@@ -132,7 +136,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the defense class of the character.
-     * @return      int, defense class
+     * @return      defense class
      */
     public int getDC() {
         return 12 + getScore(Score.LUCK).getModifier();
@@ -140,7 +144,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the effective defense class of the character.
-     * @return      int, effective defense class
+     * @return      effective defense class
      */
     public int getEDC() {
         int armorBonus = 0;
@@ -285,6 +289,31 @@ public class PlayerCharacter {
 
     public void setShield(Armor shield) {
         mShield = shield;
+    }
+
+    public Equipment getWeapon() {
+        return mWeapon;
+    }
+
+    public void setWeapon(Equipment weapon) {
+        mWeapon = weapon;
+    }
+
+    /**
+     * Checks if the current weapon in mWeapon is a weapon of choice.
+     * @return      true if the weapon is the same as the CharClass's weapon of choice else false
+     */
+    public boolean isWeaponOfChoiceEquipped(){
+        if (!(getCharClass() instanceof Magician)) {
+            if (getCharClass() instanceof Warrior) {
+                Warrior warrior = (Warrior) getCharClass();
+                return warrior.getWeaponOfChoice().getResId() == getWeapon().getResId();
+            } else {
+                Specialist specialist = (Specialist) getCharClass();
+                return specialist.getWeaponOfChoice().getResId() == getWeapon().getResId();
+            }
+        }
+        return false;
     }
 
     /**
