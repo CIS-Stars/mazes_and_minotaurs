@@ -33,7 +33,7 @@ import java.util.HashMap;
  * <ul>
  *     <li>PlayerCharacter character = new PlayerCharacter();</li>
  *     <li>Barbarian barb = new Barbarian(character, [weapon of choice], [ranged weapon]);</li>
- *     <li>character.setCharClass(character);</li>
+ *     <li>character.setCharClass(barb);</li>
  *     <li>character.initializeClass();</li>
  * </ul>
  *
