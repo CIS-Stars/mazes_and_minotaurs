@@ -17,11 +17,26 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// TODO: Make the equipment equipped
-// TODO: Create the method that checks if the weapon equipped is the weapon of choice
-
 /**
  * Used to hold the data of a player's character.
+ *
+ * <h1>Steps to use a player character</h1>
+ * <ul>
+ *  <li>1: Create a new PlayerCharacter instance</li>
+ *  <li>2: Create a new subclass of BaseClass instance using the PlayerCharacter instance i.e. Barbarian</li>
+ *  <li>3: Assign the class to the PlayerCharacter using setCharClass</li>
+ *  <li>4: Call the PlayerCharacter's initializeClass method</li>
+ *  <li>5: Your PlayerCharacter is now working!</li>
+ * </ul>
+ *
+ * <h1>Example:</h1>
+ * <ul>
+ *     <li>PlayerCharacter character = new PlayerCharacter();</li>
+ *     <li>Barbarian barb = new Barbarian(character, [weapon of choice], [ranged weapon]);</li>
+ *     <li>character.setCharClass(character);</li>
+ *     <li>character.initializeClass();</li>
+ * </ul>
+ *
  * @author Justin Smith
  */
 
@@ -64,7 +79,7 @@ public class PlayerCharacter {
     /**
      * The character's equipped weapon.
      */
-    private Equipment mWeapon;
+    private Weapon mWeapon;
 
     /**
      * The helmet that the character is currently wearing.
@@ -91,13 +106,12 @@ public class PlayerCharacter {
 
         setAge(0);
         // Purposely inputting improper argument
-        setCharClass(new Barbarian(this, equipmentDB.getWeapon(R.string.barb_axe),
-                                         equipmentDB.getWeapon(R.string.barb_axe)));
+
         setName("Thorin");
 
-        getMoney().put(Money.SILVER, getCharClass().getStartGold());
-
-        getInventory().addAll(getCharClass().getStartGear());
+        setCharClass(new Barbarian(this, equipmentDB.getWeapon(R.string.barb_axe),
+                                         equipmentDB.getWeapon(R.string.barb_axe)));
+        initializeClass();
 
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
@@ -163,7 +177,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the total hits of the character
-     * @return      int, total hits.
+     * @return      total hits.
      */
     public int getHitTotal() {
         //return mCharClass.getHits() + getMod(Score.MIGHT);
@@ -172,7 +186,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the athletic prowess save score of the character.
-     * @return      int, athletic prowess score
+     * @return      athletic prowess score
      */
     public int getAthleticProwess(){
         return getScore(Score.MIGHT).getModifier() +
@@ -182,7 +196,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the danger evasion save score of the character.
-     * @return      int, danger evasion score
+     * @return      danger evasion score
      */
     public int getDangerEvasion(){
         return getScore(Score.WITS).getModifier() +
@@ -192,7 +206,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the mystic fortitude save score of the character.
-     * @return      int, mystic fortitude score
+     * @return      mystic fortitude score
      */
     public int getMysticFortitude(){
         return getScore(Score.WITS).getModifier() +
@@ -202,7 +216,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the physical vigor save score of the character.
-     * @return      int, physical vigor score
+     * @return      physical vigor score
      */
     public int getPhysicalVigor(){
         return getScore(Score.MIGHT).getModifier() +
@@ -212,7 +226,7 @@ public class PlayerCharacter {
 
     /**
      * Gets the charisma score of the character.
-     * @return      int, charisma score
+     * @return      charisma score
      */
     public int getCharisma() {
         return getScore(Score.WILL).getModifier() +
@@ -247,6 +261,7 @@ public class PlayerCharacter {
     }
     /**
      * Places the correct keys and values inside of the character's mMoney attribute.
+     * Will erase any values found in the keys in the map.
      */
     private void initializeMoneyMap() {
         mMoney.put(Money.COPPER, 0);
@@ -260,10 +275,10 @@ public class PlayerCharacter {
         HashMap<Money, Integer> cash = getMoney();
 
         int tradedUpSilver = cash.get(Money.COPPER) / 100;
-        int tradedUpGold = cash.get(Money.SILVER) / 100;
-
         cash.put(Money.COPPER, cash.get(Money.COPPER) % 100);
         cash.put(Money.SILVER, (cash.get(Money.SILVER) % 100) + tradedUpSilver);
+
+        int tradedUpGold = cash.get(Money.SILVER) / 100;
         cash.put(Money.GOLD, cash.get(Money.GOLD) + tradedUpGold);
     }
 
@@ -291,11 +306,11 @@ public class PlayerCharacter {
         mShield = shield;
     }
 
-    public Equipment getWeapon() {
+    public Weapon getWeapon() {
         return mWeapon;
     }
 
-    public void setWeapon(Equipment weapon) {
+    public void setWeapon(Weapon weapon) {
         mWeapon = weapon;
     }
 
@@ -370,15 +385,19 @@ public class PlayerCharacter {
     }
 
     public BaseClass getCharClass() {
-        if (mCharClass == null) {
-            setCharClass(new Barbarian(this, EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
-                                             EquipmentDB.getInstance().getWeapon(R.string.barb_axe)));
-        }
         return mCharClass;
     }
 
     public void setCharClass(BaseClass aClass) {
         mCharClass = aClass;
+    }
+
+    /**
+     * A helper method to get the starting gear and starting money of a class added to the character
+     */
+    public void initializeClass(){
+        getMoney().put(Money.SILVER, getCharClass().getStartMoney());
+        getInventory().addAll(getCharClass().getStartGear());
     }
 
     public int getAge() {

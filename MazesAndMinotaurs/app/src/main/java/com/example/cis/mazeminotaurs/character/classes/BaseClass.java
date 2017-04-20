@@ -10,8 +10,8 @@ import java.util.ArrayList;
 /**
  * Created by jusmith on 3/31/17.
  *
- * Level is the actual of a character
- * EffectiveLevel is what level the character will be after handling leveling up
+ * Level is the actual level of a character
+ * EffectiveLevel is what level the character should be
  *
  * Example of Usage:
  *   Assume:
@@ -118,7 +118,7 @@ public abstract class BaseClass {
         mStartGear = startGear;
     }
 
-    public int getStartGold() {
+    public int getStartMoney() {
         return mStartGold;
     }
 
