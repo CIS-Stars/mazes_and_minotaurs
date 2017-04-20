@@ -1,6 +1,7 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 
 
 /**
@@ -8,16 +9,16 @@ import com.example.cis.mazeminotaurs.R;
  */
 
 public abstract class Warrior extends BaseClass {
-    private int mWeaponOfChoice;
+    private Weapon mWeaponOfChoice;
     private static final int[] mLevelDescriptions = {R.string.warrior_one, R.string.warrior_two,
                                                      R.string.warrior_three, R.string.warrior_four,
                                                      R.string.warrior_five, R.string.warrior_six};
 
-    public int getWeaponOfChoice() {
+    public Weapon getWeaponOfChoice() {
         return mWeaponOfChoice;
     }
 
-    public void setWeaponOfChoice(int weaponOfChoice) {
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
         mWeaponOfChoice = weaponOfChoice;
     }
 

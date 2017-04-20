@@ -147,7 +147,7 @@ public class CharacterSheetFragment extends Fragment {
         });
 
         mInitiativeButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
-        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInititive()));
+        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInitiative()));
 
 
         mAPbutton = (Button) rootView.findViewById(R.id.athletic_prowess_button);

@@ -1,12 +1,17 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
+import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.EquipmentDB;
+import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -17,14 +22,37 @@ import java.util.HashMap;
 public class Barbarian extends Warrior implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Barbarian(PlayerCharacter playerCharacter, int choiceWeapon, int startingMissleWeapon) {
+    public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon rangedChoice) {
         Score[] primAttrs = {Score.MIGHT, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
-        ArrayList<Integer> wepsOfChoice = new ArrayList<>();
-        for (int weaponResId: Util.sBarbWeapons) {
-            wepsOfChoice.add(weaponResId);
+        EquipmentDB equipDB = EquipmentDB.getInstance();
+        Weapon[] possibleWepsOfChoice = {equipDB.getWeapon(R.string.barb_axe)};
+        Weapon[] possibleRanged = {equipDB.getWeapon(R.string.bow)};
+        ArrayList<Equipment> startingEquipment = new ArrayList<>();
+
+        if (Arrays.asList(possibleWepsOfChoice).contains(weaponOfChoice)) {
+            setWeaponOfChoice(weaponOfChoice);
+        } else {
+            setWeaponOfChoice(possibleWepsOfChoice[0]);
+        }
+        startingEquipment.add(weaponOfChoice);
+
+        if (Arrays.asList(possibleRanged).contains(rangedChoice)){
+            switch (rangedChoice.getResId()) {
+                case R.string.bow:
+                    startingEquipment.add(equipDB.getWeapon(R.string.bow));
+                    startingEquipment.add(equipDB.getWeapon(R.string.arrows));
+                    break;
+                default:
+                    //PANIC
+                    System.out.println("PANIC in Barbarian Ranged Weapon Case");
+                    break;
+            }
+        } else {
+            startingEquipment.add(equipDB.getWeapon(R.string.bow));
+            startingEquipment.add(equipDB.getWeapon(R.string.arrows));
         }
 
         int rolledGold = 0;
@@ -32,21 +60,15 @@ public class Barbarian extends Warrior implements Level{
             rolledGold += Util.roll(6);
         }
 
+
         setBasicHits(12);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
         setResId(Classes.BARBARIAN.getResId());
-        // Cannot set up without Equipment made
-        // setStartGear();
         setStartGold(rolledGold * 5);
-
-        // If choice weapon isn't valid, just select a random valid choice
-        if (wepsOfChoice.contains(choiceWeapon)) {
-            setWeaponOfChoice(choiceWeapon);
-        } else {
-            setWeaponOfChoice(wepsOfChoice.get(Util.roll(wepsOfChoice.size()) - 1));
-        }
+        setStartGear(startingEquipment);
+        setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(R.string.barb_axe));
     }
 
     public void doLevelUp(){
