@@ -23,10 +23,6 @@ public class AttackResultFragment extends DialogFragment {
     int mTotal1;
     int mTotal2;
 
-    /**
-     * Create a new instance of RollResultFragment, providing "roll"
-     * and "mod" as arguments.
-     */
     static AttackResultFragment newInstance(int roll1, int roll2, int damage1,
                                             int damage2, int mod, String name,
                                             boolean wocEquipped) {

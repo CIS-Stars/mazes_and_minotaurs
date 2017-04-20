@@ -213,39 +213,39 @@
                 <!-- Row One -->
                 <TableRow
                     android:layout_width="match_parent">
-
-                    <TextView
-                        android:id="@+id/melee_modifier_title_view"
-                        android:layout_column="0"
-                        android:background="@drawable/character_sheet_box_gray_no_bottom"
-                        android:text="@string/melee"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textAlignment="center"
-                        android:textSize="24sp"/>
-
-                    <TextView
-                        android:id="@+id/missle_modifier_title_view"
-                        android:layout_column="1"
-                        android:background="@drawable/character_sheet_box_gray_no_bottom"
-                        android:text="@string/missile"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textAlignment="center"
-                        android:textSize="24sp"/>
-
                     <TextView
                         android:id="@+id/initiative_modifier_title_view"
-                        android:layout_column="1"
+                        android:layout_column="0"
                         android:background="@drawable/character_sheet_box_gray_no_bottom"
                         android:text="@string/initiative"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textAlignment="center"
                         android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/attack_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/attack"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/equipped_weapon_title_view"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/equipped_weapon"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+
                 </TableRow>
                 <!-- Row 2 -->
                 <TableRow>
-
                     <Button
-                        android:id="@+id/melee_modifier_button"
+                        android:id="@+id/initiative_modifier_button"
                         android:layout_width="63dp"
                         android:layout_column="0"
                         android:background="@drawable/character_sheet_box_white_no_top"
@@ -255,24 +255,26 @@
                         android:textSize="24sp"/>
 
                     <Button
-                        android:id="@+id/missile_modifier_button"
+                        android:id="@+id/attack_button"
                         android:layout_width="63dp"
                         android:layout_column="1"
                         android:background="@drawable/character_sheet_box_white_no_top"
-                        android:text="10"
+                        android:text="type"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textAlignment="center"
                         android:textSize="24sp"/>
 
                     <Button
-                        android:id="@+id/initiative_modifier_button"
+                        android:id="@+id/equipped_weapon_button"
                         android:layout_width="63dp"
-                        android:layout_column="1"
+                        android:layout_column="2"
                         android:background="@drawable/character_sheet_box_white_no_top"
-                        android:text="10"
+                        android:text="weapon name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textAlignment="center"
                         android:textSize="24sp"/>
+
+
 
                 </TableRow>
             </TableLayout>
