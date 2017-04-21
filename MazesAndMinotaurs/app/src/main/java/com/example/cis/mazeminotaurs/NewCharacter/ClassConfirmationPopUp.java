@@ -21,6 +21,7 @@ import com.example.cis.mazeminotaurs.R;
 public class ClassConfirmationPopUp extends FragmentActivity {
 
     TextView classInfoTextView;
+    String mClassPicked;
     Button confirmButton;
     Button cancelButton;
 
@@ -30,7 +31,8 @@ public class ClassConfirmationPopUp extends FragmentActivity {
         setContentView(R.layout.class_confirmation_popup);
 
         savedInstanceState = getIntent().getExtras();
-        String classConText = savedInstanceState.getString("mClass");
+        String classConText = savedInstanceState.getString("mClassInformation");
+        mClassPicked = savedInstanceState.getString("mClass");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

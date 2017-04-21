@@ -1,6 +1,7 @@
 package com.example.cis.mazeminotaurs;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,13 @@ public class Portfolio {
     private Portfolio(){
         portfolio = new ArrayList<>();
         //For Testing Only
-        portfolio.add(new PlayerCharacter());
+        PlayerCharacter playerCharacter = new PlayerCharacter();
+        Barbarian barbarian = new Barbarian(playerCharacter, EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
+                                                             EquipmentDB.getInstance().getWeapon(R.string.barb_axe));
+        playerCharacter.setCharClass(barbarian);
+        playerCharacter.initializeClass();
+
+        portfolio.add(playerCharacter);
     }
 
     public static Portfolio get(){

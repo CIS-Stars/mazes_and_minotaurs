@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -31,7 +30,8 @@ public class CharacterCreationFragment extends Fragment {
     public RadioGroup mSelectedGroup;
 
     public TextView mSelectClass;
-    public String mClassType;
+    public String mClassInformation;
+    public String mClass;
 
     boolean mPopTrue = false;
 
@@ -89,23 +89,28 @@ public class CharacterCreationFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId){
                     case R.id.amazon_radio:
-                        mClassType = getResources().getString(R.string.amazon_class);
+                        mClassInformation = getResources().getString(R.string.amazon_class);
+                        mClass = "Amazon";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.barbarian_radio:
-                        mClassType = getResources().getString(R.string.barbarian_class);
+                        mClassInformation = getResources().getString(R.string.barbarian_class);
+                        mClass = "Barbarian";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.centaur_radio:
-                        mClassType = getResources().getString(R.string.centaur_class);
+                        mClassInformation = getResources().getString(R.string.centaur_class);
+                        mClass = "Centaur";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.noble_radio:
-                        mClassType = getResources().getString(R.string.noble_class);
+                        mClassInformation = getResources().getString(R.string.noble_class);
+                        mClass = "Noble";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.spear_radio:
-                        mClassType = getResources().getString(R.string.spearman_class);
+                        mClassInformation = getResources().getString(R.string.spearman_class);
+                        mClass = "Spearman";
                         moveToClassConfirmationPopUp();
                         break;
                 }
@@ -117,23 +122,28 @@ public class CharacterCreationFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId){
                     case R.id.elementalist_radio:
-                        mClassType = getResources().getString(R.string.elementalist_class);
+                        mClassInformation = getResources().getString(R.string.elementalist_class);
+                        mClass = "Elementalist";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.lyrist_radio:
-                        mClassType = getResources().getString(R.string.lyrist_class);
+                        mClassInformation = getResources().getString(R.string.lyrist_class);
+                        mClass = "Lyrist";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.nymph_radio:
-                        mClassType = getResources().getString(R.string.nymph_class);
+                        mClassInformation = getResources().getString(R.string.nymph_class);
+                        mClass = "Nymph";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.priest_radio:
-                        mClassType = getResources().getString(R.string.priest_class);
+                        mClassInformation = getResources().getString(R.string.priest_class);
+                        mClass = "Priest";
                         moveToClassConfirmationPopUp();
                         break;
                     case R.id.sorcerer_radio:
-                        mClassType = getResources().getString(R.string.sorcerer_class);
+                        mClassInformation = getResources().getString(R.string.sorcerer_class);
+                        mClass = "Sorcerer";
                         moveToClassConfirmationPopUp();
                         break;
                 }
@@ -145,28 +155,26 @@ public class CharacterCreationFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.hunter_radio:
-                        mPopTrue = true;
-                        mClassType = getResources().getString(R.string.hunter_class);
+                        mClassInformation = getResources().getString(R.string.hunter_class);
+                        mClass = "Hunter";
+                        moveToClassConfirmationPopUp();
                         break;
                     case R.id.thief_radio:
-                        mPopTrue = true;
-                        mClassType = getResources().getString(R.string.thief_class);
+                        mClassInformation = getResources().getString(R.string.thief_class);
+                        mClass = "Thief";
+                        moveToClassConfirmationPopUp();
                         break;
                 }
             }
         });
-
-
-        if (mPopTrue){
-            moveToClassConfirmationPopUp();
-        }
 
         return rootView;
     }
 
     private void moveToClassConfirmationPopUp() {
         Intent i = new Intent(getActivity(), ClassConfirmationPopUp.class);
-        i.putExtra("mClass", mClassType);
+        i.putExtra("mClassInformation", mClassInformation);
+        i.putExtra("mClass", mClass);
         startActivity(i);
         ((Activity) getActivity()).overridePendingTransition(0,0);
     }

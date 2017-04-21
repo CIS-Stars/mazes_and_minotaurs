@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -34,9 +35,13 @@ public class CharacterSheetFragment extends Fragment {
     Button mLuckButton;
     Button mWillButton;
     Button mGraceButton;
-    Button mMeleeButton;
-    Button mMissileButton;
+    Button mAttackButton;
+    Button mEquippedWeaponButton;
     Button mInitiativeButton;
+    Button mAPbutton;
+    Button mDEbutton;
+    Button mMFbutton;
+    Button mPVbutton;
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -117,28 +122,69 @@ public class CharacterSheetFragment extends Fragment {
                 onScoreClick(Score.GRACE, "Grace");
             }
         });
-        mMeleeButton = (Button) rootView.findViewById(R.id.melee_modifier_button);
-        mMeleeButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
-        mMeleeButton.setOnClickListener(new View.OnClickListener(){
+        mAttackButton = (Button) rootView.findViewById(R.id.attack_button);
+        mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
+        mAttackButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                onAttackClick("Melee", false);
+                //just for testing, replace these with calls to character methods
+                String weaponType = "Melee";
+                boolean woc = true;
+                onAttackClick(weaponType, woc);
             }
         });
 
-        mMissileButton = (Button) rootView.findViewById(R.id.missile_modifier_button);
-        mMissileButton.setText(Integer.toString(mSheetPlayerCharacter.getMissleMod()));
-        mMissileButton.setOnClickListener(new View.OnClickListener(){
+        mEquippedWeaponButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
+        //Get equipped weapon from character Class
+        int equippedWeaponID = R.string.barb_axe;
+        mEquippedWeaponButton.setText(equippedWeaponID);
+        mEquippedWeaponButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                onAttackClick("Missile", false);
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),
+                        "Will soon open a listpicker", Toast.LENGTH_SHORT).show();
             }
         });
 
         mInitiativeButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
-        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInititive()));
+        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInitiative()));
 
 
+        mAPbutton = (Button) rootView.findViewById(R.id.athletic_prowess_button);
+        mAPbutton.setText(Integer.toString(mSheetPlayerCharacter.getAthleticProwess()));
+        mAPbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mAPbutton.getId(), "AP");
+            }
+        });
+
+        mDEbutton = (Button) rootView.findViewById(R.id.danger_evasion_button);
+        mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
+        mDEbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mDEbutton.getId(), "DE");
+            }
+        });
+
+        mMFbutton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
+        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticForitude()));
+        mMFbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mMFbutton.getId(), "MF");
+            }
+        });
+
+        mPVbutton = (Button) rootView.findViewById(R.id.physical_vigor_button);
+        mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
+        mPVbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveClick(mPVbutton.getId(), "PV");
+            }
+        });
 
         return rootView;
     }
@@ -168,8 +214,33 @@ public class CharacterSheetFragment extends Fragment {
         }
         FragmentManager fm = getFragmentManager();
         AttackResultFragment dialog = AttackResultFragment.newInstance(attackRoll1, attackRoll2,
-                damageRoll1, damageRoll2, modifier, attackType, false);
+                damageRoll1, damageRoll2, modifier, attackType, wocEquipped);
         dialog.show(fm, ROLL_RESULT);
+    }
 
+    void onSaveClick(int buttonID, String saveName){
+        int modifier;
+        int saveRoll = Util.roll(20);
+        FragmentManager fm = getFragmentManager();
+        SaveResultFragment dialog = null;
+        switch (buttonID){
+            case R.id.athletic_prowess_button:
+                modifier = mSheetPlayerCharacter.getAthleticProwess();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+            case R.id.danger_evasion_button:
+                modifier = mSheetPlayerCharacter.getDangerEvasion();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+            case R.id.mystic_fortitude_button:
+                modifier = mSheetPlayerCharacter.getMysticForitude();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+            case R.id.physical_vigor_button:
+                modifier = mSheetPlayerCharacter.getPhysicalVigor();
+                dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
+                break;
+        }
+        dialog.show(fm, ROLL_RESULT);
     }
 }

@@ -32,6 +32,9 @@
     <string name="combat_title">Combat Modifiers</string>
     <string name="melee">Melee</string>
     <string name="missile">Missile</string>
-    <string name="initiative">Initiative</string>
+    <string name="attack">Attack</string>
+    <string name="initiative">Init</string>
+    <string name="equipped_weapon">Equipped Weapon</string>
+    <string name="attributes_title">Attributes</string>
 
 </resources>
