@@ -77,4 +77,22 @@ public class EquipmentDB {
         }
         return null;
     }
+
+    public Armor getArmor(int resId){
+        for (Armor item : armor){
+            if (resId == item.getResId()){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public Equipment getEquipment(int resId){
+        for (Equipment item : equipment){
+            if (resId == item.getResId()){
+                return item;
+            }
+        }
+        return null;
+    }
 }
