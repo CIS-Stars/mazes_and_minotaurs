@@ -67,7 +67,7 @@ public class AttackResultFragment extends DialogFragment {
         View damageView2 = v.findViewById(R.id.damage_roll_2_view);
 
 
-        ((TextView) attackView1).setText(Integer.toString(mAttackType) + " Roll: " + mAttackRoll1 +
+        ((TextView) attackView1).setText(mAttackType + " Roll: " + mAttackRoll1 +
                 " + " + mMod + " = " + mTotal1);
         ((TextView) attackView2).setText(Integer.toString(mAttackType) + " Roll: " + mAttackRoll2 +
                 " + " + mMod + " = " + mTotal2);

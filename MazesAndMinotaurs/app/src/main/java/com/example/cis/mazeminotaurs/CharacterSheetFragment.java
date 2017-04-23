@@ -3,6 +3,7 @@ package com.example.cis.mazeminotaurs;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -137,6 +138,9 @@ public class CharacterSheetFragment extends Fragment {
         mEquippedWeaponButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
         //Get equipped weapon from character Class
         int equippedWeaponID = R.string.barb_axe;
+        Weapon equippedWeapon = mSheetPlayerCharacter.getWeapon();
+        Log.i(TAG, equippedWeapon.toString());
+        //int equippedWeaponID = equipedWeapon.getResId();
         mEquippedWeaponButton.setText(equippedWeaponID);
         mEquippedWeaponButton.setOnClickListener(new View.OnClickListener() {
             @Override
