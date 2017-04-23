@@ -7,11 +7,11 @@ package com.example.cis.mazeminotaurs;
 public class Weapon extends Equipment {
 
     //instance variables
-    int mDamageDie;
-    int mNumberOfDice;
-    int mDamageBonus;
-    int mWeaponType; //uses string values melee and missile
-    int mRange = 0;
+    private int mDamageDie;
+    private int mNumberOfDice;
+    private int mDamageBonus;
+    private int mWeaponType; //uses string values melee and missile
+    private int mRange = 0;
 
     public Weapon(int resId, int encumberance, int quantity, double costInSp,
                   String longDescription, int damageDie, int numberOfDice, int damageBonus,
@@ -76,8 +76,8 @@ public class Weapon extends Equipment {
 
     @Override
     public String toString() {
-        super.toString();
-        return "Weapon{" +
+        return super.toString() +"\n" +
+                "Weapon{" +
                 "mDamageDie=" + mDamageDie +
                 ", mNumberOfDice=" + mNumberOfDice +
                 ", mDamageBonus=" + mDamageBonus +
