@@ -10,16 +10,28 @@ public class Weapon extends Equipment {
     int mDamageDie;
     int mNumberOfDice;
     int mDamageBonus;
-    String mWeaponType;
+    int mWeaponType; //uses string values melee and missile
+    int mRange = 0;
 
     public Weapon(int resId, int encumberance, int quantity, double costInSp,
                   String longDescription, int damageDie, int numberOfDice, int damageBonus,
-                  String weaponType) {
+                  int weaponType) {
         super(resId, encumberance, quantity, costInSp, longDescription);
         mDamageDie = damageDie;
         mNumberOfDice = numberOfDice;
         mDamageBonus = damageBonus;
         mWeaponType = weaponType;
+    }
+
+    public Weapon(int resId, int encumberance, int quantity, double costInSp,
+                  String longDescription, int damageDie, int numberOfDice, int damageBonus,
+                  int weaponType, int range) {
+        super(resId, encumberance, quantity, costInSp, longDescription);
+        mDamageDie = damageDie;
+        mNumberOfDice = numberOfDice;
+        mDamageBonus = damageBonus;
+        mWeaponType = weaponType;
+        mRange = range;
     }
 
     public int getDamageDie() {
@@ -44,6 +56,22 @@ public class Weapon extends Equipment {
 
     public void setDamageBonus(int damageBonus) {
         mDamageBonus = damageBonus;
+    }
+
+    public int getWeaponType() {
+        return mWeaponType;
+    }
+
+    public void setWeaponType(int weaponType) {
+        mWeaponType = weaponType;
+    }
+
+    public int getRange() {
+        return mRange;
+    }
+
+    public void setRange(int range) {
+        mRange = range;
     }
 
     @Override

@@ -128,7 +128,7 @@ public class CharacterSheetFragment extends Fragment {
             @Override
             public void onClick(View v){
                 //just for testing, replace these with calls to character methods
-                String weaponType = "Melee";
+                int weaponType = R.string.melee;
                 boolean woc = true;
                 onAttackClick(weaponType, woc);
             }
@@ -169,7 +169,7 @@ public class CharacterSheetFragment extends Fragment {
         });
 
         mMFbutton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
-        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticForitude()));
+        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
         mMFbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,16 +197,16 @@ public class CharacterSheetFragment extends Fragment {
         dialog.show(fm, ROLL_RESULT);
     }
 
-    public void onAttackClick(String attackType, boolean wocEquipped){
+    public void onAttackClick(int attackType, boolean wocEquipped){
         int modifier;
         int attackRoll1 = Util.roll(20);
         int attackRoll2 = Util.roll(20);
         int damageRoll1 = Util.roll(6);
         int damageRoll2 = Util.roll(6);
-        if (attackType == "Melee"){
+        if (attackType == R.string.melee){
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
-        else if (attackType == "Missile"){
+        else if (attackType == R.string.missile){
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else{
@@ -233,7 +233,7 @@ public class CharacterSheetFragment extends Fragment {
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
             case R.id.mystic_fortitude_button:
-                modifier = mSheetPlayerCharacter.getMysticForitude();
+                modifier = mSheetPlayerCharacter.getMysticFortitude();
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
             case R.id.physical_vigor_button:

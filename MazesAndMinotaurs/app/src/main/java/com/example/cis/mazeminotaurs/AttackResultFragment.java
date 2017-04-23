@@ -19,12 +19,12 @@ public class AttackResultFragment extends DialogFragment {
     int mDamage1;
     int mDamage2;
     boolean mWOCequipped;
-    String mTypeName;
+    int mAttackType; //uses string resource
     int mTotal1;
     int mTotal2;
 
     static AttackResultFragment newInstance(int roll1, int roll2, int damage1,
-                                            int damage2, int mod, String name,
+                                            int damage2, int mod, int attackType,
                                             boolean wocEquipped) {
         AttackResultFragment f = new AttackResultFragment();
 
@@ -35,7 +35,7 @@ public class AttackResultFragment extends DialogFragment {
         args.putInt("damage1", damage1);
         args.putInt("damage2", damage2);
         args.putInt("mod", mod);
-        args.putString("name", name);
+        args.putInt("attacktype", attackType );
         args.putBoolean("woc", wocEquipped);
         f.setArguments(args);
 
@@ -50,7 +50,7 @@ public class AttackResultFragment extends DialogFragment {
         mDamage1 = getArguments().getInt("damage1");
         mDamage2 = getArguments().getInt("damage2");
         mMod = getArguments().getInt("mod");
-        mTypeName = getArguments().getString("name");
+        mAttackType = getArguments().getInt("attackType");
         mWOCequipped = getArguments().getBoolean("woc");
         mTotal1 = mAttackRoll1 + mMod;
         mTotal2 = mAttackRoll2 + mMod;
@@ -67,10 +67,10 @@ public class AttackResultFragment extends DialogFragment {
         View damageView2 = v.findViewById(R.id.damage_roll_2_view);
 
 
-        ((TextView) attackView1).setText(mTypeName + " Roll: " + mAttackRoll1 + " + " + mMod + " = " +
-                + mTotal1);
-        ((TextView) attackView2).setText(mTypeName + " Roll: " + mAttackRoll2 + " + " + mMod + " = " +
-                +mTotal2);
+        ((TextView) attackView1).setText(Integer.toString(mAttackType) + " Roll: " + mAttackRoll1 +
+                " + " + mMod + " = " + mTotal1);
+        ((TextView) attackView2).setText(Integer.toString(mAttackType) + " Roll: " + mAttackRoll2 +
+                " + " + mMod + " = " + mTotal2);
         ((TextView) damageView1).setText("Damage: " + mDamage1);
         ((TextView) damageView2).setText("Damage: " + mDamage2);
 
