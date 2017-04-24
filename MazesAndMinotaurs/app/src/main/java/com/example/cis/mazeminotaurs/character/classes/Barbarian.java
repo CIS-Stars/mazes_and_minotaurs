@@ -39,6 +39,11 @@ public class Barbarian extends Warrior implements Level{
         }
         startingEquipment.add(weaponOfChoice);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 392d6a61fd8487bc403e2396b6cfcc5173c0f16d
         if (Arrays.asList(possibleRanged).contains(rangedChoice)){
             switch (rangedChoice.getResId()) {
                 case R.string.bow:
@@ -60,8 +65,16 @@ public class Barbarian extends Warrior implements Level{
             rolledGold += Util.roll(6);
         }
 
+<<<<<<< HEAD
+=======
+        //Add the rest of starting equipment
+        startingEquipment.add(equipDB.getWeapon(R.string.dagger));
+        startingEquipment.add(equipDB.getArmor(R.string.shield));
+
+>>>>>>> 392d6a61fd8487bc403e2396b6cfcc5173c0f16d
 
         setBasicHits(12);
+        playerCharacter.setWeapon(weaponOfChoice);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
@@ -69,6 +82,10 @@ public class Barbarian extends Warrior implements Level{
         setStartGold(rolledGold * 5);
         setStartGear(startingEquipment);
         setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(R.string.barb_axe));
+<<<<<<< HEAD
+=======
+
+>>>>>>> 392d6a61fd8487bc403e2396b6cfcc5173c0f16d
     }
 
     public void doLevelUp(){

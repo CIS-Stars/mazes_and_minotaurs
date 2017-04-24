@@ -7,7 +7,7 @@ package com.example.cis.mazeminotaurs;
 public class Armor extends Equipment {
 
     //instance variables
-    int mDefenseBonus;
+    private int mDefenseBonus;
 
     public Armor(int resId, int encumberance, int quantity, double costInSp, String longDescription, int defenseBonus) {
         super(resId, encumberance, quantity, costInSp, longDescription);
@@ -24,8 +24,8 @@ public class Armor extends Equipment {
 
     @Override
     public String toString() {
-        super.toString();
-        return "Armor{" +
+        return super.toString()+ "\n" +
+                "Armor{" +
                 "mDefenseBonus=" + mDefenseBonus +
                 '}';
     }

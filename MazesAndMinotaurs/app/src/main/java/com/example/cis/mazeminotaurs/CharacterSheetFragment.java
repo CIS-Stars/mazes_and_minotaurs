@@ -3,6 +3,7 @@ package com.example.cis.mazeminotaurs;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +24,13 @@ public class CharacterSheetFragment extends Fragment {
     public static final String ROLL_RESULT = "RollResult";
     public static final String TAG = "CharacterSheetFragment";
 
+    int mCurrentCharacterIndex = 0;
     Portfolio mPortfolio;
     PlayerCharacter mSheetPlayerCharacter;
     TextView mCharacterNameView;
     TextView mCharacterLevelView;
     TextView mCharacterClassView;
+    TextView mAttackType;
 
     Button mMightButton;
     Button mSkillButton;
@@ -53,7 +56,7 @@ public class CharacterSheetFragment extends Fragment {
         View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
 
 
-        mSheetPlayerCharacter = mPortfolio.getPlayerCharacter(0);
+        mSheetPlayerCharacter = mPortfolio.getPlayerCharacter(mCurrentCharacterIndex);
         mCharacterLevelView = (TextView) rootView.findViewById(R.id.character_level_view);
         mCharacterLevelView.setText(Integer.toString(mSheetPlayerCharacter.getCharClass().getLevel()));
 
@@ -122,13 +125,22 @@ public class CharacterSheetFragment extends Fragment {
                 onScoreClick(Score.GRACE, "Grace");
             }
         });
+
+        mAttackType = (TextView) rootView.findViewById(R.id.attack_title_view);
+        mAttackType.setText(mSheetPlayerCharacter.getWeapon().getWeaponType());
+
         mAttackButton = (Button) rootView.findViewById(R.id.attack_button);
-        mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
+        if(mSheetPlayerCharacter.getWeapon().getWeaponType() == R.string.melee) {
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
+        }
+        else{
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMissileMod()));
+        }
         mAttackButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 //just for testing, replace these with calls to character methods
-                String weaponType = "Melee";
+                int weaponType = mSheetPlayerCharacter.getWeapon().getWeaponType();
                 boolean woc = true;
                 onAttackClick(weaponType, woc);
             }
@@ -136,7 +148,10 @@ public class CharacterSheetFragment extends Fragment {
 
         mEquippedWeaponButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
         //Get equipped weapon from character Class
-        int equippedWeaponID = R.string.barb_axe;
+        //int equippedWeaponID = R.string.barb_axe;
+        Weapon equippedWeapon = mSheetPlayerCharacter.getWeapon();
+        Log.i(TAG, equippedWeapon.toString());
+        int equippedWeaponID = equippedWeapon.getResId();
         mEquippedWeaponButton.setText(equippedWeaponID);
         mEquippedWeaponButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +184,7 @@ public class CharacterSheetFragment extends Fragment {
         });
 
         mMFbutton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
-        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticForitude()));
+        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
         mMFbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,24 +212,23 @@ public class CharacterSheetFragment extends Fragment {
         dialog.show(fm, ROLL_RESULT);
     }
 
-    public void onAttackClick(String attackType, boolean wocEquipped){
+    public void onAttackClick(int attackType, boolean wocEquipped){
         int modifier;
         int attackRoll1 = Util.roll(20);
         int attackRoll2 = Util.roll(20);
         int damageRoll1 = Util.roll(6);
         int damageRoll2 = Util.roll(6);
-        if (attackType == "Melee"){
+        if (attackType == R.string.melee){
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
-        else if (attackType == "Missile"){
+        else if (attackType == R.string.missile){
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else{
             modifier = 0;
         }
         FragmentManager fm = getFragmentManager();
-        AttackResultFragment dialog = AttackResultFragment.newInstance(attackRoll1, attackRoll2,
-                damageRoll1, damageRoll2, modifier, attackType, wocEquipped);
+        AttackResultFragment dialog = AttackResultFragment.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
     }
 
@@ -233,7 +247,7 @@ public class CharacterSheetFragment extends Fragment {
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
             case R.id.mystic_fortitude_button:
-                modifier = mSheetPlayerCharacter.getMysticForitude();
+                modifier = mSheetPlayerCharacter.getMysticFortitude();
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
             case R.id.physical_vigor_button:
