@@ -79,7 +79,7 @@ public class PlayerCharacter {
     /**
      * The character's equipped weapon.
      */
-    private Weapon mWeapon;
+    private Weapon mCurrentWeapon;
 
     /**
      * The helmet that the character is currently wearing.
@@ -306,26 +306,26 @@ public class PlayerCharacter {
         mShield = shield;
     }
 
-    public Weapon getWeapon() {
-        return mWeapon;
+    public Weapon getCurrentWeapon() {
+        return mCurrentWeapon;
     }
 
-    public void setWeapon(Weapon weapon) {
-        mWeapon = weapon;
+    public void setCurrentWeapon(Weapon currentWeapon) {
+        mCurrentWeapon = currentWeapon;
     }
 
     /**
-     * Checks if the current weapon in mWeapon is a weapon of choice.
+     * Checks if the current weapon in mCurrentWeapon is a weapon of choice.
      * @return      true if the weapon is the same as the CharClass's weapon of choice else false
      */
     public boolean isWeaponOfChoiceEquipped(){
         if (!(getCharClass() instanceof Magician)) {
             if (getCharClass() instanceof Warrior) {
                 Warrior warrior = (Warrior) getCharClass();
-                return warrior.getWeaponOfChoice().getResId() == getWeapon().getResId();
+                return warrior.getWeaponOfChoice().getResId() == getCurrentWeapon().getResId();
             } else {
                 Specialist specialist = (Specialist) getCharClass();
-                return specialist.getWeaponOfChoice().getResId() == getWeapon().getResId();
+                return specialist.getWeaponOfChoice().getResId() == getCurrentWeapon().getResId();
             }
         }
         return false;
@@ -398,6 +398,19 @@ public class PlayerCharacter {
     public void initializeClass(){
         getMoney().put(Money.SILVER, getCharClass().getStartMoney());
         getInventory().addAll(getCharClass().getStartGear());
+        setCurrentWeapon(getWeapons().get(0));
+    }
+
+    public ArrayList<Weapon> getWeapons(){
+        ArrayList<Weapon> weaponsFound = new ArrayList<>();
+
+        for (Equipment equipment: getInventory()) {
+            if (equipment instanceof Weapon) {
+                weaponsFound.add((Weapon) equipment);
+            }
+        }
+
+        return weaponsFound;
     }
 
     public int getAge() {
