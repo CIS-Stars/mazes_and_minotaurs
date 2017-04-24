@@ -1,2 +1,29 @@
 Apr 20, 2017 12:08:26 PM com.pytenlabs.instapk.helpers.LogHelper init
 INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14
+Apr 23, 2017 12:11:29 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionCode : 1
+Apr 23, 2017 12:11:29 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionName : 1.0
+Apr 23, 2017 12:11:29 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: packageName : com.example.cis.mazeminotaurs
+Apr 23, 2017 12:11:29 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: release_note : this is currently broken, and bails as soon as you try to load the character sheet. am pushing it so anyone intersted can test...
+Apr 23, 2017 12:11:50 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES CODE: 201
+Apr 23, 2017 12:11:50 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES: {"id":968,"release_note":"this is currently broken, and bails as soon as you try to load the character sheet. am pushing it so anyone intersted can test...","created_time":"2017-04-23T17:11:49.446954Z"}
+Apr 23, 2017 8:04:37 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionCode : 1
+Apr 23, 2017 8:04:37 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionName : 1.0
+Apr 23, 2017 8:04:37 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: packageName : com.example.cis.mazeminotaurs
+Apr 23, 2017 8:04:37 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: release_note : reworked the attack Dialog.  
+Now has button for critical damage roll, and names the type of attack: Melee or Missile. 
+changed the sheet to display the weapon type of the currently equipped weapon. 
+attack dialog also detects if it is the WOC, and displays two attack rolls.
+Apr 23, 2017 8:05:12 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES CODE: 201
+Apr 23, 2017 8:05:12 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES: {"id":970,"release_note":"reworked the attack Dialog.  \nNow has button for critical damage roll, and names the type of attack: Melee or Missile. \nchanged the sheet to display the weapon type of the currently equipped weapon. \nattack dialog also detects if it is the WOC, and displays two attack rolls.","created_time":"2017-04-24T01:05:11.775942Z"}

@@ -385,11 +385,50 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textAlignment="center"
                         android:textSize="24sp"/>
-
-
-
                 </TableRow>
             </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/defense_title_view"
+                        android:layout_width="wrap_content"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_black"
+                        android:text="@string/defenses_title"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/hits_title_view"
+                        android:layout_width="wrap_content"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_black"
+                        android:text="@string/hits_title"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+
+
+
+
+            </TableLayout>
+
 
         </LinearLayout>
     </ScrollView>
