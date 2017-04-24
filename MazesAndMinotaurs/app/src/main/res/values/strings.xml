@@ -36,5 +36,6 @@
     <string name="initiative">Init</string>
     <string name="equipped_weapon">Equipped Weapon</string>
     <string name="attributes_title">Attributes</string>
+    <string name="critical_damage_roll">Critical Damage?</string>
 
 </resources>
