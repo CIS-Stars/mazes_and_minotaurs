@@ -180,8 +180,7 @@ public class PlayerCharacter {
      * @return      total hits.
      */
     public int getHitTotal() {
-        //return mCharClass.getHits() + getMod(Score.MIGHT);
-        return 0;
+        return mCharClass.getAddedHits() + mCharClass.getBasicHits() + getScore(Score.MIGHT).getModifier();
     }
 
     /**
@@ -234,16 +233,26 @@ public class PlayerCharacter {
                 getScore(Score.LUCK).getModifier();
     }
 
+    /**
+     * Getter of the mGender attribute
+     * @return the gender of the character
+     */
     public Gender getGender() {
         return mGender;
     }
 
+    /**
+     * Setter of the mGender attribute
+     * @param gender the new gender of the character
+     */
     public void setGender(Gender gender) {
         mGender = gender;
     }
 
     /**
-     * Helper method to add money easier to the character and automatically validate.
+     * Helper method to add money easier to the character.
+     *
+     * Adds the money to the specified key and then automatically validates the map.
      * @param money The key of the money map to add to.
      * @param amount The amount of money to add the value.
      */
@@ -252,10 +261,18 @@ public class PlayerCharacter {
         validateMoney();
     }
 
+    /**
+     * Getter of the mMoney attribute
+     * @return the money of the character
+     */
     public HashMap<Money, Integer> getMoney() {
         return mMoney;
     }
 
+    /**
+     * Setter of the mMoney attribute
+     * @param money the new money of the character
+     */
     public void setMoney(HashMap<Money, Integer> money) {
         mMoney = money;
     }
@@ -282,34 +299,66 @@ public class PlayerCharacter {
         cash.put(Money.GOLD, cash.get(Money.GOLD) + tradedUpGold);
     }
 
+    /**
+     * Getter of the mHelmet attribute.
+     * @return the helmet of the character
+     */
     public Armor getHelmet() {
         return mHelmet;
     }
 
+    /**
+     * Setter of the mHelmet attribute.
+     * @param helmet the new helmet of the character
+     */
     public void setHelmet(Armor helmet) {
         mHelmet = helmet;
     }
 
+    /**
+     * Getter of the mBreastplate attribute.
+     * @return the breastplate of the character
+     */
     public Armor getBreastplate() {
         return mBreastplate;
     }
 
+    /**
+     * Setter of the mBreastplate attribute.
+     * @param breastplate the new breastplate of the character
+     */
     public void setBreastplate(Armor breastplate) {
         mBreastplate = breastplate;
     }
 
+    /**
+     * Getter of the mShield attribute.
+     * @return the shield of the character
+     */
     public Armor getShield() {
         return mShield;
     }
 
+    /**
+     * Setter of the mShield attribute.
+     * @param shield the new shield of the character
+     */
     public void setShield(Armor shield) {
         mShield = shield;
     }
 
+    /**
+     * Getter of the mCurrentWeapon attribute.
+     * @return the current weapon of the character
+     */
     public Weapon getCurrentWeapon() {
         return mCurrentWeapon;
     }
 
+    /**
+     * Setter of the mCurrentWeapon attribute.
+     * @param currentWeapon the new weapon of the character
+     */
     public void setCurrentWeapon(Weapon currentWeapon) {
         mCurrentWeapon = currentWeapon;
     }
@@ -334,7 +383,7 @@ public class PlayerCharacter {
     /**
      * Checks if a score is maxed out
      * @param   score The score to check
-     * @return  true if score is not maxed out else false
+     * @return  If score is not maxed out, returns true. Otherwise, returns false.
      */
     public boolean canAddToScore(Score score) {
         boolean isPrimary = getCharClass().getPrimaryAttributes().contains(score);
@@ -372,22 +421,45 @@ public class PlayerCharacter {
         }
     }
 
+    /**
+     * Gets a specific score from the character
+     * @param scoreStat     the key used to the score
+     * @return              Returns the AttributeScore stored at the key
+     */
+
     public AttributeScore getScore(Score scoreStat) {
         return mScores.get(scoreStat);
     }
+
+    /**
+     * Getter of the mScores attribute.
+     * @return      the scores of the character.
+     */
 
     public HashMap<Score, AttributeScore> getScores() {
         return mScores;
     }
 
+    /**
+     * Setter of the mScores attribute.
+     * @param scores    the new scores of the character.
+     */
     public void setScores(HashMap<Score, AttributeScore> scores) {
         mScores = scores;
     }
 
+    /**
+     * Getter of the mCharClass attribute.
+     * @return The class of the character.
+     */
     public BaseClass getCharClass() {
         return mCharClass;
     }
 
+    /**
+     * Setter of the mCharClass attribute.
+     * @param aClass the new class of the character.
+     */
     public void setCharClass(BaseClass aClass) {
         mCharClass = aClass;
     }
@@ -401,6 +473,10 @@ public class PlayerCharacter {
         setCurrentWeapon(getWeapons().get(0));
     }
 
+    /**
+     * A helper method to find all of the weapons in the character's inventory
+     * @return all weapons found in the character's inventory.
+     */
     public ArrayList<Weapon> getWeapons(){
         ArrayList<Weapon> weaponsFound = new ArrayList<>();
 
@@ -413,26 +489,50 @@ public class PlayerCharacter {
         return weaponsFound;
     }
 
+    /**
+     * Getter of the mAge attribute.
+     * @return the age of the character
+     */
     public int getAge() {
         return mAge;
     }
 
+    /**
+     * Setter of the mAge attribute.
+     * @param age the new age of the character
+     */
     public void setAge(int age) {
         mAge = age;
     }
 
+    /**
+     * Getter of the mName attribute.
+     * @return the name of the character
+     */
     public String getName() {
         return mName;
     }
 
+    /**
+     * Setter of the mName attribute.
+     * @param name the new name of the character
+     */
     public void setName(String name) {
         mName = name;
     }
 
+    /**
+     * Getter of the mInventory attribute.
+     * @return the inventory of the character
+     */
     public ArrayList<Equipment> getInventory() {
         return mInventory;
     }
 
+    /**
+     * Setter of the mInventory attribute.
+     * @param inventory the new inventory of the character
+     */
     public void setInventory(ArrayList<Equipment> inventory) {
         mInventory = inventory;
     }
