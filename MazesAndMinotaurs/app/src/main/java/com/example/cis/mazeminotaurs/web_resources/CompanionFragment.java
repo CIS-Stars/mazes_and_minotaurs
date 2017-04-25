@@ -15,13 +15,13 @@ import com.example.cis.mazeminotaurs.R;
 
 public class CompanionFragment extends Fragment {
     WebView mCompanionWeb;
-    String mManualUrl = "http://mazesandminotaurscompanionman.getforge.io/";
+    String mManualUrl = "mazesandminotaurs.free.fr/RMM4.pdf";
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
         View rootView = li.inflate(R.layout.fragment_companion, vg, false);
         mCompanionWeb = (WebView) rootView.findViewById(R.id.companion_web_view);
-        mCompanionWeb.loadUrl(mManualUrl);
+        mCompanionWeb.loadUrl("https://docs.google.com/viewer?url="+mCompanionWeb);
 
 
 
