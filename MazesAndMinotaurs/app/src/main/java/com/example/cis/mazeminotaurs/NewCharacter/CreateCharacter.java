@@ -20,9 +20,11 @@ public class CreateCharacter extends Fragment {
 
     String mCharaName;
     String mCharacterClass;
+    int mCharaLevel;
 
     TextView mCharaClassTextView;
     EditText mCharaNameEditText;
+    TextView mCharacterLevelTextView;
 
     public CreateCharacter() {
     }
@@ -39,6 +41,11 @@ public class CreateCharacter extends Fragment {
 
         mCharaNameEditText = (EditText) rootView.findViewById(R.id.character_name_view);
         mCharaName = mCharaNameEditText.getText().toString();
+
+        mCharacterLevelTextView = (TextView) rootView.findViewById(R.id.character_level_view);
+        mCharaLevel = 1;
+        mCharacterLevelTextView.setText(Integer.toString(mCharaLevel));
+
 
 
         return rootView;
