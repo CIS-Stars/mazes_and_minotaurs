@@ -2,66 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <ViewFlipper
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="468dp"
+            >
+
+            <TextView
+                android:id="@+id/class_information_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <ScrollView
+            <Button
+                android:id="@+id/cancel_button"
                 android:layout_width="match_parent"
-                android:layout_height="451dp"
-                >
-
-                <TextView
-                    android:id="@+id/class_information_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </ScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:text="Cancel"/>
 
-                <Button
-                    android:id="@+id/cancel_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Cancel"/>
-
-                <Button
-                    android:id="@+id/confirm_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Confirm"/>
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Confirm"/>
 
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TableRow>
-                    <TextView
-                        
-                        />
-                </TableRow>
-            </TableLayout>
-        </ScrollView>
-    </ViewFlipper>
+    </LinearLayout>
 
 </RelativeLayout>

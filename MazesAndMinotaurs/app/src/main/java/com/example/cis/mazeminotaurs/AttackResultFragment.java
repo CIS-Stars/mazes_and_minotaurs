@@ -50,16 +50,16 @@ public class AttackResultFragment extends DialogFragment {
         mPortfolio = Portfolio.get();
         mCurrentCharacter = mPortfolio.getPlayerCharacter(mCurrentCharacterIndex);
 
-        if(mCurrentCharacter.getWeapon().getWeaponType() == R.string.melee){
+        if(mCurrentCharacter.getCurrentWeapon().getWeaponType() == R.string.melee){
             mMod = mCurrentCharacter.getMeleeMod();
         }
-        else if(mCurrentCharacter.getWeapon().getWeaponType() == R.string.missile){
+        else if(mCurrentCharacter.getCurrentWeapon().getWeaponType() == R.string.missile){
             mMod = mCurrentCharacter.getMissileMod();
         }
         else {//this should never happen
             mMod = -10;
         }
-        mAttackType = getString(mCurrentCharacter.getWeapon().getWeaponType());
+        mAttackType = getString(mCurrentCharacter.getCurrentWeapon().getWeaponType());
         mAttackRoll1 = Util.roll(20);
         mAttackRoll2 = Util.roll(20);
         mDamage1 = Util.roll(6);

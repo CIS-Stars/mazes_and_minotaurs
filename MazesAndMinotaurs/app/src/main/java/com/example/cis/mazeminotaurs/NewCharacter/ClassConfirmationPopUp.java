@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.cis.mazeminotaurs.CharacterSheetFragment;
 import com.example.cis.mazeminotaurs.R;
 
 /**
@@ -18,7 +20,7 @@ import com.example.cis.mazeminotaurs.R;
  * Created by Chaos on 3/16/2017.
  */
 
-public class ClassConfirmationPopUp extends FragmentActivity {
+public class ClassConfirmationPopUp extends Fragment {
 
     TextView classInfoTextView;
     String mClassPicked;
@@ -50,6 +52,7 @@ public class ClassConfirmationPopUp extends FragmentActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Fragment contentFragment = new CharacterSheetFragment();
 
             }
         });

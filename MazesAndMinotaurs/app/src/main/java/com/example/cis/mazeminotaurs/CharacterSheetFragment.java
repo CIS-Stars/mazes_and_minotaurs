@@ -127,10 +127,10 @@ public class CharacterSheetFragment extends Fragment {
         });
 
         mAttackType = (TextView) rootView.findViewById(R.id.attack_title_view);
-        mAttackType.setText(mSheetPlayerCharacter.getWeapon().getWeaponType());
+        mAttackType.setText(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType());
 
         mAttackButton = (Button) rootView.findViewById(R.id.attack_button);
-        if(mSheetPlayerCharacter.getWeapon().getWeaponType() == R.string.melee) {
+        if(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
             mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
         }
         else{
@@ -140,7 +140,7 @@ public class CharacterSheetFragment extends Fragment {
             @Override
             public void onClick(View v){
                 //just for testing, replace these with calls to character methods
-                int weaponType = mSheetPlayerCharacter.getWeapon().getWeaponType();
+                int weaponType = mSheetPlayerCharacter.getCurrentWeapon().getWeaponType();
                 boolean woc = true;
                 onAttackClick(weaponType, woc);
             }
@@ -149,7 +149,7 @@ public class CharacterSheetFragment extends Fragment {
         mEquippedWeaponButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
         //Get equipped weapon from character Class
         //int equippedWeaponID = R.string.barb_axe;
-        Weapon equippedWeapon = mSheetPlayerCharacter.getWeapon();
+        Weapon equippedWeapon = mSheetPlayerCharacter.getCurrentWeapon();
         Log.i(TAG, equippedWeapon.toString());
         int equippedWeaponID = equippedWeapon.getResId();
         mEquippedWeaponButton.setText(equippedWeaponID);

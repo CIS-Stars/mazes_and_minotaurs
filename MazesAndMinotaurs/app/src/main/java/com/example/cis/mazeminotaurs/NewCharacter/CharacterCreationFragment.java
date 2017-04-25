@@ -33,7 +33,6 @@ public class CharacterCreationFragment extends Fragment {
     public String mClassInformation;
     public String mClass;
 
-    boolean mPopTrue = false;
 
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
@@ -176,6 +175,6 @@ public class CharacterCreationFragment extends Fragment {
         i.putExtra("mClassInformation", mClassInformation);
         i.putExtra("mClass", mClass);
         startActivity(i);
-        ((Activity) getActivity()).overridePendingTransition(0,0);
+        (getActivity()).overridePendingTransition(0,0);
     }
 }
