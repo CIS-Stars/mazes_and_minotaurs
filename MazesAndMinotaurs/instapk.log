@@ -1,14 +1,2 @@
-Apr 14, 2017 8:03:09 PM com.pytenlabs.instapk.helpers.LogHelper init
+Apr 20, 2017 12:08:26 PM com.pytenlabs.instapk.helpers.LogHelper init
 INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14
-Apr 14, 2017 8:03:40 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: versionCode : 1
-Apr 14, 2017 8:03:40 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: versionName : 1.0
-Apr 14, 2017 8:03:40 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: packageName : com.example.cis.mazeminotaurs
-Apr 14, 2017 8:03:40 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: release_note : I put in a dialog instead of the toasts.  Whatcha think?
-Apr 14, 2017 8:04:19 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
-INFO: RES CODE: 201
-Apr 14, 2017 8:04:19 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
-INFO: RES: {"id":788,"release_note":"I put in a dialog instead of the toasts.  Whatcha think?","created_time":"2017-04-15T01:04:20.469477Z"}
