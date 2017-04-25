@@ -108,11 +108,6 @@ public class PlayerCharacter {
         // Purposely inputting improper argument
 
         setName("Thorin");
-
-        setCharClass(new Barbarian(this, equipmentDB.getWeapon(R.string.barb_axe),
-                                         equipmentDB.getWeapon(R.string.barb_axe)));
-        initializeClass();
-
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {
             mScores.put(Score.values()[i], scores[i]);
