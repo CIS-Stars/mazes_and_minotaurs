@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
@@ -20,7 +21,8 @@ public class CreateCharacter extends Fragment {
     String mCharaName;
     String mCharacterClass;
 
-    TextView mCharaClass;
+    TextView mCharaClassTextView;
+    EditText mCharaNameEditText;
 
     public CreateCharacter() {
     }
@@ -31,9 +33,12 @@ public class CreateCharacter extends Fragment {
         Log.i("Begin OnCreateView", "Start of onCreateView");
         View rootView = li.inflate(R.layout.fragment_create_character, vg, false);
 
-        mCharaClass = (TextView) rootView.findViewById(R.id.character_class_view);
+        mCharaClassTextView = (TextView) rootView.findViewById(R.id.character_class_view);
         mCharacterClass = getArguments().getString("newClass");
-        mCharaClass.setText(mCharacterClass);
+        mCharaClassTextView.setText(mCharacterClass);
+
+        mCharaNameEditText = (EditText) rootView.findViewById(R.id.character_name_view);
+        mCharaName = mCharaNameEditText.getText().toString();
 
 
         return rootView;
