@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
 import com.example.cis.mazeminotaurs.R;
@@ -17,6 +18,9 @@ import com.example.cis.mazeminotaurs.R;
 public class CreateCharacter extends Fragment {
 
     String mCharaName;
+    String mCharacterClass;
+
+    TextView mCharaClass;
 
     public CreateCharacter() {
     }
@@ -25,8 +29,11 @@ public class CreateCharacter extends Fragment {
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b) {
         super.onCreateView(li, vg, b);
         Log.i("Begin OnCreateView", "Start of onCreateView");
-        View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
+        View rootView = li.inflate(R.layout.fragment_create_character, vg, false);
 
+        mCharaClass = (TextView) rootView.findViewById(R.id.character_class_view);
+        mCharacterClass = getArguments().getString("newClass");
+        mCharaClass.setText(mCharacterClass);
 
 
         return rootView;
