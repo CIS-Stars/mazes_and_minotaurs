@@ -37,5 +37,18 @@
     <string name="equipped_weapon">Equipped Weapon</string>
     <string name="attributes_title">Attributes</string>
     <string name="critical_damage_roll">Critical Damage?</string>
+    <string name="defenses_title">Defenses</string>
+    <string name="hits_title">Hits</string>
+    <string name="edc_view">EDC</string>
+    <string name="armor_view">Armor</string>
+    <string name="total_hits_view">Total</string>
+    <string name="current_hits_view">Current</string>
+    <string name="magic_title">Magic</string>
+    <string name="talent_bonus_title">Name</string>
+    <string name="magic_strength_view">Strength</string>
+    <string name="total_power_view">Total</string>
+    <string name="current_power_view">Current</string>
+    <string name="talent_title">Talent Name</string>
+    <string name="power_title">Power</string>
 
 </resources>
