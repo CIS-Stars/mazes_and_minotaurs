@@ -14,6 +14,7 @@ import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,7 +41,7 @@ import java.util.HashMap;
  * @author Justin Smith
  */
 
-public class PlayerCharacter {
+public class PlayerCharacter{
     /**
      * The character's attribute scores.
      */
@@ -101,12 +102,7 @@ public class PlayerCharacter {
      */
     public PlayerCharacter() {
         initializeMoneyMap();
-
-        EquipmentDB equipmentDB = EquipmentDB.getInstance();
-
         setAge(0);
-        // Purposely inputting improper argument
-
         setName("Thorin");
         AttributeScore[] scores = new AttributeScoreGenerator().nextValidSet();
         for (int i = 0; i < scores.length; i++) {

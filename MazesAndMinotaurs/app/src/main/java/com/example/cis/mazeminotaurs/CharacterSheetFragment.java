@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
@@ -45,6 +46,8 @@ public class CharacterSheetFragment extends Fragment {
     Button mDEbutton;
     Button mMFbutton;
     Button mPVbutton;
+
+    Button mSaveButton;
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -201,6 +204,14 @@ public class CharacterSheetFragment extends Fragment {
             }
         });
 
+        mSaveButton = (Button) rootView.findViewById(R.id.save_button);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveCharacterClick();
+            }
+        });
+
         return rootView;
     }
 
@@ -255,6 +266,12 @@ public class CharacterSheetFragment extends Fragment {
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
         }
+        dialog.show(fm, ROLL_RESULT);
+    }
+
+    public void onSaveCharacterClick(){
+        FragmentManager fm = getFragmentManager();
+        SaveAndLoadDialog dialog = SaveAndLoadDialog.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
     }
 }

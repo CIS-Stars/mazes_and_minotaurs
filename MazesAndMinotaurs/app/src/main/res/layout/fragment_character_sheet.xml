@@ -389,6 +389,10 @@
 
 
                 </TableRow>
+                <TableRow>
+                    <Button android:id="@+id/save_button"
+                        android:text="SAVE SINET"/>
+                </TableRow>
             </TableLayout>
 
         </LinearLayout>
