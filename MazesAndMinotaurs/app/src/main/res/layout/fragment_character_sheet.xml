@@ -399,6 +399,7 @@
                         android:id="@+id/defense_title_view"
                         android:layout_width="wrap_content"
                         android:layout_column="0"
+                        android:layout_span="2"
                         android:background="@drawable/character_sheet_box_black"
                         android:text="@string/defenses_title"
                         android:textAlignment="center"
@@ -408,7 +409,8 @@
                     <TextView
                         android:id="@+id/hits_title_view"
                         android:layout_width="wrap_content"
-                        android:layout_column="1"
+                        android:layout_column="2"
+                        android:layout_span="2"
                         android:background="@drawable/character_sheet_box_black"
                         android:text="@string/hits_title"
                         android:textAlignment="center"
@@ -416,6 +418,127 @@
                         android:textSize="24sp"/>
                 </TableRow>
 
+                <!-- This row displays  current EDC, has a button to equip armor,
+                displays total hits, and allows to adjust current hits.-->
+                <TableRow android:layout_width="match_parent">
+                    <TextView
+                    android:id="@+id/edc_title_view"
+                    android:layout_column="0"
+                    android:background="@drawable/character_sheet_box_gray_no_bottom"
+                    android:text="@string/edc_view"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAlignment="center"
+                    android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/armor_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/armor_view"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/total_hits_title_view"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/total_hits_view"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/current_hits_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/current_hits_view"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+                </TableRow>
+
+                <TableRow>
+                    <Button
+                        android:id="@+id/edc_button"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/armor_button"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="H-B-S"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/total_hits_button"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+
+                    <Button
+                        android:id="@+id/current_hits_button"
+                        android:layout_column="3"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textAlignment="center"
+                        android:textSize="24sp"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/magic_title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/character_sheet_box_black"
+                android:text="@string/magic_title"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:visibility="gone"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/talent_title_view"
+                        android:layout_width="wrap_content"
+                        android:layout_column="0"
+                        android:layout_span="2"
+                        android:background="@drawable/character_sheet_box_black"
+                        android:text="@string/talent_title"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/power_title_view"
+                        android:layout_width="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="2"
+                        android:background="@drawable/character_sheet_box_black"
+                        android:text="@string/power_title"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+                </TableRow>
             </TableLayout>
 
             <TableLayout
@@ -423,13 +546,94 @@
                 android:layout_height="wrap_content"
                 android:stretchColumns="*">
 
+                <!-- This row displays magic stats:  Talent and Bonus, Strength,
+                Power, and Spells -->
+                <TableRow>
 
+                    <TextView
+                        android:id="@+id/talent_bonus_title_view"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/talent_bonus_title"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
 
+                    <TextView
+                        android:id="@+id/magic_strength_title_view"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/magic_strength_view"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
 
+                    <TextView
+                        android:id="@+id/total_power_title_view"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/total_power_view"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
 
+                    <TextView
+                        android:id="@+id/current_power_title_view"
+                        android:layout_column="3"
+                        android:background="@drawable/character_sheet_box_gray_no_bottom"
+                        android:text="@string/current_power_view"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+                </TableRow>
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/talent_bonus_button"
+                        android:layout_column="0"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/magic_strength_button"
+                        android:layout_column="1"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/total_power_button"
+                        android:layout_column="2"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/current_power_button"
+                        android:layout_column="3"
+                        android:background="@drawable/character_sheet_box_white_no_top"
+                        android:text="10"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textSize="24sp"
+                        android:visibility="gone"/>
+                </TableRow>
             </TableLayout>
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

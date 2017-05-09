@@ -1,4 +1,2 @@
-Apr 25, 2017 9:20:32 AM com.pytenlabs.instapk.helpers.LogHelper init
-INFO: Linux, 3.16.0-4-amd64, amd64, Android Studio AI-162.2228.14
-Apr 25, 2017 9:20:33 AM com.pytenlabs.instapk.helpers.ProjectInfoHelper getProjectDetails
-INFO: ProjectInfo{versionCode=1, versionName='1.0', packageName='com.example.cis.mazeminotaurs', projectName='MazesAndMinotaurs'}
+May 09, 2017 12:23:30 PM com.pytenlabs.instapk.helpers.LogHelper init
+INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
@@ -31,6 +32,11 @@ public class CharacterSheetFragment extends Fragment {
     TextView mCharacterLevelView;
     TextView mCharacterClassView;
     TextView mAttackType;
+    TextView mMagicTitleView;
+    TextView mTalentBonusTitleView;
+    TextView mMagicStrengthTitleView;
+    TextView mTotalPowerTitleView;
+    TextView mCurrentPowerTitleView;
 
     Button mMightButton;
     Button mSkillButton;
@@ -45,6 +51,13 @@ public class CharacterSheetFragment extends Fragment {
     Button mDEbutton;
     Button mMFbutton;
     Button mPVbutton;
+    Button mTalentBonusButton;
+    Button mMagicStrengthButton;
+    Button mTotalPowerButton;
+    Button mCurrentPowerButton;
+
+
+
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -200,6 +213,39 @@ public class CharacterSheetFragment extends Fragment {
                 onSaveClick(mPVbutton.getId(), "PV");
             }
         });
+
+        mMagicTitleView = (TextView) rootView.findViewById(R.id.magic_title_view);
+        mTalentBonusTitleView = (TextView) rootView.findViewById(R.id.talent_bonus_title_view);
+        mMagicStrengthTitleView = (TextView) rootView.findViewById(R.id.magic_strength_title_view);
+        mTotalPowerTitleView = (TextView) rootView.findViewById(R.id.total_power_title_view);
+        mCurrentPowerTitleView = (TextView) rootView.findViewById(R.id.current_power_title_view);
+
+        mTalentBonusButton = (Button) rootView.findViewById(R.id.talent_bonus_button);
+        mTalentBonusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mMagicStrengthButton = (Button) rootView.findViewById(R.id.magic_strength_button);
+        mTotalPowerButton = (Button) rootView.findViewById(R.id.total_power_button);
+        mCurrentPowerButton = (Button) rootView.findViewById(R.id.current_power_button);
+
+        //this variable for testing only!  should normally be set to false!!!
+        boolean testing = false;
+        if (mSheetPlayerCharacter.getCharClass() instanceof Magician || testing == true){
+            mMagicTitleView.setVisibility(View.VISIBLE);
+            mTalentBonusTitleView.setVisibility(View.VISIBLE);
+            mMagicStrengthTitleView.setVisibility(View.VISIBLE);
+            mTotalPowerTitleView.setVisibility(View.VISIBLE);
+            mCurrentPowerTitleView.setVisibility(View.VISIBLE);
+
+            mTalentBonusButton.setVisibility(View.VISIBLE);
+            mMagicStrengthButton.setVisibility(View.VISIBLE);
+            mTotalPowerButton.setVisibility(View.VISIBLE);
+            mCurrentPowerButton.setVisibility(View.VISIBLE);
+
+        }
 
         return rootView;
     }
