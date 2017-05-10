@@ -4,12 +4,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.cis.mazeminotaurs.CharacterSheetFragment;
+import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -68,10 +74,8 @@ public class SaveAndLoadDialog extends DialogFragment {
 
                     FileOutputStream fos = getContext().openFileOutput(fileName, Context.MODE_PRIVATE);
                     OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
-                    GsonBuilder gson = new GsonBuilder();
-                    gson.registerTypeAdapter(PlayerCharacter.class, new CharacterSerializer());
-                    System.out.println(gson.create().toJson(Portfolio.get().getPlayerCharacter(mPlayerCharacterIndex)));
-                    outputStreamWriter.write(gson.create().toJson(Portfolio.get().getPlayerCharacter(mPlayerCharacterIndex)));
+                    System.out.println(SaveAndLoadPerformer.save(mPlayerCharacterIndex));
+                    outputStreamWriter.write(SaveAndLoadPerformer.save(mPlayerCharacterIndex));
                     outputStreamWriter.close();
                     fos.close();
 
@@ -100,19 +104,25 @@ public class SaveAndLoadDialog extends DialogFragment {
                     }
 
                     System.out.println(output.toString());
-                    PlayerCharacter loadedCharacter = new Gson().fromJson(output.toString(), PlayerCharacter.class);
-                    JsonObject jo = (JsonObject) new JsonParser().parse(output.toString());
-                    for (Score score: Score.values()) {
-                        loadedCharacter.getScore(score).setScore(jo.getAsJsonObject("scores").getAsJsonObject(score.toString()).getAsJsonPrimitive("mScore").getAsInt());
-                        System.out.println(String.format("%s: %d", score.toString(),loadedCharacter.getScore(score).getScore()));
-                    }
+                    PlayerCharacter loadedCharacter = SaveAndLoadPerformer.load(output.toString());
+                    Portfolio.get().getPortfolio().set(mPlayerCharacterIndex, loadedCharacter);
                     bufferedReader.close();
                     fis.close();
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 dialog.dismiss();
+
+                // Thanks to @davidsnider for solving the issue of refreshing the fragment
+
+                Fragment contentFragment = new CharacterSheetFragment();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, contentFragment);
+                ft.commit();
+
             }
         });
 

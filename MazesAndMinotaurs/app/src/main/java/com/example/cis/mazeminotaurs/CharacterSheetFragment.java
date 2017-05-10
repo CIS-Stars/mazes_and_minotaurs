@@ -318,5 +318,6 @@ public class CharacterSheetFragment extends Fragment {
         FragmentManager fm = getFragmentManager();
         SaveAndLoadDialog dialog = SaveAndLoadDialog.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
+        System.out.println("We're went through");
     }
 }
