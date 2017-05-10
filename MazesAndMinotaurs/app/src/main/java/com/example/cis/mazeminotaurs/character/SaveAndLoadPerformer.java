@@ -1,7 +1,5 @@
 package com.example.cis.mazeminotaurs.character;
 
-import android.content.Context;
-
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.Weapon;
@@ -15,10 +13,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,18 +23,33 @@ import java.util.HashMap;
  */
 
 public class SaveAndLoadPerformer {
+    /**
+     * Takes the player character parameter and transforms it into a json string.
+     * @param playerCharacter the player character that needs to be serialized.
+     * @return json string of playerCharacter
+     */
     public static String save(PlayerCharacter playerCharacter){
         int index = Portfolio.get().getPortfolio().indexOf(playerCharacter);
         if (index > -1) return save(index);
         return null;
     }
 
+    /**
+     * Takes the character index parameter and transforms it into a json string.
+     * @param characterIndex the index of the player character inside of the Portfoilo singleton to save.
+     * @return json string of playerCharacter
+     */
     public static String save(int characterIndex) {
         GsonBuilder gson = new GsonBuilder();
         gson.registerTypeAdapter(PlayerCharacter.class, new CharacterSerializer());
         return gson.create().toJson(Portfolio.get().getPlayerCharacter(characterIndex));
     }
 
+    /**
+     * Returns a playerCharacter based on the json string given.
+     * @param jsonString the playerCharacter in json
+     * @return the generated playerCharacter
+     */
     public static PlayerCharacter load(String jsonString){
         PlayerCharacter returnCharacter = new PlayerCharacter();
         JsonObject loadedData = (JsonObject) new Gson().fromJson(jsonString, JsonElement.class);
@@ -66,6 +75,9 @@ public class SaveAndLoadPerformer {
     }
 }
 
+/**
+ * Custom serializer for transforming the PlayerCharacter class into json.
+ */
 class CharacterSerializer implements JsonSerializer<PlayerCharacter> {
     @Override
     public JsonElement serialize(PlayerCharacter src, Type typeOfSrc, JsonSerializationContext context) {
