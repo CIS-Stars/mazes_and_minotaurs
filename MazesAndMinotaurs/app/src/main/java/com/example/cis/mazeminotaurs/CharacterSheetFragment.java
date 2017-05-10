@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
@@ -58,6 +59,8 @@ public class CharacterSheetFragment extends Fragment {
 
 
 
+
+    Button mSaveButton;
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -214,6 +217,13 @@ public class CharacterSheetFragment extends Fragment {
             }
         });
 
+        mSaveButton = (Button) rootView.findViewById(R.id.save_button);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSaveCharacterClick();
+            }
+        });
         mMagicTitleView = (TextView) rootView.findViewById(R.id.magic_title_view);
         mTalentBonusTitleView = (TextView) rootView.findViewById(R.id.talent_bonus_title_view);
         mMagicStrengthTitleView = (TextView) rootView.findViewById(R.id.magic_strength_title_view);
@@ -301,6 +311,12 @@ public class CharacterSheetFragment extends Fragment {
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
         }
+        dialog.show(fm, ROLL_RESULT);
+    }
+
+    public void onSaveCharacterClick(){
+        FragmentManager fm = getFragmentManager();
+        SaveAndLoadDialog dialog = SaveAndLoadDialog.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
     }
 }
