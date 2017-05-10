@@ -6,24 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.cis.mazeminotaurs.CharacterSheetFragment;
-import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -31,8 +21,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 
 /**
@@ -108,8 +96,6 @@ public class SaveAndLoadDialog extends DialogFragment {
                     Portfolio.get().getPortfolio().set(mPlayerCharacterIndex, loadedCharacter);
                     bufferedReader.close();
                     fis.close();
-
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
