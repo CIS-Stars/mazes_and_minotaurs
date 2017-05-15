@@ -5,83 +5,79 @@ import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Created by jusmith on 3/31/17.
+ * Created by jusmith on 5/15/17.
  */
 
-public class Barbarian extends Warrior implements Level{
+public class Noble extends Warrior implements Level {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon rangedChoice) {
-        Score[] primAttrs = {Score.MIGHT, Score.WILL};
+    public Noble(PlayerCharacter playerCharacter, Score selectedScore, Weapon weaponOfChoice) {
+        Score playerScore;
+        if (selectedScore.equals(Score.MIGHT) || selectedScore.equals(Score.SKILL)) {
+            playerScore = selectedScore;
+        } else {
+            playerScore = Score.MIGHT;
+        }
+
+        Score[] primAttrs = {playerScore, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
-        EquipmentDB equipDB = EquipmentDB.getInstance();
-        Weapon[] possibleWepsOfChoice = {equipDB.getWeapon(R.string.barb_axe)};
-        Weapon[] possibleRanged = {equipDB.getWeapon(R.string.bow)};
-        ArrayList<Equipment> startingEquipment = new ArrayList<>();
+        EquipmentDB equipmentDB = EquipmentDB.getInstance();
+        ArrayList<Weapon> possibleWeapons = new ArrayList<>();
+        for (int id: new int[]{R.string.sword, R.string.spear, R.string.bow, R.string.javelin}) {
+            possibleWeapons.add(equipmentDB.getWeapon(id));
+        }
 
-        if (Arrays.asList(possibleWepsOfChoice).contains(weaponOfChoice)) {
+        ArrayList<Equipment> startGear = new ArrayList<>();
+
+        // Check if the weapon of choice is valid
+        if (possibleWeapons.contains(weaponOfChoice)) {
             setWeaponOfChoice(weaponOfChoice);
         } else {
-            setWeaponOfChoice(possibleWepsOfChoice[0]);
-        }
-        startingEquipment.add(weaponOfChoice);
-
-        if (Arrays.asList(possibleRanged).contains(rangedChoice)){
-            switch (rangedChoice.getResId()) {
-                case R.string.bow:
-                    startingEquipment.add(equipDB.getWeapon(R.string.bow));
-                    startingEquipment.add(equipDB.getWeapon(R.string.arrows));
-                    break;
-                default:
-                    //PANIC
-                    System.out.println("PANIC in Barbarian Ranged Weapon Case");
-                    break;
-            }
-        } else {
-            startingEquipment.add(equipDB.getWeapon(R.string.bow));
-            startingEquipment.add(equipDB.getWeapon(R.string.arrows));
+            setWeaponOfChoice(possibleWeapons.get(0));
         }
 
-        int rolledGold = Util.roll(6, 3) * 5;
+        int rolledGold = Util.roll(6, 3) * 100;
 
-        //Add the rest of starting equipment
-        startingEquipment.add(equipDB.getWeapon(R.string.dagger));
-        startingEquipment.add(equipDB.getArmor(R.string.shield));
+        startGear.add(equipmentDB.getWeapon(R.string.sword));
+        startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        startGear.add(equipmentDB.getArmor(R.string.shield));
+        startGear.add(equipmentDB.getArmor(R.string.helmet));
+        startGear.add(equipmentDB.getArmor(R.string.breastplate));
 
         setBasicHits(12);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
-        setRequiredGender(Gender.MALE);
-        setResId(Classes.BARBARIAN.getResId());
-        setStartGold(rolledGold * 5);
-        setStartGear(startingEquipment);
+        setRequiredGender(Gender.EITHER);
+        setResId(Classes.NOBLE.getResId());
+        setStartGold(rolledGold);
+        setStartGear(startGear);
     }
 
-    public void doLevelUp(){
-        Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT};
-        doLevelUp(possibleScores[Util.roll(3) - 1]);
+    @Override
+    public void doLevelUp() {
+        Score[] possibleScores = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
     }
 
+    @Override
     public void doLevelUp(Score score) {
-        if (getLevel() < getEffectiveLevel()){
-
-            Score[] choices = {Score.SKILL, Score.WILL, Score.MIGHT};
+        if (getLevel() < getEffectiveLevel()) {
+            Score[] choices = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
             ArrayList<Score> possibleScores = new ArrayList<>();
             for (Score selectScore: choices) {
-                if(getCharacter().canAddToScore(selectScore)) {
+                if (getCharacter().canAddToScore(selectScore)) {
                     possibleScores.add(selectScore);
                 }
             }
@@ -92,16 +88,13 @@ public class Barbarian extends Warrior implements Level{
             } else {
                 selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
             }
-
             if (possibleScores.size() > 0) {
-                while (!getCharacter().canAddToScore(selectedScore)) {
-                   selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
+                while(!getCharacter().canAddToScore(selectedScore)) {
+                    selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
                 }
             }
 
-            // Contains information about changed scores
             HashMap<Score, Integer> levelData = new HashMap<>();
-
             if (getCharacter().canAddToScore(Score.LUCK)) {
                 AttributeScore luck = getCharacter().getScore(Score.LUCK);
                 levelData.put(Score.LUCK, luck.getScore());
@@ -123,6 +116,7 @@ public class Barbarian extends Warrior implements Level{
         }
     }
 
+    @Override
     public void doLevelDown(){
         if (getLevel() > 1) {
             HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
@@ -151,13 +145,5 @@ public class Barbarian extends Warrior implements Level{
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public int getBattleMightBonus(){
-        return getCharacter().getScore(Score.MIGHT).getModifier();
-    }
-
-    public int getBattleFuryBonus(){
-        return getCharacter().getScore(Score.WILL).getModifier();
     }
 }
