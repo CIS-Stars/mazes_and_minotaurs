@@ -15,51 +15,67 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Created by jusmith on 4/13/17.
+ * Created by jusmith on 5/15/17.
  */
 
-public class Amazon extends Warrior implements Level {
+public class Noble extends Warrior implements Level {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Amazon(PlayerCharacter playerCharacter, Weapon startingMeleeWeapon){
-        Score[] primAttrs = {Score.SKILL, Score.GRACE};
+    public Noble(PlayerCharacter playerCharacter, Score firstHeritageScore, Score secondHeritageScore, Weapon weaponOfChoice) {
+        Score martialScore;
+        if (firstHeritageScore.equals(Score.MIGHT) || firstHeritageScore.equals(Score.SKILL)) {
+            martialScore = firstHeritageScore;
+        } else {
+            martialScore = Score.MIGHT;
+        }
+
+        Score[] primAttrs = {martialScore, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
-        // Setup for checking starting gear
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Weapon> possibleWeapons = new ArrayList<>();
-        for (int id: Util.sMeleeWeapons) {
-            if (id != R.string.dagger) {
-                possibleWeapons.add(equipmentDB.getWeapon(id));
-            }
+        for (int id: new int[]{R.string.sword, R.string.spear, R.string.bow, R.string.javelin}) {
+            possibleWeapons.add(equipmentDB.getWeapon(id));
         }
+
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        // Check the starting melee weapon if it is valid
-        if (possibleWeapons.contains(startingMeleeWeapon)) {
-            startGear.add(startingMeleeWeapon);
+        // Check if the weapon of choice is valid
+        if (possibleWeapons.contains(weaponOfChoice)) {
+            setWeaponOfChoice(weaponOfChoice);
         } else {
-            startGear.add(possibleWeapons.get(0));
+            setWeaponOfChoice(possibleWeapons.get(0));
         }
 
-        // Adding the rest of the equipment
+        int rolledGold = Util.roll(6, 3) * 100;
+
+        startGear.add(equipmentDB.getWeapon(R.string.sword));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
         startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getWeapon(R.string.bow));
-        startGear.add(equipmentDB.getWeapon(R.string.arrows));
-
-        // Roll for gold
-        int rolledGold = Util.roll(6, 3) * 5;
+        startGear.add(equipmentDB.getArmor(R.string.helmet));
+        startGear.add(equipmentDB.getArmor(R.string.breastplate));
 
         setBasicHits(12);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
-        setRequiredGender(Gender.FEMALE);
-        setResId(Classes.AMAZON.getResId());
+        setRequiredGender(Gender.EITHER);
+        setResId(Classes.NOBLE.getResId());
         setStartGold(rolledGold);
         setStartGear(startGear);
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.bow));
+
+        // Noble - Heroic Heritage
+        Score mentalScore;
+        if (secondHeritageScore.equals(Score.WITS) ||
+            secondHeritageScore.equals(Score.WILL) ||
+            secondHeritageScore.equals(Score.GRACE)) {
+            mentalScore = secondHeritageScore;
+        } else {
+            mentalScore = Score.WITS;
+        }
+
+        getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
+        getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
     }
 
     @Override
@@ -67,6 +83,7 @@ public class Amazon extends Warrior implements Level {
         Score[] possibleScores = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
         doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
     }
+
     @Override
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()) {
@@ -111,6 +128,7 @@ public class Amazon extends Warrior implements Level {
             getCharacter().validateScores();
         }
     }
+
     @Override
     public void doLevelDown(){
         if (getLevel() > 1) {
@@ -134,19 +152,15 @@ public class Amazon extends Warrior implements Level {
         }
     }
 
+    public int getBattleFortuneBonus(){
+        return getCharacter().getScore(Score.LUCK).getModifier();
+    }
+
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
         return mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public int getDeadlyShotBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
-    }
-
-    public int getBattleGraceBonus() {
-        return getCharacter().getScore(Score.GRACE).getModifier();
     }
 }

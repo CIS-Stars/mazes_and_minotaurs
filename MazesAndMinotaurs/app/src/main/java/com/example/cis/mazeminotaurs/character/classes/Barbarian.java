@@ -55,10 +55,7 @@ public class Barbarian extends Warrior implements Level{
             startingEquipment.add(equipDB.getWeapon(R.string.arrows));
         }
 
-        int rolledGold = 0;
-        for (int i =0; i < 3; i++) {
-            rolledGold += Util.roll(6);
-        }
+        int rolledGold = Util.roll(6, 3) * 5;
 
         //Add the rest of starting equipment
         startingEquipment.add(equipDB.getWeapon(R.string.dagger));
@@ -71,7 +68,6 @@ public class Barbarian extends Warrior implements Level{
         setResId(Classes.BARBARIAN.getResId());
         setStartGold(rolledGold * 5);
         setStartGear(startingEquipment);
-        setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(R.string.barb_axe));
     }
 
     public void doLevelUp(){
@@ -99,7 +95,7 @@ public class Barbarian extends Warrior implements Level{
 
             if (possibleScores.size() > 0) {
                 while (!getCharacter().canAddToScore(selectedScore)) {
-                    selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
+                   selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
                 }
             }
 
