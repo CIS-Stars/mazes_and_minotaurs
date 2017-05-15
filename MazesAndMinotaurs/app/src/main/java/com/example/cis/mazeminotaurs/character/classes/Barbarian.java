@@ -55,10 +55,7 @@ public class Barbarian extends Warrior implements Level{
             startingEquipment.add(equipDB.getWeapon(R.string.arrows));
         }
 
-        int rolledGold = 0;
-        for (int i =0; i < 3; i++) {
-            rolledGold += Util.roll(6);
-        }
+        int rolledGold = Util.roll(6, 3);
 
         //Add the rest of starting equipment
         startingEquipment.add(equipDB.getWeapon(R.string.dagger));
