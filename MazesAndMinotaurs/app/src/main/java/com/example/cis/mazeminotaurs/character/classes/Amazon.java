@@ -50,7 +50,7 @@ public class Amazon extends Warrior implements Level {
         startGear.add(equipmentDB.getWeapon(R.string.arrows));
 
         // Roll for gold
-        int rolledGold = Util.roll(6, 3);
+        int rolledGold = Util.roll(6, 3) * 5;
 
         setBasicHits(12);
         setCharacter(playerCharacter);
