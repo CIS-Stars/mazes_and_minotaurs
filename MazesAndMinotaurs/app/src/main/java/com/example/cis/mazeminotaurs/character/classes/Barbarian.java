@@ -96,7 +96,7 @@ public class Barbarian extends Warrior implements Level{
 
             if (possibleScores.size() > 0) {
                 while (!getCharacter().canAddToScore(selectedScore)) {
-                    selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
+                   selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
                 }
             }
 
