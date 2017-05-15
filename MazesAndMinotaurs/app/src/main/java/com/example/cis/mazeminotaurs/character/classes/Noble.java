@@ -152,6 +152,10 @@ public class Noble extends Warrior implements Level {
         }
     }
 
+    public int getBattleFortuneBonus(){
+        return getCharacter().getScore(Score.LUCK).getModifier();
+    }
+
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
         return mScoreLevelChoice;
     }
