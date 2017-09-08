@@ -5,6 +5,7 @@ import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
+import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
@@ -63,7 +64,7 @@ public class Centaur extends Warrior implements Level{
                 break;
             case R.string.sling:
                 startGear.add(equipmentDB.getWeapon(R.string.sling));
-                // TODO: Need to add resId for the stones.
+                startGear.add(equipmentDB.getWeapon(R.string.slingshot));
                 break;
         }// Equipment done
 
@@ -71,6 +72,14 @@ public class Centaur extends Warrior implements Level{
 
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
         startGear.add(equipmentDB.getWeapon(R.string.spear));
+
+        setBasicHits(12);
+        setCharacter(playerCharacter);
+        setPrimaryAttributes(primAttributes);
+        setResId(Classes.CENTAUR.getResId());
+        setRequiredGender(Gender.MALE);
+        setStartGold(rolledGold);
+        setStartGear(startGear);
     }
 
     @Override
