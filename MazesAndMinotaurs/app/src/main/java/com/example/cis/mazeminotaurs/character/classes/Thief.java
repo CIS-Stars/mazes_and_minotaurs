@@ -134,12 +134,6 @@ public class Thief extends Specialist implements Level{
         }
     }
 
-    @Override
-    public int getSpecialTalent() {
-        return getCharacter().getScore(Score.LUCK).getModifier() +
-                getCharacter().getScore(Score.WITS).getModifier();
-    }
-
     public int getEvasionBonus() {
         return getCharacter().getScore(Score.WITS).getScore();
     }
