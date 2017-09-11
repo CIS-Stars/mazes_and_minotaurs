@@ -147,13 +147,7 @@ public class Hunter extends Specialist implements Level{
             setLevel(getLevel() - 1);
         }
     }
-
-    @Override
-    public int getSpecialTalent() {
-        return getCharacter().getScore(Score.SKILL).getModifier() +
-                getCharacter().getScore(Score.WITS).getModifier();
-    }
-
+    
     public int getDeadlyAimBonus() {
         return getCharacter().getScore(Score.SKILL).getScore();
     }
