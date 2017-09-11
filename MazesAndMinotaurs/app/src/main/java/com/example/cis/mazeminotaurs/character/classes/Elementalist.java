@@ -17,10 +17,10 @@ import java.util.HashMap;
  * Created by zsteck on 9/11/17.
  */
 
-public class Elementalists extends Magician implements Level{
+public class Elementalist extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Elementalists(PlayerCharacter playerCharacter) {
+    public Elementalist(PlayerCharacter playerCharacter) {
         Score[] primAttrs = {Score.SKILL, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
