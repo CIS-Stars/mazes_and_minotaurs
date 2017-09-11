@@ -18,11 +18,11 @@ import java.util.HashMap;
  * Created by jsmith on 9/11/17.
  */
 
-public class Thief extends Specialist implements Level{
+public class Hunter extends Specialist implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
-        Score[] primAttrs = {Score.LUCK, Score.WITS};
+    public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
+        Score[] primAttrs = {Score.SKILL, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
@@ -32,7 +32,7 @@ public class Thief extends Specialist implements Level{
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         //TODO Add the throwing knife value for in Equipment.xml
-        for (int choiceId: new int[]{R.string.dagger, R.string.sling}) {
+        for (int choiceId: Util.sMissleWeapons) {
             possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
         }
 
@@ -42,15 +42,29 @@ public class Thief extends Specialist implements Level{
             setWeaponOfChoice(possibleWepsOfChoice.get(0));
         }
 
+        switch (getWeaponOfChoice().getResId()) {
+            case R.string.bow:
+                startGear.add(equipmentDB.getWeapon(R.string.bow));
+                startGear.add(equipmentDB.getWeapon(R.string.arrows));
+                break;
+            case R.string.javelin:
+                startGear.add(equipmentDB.getWeapon(R.string.javelin));
+                break;
+            case R.string.sling:
+                startGear.add(equipmentDB.getWeapon(R.string.sling));
+                startGear.add(equipmentDB.getWeapon(R.string.slingshot));
+                break;
+        }// Equipment done
+
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        // Equipment done
+        startGear.add(equipmentDB.getWeapon(R.string.spear));
 
         int rolledGold = Util.roll(6, 3) * 5;
 
         setBasicHits(10);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
-        setResId(Classes.THIEF.getResId());
+        setResId(Classes.HUNTER.getResId());
         setRequiredGender(Gender.EITHER);
         //TODO Special Scores need to be created in something
         setStartGold(rolledGold);
@@ -136,12 +150,12 @@ public class Thief extends Specialist implements Level{
 
     @Override
     public int getSpecialTalent() {
-        return getCharacter().getScore(Score.LUCK).getModifier() +
+        return getCharacter().getScore(Score.SKILL).getModifier() +
                 getCharacter().getScore(Score.WITS).getModifier();
     }
 
-    public int getEvasionBonus() {
-        return getCharacter().getScore(Score.WITS).getScore();
+    public int getDeadlyAimBonus() {
+        return getCharacter().getScore(Score.SKILL).getScore();
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {

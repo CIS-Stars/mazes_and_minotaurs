@@ -23,4 +23,6 @@ public abstract class Specialist extends BaseClass {
     public void setSpecialScoreId(int specialScoreId) {
         mSpecialScoreId = specialScoreId;
     }
+
+    public abstract int getSpecialTalent();
 }
