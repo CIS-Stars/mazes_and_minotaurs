@@ -31,7 +31,6 @@ public class Thief extends Specialist implements Level{
         ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        //TODO Add the throwing knife value for in Equipment.xml
         for (int choiceId: new int[]{R.string.dagger, R.string.sling, R.string.throw_knife}) {
             possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
         }
@@ -52,7 +51,7 @@ public class Thief extends Specialist implements Level{
         setPrimaryAttributes(primAttributes);
         setResId(Classes.THIEF.getResId());
         setRequiredGender(Gender.EITHER);
-        //TODO Special Scores need to be created in something
+        setSpecialScoreId(R.string.thief_talent);
         setStartGold(rolledGold);
         setStartGear(startGear);
     }

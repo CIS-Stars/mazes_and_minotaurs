@@ -31,7 +31,6 @@ public class Hunter extends Specialist implements Level{
         ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        //TODO Add the throwing knife value for in Equipment.xml
         for (int choiceId: Util.sMissleWeapons) {
             possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
         }
@@ -66,7 +65,7 @@ public class Hunter extends Specialist implements Level{
         setPrimaryAttributes(primAttributes);
         setResId(Classes.HUNTER.getResId());
         setRequiredGender(Gender.EITHER);
-        //TODO Special Scores need to be created in something
+        setSpecialScoreId(R.string.hunter_talent);
         setStartGold(rolledGold);
         setStartGear(startGear);
     }
