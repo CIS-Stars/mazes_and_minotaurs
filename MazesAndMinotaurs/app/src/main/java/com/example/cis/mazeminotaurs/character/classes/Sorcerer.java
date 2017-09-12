@@ -4,6 +4,7 @@ import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -17,40 +18,53 @@ import java.util.HashMap;
  * Created by zsteck on 9/12/17.
  */
 
-public class Lyrist extends Magician implements Level{
+public class Sorcerer extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Lyrist(PlayerCharacter playerCharacter) {
-        Score[] primAttrs = {Score.GRACE, Score.LUCK};
+    public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
+        Score[] primAttrs = {Score.WITS, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
+
+        ArrayList<Weapon> possibleStartWeps = new ArrayList<>();
 
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        int rolledGold = Util.roll(6, 3) * 5;
+        int rolledGold = Util.roll(6, 3) * 10;
 
-        //TODO Add a 'lyre' item/weapon
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        //TODO add a wand weapon
+        for (int startId: new int[] {R.string.dagger, R.string.staff}) {
+            possibleStartWeps.add(equipmentDB.getWeapon(startId));
+        }
+
+        Weapon finalStartingWeapon;
+        if (possibleStartWeps.contains(startingWeapon)) {
+            finalStartingWeapon = startingWeapon;
+        } else {
+            finalStartingWeapon = possibleStartWeps.get(0);
+        }
+
+        startGear.add(finalStartingWeapon);
 
         setBasicHits(8);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
-        setResId(Classes.LYRIST.getResId());
+        setResId(Classes.SORCEROR.getResId());
         setStartGold(rolledGold);
         setStartGear(startGear);
     }
 
     public void doLevelUp(){
-        Score[] possibleScores = {Score.GRACE, Score.WITS, Score.WILL};
+        Score[] possibleScores = {Score.WITS, Score.WILL};
         doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
     }
 
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()){
 
-            Score[] choices = {Score.GRACE, Score.WITS, Score.WILL};
+            Score[] choices = {Score.WITS, Score.WILL};
             ArrayList<Score> possibleScores = new ArrayList<>();
             for (Score selectScore: choices) {
                 if(getCharacter().canAddToScore(selectScore)) {
