@@ -30,6 +30,10 @@
     <string name="spearman">Spearman</string>
     <string name="thief">Thief</string>
 
+    <!-- Class-Specifics Abilities -->
+    <string name="hunter_special">Hunting</string>
+    <string name="thief_special">Thievery</string>
+
     <!-- Deities -->
     <string name="aphrodite">Aphrodite</string>
     <string name="apollo">Apollo</string>
