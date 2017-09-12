@@ -15,82 +15,74 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Created by jusmith on 5/15/17.
+ * Created by jsmith on 9/11/17.
  */
 
-public class Noble extends Warrior implements Level {
+public class Hunter extends Specialist implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Noble(PlayerCharacter playerCharacter, Score firstHeritageScore, Score secondHeritageScore, Weapon weaponOfChoice) {
-        Score martialScore;
-        if (firstHeritageScore.equals(Score.MIGHT) || firstHeritageScore.equals(Score.SKILL)) {
-            martialScore = firstHeritageScore;
-        } else {
-            martialScore = Score.MIGHT;
-        }
-
-        Score[] primAttrs = {martialScore, Score.LUCK};
+    public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
+        Score[] primAttrs = {Score.SKILL, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
+        // Setting up for equipment check
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
-        ArrayList<Weapon> possibleWeapons = new ArrayList<>();
-        for (int id: new int[]{R.string.sword, R.string.spear, R.string.bow, R.string.javelin}) {
-            possibleWeapons.add(equipmentDB.getWeapon(id));
-        }
-
+        ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        // Check if the weapon of choice is valid
-        if (possibleWeapons.contains(weaponOfChoice)) {
+        for (int choiceId: Util.sMissleWeapons) {
+            possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
+        }
+
+        if (possibleWepsOfChoice.contains(weaponOfChoice)) {
             setWeaponOfChoice(weaponOfChoice);
         } else {
-            setWeaponOfChoice(possibleWeapons.get(0));
+            setWeaponOfChoice(possibleWepsOfChoice.get(0));
         }
 
-        int rolledGold = Util.roll(6, 3) * 100;
+        switch (getWeaponOfChoice().getResId()) {
+            case R.string.bow:
+                startGear.add(equipmentDB.getWeapon(R.string.bow));
+                startGear.add(equipmentDB.getWeapon(R.string.arrows));
+                break;
+            case R.string.javelin:
+                startGear.add(equipmentDB.getWeapon(R.string.javelin));
+                break;
+            case R.string.sling:
+                startGear.add(equipmentDB.getWeapon(R.string.sling));
+                startGear.add(equipmentDB.getWeapon(R.string.slingshot));
+                break;
+        }// Equipment done
 
-        startGear.add(equipmentDB.getWeapon(R.string.sword));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getArmor(R.string.helmet));
-        startGear.add(equipmentDB.getArmor(R.string.breastplate));
+        startGear.add(equipmentDB.getWeapon(R.string.spear));
 
-        setBasicHits(12);
+        int rolledGold = Util.roll(6, 3) * 5;
+
+        setBasicHits(10);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
+        setResId(Classes.HUNTER.getResId());
         setRequiredGender(Gender.EITHER);
-        setResId(Classes.NOBLE.getResId());
+        setSpecialScoreId(R.string.hunter_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
-
-        // Noble - Heroic Heritage
-        Score mentalScore;
-        if (secondHeritageScore.equals(Score.WITS) ||
-            secondHeritageScore.equals(Score.WILL) ||
-            secondHeritageScore.equals(Score.GRACE)) {
-            mentalScore = secondHeritageScore;
-        } else {
-            mentalScore = Score.WITS;
-        }
-
-        getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
-        getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
     }
 
     @Override
     public void doLevelUp() {
-        Score[] possibleScores = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+        Score[] possibleScores = {Score.SKILL, Score.WILL, Score.WITS};
         doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
     }
 
     @Override
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()) {
-            Score[] choices = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+            Score[] choices = {Score.SKILL, Score.WILL, Score.WITS};
             ArrayList<Score> possibleScores = new ArrayList<>();
             for (Score selectScore: choices) {
-                if (getCharacter().canAddToScore(selectScore)) {
+                if(getCharacter().canAddToScore(selectScore)) {
                     possibleScores.add(selectScore);
                 }
             }
@@ -101,13 +93,16 @@ public class Noble extends Warrior implements Level {
             } else {
                 selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
             }
+
             if (possibleScores.size() > 0) {
-                while(!getCharacter().canAddToScore(selectedScore)) {
+                while (!getCharacter().canAddToScore(selectedScore)) {
                     selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
                 }
             }
 
+            // Contains information about changed scores
             HashMap<Score, Integer> levelData = new HashMap<>();
+
             if (getCharacter().canAddToScore(Score.LUCK)) {
                 AttributeScore luck = getCharacter().getScore(Score.LUCK);
                 levelData.put(Score.LUCK, luck.getScore());
@@ -122,7 +117,7 @@ public class Noble extends Warrior implements Level {
             getScoreLevelChoice().add(levelData);
 
             selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
-            setAddedHits(getAddedHits() + 4);
+            setAddedHits(getAddedHits() + 2);
 
             setLevel(getLevel() + 1);
             getCharacter().validateScores();
@@ -130,7 +125,7 @@ public class Noble extends Warrior implements Level {
     }
 
     @Override
-    public void doLevelDown(){
+    public void doLevelDown() {
         if (getLevel() > 1) {
             HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
             Score lastSelectedScore = null;
@@ -145,15 +140,15 @@ public class Noble extends Warrior implements Level {
             AttributeScore luck = getCharacter().getScore(Score.LUCK);
             AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
 
-            setAddedHits(getAddedHits() - 4);
+            setAddedHits(getAddedHits() - 2);
             luck.setScore(levelData.get(Score.LUCK));
             lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
             setLevel(getLevel() - 1);
         }
     }
-
-    public int getBattleFortuneBonus(){
-        return getCharacter().getScore(Score.LUCK).getModifier();
+    
+    public int getDeadlyAimBonus() {
+        return getCharacter().getScore(Score.SKILL).getScore();
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {

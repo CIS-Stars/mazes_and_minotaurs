@@ -78,7 +78,7 @@ public class Centaur extends Warrior implements Level{
         setPrimaryAttributes(primAttributes);
         setResId(Classes.CENTAUR.getResId());
         setRequiredGender(Gender.MALE);
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
     }
 

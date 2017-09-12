@@ -42,7 +42,7 @@ public class Spearman extends Warrior implements Level {
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
         setResId(Classes.SPEARMAN.getResId());
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
         setWeaponOfChoice(equipmentDB.getWeapon(R.string.spear));
     }
