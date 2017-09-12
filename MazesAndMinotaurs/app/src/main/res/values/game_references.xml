@@ -31,8 +31,8 @@
     <string name="thief">Thief</string>
 
     <!-- Class-Specifics Abilities -->
-    <string name="hunter_special">Hunting</string>
-    <string name="thief_special">Thievery</string>
+    <string name="hunter_talent">Hunting</string>
+    <string name="thief_talent">Thievery</string>
 
     <!-- Deities -->
     <string name="aphrodite">Aphrodite</string>
