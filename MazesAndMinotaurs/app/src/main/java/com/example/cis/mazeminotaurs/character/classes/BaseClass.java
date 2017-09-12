@@ -39,7 +39,7 @@ public abstract class BaseClass {
     private Gender mRequiredGender;
     private int mResId;
     private ArrayList<Equipment> mStartGear;
-    private int mStartGold;
+    private int mStartMoney;
 
     public void updateLevel(){
         if (getExperience() < 1000) {
@@ -119,11 +119,11 @@ public abstract class BaseClass {
     }
 
     public int getStartMoney() {
-        return mStartGold;
+        return mStartMoney;
     }
 
-    public void setStartGold(int startGold) {
-        mStartGold = startGold;
+    public void setStartMoney(int startMoney) {
+        mStartMoney = startMoney;
     }
 
     public int getExperience() {

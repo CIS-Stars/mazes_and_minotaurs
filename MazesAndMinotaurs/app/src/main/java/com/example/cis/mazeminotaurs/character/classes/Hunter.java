@@ -66,7 +66,7 @@ public class Hunter extends Specialist implements Level{
         setResId(Classes.HUNTER.getResId());
         setRequiredGender(Gender.EITHER);
         setSpecialScoreId(R.string.hunter_talent);
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
     }
 

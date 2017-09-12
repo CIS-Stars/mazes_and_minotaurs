@@ -66,7 +66,7 @@ public class Barbarian extends Warrior implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.MALE);
         setResId(Classes.BARBARIAN.getResId());
-        setStartGold(rolledGold * 5);
+        setStartMoney(rolledGold * 5);
         setStartGear(startingEquipment);
     }
 

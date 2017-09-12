@@ -52,7 +52,7 @@ public class Thief extends Specialist implements Level{
         setResId(Classes.THIEF.getResId());
         setRequiredGender(Gender.EITHER);
         setSpecialScoreId(R.string.thief_talent);
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
     }
 

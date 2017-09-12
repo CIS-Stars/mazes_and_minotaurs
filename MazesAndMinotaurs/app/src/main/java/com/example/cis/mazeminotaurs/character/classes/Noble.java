@@ -61,7 +61,7 @@ public class Noble extends Warrior implements Level {
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.NOBLE.getResId());
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
 
         // Noble - Heroic Heritage
