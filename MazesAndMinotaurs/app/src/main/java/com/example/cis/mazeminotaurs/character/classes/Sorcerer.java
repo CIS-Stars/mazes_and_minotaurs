@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -19,6 +20,10 @@ import java.util.HashMap;
  */
 
 public class Sorcerer extends Magician implements Level{
+    private Weapon[] mPossibleStartingWeapons = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.dagger),
+            EquipmentDB.getInstance().getWeapon(R.string.staff),
+    };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
@@ -26,26 +31,18 @@ public class Sorcerer extends Magician implements Level{
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
-        ArrayList<Weapon> possibleStartWeps = new ArrayList<>();
-
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         int rolledGold = Util.roll(6, 3) * 10;
 
         //TODO add a wand weapon
-        for (int startId: new int[] {R.string.dagger, R.string.staff}) {
-            possibleStartWeps.add(equipmentDB.getWeapon(startId));
-        }
 
-        Weapon finalStartingWeapon;
-        if (possibleStartWeps.contains(startingWeapon)) {
-            finalStartingWeapon = startingWeapon;
+        if (Arrays.asList(mPossibleStartingWeapons).contains(startingWeapon)) {
+            startGear.add(startingWeapon);
         } else {
-            finalStartingWeapon = possibleStartWeps.get(0);
+            startGear.add(mPossibleStartingWeapons[0]);
         }
-
-        startGear.add(finalStartingWeapon);
 
         setBasicHits(8);
         setCharacter(playerCharacter);
