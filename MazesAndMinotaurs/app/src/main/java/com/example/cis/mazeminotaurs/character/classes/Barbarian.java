@@ -22,28 +22,49 @@ import java.util.HashMap;
 public class Barbarian extends Warrior implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon rangedChoice) {
+    private Weapon[] mPossibleStartWeapons = new Weapon[]{
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.javelin),
+            EquipmentDB.getInstance().getWeapon(R.string.sling),
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
+            EquipmentDB.getInstance().getWeapon(R.string.barb_club),
+            EquipmentDB.getInstance().getWeapon(R.string.barb_mace),
+            EquipmentDB.getInstance().getWeapon(R.string.barb_sword),
+
+    };
+
+    public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
         Score[] primAttrs = {Score.MIGHT, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
         EquipmentDB equipDB = EquipmentDB.getInstance();
-        Weapon[] possibleWepsOfChoice = {equipDB.getWeapon(R.string.barb_axe)};
-        Weapon[] possibleRanged = {equipDB.getWeapon(R.string.bow)};
-        ArrayList<Equipment> startingEquipment = new ArrayList<>();
+        ArrayList<Equipment> startGear = new ArrayList<>();
 
-        if (Arrays.asList(possibleWepsOfChoice).contains(weaponOfChoice)) {
-            setWeaponOfChoice(weaponOfChoice);
-        } else {
-            setWeaponOfChoice(possibleWepsOfChoice[0]);
+        //Equipment checks
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            startGear.add(weaponOfChoice);
         }
-        startingEquipment.add(weaponOfChoice);
+        else {
+            startGear.add(mPossibleWeaponsOfChoice[0]);
+        }
 
-        if (Arrays.asList(possibleRanged).contains(rangedChoice)){
-            switch (rangedChoice.getResId()) {
+
+        if (Arrays.asList(mPossibleStartWeapons).contains(startWeapon)){
+            switch (startWeapon.getResId()) {
                 case R.string.bow:
-                    startingEquipment.add(equipDB.getWeapon(R.string.bow));
-                    startingEquipment.add(equipDB.getWeapon(R.string.arrows));
+                    startGear.add(equipDB.getWeapon(R.string.bow));
+                    startGear.add(equipDB.getWeapon(R.string.arrows));
+                    break;
+                case R.string.javelin:
+                    startGear.add(equipDB.getWeapon(R.string.javelin));
+                break;
+                case R.string.sling:
+                    startGear.add(equipDB.getWeapon(R.string.sling));
+                    startGear.add(equipDB.getWeapon(R.string.slingshot));
                     break;
                 default:
                     //PANIC
@@ -51,15 +72,15 @@ public class Barbarian extends Warrior implements Level{
                     break;
             }
         } else {
-            startingEquipment.add(equipDB.getWeapon(R.string.bow));
-            startingEquipment.add(equipDB.getWeapon(R.string.arrows));
+            startGear.add(equipDB.getWeapon(R.string.bow));
+            startGear.add(equipDB.getWeapon(R.string.arrows));
         }
 
         int rolledGold = Util.roll(6, 3) * 5;
 
         //Add the rest of starting equipment
-        startingEquipment.add(equipDB.getWeapon(R.string.dagger));
-        startingEquipment.add(equipDB.getArmor(R.string.shield));
+        startGear.add(equipDB.getWeapon(R.string.dagger));
+        startGear.add(equipDB.getArmor(R.string.shield));
 
         setBasicHits(12);
         setCharacter(playerCharacter);
@@ -67,7 +88,7 @@ public class Barbarian extends Warrior implements Level{
         setRequiredGender(Gender.MALE);
         setResId(Classes.BARBARIAN.getResId());
         setStartMoney(rolledGold * 5);
-        setStartGear(startingEquipment);
+        setStartGear(startGear);
     }
 
     public void doLevelUp(){
