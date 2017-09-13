@@ -26,7 +26,8 @@ public abstract class Warrior extends BaseClass {
         if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
             mWeaponOfChoice = weaponOfChoice;
         } else {
-            System.out.println("Invalid assignment of weaponOfChoice.");
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
         }
     }
 
