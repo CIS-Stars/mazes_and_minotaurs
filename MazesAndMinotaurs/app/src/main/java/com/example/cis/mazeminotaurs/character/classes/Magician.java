@@ -1,5 +1,6 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
+import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
 /**
@@ -9,12 +10,22 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 public abstract class Magician extends BaseClass {
     private int mSpecialTalentResId;
 
+    private static final int[] mLevelDescriptions = {R.string.magic_one, R.string.magic_two,
+            R.string.magic_three, R.string.magic_four,
+            R.string.magic_five, R.string.magic_six};
+
     public int getSpecialTalent(){
         int total = 0;
         for (Score score: getPrimaryAttributes()) {
             total += getCharacter().getScore(score).getModifier();
         }
         return total;
+    }
+
+    @Override
+    public int getLevelDescription() {
+        updateLevel();
+        return mLevelDescriptions[getLevel() - 1];
     }
 
     public int getMysticalStrength(){
