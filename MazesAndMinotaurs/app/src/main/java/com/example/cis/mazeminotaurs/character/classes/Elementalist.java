@@ -38,7 +38,7 @@ public class Elementalist extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.ELEMENTALIST.getResId());
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
     }
 
