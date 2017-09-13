@@ -3,7 +3,7 @@
     <!-- Equipment names -->
     <!-- Armor -->
     <string name="boeotian">Boeotian Helmet</string>
-    <string name="breastplate">Bresatplate</string>
+    <string name="breastplate">Breastplate</string>
     <string name="helmet">Helmet</string>
     <string name="linothorax">Linothorax</string>
     <string name="peltast">Peltast Shield</string>
@@ -27,6 +27,7 @@
     <string name="javelin">Javelin</string>
     <string name="sling">Sling</string>
     <string name="slingshot">Sling Shot</string>
+    <string name="throw_knife">Throwing Knife</string>
 
     <!-- Stuff! -->
     <string name="rowboat">Rowing Boat</string>

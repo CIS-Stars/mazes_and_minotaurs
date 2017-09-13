@@ -57,7 +57,7 @@ public class Amazon extends Warrior implements Level {
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.FEMALE);
         setResId(Classes.AMAZON.getResId());
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
         setWeaponOfChoice(equipmentDB.getWeapon(R.string.bow));
     }
