@@ -45,13 +45,8 @@ public class Barbarian extends Warrior implements Level{
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         //Equipment checks
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            startGear.add(weaponOfChoice);
-        }
-        else {
-            startGear.add(mPossibleWeaponsOfChoice[0]);
-        }
-
+        setWeaponOfChoice(weaponOfChoice);
+        startGear.add(getWeaponOfChoice());
 
         if (Arrays.asList(mPossibleStartWeapons).contains(startWeapon)){
             switch (startWeapon.getResId()) {

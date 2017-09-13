@@ -49,6 +49,7 @@ public class Amazon extends Warrior implements Level {
         } else {
             startGear.add(mPossibleStartWeapons[0]);
         }
+        setWeaponOfChoice(equipmentDB.getWeapon(R.string.bow));
 
         // Adding the rest of the equipment
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
@@ -66,7 +67,7 @@ public class Amazon extends Warrior implements Level {
         setResId(Classes.AMAZON.getResId());
         setStartMoney(rolledGold);
         setStartGear(startGear);
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.bow));
+
     }
 
     @Override
