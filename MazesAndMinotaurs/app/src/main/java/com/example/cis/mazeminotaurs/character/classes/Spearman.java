@@ -4,6 +4,7 @@ import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -18,6 +19,13 @@ import java.util.HashMap;
  */
 
 public class Spearman extends Warrior implements Level {
+    private Weapon[] mPossibleStartWeapons = new Weapon[] {
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.spear),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Spearman(PlayerCharacter playerCharacter) {
