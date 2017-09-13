@@ -13,34 +13,45 @@ import com.example.cis.mazeminotaurs.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by jusmith on 4/13/17.
  */
 
 public class Amazon extends Warrior implements Level {
+    private Weapon[] mPossibleStartWeapons = new Weapon[]{
+            EquipmentDB.getInstance().getWeapon(R.string.mace),
+            EquipmentDB.getInstance().getWeapon(R.string.axe),
+            EquipmentDB.getInstance().getWeapon(R.string.spear),
+            EquipmentDB.getInstance().getWeapon(R.string.sword),
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[]{
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Amazon(PlayerCharacter playerCharacter, Weapon startingMeleeWeapon){
+    public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
         Score[] primAttrs = {Score.SKILL, Score.GRACE};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
         // Setup for checking starting gear
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
-        ArrayList<Weapon> possibleWeapons = new ArrayList<>();
-        for (int id: Util.sMeleeWeapons) {
-            if (id != R.string.dagger) {
-                possibleWeapons.add(equipmentDB.getWeapon(id));
-            }
-        }
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         // Check the starting melee weapon if it is valid
-        if (possibleWeapons.contains(startingMeleeWeapon)) {
-            startGear.add(startingMeleeWeapon);
+        boolean startValid = false;
+        for (Weapon weapon: mPossibleStartWeapons) {
+            startValid = startValid || weapon == startingWeapon;
+        }
+
+        if (startValid) {
+            startGear.add(startingWeapon);
         } else {
-            startGear.add(possibleWeapons.get(0));
+            startGear.add(mPossibleStartWeapons[0]);
         }
 
         // Adding the rest of the equipment
