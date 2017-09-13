@@ -11,6 +11,8 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 public abstract class Specialist extends BaseClass {
     private int mSpecialScoreId;
     private Weapon mWeaponOfChoice;
+    private Weapon[] mPossibleWeaponsOfChoice;
+
     private static final int[] mLevelDescriptions = {R.string.special_one, R.string.special_two,
             R.string.special_three, R.string.special_four,
             R.string.special_five, R.string.special_six};
