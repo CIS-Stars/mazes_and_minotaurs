@@ -19,6 +19,14 @@ import java.util.HashMap;
  */
 
 public class Hunter extends Specialist implements Level{
+    private Weapon[] mPossibleStartingWeapons = null;
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.javelin),
+            EquipmentDB.getInstance().getWeapon(R.string.sling),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
@@ -28,18 +36,10 @@ public class Hunter extends Specialist implements Level{
 
         // Setting up for equipment check
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
-        ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        for (int choiceId: Util.sMissleWeapons) {
-            possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
-        }
-
-        if (possibleWepsOfChoice.contains(weaponOfChoice)) {
-            setWeaponOfChoice(weaponOfChoice);
-        } else {
-            setWeaponOfChoice(possibleWepsOfChoice.get(0));
-        }
+        setWeaponOfChoice(weaponOfChoice);
+        startGear.add(getWeaponOfChoice());
 
         switch (getWeaponOfChoice().getResId()) {
             case R.string.bow:
