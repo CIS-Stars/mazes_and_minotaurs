@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -43,12 +44,7 @@ public class Amazon extends Warrior implements Level {
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         // Check the starting melee weapon if it is valid
-        boolean startValid = false;
-        for (Weapon weapon: mPossibleStartWeapons) {
-            startValid = startValid || weapon == startingWeapon;
-        }
-
-        if (startValid) {
+        if (Arrays.asList(mPossibleStartWeapons).contains(startingWeapon)) {
             startGear.add(startingWeapon);
         } else {
             startGear.add(mPossibleStartWeapons[0]);
