@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -19,6 +20,19 @@ import java.util.HashMap;
  */
 
 public class Centaur extends Warrior implements Level{
+    private Weapon[] mPossibleStartWeapons = new Weapon[]{
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.javelin),
+            EquipmentDB.getInstance().getWeapon(R.string.sling),
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.club),
+            EquipmentDB.getInstance().getWeapon(R.string.javelin),
+            EquipmentDB.getInstance().getWeapon(R.string.spear),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Centaur(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startingWeapon) {
@@ -28,30 +42,16 @@ public class Centaur extends Warrior implements Level{
 
         // Setting up for equipment check
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
-        ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
-        ArrayList<Weapon> possibleStartWeps = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        for (int choiceId: new int[] {R.string.bow, R.string.javelin, R.string.club, R.string.spear}){
-            possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
-        }
-
-        for (int startId: Util.sMissleWeapons) {
-            possibleStartWeps.add(equipmentDB.getWeapon(startId));
-        }
-
-        // Set up weapon of choice
-        if (possibleWepsOfChoice.contains(weaponOfChoice)) {
-            setWeaponOfChoice(weaponOfChoice);
-        } else {
-            setWeaponOfChoice(possibleWepsOfChoice.get(0));
-        }
+        setWeaponOfChoice(weaponOfChoice);
+        startGear.add(getWeaponOfChoice());
 
         Weapon finalStartingWeapon;
-        if (possibleStartWeps.contains(startingWeapon)) {
+        if (Arrays.asList(mPossibleStartWeapons).contains(startingWeapon)) {
             finalStartingWeapon = startingWeapon;
         } else {
-            finalStartingWeapon = possibleStartWeps.get(0);
+            finalStartingWeapon = mPossibleStartWeapons[0];
         }
 
         switch (finalStartingWeapon.getResId()) {
