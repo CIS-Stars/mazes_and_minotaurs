@@ -19,6 +19,14 @@ import java.util.HashMap;
  */
 
 public class Thief extends Specialist implements Level{
+    private Weapon[] mPossibleStartWeapons = new Weapon[] {
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.sling),
+            EquipmentDB.getInstance().getWeapon(R.string.throw_knife),
+    };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
