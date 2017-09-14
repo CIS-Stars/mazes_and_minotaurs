@@ -169,6 +169,15 @@ public class Barbarian extends Warrior implements Level{
         mScoreLevelChoice = scoreLevelChoice;
     }
 
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
+    }
+
     public int getBattleMightBonus(){
         return getCharacter().getScore(Score.MIGHT).getModifier();
     }

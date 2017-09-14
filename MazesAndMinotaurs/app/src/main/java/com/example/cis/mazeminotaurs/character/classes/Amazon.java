@@ -150,6 +150,15 @@ public class Amazon extends Warrior implements Level {
         mScoreLevelChoice = scoreLevelChoice;
     }
 
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
+    }
+
     public int getDeadlyShotBonus() {
         return getCharacter().getScore(Score.SKILL).getModifier();
     }

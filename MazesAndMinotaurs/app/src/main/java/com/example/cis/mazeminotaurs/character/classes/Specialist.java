@@ -11,9 +11,9 @@ import java.util.Arrays;
  */
 
 public abstract class Specialist extends BaseClass {
-    private int mSpecialScoreId;
-    private Weapon mWeaponOfChoice;
-    private Weapon[] mPossibleWeaponsOfChoice;
+    protected int mSpecialScoreId;
+    protected Weapon mWeaponOfChoice;
+    protected Weapon[] mPossibleWeaponsOfChoice;
 
     private static final int[] mLevelDescriptions = {R.string.special_one, R.string.special_two,
             R.string.special_three, R.string.special_four,

@@ -11,8 +11,8 @@ import java.util.Arrays;
  */
 
 public abstract class Warrior extends BaseClass {
-    private Weapon mWeaponOfChoice;
-    private Weapon[] mPossibleWeaponsOfChoice;
+    protected Weapon mWeaponOfChoice;
+    protected Weapon[] mPossibleWeaponsOfChoice;
 
     private static final int[] mLevelDescriptions = {R.string.warrior_one, R.string.warrior_two,
                                                      R.string.warrior_three, R.string.warrior_four,
@@ -22,14 +22,7 @@ public abstract class Warrior extends BaseClass {
         return mWeaponOfChoice;
     }
 
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
-    }
+    public abstract void setWeaponOfChoice(Weapon weaponOfChoice);
 
     @Override
     public int getLevelDescription() {
