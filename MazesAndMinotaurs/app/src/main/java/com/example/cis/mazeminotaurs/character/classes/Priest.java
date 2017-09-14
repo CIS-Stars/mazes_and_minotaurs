@@ -35,7 +35,7 @@ public class Priest extends Magician implements Level{
 
         startGear.add(equipmentDB.getWeapon(R.string.staff));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        //TODO add robes
+        //TODO add ceremonial robes
 
         setBasicHits(8);
         setCharacter(playerCharacter);
@@ -122,6 +122,8 @@ public class Priest extends Magician implements Level{
         }
     }
 
+    public int SpiritualAura;
+
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
         return mScoreLevelChoice;
     }
@@ -134,7 +136,7 @@ public class Priest extends Magician implements Level{
         return getCharacter().getScore(Score.SKILL).getModifier();
     }
 
-    public int getMartialDisciplineBonus() {
+    public int getPowerPoints(){
         return getCharacter().getScore(Score.WILL).getModifier();
     }
 }
