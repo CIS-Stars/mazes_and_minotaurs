@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -19,6 +20,15 @@ import java.util.HashMap;
  */
 
 public class Hunter extends Specialist implements Level{
+    // Null for this value means that it is linked to weapon of choice.
+    private Weapon[] mPossibleStartingWeapons = null;
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.javelin),
+            EquipmentDB.getInstance().getWeapon(R.string.sling),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
@@ -28,18 +38,10 @@ public class Hunter extends Specialist implements Level{
 
         // Setting up for equipment check
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
-        ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        for (int choiceId: Util.sMissleWeapons) {
-            possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
-        }
-
-        if (possibleWepsOfChoice.contains(weaponOfChoice)) {
-            setWeaponOfChoice(weaponOfChoice);
-        } else {
-            setWeaponOfChoice(possibleWepsOfChoice.get(0));
-        }
+        setWeaponOfChoice(weaponOfChoice);
+        startGear.add(getWeaponOfChoice());
 
         switch (getWeaponOfChoice().getResId()) {
             case R.string.bow:
@@ -157,5 +159,14 @@ public class Hunter extends Specialist implements Level{
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
+    }
+
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
     }
 }

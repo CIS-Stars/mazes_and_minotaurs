@@ -4,12 +4,14 @@ import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -18,6 +20,13 @@ import java.util.HashMap;
  */
 
 public class Spearman extends Warrior implements Level {
+    private Weapon[] mPossibleStartWeapons = new Weapon[] {
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.spear),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Spearman(PlayerCharacter playerCharacter) {
@@ -128,6 +137,15 @@ public class Spearman extends Warrior implements Level {
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
+    }
+
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
     }
 
     public int getDefensiveFightingBonus() {

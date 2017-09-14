@@ -4,13 +4,17 @@ import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
+import java.util.Arrays;
+
 /**
  * Created by jusmith on 3/31/17.
  */
 
 public abstract class Specialist extends BaseClass {
-    private int mSpecialScoreId;
-    private Weapon mWeaponOfChoice;
+    protected int mSpecialScoreId;
+    protected Weapon mWeaponOfChoice;
+    protected Weapon[] mPossibleWeaponsOfChoice;
+
     private static final int[] mLevelDescriptions = {R.string.special_one, R.string.special_two,
             R.string.special_three, R.string.special_four,
             R.string.special_five, R.string.special_six};
@@ -20,7 +24,12 @@ public abstract class Specialist extends BaseClass {
     }
 
     public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        mWeaponOfChoice = weaponOfChoice;
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
     }
 
     public int getSpecialScoreId() { return mSpecialScoreId; }

@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -19,12 +20,21 @@ import java.util.HashMap;
  */
 
 public class Noble extends Warrior implements Level {
+    private Weapon[] mPossibleStartWeapons = new Weapon[] {};
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.javelin),
+            EquipmentDB.getInstance().getWeapon(R.string.spear),
+            EquipmentDB.getInstance().getWeapon(R.string.sword),
+    };
+
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Noble(PlayerCharacter playerCharacter, Score firstHeritageScore, Score secondHeritageScore, Weapon weaponOfChoice) {
+    public Noble(PlayerCharacter playerCharacter, Score martialHeritage, Score mentalHeritage, Weapon weaponOfChoice) {
         Score martialScore;
-        if (firstHeritageScore.equals(Score.MIGHT) || firstHeritageScore.equals(Score.SKILL)) {
-            martialScore = firstHeritageScore;
+        if (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL)) {
+            martialScore = martialHeritage;
         } else {
             martialScore = Score.MIGHT;
         }
@@ -34,19 +44,10 @@ public class Noble extends Warrior implements Level {
         Collections.addAll(primAttributes, primAttrs);
 
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
-        ArrayList<Weapon> possibleWeapons = new ArrayList<>();
-        for (int id: new int[]{R.string.sword, R.string.spear, R.string.bow, R.string.javelin}) {
-            possibleWeapons.add(equipmentDB.getWeapon(id));
-        }
-
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         // Check if the weapon of choice is valid
-        if (possibleWeapons.contains(weaponOfChoice)) {
-            setWeaponOfChoice(weaponOfChoice);
-        } else {
-            setWeaponOfChoice(possibleWeapons.get(0));
-        }
+        setWeaponOfChoice(weaponOfChoice);
 
         int rolledGold = Util.roll(6, 3) * 100;
 
@@ -66,10 +67,10 @@ public class Noble extends Warrior implements Level {
 
         // Noble - Heroic Heritage
         Score mentalScore;
-        if (secondHeritageScore.equals(Score.WITS) ||
-            secondHeritageScore.equals(Score.WILL) ||
-            secondHeritageScore.equals(Score.GRACE)) {
-            mentalScore = secondHeritageScore;
+        if (mentalHeritage.equals(Score.WITS) ||
+            mentalHeritage.equals(Score.WILL) ||
+            mentalHeritage.equals(Score.GRACE)) {
+            mentalScore = mentalHeritage;
         } else {
             mentalScore = Score.WITS;
         }
@@ -162,5 +163,14 @@ public class Noble extends Warrior implements Level {
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
+    }
+
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -40,6 +41,8 @@ public abstract class BaseClass {
     private int mResId;
     private ArrayList<Equipment> mStartGear;
     private int mStartMoney;
+
+    private Weapon[] mPossibleStartWeapons;
 
     public void updateLevel(){
         if (getExperience() < 1000) {
@@ -148,6 +151,10 @@ public abstract class BaseClass {
 
     public void setEffectiveLevel(int effectiveLevel) {
         mEffectiveLevel = effectiveLevel;
+    }
+
+    public Weapon[] getPossibleStartWeapons() {
+        return mPossibleStartWeapons;
     }
 
     // Dummy Method

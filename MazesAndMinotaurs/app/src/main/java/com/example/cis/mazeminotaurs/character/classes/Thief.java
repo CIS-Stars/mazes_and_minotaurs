@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -19,6 +20,14 @@ import java.util.HashMap;
  */
 
 public class Thief extends Specialist implements Level{
+    private Weapon[] mPossibleStartWeapons = new Weapon[] {
+    };
+
+    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
+            EquipmentDB.getInstance().getWeapon(R.string.bow),
+            EquipmentDB.getInstance().getWeapon(R.string.sling),
+            EquipmentDB.getInstance().getWeapon(R.string.throw_knife),
+    };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
@@ -143,5 +152,14 @@ public class Thief extends Specialist implements Level{
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
+    }
+
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+        }
     }
 }

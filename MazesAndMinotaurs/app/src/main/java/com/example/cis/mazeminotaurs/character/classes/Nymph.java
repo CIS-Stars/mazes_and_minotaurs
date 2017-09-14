@@ -3,6 +3,8 @@ package com.example.cis.mazeminotaurs.character.classes;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
+import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -17,6 +19,7 @@ import java.util.HashMap;
  */
 
 public class Nymph extends Magician implements Level{
+    private Weapon[] mPossibleStartingWeapons = new Weapon[]{};
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Nymph(PlayerCharacter playerCharacter) {
