@@ -154,13 +154,13 @@ public class PlayerCharacter{
     public int getEDC() {
         int armorBonus = 0;
         if (mHelmet != null) {
-            armorBonus += 2;
+            armorBonus += mHelmet.getDefenseBonus();
         }
         if (mBreastplate != null) {
-            armorBonus += 2;
+            armorBonus += mBreastplate.getDefenseBonus();
         }
         if (mShield != null) {
-            armorBonus += 2;
+            armorBonus += mShield.getDefenseBonus();
         }
 
         return getDC() + armorBonus;
