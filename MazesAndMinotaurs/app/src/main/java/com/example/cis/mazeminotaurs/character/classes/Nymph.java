@@ -37,7 +37,7 @@ public class Nymph extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.FEMALE);
         setResId(Classes.NYMPH.getResId());
-        setStartGold(rolledGold);
+        setStartMoney(rolledGold);
         setStartGear(startGear);
     }
 
