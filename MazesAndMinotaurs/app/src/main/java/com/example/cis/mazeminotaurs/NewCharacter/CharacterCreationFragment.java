@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,14 @@ import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.cis.mazeminotaurs.NewCharacter.dialogs.DetailDialogFragment;
 import com.example.cis.mazeminotaurs.R;
 
 /**
  * Created by Chaos on 4/4/2017.
  */
 
-public class CharacterCreationFragment extends Fragment {
+public class CharacterCreationFragment extends Fragment implements DetailDialogFragment.DetailDialogListener{
 
     public ImageButton mWarriorButton;
     public ImageButton mMagicianButton;
@@ -188,11 +190,16 @@ public class CharacterCreationFragment extends Fragment {
                         mConfirmHunter.show();
                         break;
                     case R.id.thief_radio:
+
                         mClassInformation = getResources().getString(R.string.thief_class);
                         mClass = "Thief";
+                        /* Testing of the dialog fragment
                         mConfirmPop.setMessage(mClassInformation);
                         AlertDialog mConfirmThief = mConfirmPop.create();
                         mConfirmThief.show();
+                        */
+
+                        showDetailDialog();
                         break;
                 }
             }
@@ -218,5 +225,32 @@ public class CharacterCreationFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public void showDetailDialog() {
+        DetailDialogFragment dialog = new DetailDialogFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("class", mClass);
+        bundle.putString("classInfo", mClassInformation);
+        dialog.setArguments(bundle);
+
+        dialog.show(getChildFragmentManager(), "DetailDialogFragment");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialogFragment) {
+        CreateCharacter addedType = new CreateCharacter();
+        Bundle classType = new Bundle();
+        classType.putString("newClass", mClass);
+        addedType.setArguments(classType);
+
+        getFragmentManager().beginTransaction().add(R.id.content_frame, addedType)
+                .commit();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialogFragment) {
+
     }
 }
