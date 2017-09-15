@@ -35,6 +35,7 @@ public class Priest extends Magician implements Level{
 
         startGear.add(equipmentDB.getWeapon(R.string.staff));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        //TODO add ceremonial robes
 
         setBasicHits(8);
         setCharacter(playerCharacter);
