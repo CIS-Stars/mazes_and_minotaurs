@@ -199,7 +199,7 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
                         mConfirmThief.show();
                         */
 
-                        showDetailDialog();
+                        showDetailDialog(R.string.thief, R.string.thief_class);
                         break;
                 }
             }
@@ -227,12 +227,12 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         return rootView;
     }
 
-    public void showDetailDialog() {
+    public void showDetailDialog(int classRes, int descriptRes) {
         DetailDialogFragment dialog = new DetailDialogFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putString("class", mClass);
-        bundle.putString("classInfo", mClassInformation);
+        bundle.putInt("class", classRes);
+        bundle.putInt("classInfo", descriptRes);
         dialog.setArguments(bundle);
 
         dialog.show(getChildFragmentManager(), "DetailDialogFragment");
