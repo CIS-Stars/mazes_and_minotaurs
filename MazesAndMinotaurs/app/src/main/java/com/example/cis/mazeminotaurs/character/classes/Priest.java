@@ -24,7 +24,7 @@ public class Priest extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Priest(PlayerCharacter playerCharacter) {
-        Score[] primAttrs = {Score.SKILL, Score.WILL};
+        Score[] primAttrs = {Score.LUCK, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
@@ -35,7 +35,6 @@ public class Priest extends Magician implements Level{
 
         startGear.add(equipmentDB.getWeapon(R.string.staff));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        //TODO add ceremonial robes
 
         setBasicHits(8);
         setCharacter(playerCharacter);
@@ -122,7 +121,7 @@ public class Priest extends Magician implements Level{
         }
     }
 
-    public int SpiritualAura;
+
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
         return mScoreLevelChoice;
@@ -132,8 +131,8 @@ public class Priest extends Magician implements Level{
         mScoreLevelChoice = scoreLevelChoice;
     }
 
-    public int getDefensiveFightingBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
+    public int getMysticalStrength(){
+        return 12 + getSpecialTalent();
     }
 
     public int getPowerPoints(){
