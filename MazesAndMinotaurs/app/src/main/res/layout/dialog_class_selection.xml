@@ -1,7 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/fixed_class_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:text="Classes:"/>
+
+    <TextView
+        android:id="@+id/class_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:layout_row="0"
+        android:text="Class Label"
+        />
+
+    <TextView
+        android:id="@+id/class_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_row="1"
+        android:text="Class Descriptor"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/choice_weapon_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weapon of Choice: "/>
+
+    <Spinner
+        android:id="@+id/choice_weapon_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"/>
+
+    <TextView
+        android:id="@+id/start_weapon_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting Weapon:"/>
+
+    <Spinner
+        android:id="@+id/start_weapon_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"/>
+
+    <TextView
+        android:id="@+id/start_gear_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting Gear:"/>
+
+    <ListView
+        android:id="@+id/start_gear_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"/>
+
+</GridLayout>
