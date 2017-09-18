@@ -31,6 +31,10 @@ public class Hunter extends Specialist implements Level{
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Hunter() {
+        this(null,null);
+    }
+
     public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         Score[] primAttrs = {Score.SKILL, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();

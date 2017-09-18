@@ -22,6 +22,10 @@ public class Elementalist extends Magician implements Level{
     private Weapon[] mPossibleStartingWeapons = new Weapon[]{};
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Elementalist() {
+        this(null);
+    }
+
     public Elementalist(PlayerCharacter playerCharacter) {
         Score[] primAttrs = {Score.SKILL, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();

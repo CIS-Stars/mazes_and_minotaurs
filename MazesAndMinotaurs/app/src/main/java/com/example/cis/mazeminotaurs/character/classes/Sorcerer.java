@@ -26,6 +26,10 @@ public class Sorcerer extends Magician implements Level{
     };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Sorcerer() {
+        this(null,null);
+    }
+
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
         Score[] primAttrs = {Score.WITS, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();

@@ -31,6 +31,10 @@ public class Noble extends Warrior implements Level {
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Noble() {
+        this(null,null,null,null);
+    }
+
     public Noble(PlayerCharacter playerCharacter, Score martialHeritage, Score mentalHeritage, Weapon weaponOfChoice) {
         Score martialScore;
         if (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL)) {

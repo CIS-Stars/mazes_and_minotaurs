@@ -22,6 +22,10 @@ public class Lyrist extends Magician implements Level{
     private Weapon[] mPossibleStartingWeapons = new Weapon[]{};
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Lyrist() {
+        this(null);
+    }
+
     public Lyrist(PlayerCharacter playerCharacter) {
         Score[] primAttrs = {Score.GRACE, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();

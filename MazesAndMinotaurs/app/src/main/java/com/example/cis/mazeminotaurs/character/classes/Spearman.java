@@ -29,6 +29,10 @@ public class Spearman extends Warrior implements Level {
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Spearman() {
+        this(null);
+    }
+
     public Spearman(PlayerCharacter playerCharacter) {
         Score[] primAttrs = {Score.SKILL, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();

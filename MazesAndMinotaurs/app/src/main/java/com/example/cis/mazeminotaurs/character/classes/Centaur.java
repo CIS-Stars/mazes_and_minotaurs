@@ -35,6 +35,10 @@ public class Centaur extends Warrior implements Level{
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Centaur() {
+        this(null,null,null);
+    }
+
     public Centaur(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startingWeapon) {
         Score[] primAttrs = {Score.MIGHT, Score.SKILL};
         ArrayList<Score> primAttributes = new ArrayList<>();

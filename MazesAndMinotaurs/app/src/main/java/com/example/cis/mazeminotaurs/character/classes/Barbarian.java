@@ -36,6 +36,10 @@ public class Barbarian extends Warrior implements Level{
 
     };
 
+    public Barbarian() {
+        this(null,null,null);
+    }
+
     public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
         Score[] primAttrs = {Score.MIGHT, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();

@@ -34,6 +34,10 @@ public class Amazon extends Warrior implements Level {
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Amazon() {
+        this(null,null);
+    }
+
     public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
         Score[] primAttrs = {Score.SKILL, Score.GRACE};
         ArrayList<Score> primAttributes = new ArrayList<>();

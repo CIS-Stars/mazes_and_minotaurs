@@ -30,6 +30,10 @@ public class Thief extends Specialist implements Level{
     };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Thief() {
+        this(null,null);
+    }
+
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         Score[] primAttrs = {Score.LUCK, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
