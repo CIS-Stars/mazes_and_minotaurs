@@ -150,6 +150,15 @@ public class Thief extends Specialist implements Level{
         return mScoreLevelChoice;
     }
 
+    @Override
+    public Weapon[] getPossibleStartWeapons() {
+        return mPossibleStartWeapons;
+    }
+
+    public Weapon[] getPossibleWeaponsOfChoice() {
+        return mPossibleWeaponsOfChoice;
+    }
+
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
     }
