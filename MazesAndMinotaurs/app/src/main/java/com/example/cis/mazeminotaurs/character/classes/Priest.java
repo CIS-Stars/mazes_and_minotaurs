@@ -24,6 +24,8 @@ public class Priest extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Priest(PlayerCharacter playerCharacter) {
+        setPossibleStartWeapons(new Weapon[]{});
+
         Score[] primAttrs = {Score.LUCK, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -125,11 +127,11 @@ public class Priest extends Magician implements Level{
 
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
     public int getMysticalStrength(){

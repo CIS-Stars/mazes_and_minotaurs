@@ -19,10 +19,11 @@ import java.util.HashMap;
  */
 
 public class Lyrist extends Magician implements Level{
-    private Weapon[] mPossibleStartingWeapons = new Weapon[]{};
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Lyrist(PlayerCharacter playerCharacter) {
+        setPossibleStartWeapons(new Weapon[]{});
+
         Score[] primAttrs = {Score.GRACE, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -120,11 +121,11 @@ public class Lyrist extends Magician implements Level{
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
     public int getDefensiveFightingBonus() {

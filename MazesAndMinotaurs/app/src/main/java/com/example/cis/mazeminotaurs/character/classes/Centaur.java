@@ -20,22 +20,22 @@ import java.util.HashMap;
  */
 
 public class Centaur extends Warrior implements Level{
-    private Weapon[] mPossibleStartWeapons = new Weapon[]{
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-            EquipmentDB.getInstance().getWeapon(R.string.javelin),
-            EquipmentDB.getInstance().getWeapon(R.string.sling),
-    };
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-            EquipmentDB.getInstance().getWeapon(R.string.club),
-            EquipmentDB.getInstance().getWeapon(R.string.javelin),
-            EquipmentDB.getInstance().getWeapon(R.string.spear),
-    };
-
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Centaur(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startingWeapon) {
+        setPossibleStartWeapons(new Weapon[]{
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.javelin),
+                EquipmentDB.getInstance().getWeapon(R.string.sling),
+        });
+        setPossibleWeaponsOfChoice(new Weapon[] {
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.club),
+                EquipmentDB.getInstance().getWeapon(R.string.javelin),
+                EquipmentDB.getInstance().getWeapon(R.string.spear),
+        });
+
+
         Score[] primAttrs = {Score.MIGHT, Score.SKILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -48,10 +48,10 @@ public class Centaur extends Warrior implements Level{
         startGear.add(getWeaponOfChoice());
 
         Weapon finalStartingWeapon;
-        if (Arrays.asList(mPossibleStartWeapons).contains(startingWeapon)) {
+        if (Arrays.asList(getPossibleStartWeapons()).contains(startingWeapon)) {
             finalStartingWeapon = startingWeapon;
         } else {
-            finalStartingWeapon = mPossibleStartWeapons[0];
+            finalStartingWeapon = getPossibleStartWeapons()[0];
         }
 
         switch (finalStartingWeapon.getResId()) {
@@ -165,15 +165,6 @@ public class Centaur extends Warrior implements Level{
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
     }
 
     public int getExtraoridnaryAgilityBonus(){
