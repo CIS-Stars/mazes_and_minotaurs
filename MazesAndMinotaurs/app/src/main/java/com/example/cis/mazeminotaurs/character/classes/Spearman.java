@@ -20,16 +20,13 @@ import java.util.HashMap;
  */
 
 public class Spearman extends Warrior implements Level {
-    private Weapon[] mPossibleStartWeapons = new Weapon[] {
-    };
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.spear),
-    };
-
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Spearman(PlayerCharacter playerCharacter) {
+        setPossibleStartWeapons(new Weapon[]{});
+        setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.spear)});
+
+
         Score[] primAttrs = {Score.SKILL, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -132,20 +129,11 @@ public class Spearman extends Warrior implements Level {
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
     public int getDefensiveFightingBonus() {

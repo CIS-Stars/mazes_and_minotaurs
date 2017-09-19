@@ -22,21 +22,20 @@ import java.util.HashMap;
 public class Barbarian extends Warrior implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    private Weapon[] mPossibleStartWeapons = new Weapon[]{
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-            EquipmentDB.getInstance().getWeapon(R.string.javelin),
-            EquipmentDB.getInstance().getWeapon(R.string.sling),
-    };
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
-            EquipmentDB.getInstance().getWeapon(R.string.barb_club),
-            EquipmentDB.getInstance().getWeapon(R.string.barb_mace),
-            EquipmentDB.getInstance().getWeapon(R.string.barb_sword),
-
-    };
-
     public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
+        setPossibleStartWeapons(new Weapon[]{
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.javelin),
+                EquipmentDB.getInstance().getWeapon(R.string.sling),
+        });
+
+        setPossibleWeaponsOfChoice(new Weapon[] {
+                EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
+                EquipmentDB.getInstance().getWeapon(R.string.barb_club),
+                EquipmentDB.getInstance().getWeapon(R.string.barb_mace),
+                EquipmentDB.getInstance().getWeapon(R.string.barb_sword),
+        });
+
         Score[] primAttrs = {Score.MIGHT, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -48,7 +47,7 @@ public class Barbarian extends Warrior implements Level{
         setWeaponOfChoice(weaponOfChoice);
         startGear.add(getWeaponOfChoice());
 
-        if (Arrays.asList(mPossibleStartWeapons).contains(startWeapon)){
+        if (Arrays.asList(getPossibleStartWeapons()).contains(startWeapon)){
             switch (startWeapon.getResId()) {
                 case R.string.bow:
                     startGear.add(equipDB.getWeapon(R.string.bow));
@@ -162,20 +161,11 @@ public class Barbarian extends Warrior implements Level{
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
     public int getBattleMightBonus(){

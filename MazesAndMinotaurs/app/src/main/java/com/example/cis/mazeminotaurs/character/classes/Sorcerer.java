@@ -20,13 +20,14 @@ import java.util.HashMap;
  */
 
 public class Sorcerer extends Magician implements Level{
-    private Weapon[] mPossibleStartingWeapons = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.dagger),
-            EquipmentDB.getInstance().getWeapon(R.string.staff),
-    };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
+        setPossibleStartWeapons(new Weapon[] {
+                EquipmentDB.getInstance().getWeapon(R.string.dagger),
+                EquipmentDB.getInstance().getWeapon(R.string.staff),
+        });
+
         Score[] primAttrs = {Score.WITS, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -38,10 +39,10 @@ public class Sorcerer extends Magician implements Level{
 
         //TODO add a wand weapon
 
-        if (Arrays.asList(mPossibleStartingWeapons).contains(startingWeapon)) {
+        if (Arrays.asList(getPossibleStartWeapons()).contains(startingWeapon)) {
             startGear.add(startingWeapon);
         } else {
-            startGear.add(mPossibleStartingWeapons[0]);
+            startGear.add(getPossibleStartWeapons()[0]);
         }
 
         setBasicHits(8);
@@ -129,11 +130,11 @@ public class Sorcerer extends Magician implements Level{
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
     public int getDefensiveFightingBonus() {

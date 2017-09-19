@@ -21,20 +21,21 @@ import java.util.List;
  */
 
 public class Amazon extends Warrior implements Level {
-    private Weapon[] mPossibleStartWeapons = new Weapon[]{
-            EquipmentDB.getInstance().getWeapon(R.string.mace),
-            EquipmentDB.getInstance().getWeapon(R.string.axe),
-            EquipmentDB.getInstance().getWeapon(R.string.spear),
-            EquipmentDB.getInstance().getWeapon(R.string.sword),
-    };
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[]{
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-    };
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
+        setPossibleStartWeapons(new Weapon[]{
+                EquipmentDB.getInstance().getWeapon(R.string.mace),
+                EquipmentDB.getInstance().getWeapon(R.string.axe),
+                EquipmentDB.getInstance().getWeapon(R.string.spear),
+                EquipmentDB.getInstance().getWeapon(R.string.sword),
+        });
+
+        setPossibleWeaponsOfChoice(new Weapon[]{
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+        });
+
         Score[] primAttrs = {Score.SKILL, Score.GRACE};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -44,10 +45,10 @@ public class Amazon extends Warrior implements Level {
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         // Check the starting melee weapon if it is valid
-        if (Arrays.asList(mPossibleStartWeapons).contains(startingWeapon)) {
+        if (Arrays.asList(getPossibleStartWeapons()).contains(startingWeapon)) {
             startGear.add(startingWeapon);
         } else {
-            startGear.add(mPossibleStartWeapons[0]);
+            startGear.add(getPossibleStartWeapons()[0]);
         }
         setWeaponOfChoice(equipmentDB.getWeapon(R.string.bow));
 
@@ -143,20 +144,11 @@ public class Amazon extends Warrior implements Level {
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
     public int getDeadlyShotBonus() {
