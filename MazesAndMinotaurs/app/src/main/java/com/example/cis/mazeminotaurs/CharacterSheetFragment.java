@@ -387,6 +387,10 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         refreshView();
     }
 
+    @Override
+    public void onHitsChange(int newValue) {
+    }
+
     private void refreshView() {
         mMightButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.MIGHT).getScore()));

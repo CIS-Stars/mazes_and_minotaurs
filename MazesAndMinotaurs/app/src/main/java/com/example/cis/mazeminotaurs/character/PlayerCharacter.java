@@ -48,6 +48,11 @@ public class PlayerCharacter{
     private HashMap<Score, AttributeScore> mScores = new HashMap<>();
 
     /**
+     * The character's current hit points.
+     */
+    private int mCurHits;
+
+    /**
      * The character class's i.e. Barbarian
      */
     private BaseClass mCharClass;
@@ -560,5 +565,14 @@ public class PlayerCharacter{
      */
     public void setPatron(Patron patron) {
         mPatron = patron;
+    }
+
+
+    public int getCurHits() {
+        return mCurHits;
+    }
+
+    public void setCurHits(int curHits) {
+        mCurHits = curHits;
     }
 }
