@@ -259,13 +259,20 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
             }
         });
 
+        ((Button) rootView.findViewById(R.id.edc_button)).setText(Integer.toString(mSheetPlayerCharacter.getEDC()));
+        ((Button) rootView.findViewById(R.id.total_hits_button)).setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
+        ((Button) rootView.findViewById(R.id.current_hits_button)).setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
+
         mSaveButton = (Button) rootView.findViewById(R.id.save_button);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSaveCharacterClick();
-            }
-        });
+//      Commented out to disable in production.
+//        mSaveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onSaveCharacterClick();
+//            }
+//        });
+
+        // Magical and specialist section
         mMagicTitleView = (TextView) rootView.findViewById(R.id.magic_title_view);
         mTalentBonusTitleView = (TextView) rootView.findViewById(R.id.talent_bonus_title_view);
         mMagicStrengthTitleView = (TextView) rootView.findViewById(R.id.magic_strength_title_view);
