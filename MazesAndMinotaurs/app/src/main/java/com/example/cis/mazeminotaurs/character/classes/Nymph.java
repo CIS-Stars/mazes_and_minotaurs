@@ -19,7 +19,6 @@ import java.util.HashMap;
  */
 
 public class Nymph extends Magician implements Level{
-    private Weapon[] mPossibleStartingWeapons = new Weapon[]{};
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Nymph() {
@@ -27,6 +26,8 @@ public class Nymph extends Magician implements Level{
     }
 
     public Nymph(PlayerCharacter playerCharacter) {
+        setPossibleStartWeapons(new Weapon[]{});
+
         Score[] primAttrs = {Score.GRACE, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);

@@ -20,15 +20,6 @@ import java.util.HashMap;
  */
 
 public class Noble extends Warrior implements Level {
-    private Weapon[] mPossibleStartWeapons = new Weapon[] {};
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-            EquipmentDB.getInstance().getWeapon(R.string.javelin),
-            EquipmentDB.getInstance().getWeapon(R.string.spear),
-            EquipmentDB.getInstance().getWeapon(R.string.sword),
-    };
-
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Noble() {
@@ -36,6 +27,14 @@ public class Noble extends Warrior implements Level {
     }
 
     public Noble(PlayerCharacter playerCharacter, Score martialHeritage, Score mentalHeritage, Weapon weaponOfChoice) {
+        setPossibleStartWeapons(new Weapon[]{});
+        setPossibleWeaponsOfChoice(new Weapon[]{
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.javelin),
+                EquipmentDB.getInstance().getWeapon(R.string.spear),
+                EquipmentDB.getInstance().getWeapon(R.string.sword),
+        });
+
         Score martialScore;
         if (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL)) {
             martialScore = martialHeritage;
@@ -72,8 +71,8 @@ public class Noble extends Warrior implements Level {
         // Noble - Heroic Heritage
         Score mentalScore;
         if (mentalHeritage.equals(Score.WITS) ||
-            mentalHeritage.equals(Score.WILL) ||
-            mentalHeritage.equals(Score.GRACE)) {
+                mentalHeritage.equals(Score.WILL) ||
+                mentalHeritage.equals(Score.GRACE)) {
             mentalScore = mentalHeritage;
         } else {
             mentalScore = Score.WITS;
@@ -94,7 +93,7 @@ public class Noble extends Warrior implements Level {
         if (getLevel() < getEffectiveLevel()) {
             Score[] choices = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
             ArrayList<Score> possibleScores = new ArrayList<>();
-            for (Score selectScore: choices) {
+            for (Score selectScore : choices) {
                 if (getCharacter().canAddToScore(selectScore)) {
                     possibleScores.add(selectScore);
                 }
@@ -107,7 +106,7 @@ public class Noble extends Warrior implements Level {
                 selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
             }
             if (possibleScores.size() > 0) {
-                while(!getCharacter().canAddToScore(selectedScore)) {
+                while (!getCharacter().canAddToScore(selectedScore)) {
                     selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
                 }
             }
@@ -135,11 +134,11 @@ public class Noble extends Warrior implements Level {
     }
 
     @Override
-    public void doLevelDown(){
+    public void doLevelDown() {
         if (getLevel() > 1) {
             HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
             Score lastSelectedScore = null;
-            for (Object rawScore: levelData.keySet().toArray()) {
+            for (Object rawScore : levelData.keySet().toArray()) {
                 Score score = (Score) rawScore;
                 if (score != Score.LUCK) {
                     lastSelectedScore = score;
@@ -157,24 +156,15 @@ public class Noble extends Warrior implements Level {
         }
     }
 
-    public int getBattleFortuneBonus(){
+    public int getBattleFortuneBonus() {
         return getCharacter().getScore(Score.LUCK).getModifier();
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 }

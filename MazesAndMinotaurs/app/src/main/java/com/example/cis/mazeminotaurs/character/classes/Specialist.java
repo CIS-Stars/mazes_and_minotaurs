@@ -11,31 +11,39 @@ import java.util.Arrays;
  */
 
 public abstract class Specialist extends BaseClass {
-    protected int mSpecialScoreId;
-    protected Weapon mWeaponOfChoice;
-    protected Weapon[] mPossibleWeaponsOfChoice;
+    private int mSpecialScoreId;
+    private Weapon mWeaponOfChoice;
+    private Weapon[] mPossibleWeaponsOfChoice;
 
     private static final int[] mLevelDescriptions = {R.string.special_one, R.string.special_two,
             R.string.special_three, R.string.special_four,
             R.string.special_five, R.string.special_six};
 
     public Weapon getWeaponOfChoice() {
-        return mWeaponOfChoice;
+        return this.mWeaponOfChoice;
     }
 
     public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
+        if (Arrays.asList(this.mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            this.mWeaponOfChoice = weaponOfChoice;
         } else {
             System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
+            this.mWeaponOfChoice = this.mPossibleWeaponsOfChoice[0];
         }
     }
 
-    public int getSpecialScoreId() { return mSpecialScoreId; }
+    public Weapon[] getPossibleWeaponsOfChoice() {
+        return this.mPossibleWeaponsOfChoice;
+    }
+
+    public void setPossibleWeaponsOfChoice(Weapon[] possibleWeaponsOfChoice) {
+        this.mPossibleWeaponsOfChoice = possibleWeaponsOfChoice;
+    }
+
+    public int getSpecialScoreId() { return this.mSpecialScoreId; }
 
     public void setSpecialScoreId(int specialScoreId) {
-        mSpecialScoreId = specialScoreId;
+        this.mSpecialScoreId = specialScoreId;
     }
     
     public int getSpecialTalent(){

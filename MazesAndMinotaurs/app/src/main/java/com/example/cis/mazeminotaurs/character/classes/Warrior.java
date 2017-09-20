@@ -11,18 +11,33 @@ import java.util.Arrays;
  */
 
 public abstract class Warrior extends BaseClass {
-    protected Weapon mWeaponOfChoice;
-    protected Weapon[] mPossibleWeaponsOfChoice;
+    private Weapon mWeaponOfChoice;
+    private Weapon[] mPossibleWeaponsOfChoice;
 
     private static final int[] mLevelDescriptions = {R.string.warrior_one, R.string.warrior_two,
                                                      R.string.warrior_three, R.string.warrior_four,
                                                      R.string.warrior_five, R.string.warrior_six};
 
     public Weapon getWeaponOfChoice() {
-        return mWeaponOfChoice;
+        return this.mWeaponOfChoice;
     }
 
-    public abstract void setWeaponOfChoice(Weapon weaponOfChoice);
+    public void setWeaponOfChoice(Weapon weaponOfChoice) {
+        if (Arrays.asList(this.mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
+            this.mWeaponOfChoice = weaponOfChoice;
+        } else {
+            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
+            this.mWeaponOfChoice = this.mPossibleWeaponsOfChoice[0];
+        }
+    }
+
+    public Weapon[] getPossibleWeaponsOfChoice() {
+        return this.mPossibleWeaponsOfChoice;
+    }
+
+    public void setPossibleWeaponsOfChoice(Weapon[] possibleWeaponsOfChoice) {
+        this.mPossibleWeaponsOfChoice = possibleWeaponsOfChoice;
+    }
 
     @Override
     public int getLevelDescription() {

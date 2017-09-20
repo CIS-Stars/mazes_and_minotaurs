@@ -5,8 +5,8 @@ import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
@@ -15,23 +15,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
+
 /**
- * Created by jusmith on 5/15/17.
+ * Created by jhiggs on 9/11/17.
  */
 
-public class Spearman extends Warrior implements Level {
+public class Priest extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Spearman() {
-        this(null);
-    }
-
-    public Spearman(PlayerCharacter playerCharacter) {
+    public Priest(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
-        setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.spear)});
 
-
-        Score[] primAttrs = {Score.SKILL, Score.WILL};
+        Score[] primAttrs = {Score.LUCK, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
@@ -40,21 +35,18 @@ public class Spearman extends Warrior implements Level {
 
         int rolledGold = Util.roll(6, 3) * 10;
 
-        startGear.add(equipmentDB.getWeapon(R.string.spear));
-        startGear.add(equipmentDB.getWeapon(R.string.sword));
+        startGear.add(equipmentDB.getWeapon(R.string.staff));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getArmor(R.string.helmet));
-        startGear.add(equipmentDB.getArmor(R.string.breastplate));
+        //TODO add ceremonial robes
 
-        setBasicHits(12);
+        setBasicHits(8);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
-        setRequiredGender(Gender.MALE);
-        setResId(Classes.SPEARMAN.getResId());
+        setRequiredGender(Gender.EITHER);
+        setResId(Classes.PRIEST.getResId());
         setStartMoney(rolledGold);
         setStartGear(startGear);
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.spear));
+
     }
 
     public void doLevelUp(){
@@ -103,7 +95,7 @@ public class Spearman extends Warrior implements Level {
             getScoreLevelChoice().add(levelData);
 
             selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
-            setAddedHits(getAddedHits() + 4);
+            setAddedHits(getAddedHits() + 2);
 
             setLevel(getLevel() + 1);
             getCharacter().validateScores();
@@ -125,12 +117,14 @@ public class Spearman extends Warrior implements Level {
             AttributeScore luck = getCharacter().getScore(Score.LUCK);
             AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
 
-            setAddedHits(getAddedHits() - 4);
+            setAddedHits(getAddedHits() - 2);
             luck.setScore(levelData.get(Score.LUCK));
             lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
             setLevel(getLevel() - 1);
         }
     }
+
+
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
         return this.mScoreLevelChoice;
@@ -140,11 +134,12 @@ public class Spearman extends Warrior implements Level {
         this.mScoreLevelChoice = scoreLevelChoice;
     }
 
-    public int getDefensiveFightingBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
+    public int getMysticalStrength(){
+        return 12 + getSpecialTalent();
     }
 
-    public int getMartialDisciplineBonus() {
+    public int getPowerPoints(){
         return getCharacter().getScore(Score.WILL).getModifier();
     }
 }
+

@@ -20,15 +20,6 @@ import java.util.HashMap;
  */
 
 public class Hunter extends Specialist implements Level{
-    // Null for this value means that it is linked to weapon of choice.
-    private Weapon[] mPossibleStartingWeapons = null;
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-            EquipmentDB.getInstance().getWeapon(R.string.javelin),
-            EquipmentDB.getInstance().getWeapon(R.string.sling),
-    };
-
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Hunter() {
@@ -36,6 +27,14 @@ public class Hunter extends Specialist implements Level{
     }
 
     public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
+        // Null for this value means that it is linked to weapon of choice.
+        setPossibleStartWeapons(null);
+        setPossibleWeaponsOfChoice(new Weapon[] {
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.javelin),
+                EquipmentDB.getInstance().getWeapon(R.string.sling),
+        });
+
         Score[] primAttrs = {Score.SKILL, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -158,19 +157,11 @@ public class Hunter extends Specialist implements Level{
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
-    }
 }

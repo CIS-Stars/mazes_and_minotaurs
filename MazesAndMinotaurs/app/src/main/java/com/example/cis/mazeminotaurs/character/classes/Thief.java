@@ -20,14 +20,6 @@ import java.util.HashMap;
  */
 
 public class Thief extends Specialist implements Level{
-    private Weapon[] mPossibleStartWeapons = new Weapon[] {
-    };
-
-    private Weapon[] mPossibleWeaponsOfChoice = new Weapon[] {
-            EquipmentDB.getInstance().getWeapon(R.string.bow),
-            EquipmentDB.getInstance().getWeapon(R.string.sling),
-            EquipmentDB.getInstance().getWeapon(R.string.throw_knife),
-    };
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Thief() {
@@ -35,6 +27,13 @@ public class Thief extends Specialist implements Level{
     }
 
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
+        setPossibleStartWeapons(new Weapon[]{});
+        setPossibleWeaponsOfChoice(new Weapon[] {
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.sling),
+                EquipmentDB.getInstance().getWeapon(R.string.throw_knife),
+        });
+
         Score[] primAttrs = {Score.LUCK, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
@@ -151,19 +150,10 @@ public class Thief extends Specialist implements Level{
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return mScoreLevelChoice;
+        return this.mScoreLevelChoice;
     }
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public void setWeaponOfChoice(Weapon weaponOfChoice) {
-        if (Arrays.asList(mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
-            mWeaponOfChoice = weaponOfChoice;
-        } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
-            mWeaponOfChoice = mPossibleWeaponsOfChoice[0];
-        }
+        this.mScoreLevelChoice = scoreLevelChoice;
     }
 }
