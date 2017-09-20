@@ -21,7 +21,7 @@ import com.example.cis.mazeminotaurs.util.Util;
  * Created by Thorin Schmidt on 4/1/2017.
  */
 
-public class CharacterSheetFragment extends Fragment {
+public class CharacterSheetFragment extends Fragment implements StatChangeFragment.OnStatChangeListener{
 
     public static final String ROLL_RESULT = "RollResult";
     public static final String TAG = "CharacterSheetFragment";
@@ -278,14 +278,9 @@ public class CharacterSheetFragment extends Fragment {
     public void onScoreLongClick(Score skill, String name) {
         FragmentManager fm = getFragmentManager();
         StatChangeFragment dialog = StatChangeFragment.newInstance(name,
-                mSheetPlayerCharacter.getScore(skill).getScore(), mCurrentCharacterIndex);
+                mSheetPlayerCharacter.getScore(skill).getScore());
+        dialog.setStatChangeListener(this);
         dialog.show(fm, ROLL_RESULT);
-        if (dialog.mNewValue != mSheetPlayerCharacter.getScore(skill).getScore()) {
-            mSheetPlayerCharacter.getScore(skill).setScore(dialog.mNewValue);
-            mSheetPlayerCharacter.validateScores();
-            refreshView();
-        }
-
     }
 
     public void onAttackClick(int attackType, boolean wocEquipped){
@@ -341,7 +336,16 @@ public class CharacterSheetFragment extends Fragment {
         dialog.show(fm, ROLL_RESULT);
     }
 
-    public void refreshView() {
+    @Override
+    public void onStatChange(Score score, int newValue) {
+        if (mSheetPlayerCharacter.getScore(score).getScore() != newValue) {
+            mSheetPlayerCharacter.getScore(score).setScore(newValue);
+            mSheetPlayerCharacter.validateScores();
+        }
+        refreshView();
+    }
+
+    private void refreshView() {
         mMightButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.MIGHT).getScore()));
         mSkillButton.setText(Integer.toString(mSheetPlayerCharacter.
