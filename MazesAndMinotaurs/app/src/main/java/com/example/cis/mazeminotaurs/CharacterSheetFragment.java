@@ -102,6 +102,13 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         mSkillButton = (Button) rootView.findViewById(R.id.skill_score_button);
         mSkillButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.SKILL).getScore()));
+        mSkillButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onScoreLongClick(Score.SKILL, "Skill");
+                return true;
+            }
+        });
         mSkillButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -112,6 +119,13 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         mWitsButton = (Button) rootView.findViewById(R.id.wits_score_button);
         mWitsButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.WITS).getScore()));
+        mWitsButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onScoreLongClick(Score.WITS, "Wits");
+                return true;
+            }
+        });
         mWitsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -122,6 +136,13 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         mLuckButton = (Button) rootView.findViewById(R.id.luck_score_button);
         mLuckButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.LUCK).getScore()));
+        mLuckButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onScoreLongClick(Score.LUCK, "Luck");
+                return true;
+            }
+        });
         mLuckButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -132,6 +153,13 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         mWillButton = (Button) rootView.findViewById(R.id.will_score_button);
         mWillButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.WILL).getScore()));
+        mWillButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onScoreLongClick(Score.WILL, "Will");
+                return true;
+            }
+        });
         mWillButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -142,6 +170,13 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         mGraceButton = (Button) rootView.findViewById(R.id.grace_score_button);
         mGraceButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.GRACE).getScore()));
+        mGraceButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onScoreLongClick(Score.GRACE, "Grace");
+                return true;
+            }
+        });
         mGraceButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

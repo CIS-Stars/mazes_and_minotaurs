@@ -5,7 +5,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -17,25 +17,27 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
  */
 
 public class StatChangeFragment extends DialogFragment {
+    public interface OnStatChangeListener {
+        void onStatChange(Score score, int newValue);
+    }
+    OnStatChangeListener mStatChangeListener;
 
     String mStringScore;
     Score mScore;
-    int mCharIndex;
     int mOldValue;
-    int mNewValue;
 
+    EditText mNewValue;
     /**
      * Create a new instance of StatChangeFragment, providing "score"
      * and "value" as arguments.
      */
-    static StatChangeFragment newInstance(String score, int value, int charIndex) {
+    static StatChangeFragment newInstance(String score, int value) {
         StatChangeFragment f = new StatChangeFragment();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putString("stat", score);
         args.putInt("value", value);
-        args.putInt("charIndex", charIndex);
         f.setArguments(args);
 
         return f;
@@ -44,7 +46,6 @@ public class StatChangeFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mCharIndex = getArguments().getInt("charIndex");
 
         mStringScore = getArguments().getString("stat");
         if (mStringScore != null) {
@@ -75,13 +76,16 @@ public class StatChangeFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.dialog_attribute_edit, container, false);
+        final View v = inflater.inflate(R.layout.dialog_attribute_edit, container, false);
         View oldTv = v.findViewById(R.id.attribute_old_base);
         ((TextView) oldTv).setText(getContext().getString(R.string.old_attribute_value, mStringScore, mOldValue));
-        ((Button) v.findViewById(R.id.attribute_confirm_button)).setOnClickListener(new View.OnClickListener() {
+        mNewValue = (EditText) v.findViewById(R.id.attribute_new_base_edit);
+        v.findViewById(R.id.attribute_confirm_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Portfolio.get().getPlayerCharacter(mCharIndex).getScore(mScore).setScore(mNewValue);
+                int newValue = Integer.valueOf(mNewValue.getText().toString());
+                getStatChangeListener().onStatChange(mScore, newValue);
+                dismiss();
             }
         });
 
@@ -89,6 +93,11 @@ public class StatChangeFragment extends DialogFragment {
 
     }
 
+    public OnStatChangeListener getStatChangeListener() {
+        return this.mStatChangeListener;
+    }
 
-
+    public void setStatChangeListener(OnStatChangeListener statChangeListener) {
+        this.mStatChangeListener = statChangeListener;
+    }
 }
