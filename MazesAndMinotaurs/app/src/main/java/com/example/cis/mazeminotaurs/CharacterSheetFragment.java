@@ -85,6 +85,13 @@ public class CharacterSheetFragment extends Fragment {
         mMightButton = (Button) rootView.findViewById(R.id.might_score_button);
         mMightButton.setText(Integer.toString(mSheetPlayerCharacter.
                 getScore(Score.MIGHT).getScore()));
+        mMightButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onScoreLongClick(Score.MIGHT, "Might");
+                return true;
+            }
+        });
         mMightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,6 +275,19 @@ public class CharacterSheetFragment extends Fragment {
         dialog.show(fm, ROLL_RESULT);
     }
 
+    public void onScoreLongClick(Score skill, String name) {
+        FragmentManager fm = getFragmentManager();
+        StatChangeFragment dialog = StatChangeFragment.newInstance(name,
+                mSheetPlayerCharacter.getScore(skill).getScore(), mCurrentCharacterIndex);
+        dialog.show(fm, ROLL_RESULT);
+        if (dialog.mNewValue != mSheetPlayerCharacter.getScore(skill).getScore()) {
+            mSheetPlayerCharacter.getScore(skill).setScore(dialog.mNewValue);
+            mSheetPlayerCharacter.validateScores();
+            refreshView();
+        }
+
+    }
+
     public void onAttackClick(int attackType, boolean wocEquipped){
         int modifier;
         int attackRoll1 = Util.roll(20);
@@ -278,6 +298,7 @@ public class CharacterSheetFragment extends Fragment {
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else if (attackType == R.string.missile){
+            //TODO make missile mod
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else{
@@ -318,5 +339,25 @@ public class CharacterSheetFragment extends Fragment {
         FragmentManager fm = getFragmentManager();
         SaveAndLoadDialog dialog = SaveAndLoadDialog.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
+    }
+
+    public void refreshView() {
+        mMightButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getScore(Score.MIGHT).getScore()));
+        mSkillButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getScore(Score.SKILL).getScore()));
+        mWitsButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getScore(Score.WITS).getScore()));
+        mLuckButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getScore(Score.LUCK).getScore()));
+        mWillButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getScore(Score.WILL).getScore()));
+        mGraceButton.setText(Integer.toString(mSheetPlayerCharacter.
+                getScore(Score.GRACE).getScore()));
+        mInitiativeButton.setText(Integer.toString(mSheetPlayerCharacter.getInitiative()));
+        mAPbutton.setText(Integer.toString(mSheetPlayerCharacter.getAthleticProwess()));
+        mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
+        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
+        mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
     }
 }
