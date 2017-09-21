@@ -410,7 +410,7 @@ public class CharacterSheetFragment extends Fragment
         if (mSheetPlayerCharacter.getCurHits() != newValue) {
             mSheetPlayerCharacter.setCurHits(newValue);
             // Manually update since nothing else would change
-            mHitsButton.setText(mSheetPlayerCharacter.getCurHits());
+            mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getCurHits()));
         }
     }
 
