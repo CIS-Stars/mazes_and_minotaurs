@@ -32,7 +32,7 @@ public class StatChangeFragment extends DialogFragment {
      * Create a new instance of StatChangeFragment, providing "score"
      * and "value" as arguments.
      */
-    static StatChangeFragment newInstance(String score, int value) {
+    public static StatChangeFragment newInstance(String score, int value) {
         StatChangeFragment f = new StatChangeFragment();
 
         // Supply num input as an argument.
