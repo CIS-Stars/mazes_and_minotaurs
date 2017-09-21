@@ -44,9 +44,9 @@ public class WeaponListFragment extends DialogFragment {
         View v = li.inflate(R.layout.dialog_weapon_list, vg, false);
 
         mWeaponRecyclerView = (RecyclerView) v.findViewById(R.id.weapon_recyler_view);
-        ArrayAdapter<Weapon> adapter = new ArrayAdapter<Weapon>(EquipmentDB.getInstance().);
+        //ArrayAdapter<Weapon> adapter = new ArrayAdapter<Weapon>(EquipmentDB.getInstance().);
 
-        mWeaponRecyclerView.setAdapter();
+        //mWeaponRecyclerView.setAdapter();
 
         return v;
     }
