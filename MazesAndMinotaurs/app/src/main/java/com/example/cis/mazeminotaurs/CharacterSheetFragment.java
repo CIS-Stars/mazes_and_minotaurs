@@ -344,7 +344,6 @@ public class CharacterSheetFragment extends Fragment
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else if (attackType == R.string.missile){
-            //TODO make missile mod
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else{
