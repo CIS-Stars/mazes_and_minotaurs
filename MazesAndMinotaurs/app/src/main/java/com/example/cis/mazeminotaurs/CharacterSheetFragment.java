@@ -383,8 +383,8 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         if (mSheetPlayerCharacter.getScore(score).getScore() != newValue) {
             mSheetPlayerCharacter.getScore(score).setScore(newValue);
             mSheetPlayerCharacter.validateScores();
+            refreshView();
         }
-        refreshView();
     }
 
     @Override
