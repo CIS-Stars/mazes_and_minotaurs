@@ -265,6 +265,13 @@ public class CharacterSheetFragment extends Fragment
         ((Button) rootView.findViewById(R.id.total_hits_button)).setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
         mHitsButton = (Button) rootView.findViewById(R.id.current_hits_button);
         mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
+        mHitsButton.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View view) {
+                                               onHitsClick();
+                                           }
+                                       }
+        );
 
         mSaveButton = (Button) rootView.findViewById(R.id.save_button);
 //      Commented out to disable in production.
@@ -372,6 +379,13 @@ public class CharacterSheetFragment extends Fragment
                 dialog = SaveResultFragment.newInstance(saveRoll, modifier, saveName);
                 break;
         }
+        dialog.show(fm, ROLL_RESULT);
+    }
+
+    void onHitsClick() {
+        HitsChangeFragment dialog = HitsChangeFragment.newInstance(Integer.valueOf(mHitsButton.toString()));
+        FragmentManager fm = getFragmentManager();
+        dialog.setHitsChangeListener(this);
         dialog.show(fm, ROLL_RESULT);
     }
 
