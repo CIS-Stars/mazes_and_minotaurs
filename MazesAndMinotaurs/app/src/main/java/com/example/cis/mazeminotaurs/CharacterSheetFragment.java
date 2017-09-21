@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
+import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
+import com.example.cis.mazeminotaurs.character.classes.Specialist;
+import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.fragments.HitsChangeFragment;
 import com.example.cis.mazeminotaurs.fragments.StatChangeFragment;
@@ -201,7 +204,12 @@ public class CharacterSheetFragment extends Fragment
             public void onClick(View v){
                 //just for testing, replace these with calls to character methods
                 int weaponType = mSheetPlayerCharacter.getCurrentWeapon().getWeaponType();
-                boolean woc = true;
+                boolean woc = false;
+                if (mSheetPlayerCharacter.getCharClass() instanceof Warrior) {
+                    woc = ((Warrior) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                } else if (mSheetPlayerCharacter.getCharClass() instanceof Specialist) {
+                    woc = ((Specialist) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                }
                 onAttackClick(weaponType, woc);
             }
         });
@@ -430,5 +438,11 @@ public class CharacterSheetFragment extends Fragment
         mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
         mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
         mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
+        if(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
+        }
+        else{
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMissileMod()));
+        }
     }
 }
