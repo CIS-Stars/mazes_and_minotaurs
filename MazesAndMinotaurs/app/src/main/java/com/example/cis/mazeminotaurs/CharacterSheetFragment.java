@@ -266,12 +266,11 @@ public class CharacterSheetFragment extends Fragment
         mHitsButton = (Button) rootView.findViewById(R.id.current_hits_button);
         mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
         mHitsButton.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View view) {
-                                               onHitsClick();
-                                           }
-                                       }
-        );
+           @Override
+           public void onClick(View view) {
+               onHitsClick();
+           }
+        });
 
         mSaveButton = (Button) rootView.findViewById(R.id.save_button);
 //      Commented out to disable in production.
