@@ -1,6 +1,7 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -39,7 +40,9 @@ public abstract class BaseClass {
     private Gender mRequiredGender;
     private int mResId;
     private ArrayList<Equipment> mStartGear;
-    private int mStartGold;
+    private int mStartMoney;
+
+    private Weapon[] mPossibleStartWeapons;
 
     public void updateLevel(){
         if (getExperience() < 1000) {
@@ -63,100 +66,102 @@ public abstract class BaseClass {
     }
 
     public int getAddedHits() {
-        return mAddedHits;
+        return this.mAddedHits;
     }
 
     public void setAddedHits(int addedHits) {
-        mAddedHits = addedHits;
+        this.mAddedHits = addedHits;
     }
 
     public int getBasicHits() {
-        return mBasicHits;
+        return this.mBasicHits;
     }
 
     public void setBasicHits(int basicHits) {
-        mBasicHits = basicHits;
+        this.mBasicHits = basicHits;
     }
 
     public PlayerCharacter getCharacter() {
-        return mPlayerCharacter;
+        return this.mPlayerCharacter;
     }
 
     public void setCharacter(PlayerCharacter playerCharacter) {
-        mPlayerCharacter = playerCharacter;
+        this.mPlayerCharacter = playerCharacter;
     }
 
     public ArrayList<Score> getPrimaryAttributes() {
-        return mPrimaryAttributes;
+        return this.mPrimaryAttributes;
     }
 
     public void setPrimaryAttributes(ArrayList<Score> primaryAttributes) {
-        mPrimaryAttributes = primaryAttributes;
+        this.mPrimaryAttributes = primaryAttributes;
     }
 
     public Gender getRequiredGender() {
-        return mRequiredGender;
+        return this.mRequiredGender;
     }
 
     public void setRequiredGender(Gender requiredGender) {
-        mRequiredGender = requiredGender;
+        this.mRequiredGender = requiredGender;
     }
 
     public int getResId() {
-        return mResId;
+        return this.mResId;
     }
 
     public void setResId(int resId) {
-        mResId = resId;
+        this.mResId = resId;
     }
 
     public ArrayList<Equipment> getStartGear() {
-        return mStartGear;
+        return this.mStartGear;
     }
 
     public void setStartGear(ArrayList<Equipment> startGear) {
-        mStartGear = startGear;
+        this.mStartGear = startGear;
     }
 
     public int getStartMoney() {
-        return mStartGold;
+        return this.mStartMoney;
     }
 
-    public void setStartGold(int startGold) {
-        mStartGold = startGold;
+    public void setStartMoney(int startMoney) {
+        this.mStartMoney = startMoney;
     }
 
     public int getExperience() {
-        return mExperience;
+        return this.mExperience;
     }
 
     public void setExperience(int experience) {
-        mExperience = experience;
+        this.mExperience = experience;
     }
 
     public int getLevel() {
-        return mLevel;
+        return this.mLevel;
     }
 
     public void setLevel(int level) {
-        mLevel = level;
+        this.mLevel = level;
     }
 
     public int getEffectiveLevel() {
-        return mEffectiveLevel;
+        return this.mEffectiveLevel;
     }
 
     public void setEffectiveLevel(int effectiveLevel) {
-        mEffectiveLevel = effectiveLevel;
+        this.mEffectiveLevel = effectiveLevel;
+    }
+
+    public Weapon[] getPossibleStartWeapons() {
+        return this.mPossibleStartWeapons;
+    }
+
+    public void setPossibleStartWeapons(Weapon[] possibleStartWeapons) {
+        this.mPossibleStartWeapons = possibleStartWeapons;
     }
 
     // Dummy Method
     // Returns the ResId of the level descriptions
-    public int getLevelDescription() {
-        return -12321;
-    }
-
-    // Dummy Methods
-    public void doLevelUp() {}
-    public void doLevelDown() {}
+    public abstract int getLevelDescription();
 }

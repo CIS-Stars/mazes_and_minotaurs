@@ -16,52 +16,64 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Created by jusmith on 5/15/17.
+ * Created by jsmith on 9/11/17.
  */
 
-public class Spearman extends Warrior implements Level {
+public class Thief extends Specialist implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Spearman(PlayerCharacter playerCharacter) {
+    public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         setPossibleStartWeapons(new Weapon[]{});
-        setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.spear)});
+        setPossibleWeaponsOfChoice(new Weapon[] {
+                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.sling),
+                EquipmentDB.getInstance().getWeapon(R.string.throw_knife),
+        });
 
-
-        Score[] primAttrs = {Score.SKILL, Score.WILL};
+        Score[] primAttrs = {Score.LUCK, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
+        // Setting up for equipment check
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
+        ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        int rolledGold = Util.roll(6, 3) * 10;
+        for (int choiceId: new int[]{R.string.dagger, R.string.sling, R.string.throw_knife}) {
+            possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
+        }
 
-        startGear.add(equipmentDB.getWeapon(R.string.spear));
-        startGear.add(equipmentDB.getWeapon(R.string.sword));
+        if (possibleWepsOfChoice.contains(weaponOfChoice)) {
+            setWeaponOfChoice(weaponOfChoice);
+        } else {
+            setWeaponOfChoice(possibleWepsOfChoice.get(0));
+        }
+
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getArmor(R.string.helmet));
-        startGear.add(equipmentDB.getArmor(R.string.breastplate));
+        // Equipment done
 
-        setBasicHits(12);
+        int rolledGold = Util.roll(6, 3) * 5;
+
+        setBasicHits(10);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
-        setRequiredGender(Gender.MALE);
-        setResId(Classes.SPEARMAN.getResId());
+        setResId(Classes.THIEF.getResId());
+        setRequiredGender(Gender.EITHER);
+        setSpecialScoreId(R.string.thief_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.spear));
     }
 
-    public void doLevelUp(){
-        Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+    @Override
+    public void doLevelUp() {
+        Score[] possibleScores = {Score.SKILL, Score.WILL, Score.WITS};
         doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
     }
 
+    @Override
     public void doLevelUp(Score score) {
-        if (getLevel() < getEffectiveLevel()){
-
-            Score[] choices = {Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+        if (getLevel() < getEffectiveLevel()) {
+            Score[] choices = {Score.SKILL, Score.WILL, Score.WITS};
             ArrayList<Score> possibleScores = new ArrayList<>();
             for (Score selectScore: choices) {
                 if(getCharacter().canAddToScore(selectScore)) {
@@ -99,14 +111,15 @@ public class Spearman extends Warrior implements Level {
             getScoreLevelChoice().add(levelData);
 
             selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
-            setAddedHits(getAddedHits() + 4);
+            setAddedHits(getAddedHits() + 2);
 
             setLevel(getLevel() + 1);
             getCharacter().validateScores();
         }
     }
 
-    public void doLevelDown(){
+    @Override
+    public void doLevelDown() {
         if (getLevel() > 1) {
             HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
             Score lastSelectedScore = null;
@@ -121,11 +134,15 @@ public class Spearman extends Warrior implements Level {
             AttributeScore luck = getCharacter().getScore(Score.LUCK);
             AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
 
-            setAddedHits(getAddedHits() - 4);
+            setAddedHits(getAddedHits() - 2);
             luck.setScore(levelData.get(Score.LUCK));
             lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
             setLevel(getLevel() - 1);
         }
+    }
+
+    public int getEvasionBonus() {
+        return getCharacter().getScore(Score.WITS).getScore();
     }
 
     public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
@@ -134,13 +151,5 @@ public class Spearman extends Warrior implements Level {
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         this.mScoreLevelChoice = scoreLevelChoice;
-    }
-
-    public int getDefensiveFightingBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
-    }
-
-    public int getMartialDisciplineBonus() {
-        return getCharacter().getScore(Score.WILL).getModifier();
     }
 }

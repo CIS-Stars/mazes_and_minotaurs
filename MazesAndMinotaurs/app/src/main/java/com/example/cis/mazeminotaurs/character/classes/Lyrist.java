@@ -11,57 +11,49 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Created by jusmith on 5/15/17.
+ * Created by zsteck on 9/12/17.
  */
 
-public class Spearman extends Warrior implements Level {
+public class Lyrist extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Spearman(PlayerCharacter playerCharacter) {
+    public Lyrist(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
-        setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.spear)});
 
-
-        Score[] primAttrs = {Score.SKILL, Score.WILL};
+        Score[] primAttrs = {Score.GRACE, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        int rolledGold = Util.roll(6, 3) * 10;
+        int rolledGold = Util.roll(6, 3) * 5;
 
-        startGear.add(equipmentDB.getWeapon(R.string.spear));
-        startGear.add(equipmentDB.getWeapon(R.string.sword));
+        //TODO Add a 'lyre' item/weapon
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getArmor(R.string.helmet));
-        startGear.add(equipmentDB.getArmor(R.string.breastplate));
 
-        setBasicHits(12);
+        setBasicHits(8);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
-        setRequiredGender(Gender.MALE);
-        setResId(Classes.SPEARMAN.getResId());
+        setRequiredGender(Gender.EITHER);
+        setResId(Classes.LYRIST.getResId());
         setStartMoney(rolledGold);
         setStartGear(startGear);
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.spear));
     }
 
     public void doLevelUp(){
-        Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+        Score[] possibleScores = {Score.GRACE, Score.WITS, Score.WILL};
         doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
     }
 
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()){
 
-            Score[] choices = {Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
+            Score[] choices = {Score.GRACE, Score.WITS, Score.WILL};
             ArrayList<Score> possibleScores = new ArrayList<>();
             for (Score selectScore: choices) {
                 if(getCharacter().canAddToScore(selectScore)) {
@@ -99,7 +91,7 @@ public class Spearman extends Warrior implements Level {
             getScoreLevelChoice().add(levelData);
 
             selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
-            setAddedHits(getAddedHits() + 4);
+            setAddedHits(getAddedHits() + 2);
 
             setLevel(getLevel() + 1);
             getCharacter().validateScores();
@@ -121,7 +113,7 @@ public class Spearman extends Warrior implements Level {
             AttributeScore luck = getCharacter().getScore(Score.LUCK);
             AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
 
-            setAddedHits(getAddedHits() - 4);
+            setAddedHits(getAddedHits() - 2);
             luck.setScore(levelData.get(Score.LUCK));
             lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
             setLevel(getLevel() - 1);

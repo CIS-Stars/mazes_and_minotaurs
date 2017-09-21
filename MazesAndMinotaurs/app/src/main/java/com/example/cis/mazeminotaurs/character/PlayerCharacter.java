@@ -98,6 +98,11 @@ public class PlayerCharacter{
     private Armor mShield;
 
     /**
+     * The patron that the character worships.
+     */
+    private Patron mPatron;
+
+    /**
      * Blank character constructor.
      */
     public PlayerCharacter() {
@@ -154,13 +159,13 @@ public class PlayerCharacter{
     public int getEDC() {
         int armorBonus = 0;
         if (mHelmet != null) {
-            armorBonus += 2;
+            armorBonus += mHelmet.getDefenseBonus();
         }
         if (mBreastplate != null) {
-            armorBonus += 2;
+            armorBonus += mBreastplate.getDefenseBonus();
         }
         if (mShield != null) {
-            armorBonus += 2;
+            armorBonus += mShield.getDefenseBonus();
         }
 
         return getDC() + armorBonus;
@@ -282,6 +287,19 @@ public class PlayerCharacter{
     public void validateMoney() {
         HashMap<Money, Integer> cash = getMoney();
 
+        // Check for negative balances
+        while (cash.get(Money.SILVER) < 0 && cash.get(Money.GOLD) - 1 >= 0) {
+            System.out.println(cash);
+            cash.put(Money.GOLD, cash.get(Money.GOLD) - 1);
+            cash.put(Money.SILVER, cash.get(Money.SILVER) + 100);
+        }
+        while (cash.get(Money.COPPER) < 0 && cash.get(Money.SILVER) - 1 >= 0){
+            System.out.println(cash);
+            cash.put(Money.SILVER, cash.get(Money.SILVER) - 1);
+            cash.put(Money.COPPER, cash.get(Money.COPPER) + 100);
+        }
+
+        // Check for overflow
         int tradedUpSilver = cash.get(Money.COPPER) / 100;
         cash.put(Money.COPPER, cash.get(Money.COPPER) % 100);
         cash.put(Money.SILVER, (cash.get(Money.SILVER) % 100) + tradedUpSilver);
@@ -526,5 +544,21 @@ public class PlayerCharacter{
      */
     public void setInventory(ArrayList<Equipment> inventory) {
         mInventory = inventory;
+    }
+
+    /**
+     * Getter of the mPatron attribute.
+     * @return the patron of the character
+     */
+    public Patron getPatron() {
+        return mPatron;
+    }
+
+    /**
+     * Setter of the mPatron attribute.
+     * @param patron the new patron of the character
+     */
+    public void setPatron(Patron patron) {
+        mPatron = patron;
     }
 }
