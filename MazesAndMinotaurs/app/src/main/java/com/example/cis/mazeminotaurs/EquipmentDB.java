@@ -78,6 +78,10 @@ public class EquipmentDB {
         return null;
     }
 
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
+    }
+
     public Armor getArmor(int resId){
         for (Armor item : armor){
             if (resId == item.getResId()){

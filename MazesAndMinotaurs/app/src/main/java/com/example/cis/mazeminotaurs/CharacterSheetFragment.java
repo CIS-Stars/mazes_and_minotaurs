@@ -13,15 +13,21 @@ import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
+import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
+import com.example.cis.mazeminotaurs.character.classes.Specialist;
+import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.example.cis.mazeminotaurs.fragments.HitsChangeFragment;
+import com.example.cis.mazeminotaurs.fragments.StatChangeFragment;
 import com.example.cis.mazeminotaurs.util.Util;
 
 /**
  * Created by Thorin Schmidt on 4/1/2017.
  */
 
-public class CharacterSheetFragment extends Fragment implements StatChangeFragment.OnStatChangeListener{
+public class CharacterSheetFragment extends Fragment
+        implements StatChangeFragment.OnStatChangeListener, HitsChangeFragment.onHitsChangeListener{
 
     public static final String ROLL_RESULT = "RollResult";
     public static final String TAG = "CharacterSheetFragment";
@@ -57,8 +63,7 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
     Button mTotalPowerButton;
     Button mCurrentPowerButton;
 
-
-
+    Button mHitsButton;
 
     Button mSaveButton;
 
@@ -199,7 +204,12 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
             public void onClick(View v){
                 //just for testing, replace these with calls to character methods
                 int weaponType = mSheetPlayerCharacter.getCurrentWeapon().getWeaponType();
-                boolean woc = true;
+                boolean woc = false;
+                if (mSheetPlayerCharacter.getCharClass() instanceof Warrior) {
+                    woc = ((Warrior) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                } else if (mSheetPlayerCharacter.getCharClass() instanceof Specialist) {
+                    woc = ((Specialist) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                }
                 onAttackClick(weaponType, woc);
             }
         });
@@ -259,13 +269,27 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
             }
         });
 
-        mSaveButton = (Button) rootView.findViewById(R.id.save_button);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSaveCharacterClick();
-            }
+        ((Button) rootView.findViewById(R.id.edc_button)).setText(Integer.toString(mSheetPlayerCharacter.getEDC()));
+        ((Button) rootView.findViewById(R.id.total_hits_button)).setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
+        mHitsButton = (Button) rootView.findViewById(R.id.current_hits_button);
+        mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
+        mHitsButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               onHitsClick();
+           }
         });
+
+        mSaveButton = (Button) rootView.findViewById(R.id.save_button);
+//      Commented out to disable in production.
+//        mSaveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onSaveCharacterClick();
+//            }
+//        });
+
+        // Magical and specialist section
         mMagicTitleView = (TextView) rootView.findViewById(R.id.magic_title_view);
         mTalentBonusTitleView = (TextView) rootView.findViewById(R.id.talent_bonus_title_view);
         mMagicStrengthTitleView = (TextView) rootView.findViewById(R.id.magic_strength_title_view);
@@ -328,7 +352,6 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else if (attackType == R.string.missile){
-            //TODO make missile mod
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
         else{
@@ -365,6 +388,14 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         dialog.show(fm, ROLL_RESULT);
     }
 
+    void onHitsClick() {
+        int curHits = mSheetPlayerCharacter.getCurHits();
+        HitsChangeFragment dialog = HitsChangeFragment.newInstance(curHits);
+        FragmentManager fm = getFragmentManager();
+        dialog.setHitsChangeListener(this);
+        dialog.show(fm, ROLL_RESULT);
+    }
+
     public void onSaveCharacterClick(){
         FragmentManager fm = getFragmentManager();
         SaveAndLoadDialog dialog = SaveAndLoadDialog.newInstance(mCurrentCharacterIndex);
@@ -376,8 +407,17 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         if (mSheetPlayerCharacter.getScore(score).getScore() != newValue) {
             mSheetPlayerCharacter.getScore(score).setScore(newValue);
             mSheetPlayerCharacter.validateScores();
+            refreshView();
         }
-        refreshView();
+    }
+
+    @Override
+    public void onHitsChange(int newValue) {
+        if (mSheetPlayerCharacter.getCurHits() != newValue) {
+            mSheetPlayerCharacter.setCurHits(newValue);
+            // Manually update since nothing else would change
+            mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getCurHits()));
+        }
     }
 
     private void refreshView() {
@@ -398,5 +438,11 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
         mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
         mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
         mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
+        if(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
+        }
+        else{
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMissileMod()));
+        }
     }
 }

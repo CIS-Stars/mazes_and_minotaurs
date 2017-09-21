@@ -1,4 +1,4 @@
-package com.example.cis.mazeminotaurs;
+package com.example.cis.mazeminotaurs.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
 /**
@@ -31,7 +32,7 @@ public class StatChangeFragment extends DialogFragment {
      * Create a new instance of StatChangeFragment, providing "score"
      * and "value" as arguments.
      */
-    static StatChangeFragment newInstance(String score, int value) {
+    public static StatChangeFragment newInstance(String score, int value) {
         StatChangeFragment f = new StatChangeFragment();
 
         // Supply num input as an argument.
@@ -83,8 +84,10 @@ public class StatChangeFragment extends DialogFragment {
         v.findViewById(R.id.attribute_confirm_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int newValue = Integer.valueOf(mNewValue.getText().toString());
-                getStatChangeListener().onStatChange(mScore, newValue);
+                if (!mNewValue.getText().toString().trim().equals("")) {
+                    int newValue = Integer.valueOf(mNewValue.getText().toString());
+                    getStatChangeListener().onStatChange(mScore, newValue);
+                }
                 dismiss();
             }
         });
