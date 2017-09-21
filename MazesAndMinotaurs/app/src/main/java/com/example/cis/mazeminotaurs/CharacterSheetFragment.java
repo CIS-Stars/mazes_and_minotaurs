@@ -439,5 +439,11 @@ public class CharacterSheetFragment extends Fragment
         mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
         mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
         mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
+        if(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
+        }
+        else{
+            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMissileMod()));
+        }
     }
 }
