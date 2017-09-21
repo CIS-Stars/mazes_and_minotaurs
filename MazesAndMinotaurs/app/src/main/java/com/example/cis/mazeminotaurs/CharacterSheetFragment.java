@@ -15,13 +15,16 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.example.cis.mazeminotaurs.fragments.HitsChangeFragment;
+import com.example.cis.mazeminotaurs.fragments.StatChangeFragment;
 import com.example.cis.mazeminotaurs.util.Util;
 
 /**
  * Created by Thorin Schmidt on 4/1/2017.
  */
 
-public class CharacterSheetFragment extends Fragment implements StatChangeFragment.OnStatChangeListener{
+public class CharacterSheetFragment extends Fragment
+        implements StatChangeFragment.OnStatChangeListener, HitsChangeFragment.onHitsChangeListener{
 
     public static final String ROLL_RESULT = "RollResult";
     public static final String TAG = "CharacterSheetFragment";
@@ -57,8 +60,7 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
     Button mTotalPowerButton;
     Button mCurrentPowerButton;
 
-
-
+    Button mHitsButton;
 
     Button mSaveButton;
 
@@ -261,7 +263,8 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
 
         ((Button) rootView.findViewById(R.id.edc_button)).setText(Integer.toString(mSheetPlayerCharacter.getEDC()));
         ((Button) rootView.findViewById(R.id.total_hits_button)).setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
-        ((Button) rootView.findViewById(R.id.current_hits_button)).setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
+        mHitsButton = (Button) rootView.findViewById(R.id.current_hits_button);
+        mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
 
         mSaveButton = (Button) rootView.findViewById(R.id.save_button);
 //      Commented out to disable in production.
@@ -389,6 +392,11 @@ public class CharacterSheetFragment extends Fragment implements StatChangeFragme
 
     @Override
     public void onHitsChange(int newValue) {
+        if (mSheetPlayerCharacter.getCurHits() != newValue) {
+            mSheetPlayerCharacter.setCurHits(newValue);
+            // Manually update since nothing else would change
+            mHitsButton.setText(mSheetPlayerCharacter.getCurHits());
+        }
     }
 
     private void refreshView() {
