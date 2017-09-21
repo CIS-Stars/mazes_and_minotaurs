@@ -573,6 +573,13 @@ public class PlayerCharacter{
     }
 
     public void setCurHits(int curHits) {
-        mCurHits = curHits;
+        if (getHitTotal() < curHits && curHits > 0) {
+            this.mCurHits = curHits;
+        } else if (curHits < 0){
+            this.mCurHits = 0;
+        } else {
+            this.mCurHits = getHitTotal();
+        }
+
     }
 }
