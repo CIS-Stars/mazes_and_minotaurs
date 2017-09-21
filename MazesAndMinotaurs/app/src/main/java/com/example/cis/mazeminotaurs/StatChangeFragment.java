@@ -83,8 +83,10 @@ public class StatChangeFragment extends DialogFragment {
         v.findViewById(R.id.attribute_confirm_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int newValue = Integer.valueOf(mNewValue.getText().toString());
-                getStatChangeListener().onStatChange(mScore, newValue);
+                if (!mNewValue.getText().toString().trim().equals("")) {
+                    int newValue = Integer.valueOf(mNewValue.getText().toString());
+                    getStatChangeListener().onStatChange(mScore, newValue);
+                }
                 dismiss();
             }
         });
