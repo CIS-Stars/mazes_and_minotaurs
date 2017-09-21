@@ -427,15 +427,6 @@ public class PlayerCharacter{
     }
 
     /**
-     * Prints the value of every score contained in the mScores attribute
-     */
-    protected void debugPrintScores() {
-        for (Score score : getScores().keySet()) {
-            System.out.println(score.toString() + ":" + String.valueOf(getScore(score).getScore()));
-        }
-    }
-
-    /**
      * Gets a specific score from the character
      * @param scoreStat     the key used to the score
      * @return              Returns the AttributeScore stored at the key
