@@ -383,7 +383,8 @@ public class CharacterSheetFragment extends Fragment
     }
 
     void onHitsClick() {
-        HitsChangeFragment dialog = HitsChangeFragment.newInstance(Integer.valueOf(mHitsButton.toString()));
+        int curHits = mSheetPlayerCharacter.getCurHits();
+        HitsChangeFragment dialog = HitsChangeFragment.newInstance(curHits);
         FragmentManager fm = getFragmentManager();
         dialog.setHitsChangeListener(this);
         dialog.show(fm, ROLL_RESULT);
