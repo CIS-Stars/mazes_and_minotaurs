@@ -124,12 +124,11 @@ public class Nymph extends Magician implements Level{
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         mScoreLevelChoice = scoreLevelChoice;
     }
-
-    public int getDefensiveFightingBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
+    public int getMysticalStrength(){
+        return 12 + getSpecialTalent();
     }
 
-    public int getMartialDisciplineBonus() {
-        return getCharacter().getScore(Score.WILL).getModifier();
+    public int getPowerPoints(){
+        return getCharacter().getScore(Score.GRACE).getModifier();
     }
 }
