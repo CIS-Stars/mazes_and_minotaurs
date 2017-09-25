@@ -54,6 +54,7 @@
     <!-- Dialog Values -->
 
     <!-- Character Create Dialog -->
+    <string name="class_word">Class: </string>
     <string name="weapon_of_choice">Weapon of Choice: </string>
     <string name="starting_weapon">Starting Weapon: </string>
 
