@@ -106,9 +106,12 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
                     case R.id.barbarian_radio:
                         mClassInformation = getResources().getString(R.string.barbarian_class);
                         mClass = "Barbarian";
+                        /* Testing for github issues #9 and #11
                         mConfirmPop.setMessage(mClassInformation);
                         AlertDialog mConfirmBarbarian = mConfirmPop.create();
                         mConfirmBarbarian.show();
+                        */
+                        showDetailDialog(R.string.barbarian, R.string.barbarian_class);
                         break;
                     case R.id.centaur_radio:
                         mClassInformation = getResources().getString(R.string.centaur_class);

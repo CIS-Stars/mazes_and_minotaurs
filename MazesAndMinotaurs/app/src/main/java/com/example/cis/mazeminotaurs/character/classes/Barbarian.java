@@ -22,6 +22,10 @@ import java.util.HashMap;
 public class Barbarian extends Warrior implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Barbarian() {
+        this(null, null, null);
+    }
+
     public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
         setPossibleStartWeapons(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(R.string.bow),
