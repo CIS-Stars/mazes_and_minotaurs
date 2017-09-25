@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView android:id="@+id/name_view"
+    <TextView android:id="@+id/weapon_name_view"
               android:layout_height="?attr/dropdownListPreferredItemHeight"
               android:layout_width="match_parent"
               android:layout_row="0"
