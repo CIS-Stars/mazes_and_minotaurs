@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/class_description"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_columnSpan="2"
@@ -35,24 +35,30 @@
         android:id="@+id/choice_weapon_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="2"
         android:text="@string/weapon_of_choice"/>
 
     <Spinner
         android:id="@+id/choice_weapon_spinner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnSpan="2"/>
+        android:layout_column="1"
+        android:layout_row="2"/>
 
     <TextView
         android:id="@+id/start_weapon_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_row="3"
         android:text="@string/starting_weapon"/>
 
     <Spinner
         android:id="@+id/start_weapon_spinner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnSpan="2"/>
+        android:layout_column="1"
+        android:layout_row="3"/>
 
 </GridLayout>

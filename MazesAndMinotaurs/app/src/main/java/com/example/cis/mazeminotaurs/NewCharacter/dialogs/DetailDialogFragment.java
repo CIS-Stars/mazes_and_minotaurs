@@ -68,8 +68,7 @@ public class DetailDialogFragment extends DialogFragment {
         } else {
             Spinner choiceSpinner = (Spinner)view.findViewById(R.id.choice_weapon_spinner);
             ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
-                    R.layout.spinner_weapon_item,
-                    R.id.weapon_name_view);
+                    R.layout.support_simple_spinner_dropdown_item);
             choiceSpinner.setAdapter(spinItems);
             choiceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -88,8 +87,7 @@ public class DetailDialogFragment extends DialogFragment {
 
         final Spinner startSpinner = (Spinner) view.findViewById(R.id.start_weapon_spinner);
         final ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
-                R.layout.spinner_weapon_item,
-                R.id.weapon_name_view);
+                R.layout.support_simple_spinner_dropdown_item);
         startSpinner.setAdapter(spinItems);
         spinItems.addAll(getWeaponNames(getStartWeapons()));
 
