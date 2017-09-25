@@ -1,2 +1,50 @@
-Sep 25, 2017 10:56:33 AM com.pytenlabs.instapk.helpers.LogHelper init
-INFO: Linux, 4.9.0-3-amd64, amd64, Android Studio AI-162.2228.14
+Sep 20, 2017 12:46:52 PM com.pytenlabs.instapk.helpers.LogHelper init
+INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14
+Sep 20, 2017 12:52:53 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionCode : 1
+Sep 20, 2017 12:52:53 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionName : 1.0
+Sep 20, 2017 12:52:53 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: packageName : com.example.cis.mazeminotaurs
+Sep 20, 2017 12:52:53 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: release_note : now with editable attributes!  (long press)
+Sep 20, 2017 12:53:14 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES CODE: 201
+Sep 20, 2017 12:53:14 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES: {"id":3412,"release_note":"now with editable attributes!  (long press)","created_time":"2017-09-20T17:52:57.062519Z"}
+Sep 20, 2017 1:04:30 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionCode : 1
+Sep 20, 2017 1:04:30 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionName : 1.0
+Sep 20, 2017 1:04:30 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: packageName : com.example.cis.mazeminotaurs
+Sep 20, 2017 1:04:30 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: release_note : NOW with editable attributes!  (long press) hopefully
+Sep 20, 2017 1:04:50 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES CODE: 201
+Sep 20, 2017 1:04:50 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES: {"id":3413,"release_note":"NOW with editable attributes!  (long press) hopefully","created_time":"2017-09-20T18:04:33.138318Z"}
+Sep 21, 2017 1:22:56 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionCode : 1
+Sep 21, 2017 1:22:56 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionName : 1.0
+Sep 21, 2017 1:22:56 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: packageName : com.example.cis.mazeminotaurs
+Sep 21, 2017 1:22:56 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: release_note : NOW with editable hit boxes!  (long press) hopefully
+Sep 21, 2017 1:23:15 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES CODE: 201
+Sep 21, 2017 1:23:15 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES: {"id":3419,"release_note":"NOW with editable hit boxes!  (long press) hopefully","created_time":"2017-09-21T18:22:59.092094Z"}
+Sep 22, 2017 2:02:07 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionCode : 1
+Sep 22, 2017 2:02:07 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: versionName : 1.0
+Sep 22, 2017 2:02:07 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: packageName : com.example.cis.mazeminotaurs
+Sep 22, 2017 2:02:07 PM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
+INFO: release_note : NOW with editable hit boxes!  (long press) hopefully
+Sep 22, 2017 2:02:26 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES CODE: 201
+Sep 22, 2017 2:02:26 PM com.pytenlabs.instapk.helpers.ApiHelper$1 run
+INFO: RES: {"id":3427,"release_note":"NOW with editable hit boxes!  (long press) hopefully","created_time":"2017-09-22T19:02:08.417051Z"}
