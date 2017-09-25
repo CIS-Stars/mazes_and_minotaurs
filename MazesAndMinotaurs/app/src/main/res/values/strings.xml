@@ -52,6 +52,13 @@
     <string name="power_title">Power</string>
 
     <!-- Dialog Values -->
+
+    <!-- Character Create Dialog -->
+    <string name="weapon_of_choice">Weapon of Choice: </string>
+    <string name="starting_weapon">Starting Weapon: </string>
+
+
+    <!-- Attribute Edit Dialog -->
     <string name="confirm_button">Confirm</string>
     <string name="old_attribute_value" formatted="false">%s Old Value\n%2d</string>
     <string name="new_attribute_value">New Value</string>
