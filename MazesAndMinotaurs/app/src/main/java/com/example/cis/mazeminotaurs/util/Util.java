@@ -2,7 +2,10 @@ package com.example.cis.mazeminotaurs.util;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
+import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -40,5 +43,31 @@ public class Util {
             sum += roll(sides);
         }
         return sum;
+    }
+
+
+    /**
+     * Returns the ammo used for a specified missile weapon.
+     */
+    public Weapon getAmmo(Weapon rangedWeapon){
+        Weapon[] possibleWeapons = new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(R.string.sling)};
+        boolean valid = false;
+
+        for (Weapon weapon: possibleWeapons) {
+            if (weapon==rangedWeapon) {
+                valid = true;
+                break;
+            }
+        }
+
+        if (!valid) {
+            return null;
+        }
+        if (rangedWeapon == possibleWeapons[0]) {
+            return EquipmentDB.getInstance().getWeapon(R.string.arrows);
+        } else {
+            return EquipmentDB.getInstance().getWeapon(R.string.slingshot);
+        }
     }
 }
