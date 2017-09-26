@@ -48,8 +48,7 @@ public class Centaur extends Warrior implements Level{
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        setWeaponOfChoice(weaponOfChoice);
-        startGear.add(getWeaponOfChoice());
+        setWeaponOfChoice(weaponOfChoice);;
 
         Weapon finalStartingWeapon;
         if (Arrays.asList(getPossibleStartWeapons()).contains(startingWeapon)) {
