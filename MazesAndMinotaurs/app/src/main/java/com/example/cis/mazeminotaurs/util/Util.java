@@ -1,13 +1,9 @@
 package com.example.cis.mazeminotaurs.util;
 
-import com.example.cis.mazeminotaurs.AttributeScore;
-import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
-import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
