@@ -45,20 +45,8 @@ public class Hunter extends Specialist implements Level{
 
         setWeaponOfChoice(weaponOfChoice);
         startGear.add(getWeaponOfChoice());
-
-        switch (getWeaponOfChoice().getResId()) {
-            case R.string.bow:
-                startGear.add(equipmentDB.getWeapon(R.string.bow));
-                startGear.add(equipmentDB.getWeapon(R.string.arrows));
-                break;
-            case R.string.javelin:
-                startGear.add(equipmentDB.getWeapon(R.string.javelin));
-                break;
-            case R.string.sling:
-                startGear.add(equipmentDB.getWeapon(R.string.sling));
-                startGear.add(equipmentDB.getWeapon(R.string.slingshot));
-                break;
-        }// Equipment done
+        Equipment ammo = Util.getAmmo(getWeaponOfChoice());
+        startGear.add(ammo);// Equipment done
 
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
         startGear.add(equipmentDB.getWeapon(R.string.spear));

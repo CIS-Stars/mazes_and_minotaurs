@@ -58,19 +58,10 @@ public class Centaur extends Warrior implements Level{
             finalStartingWeapon = getPossibleStartWeapons()[0];
         }
 
-        switch (finalStartingWeapon.getResId()) {
-            case R.string.bow:
-                startGear.add(equipmentDB.getWeapon(R.string.bow));
-                startGear.add(equipmentDB.getWeapon(R.string.arrows));
-                break;
-            case R.string.javelin:
-                startGear.add(equipmentDB.getWeapon(R.string.javelin));
-                break;
-            case R.string.sling:
-                startGear.add(equipmentDB.getWeapon(R.string.sling));
-                startGear.add(equipmentDB.getWeapon(R.string.slingshot));
-                break;
-        }// Equipment done
+        startGear.add(finalStartingWeapon);
+        Equipment ammo = Util.getAmmo(finalStartingWeapon);
+        if (ammo != null) {startGear.add(ammo);}
+        // Equipment done
 
         int rolledGold = 0;
 

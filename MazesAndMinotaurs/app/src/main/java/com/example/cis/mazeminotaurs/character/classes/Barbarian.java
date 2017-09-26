@@ -52,23 +52,9 @@ public class Barbarian extends Warrior implements Level{
         startGear.add(getWeaponOfChoice());
 
         if (Arrays.asList(getPossibleStartWeapons()).contains(startWeapon)){
-            switch (startWeapon.getResId()) {
-                case R.string.bow:
-                    startGear.add(equipDB.getWeapon(R.string.bow));
-                    startGear.add(equipDB.getWeapon(R.string.arrows));
-                    break;
-                case R.string.javelin:
-                    startGear.add(equipDB.getWeapon(R.string.javelin));
-                break;
-                case R.string.sling:
-                    startGear.add(equipDB.getWeapon(R.string.sling));
-                    startGear.add(equipDB.getWeapon(R.string.slingshot));
-                    break;
-                default:
-                    //PANIC
-                    System.out.println("PANIC in Barbarian Ranged Weapon Case");
-                    break;
-            }
+            startGear.add(startWeapon);
+            Equipment ammo = Util.getAmmo(startWeapon);
+            if (ammo != null) {startGear.add(ammo);}
         } else {
             startGear.add(equipDB.getWeapon(R.string.bow));
             startGear.add(equipDB.getWeapon(R.string.arrows));
