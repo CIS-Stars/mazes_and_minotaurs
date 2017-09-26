@@ -3,6 +3,7 @@ package com.example.cis.mazeminotaurs.NewCharacter.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -13,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
@@ -21,6 +24,7 @@ import com.example.cis.mazeminotaurs.character.classes.Classes;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
+import com.example.cis.mazeminotaurs.util.Util;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -174,6 +178,34 @@ public class DetailDialogFragment extends DialogFragment {
         Weapon[] choiceWeps = getChoiceWeapons();
         if (choiceWeps!= null && position > -1 && position < choiceWeps.length) {
             mSelectedChoiceWep = choiceWeps[position].getResId();
+        }
+    }
+
+    private DialogInterface.OnClickListener getOnConfirmListener() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                try {
+                    BaseClass instance = (BaseClass) mSelectedClass.getJavaClass().newInstance();
+
+                    // Safely removes the default weapon from default constructor
+                    instance.getStartGear().remove(instance.getPossibleStartWeapons()[0]);
+                    Equipment oldAmmo = Util.getAmmo(instance.getPossibleStartWeapons()[0]);
+                    if (oldAmmo!= null) {
+                        instance.getStartGear().remove(oldAmmo);
+                    }
+
+                    instance.getStartGear().add(EquipmentDB.getInstance().getWeapon(mSelectedWeapon));
+                    Equipment newAmmo = Util.getAmmo(EquipmentDB.getInstance().getWeapon(mSelectedWeapon));
+                    if (newAmmo != null) {
+                        instance.getStartGear().add(newAmmo);
+                    }
+                } catch (java.lang.InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
