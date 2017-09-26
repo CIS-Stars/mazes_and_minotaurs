@@ -45,7 +45,7 @@ public class Util {
     /**
      * Returns the ammo used for a specified missile weapon.
      */
-    public Weapon getAmmo(Weapon rangedWeapon){
+    public static Weapon getAmmo(Weapon rangedWeapon){
         Weapon[] possibleWeapons = new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.bow),
                 EquipmentDB.getInstance().getWeapon(R.string.sling)};
         boolean valid = false;
