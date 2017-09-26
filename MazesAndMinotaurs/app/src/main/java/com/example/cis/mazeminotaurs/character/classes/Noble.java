@@ -26,7 +26,7 @@ public class Noble extends Warrior implements Level {
         this(null,null,null,null);
     }
 
-    public Noble(PlayerCharacter playerCharacter, Score martialHeritage, Score mentalHeritage, Weapon weaponOfChoice) {
+    public Noble(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Score martialHeritage, Score mentalHeritage) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(R.string.bow),
