@@ -171,11 +171,17 @@ public class DetailDialogFragment extends DialogFragment {
     }
 
     private void onChoiceWeaponChanged(int position) {
-        mSelectedChoiceWep = getChoiceWeapons()[position].getResId();
+        Weapon[] choiceWeps = getChoiceWeapons();
+        if (choiceWeps!= null && position > -1 && position < choiceWeps.length) {
+            mSelectedChoiceWep = choiceWeps[position].getResId();
+        }
     }
 
     private void onStartWeaponChanged(int position) {
-        mSelectedWeapon = getStartWeapons()[position].getResId();
+        Weapon[] startWeps = getStartWeapons();
+        if (startWeps != null && position > -1 && position < startWeps.length) {
+            mSelectedWeapon = getStartWeapons()[position].getResId();
+        }
     }
 
 }
