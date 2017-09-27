@@ -33,6 +33,8 @@ import java.lang.reflect.InvocationTargetException;
  */
 
 public class DetailDialogFragment extends DialogFragment {
+    private static final String EMPTY_MSG = "Can't select anything.";
+
     public interface DetailDialogListener {
         public void onDialogPositiveClick(BaseClass instance);
     }
@@ -85,14 +87,30 @@ public class DetailDialogFragment extends DialogFragment {
                 }
             });
 
-            spinItems.addAll(getWeaponNames(getChoiceWeapons()));
+            Weapon[] choiceWeps = getChoiceWeapons();
+            if (choiceWeps.length > 0) {
+                spinItems.addAll(getWeaponNames(choiceWeps));
+            } else {
+                spinItems.add(EMPTY_MSG);
+                choiceSpinner.setEnabled(false);
+            }
         }
 
         final Spinner startSpinner = (Spinner) view.findViewById(R.id.start_weapon_spinner);
-        final ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
+        ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
                 R.layout.support_simple_spinner_dropdown_item);
         startSpinner.setAdapter(spinItems);
-        spinItems.addAll(getWeaponNames(getStartWeapons()));
+
+        Weapon[] startWeps = getStartWeapons();
+        if (startWeps.length > 0) {
+            for (Weapon weapon: startWeps) {
+                System.out.println(String.format("Weapon name: %s", getContext().getString(weapon.getResId())));
+            }
+            spinItems.addAll(getWeaponNames(startWeps));
+        } else {
+            spinItems.add(EMPTY_MSG);
+            startSpinner.setEnabled(false);
+        }
 
         startSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -167,8 +185,9 @@ public class DetailDialogFragment extends DialogFragment {
         for (int i = 0; i < result.length; i++) {
             if (weapons[i] != null) {
                 result[i] = getContext().getString(weapons[i].getResId());
-            } else {
-                result[i] = null;
+            }
+            else {
+                result[i] = "";
             }
         }
         return result;
@@ -197,16 +216,20 @@ public class DetailDialogFragment extends DialogFragment {
                 if (instance != null) {
                     // Safely swaps the default weapon from default constructor
                     //TODO: Add exception for null values aka Hunter.
-                    instance.getStartGear().remove(instance.getPossibleStartWeapons()[0]);
-                    Equipment oldAmmo = Util.getAmmo(instance.getPossibleStartWeapons()[0]);
-                    if (oldAmmo!= null) {
-                        instance.getStartGear().remove(oldAmmo);
-                    }
+                    try {
+                        instance.getStartGear().remove(instance.getPossibleStartWeapons()[0]);
+                        Equipment oldAmmo = Util.getAmmo(instance.getPossibleStartWeapons()[0]);
+                        if (oldAmmo != null) {
+                            instance.getStartGear().remove(oldAmmo);
+                        }
 
-                    instance.getStartGear().add(EquipmentDB.getInstance().getWeapon(mSelectedWeapon));
-                    Equipment newAmmo = Util.getAmmo(EquipmentDB.getInstance().getWeapon(mSelectedWeapon));
-                    if (newAmmo != null) {
-                        instance.getStartGear().add(newAmmo);
+                        instance.getStartGear().add(EquipmentDB.getInstance().getWeapon(mSelectedWeapon));
+                        Equipment newAmmo = Util.getAmmo(EquipmentDB.getInstance().getWeapon(mSelectedWeapon));
+                        if (newAmmo != null) {
+                            instance.getStartGear().add(newAmmo);
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        // Pass silently, this should mean that the class has no starting weapon choices.
                     }
 
                     if (!(instance instanceof Magician)) {
