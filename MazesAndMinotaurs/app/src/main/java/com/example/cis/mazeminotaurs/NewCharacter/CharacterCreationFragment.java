@@ -118,7 +118,7 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
                     case R.id.spear_radio:
                         mClassInformation = getResources().getString(R.string.spearman_class);
                         mClass = "Spearman";
-                        showDetailDialog(R.string.spearman, R.string.amazon_class);
+                        showDetailDialog(R.string.spearman, R.string.spearman_class);
                         break;
                 }
             }
@@ -131,37 +131,27 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
                     case R.id.elementalist_radio:
                         mClassInformation = getResources().getString(R.string.elementalist_class);
                         mClass = "Elementalist";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmElementalist = mConfirmPop.create();
-                        mConfirmElementalist.show();
+                        showDetailDialog(R.string.elementalist, R.string.elementalist_class);
                         break;
                     case R.id.lyrist_radio:
                         mClassInformation = getResources().getString(R.string.lyrist_class);
                         mClass = "Lyrist";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmLyrists = mConfirmPop.create();
-                        mConfirmLyrists.show();
+                        showDetailDialog(R.string.lyrist, R.string.lyrist_class);
                         break;
                     case R.id.nymph_radio:
                         mClassInformation = getResources().getString(R.string.nymph_class);
                         mClass = "Nymph";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmNymph = mConfirmPop.create();
-                        mConfirmNymph.show();
+                        showDetailDialog(R.string.nymph, R.string.nymph_class);
                         break;
                     case R.id.priest_radio:
                         mClassInformation = getResources().getString(R.string.priest_class);
                         mClass = "Priest";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmPriest = mConfirmPop.create();
-                        mConfirmPriest.show();
+                        showDetailDialog(R.string.priest, R.string.priest_class);
                         break;
                     case R.id.sorcerer_radio:
                         mClassInformation = getResources().getString(R.string.sorcerer_class);
                         mClass = "Sorcerer";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmSorcerer = mConfirmPop.create();
-                        mConfirmSorcerer.show();
+                        showDetailDialog(R.string.sorceror, R.string.sorcerer_class);
                         break;
                 }
             }
@@ -174,20 +164,12 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
                     case R.id.hunter_radio:
                         mClassInformation = getResources().getString(R.string.hunter_class);
                         mClass = "Hunter";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmHunter = mConfirmPop.create();
-                        mConfirmHunter.show();
+                        showDetailDialog(R.string.hunter, R.string.hunter_class);
                         break;
                     case R.id.thief_radio:
 
                         mClassInformation = getResources().getString(R.string.thief_class);
                         mClass = "Thief";
-                        /* Testing of the dialog fragment
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmThief = mConfirmPop.create();
-                        mConfirmThief.show();
-                        */
-
                         showDetailDialog(R.string.thief, R.string.thief_class);
                         break;
                 }
