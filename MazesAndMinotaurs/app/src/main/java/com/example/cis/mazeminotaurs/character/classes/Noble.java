@@ -36,7 +36,7 @@ public class Noble extends Warrior implements Level {
         });
 
         Score martialScore;
-        if (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL)) {
+        if (martialHeritage != null && (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL))) {
             martialScore = martialHeritage;
         } else {
             martialScore = Score.MIGHT;
@@ -70,9 +70,10 @@ public class Noble extends Warrior implements Level {
 
         // Noble - Heroic Heritage
         Score mentalScore;
-        if (mentalHeritage.equals(Score.WITS) ||
+        if (mentalHeritage != null &&
+                (mentalHeritage.equals(Score.WITS) ||
                 mentalHeritage.equals(Score.WILL) ||
-                mentalHeritage.equals(Score.GRACE)) {
+                mentalHeritage.equals(Score.GRACE))) {
             mentalScore = mentalHeritage;
         } else {
             mentalScore = Score.WITS;
