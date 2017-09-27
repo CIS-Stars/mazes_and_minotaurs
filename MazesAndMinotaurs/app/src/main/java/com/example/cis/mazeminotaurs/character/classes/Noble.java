@@ -41,6 +41,16 @@ public class Noble extends Warrior implements Level {
         } else {
             martialScore = Score.MIGHT;
         }
+        // Noble - Heroic Heritage
+        Score mentalScore;
+        if (mentalHeritage != null &&
+                (mentalHeritage.equals(Score.WITS) ||
+                        mentalHeritage.equals(Score.WILL) ||
+                        mentalHeritage.equals(Score.GRACE))) {
+            mentalScore = mentalHeritage;
+        } else {
+            mentalScore = Score.WITS;
+        }
 
         Score[] primAttrs = {martialScore, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
@@ -68,19 +78,15 @@ public class Noble extends Warrior implements Level {
         setStartMoney(rolledGold);
         setStartGear(startGear);
 
-        // Noble - Heroic Heritage
-        Score mentalScore;
-        if (mentalHeritage != null &&
-                (mentalHeritage.equals(Score.WITS) ||
-                mentalHeritage.equals(Score.WILL) ||
-                mentalHeritage.equals(Score.GRACE))) {
-            mentalScore = mentalHeritage;
-        } else {
-            mentalScore = Score.WITS;
+        // TODO find a way to get around this hack-y method.
+        /* Explanation
+            If the Noble is chosen for the new character it will crash due to a lack of
+            Character. However, we still need access to the code of the constructor.
+         */
+        if (getCharacter() != null) {
+            getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
+            getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
         }
-
-        getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
-        getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
     }
 
     @Override
@@ -155,6 +161,10 @@ public class Noble extends Warrior implements Level {
             lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
             setLevel(getLevel() - 1);
         }
+    }
+
+    public void doHeritage(Score physical, Score mental) {
+
     }
 
     public int getBattleFortuneBonus() {

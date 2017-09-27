@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.NewCharacter.dialogs.DetailDialogFragment;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.character.classes.Amazon;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 
 /**
@@ -97,40 +98,27 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
                     case R.id.amazon_radio:
                         mClassInformation = getResources().getString(R.string.amazon_class);
                         mClass = "Amazon";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmAmazon = mConfirmPop.create();
-                        mConfirmAmazon.show();
+                        showDetailDialog(R.string.amazon, R.string.amazon_class);
                         break;
                     case R.id.barbarian_radio:
                         mClassInformation = getResources().getString(R.string.barbarian_class);
                         mClass = "Barbarian";
-                        /* Testing for github issues #9 and #11
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmBarbarian = mConfirmPop.create();
-                        mConfirmBarbarian.show();
-                        */
                         showDetailDialog(R.string.barbarian, R.string.barbarian_class);
                         break;
                     case R.id.centaur_radio:
                         mClassInformation = getResources().getString(R.string.centaur_class);
                         mClass = "Centaur";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmCentaur = mConfirmPop.create();
-                        mConfirmCentaur.show();
+                        showDetailDialog(R.string.centaur, R.string.centaur_class);
                         break;
                     case R.id.noble_radio:
                         mClassInformation = getResources().getString(R.string.noble_class);
                         mClass = "Noble";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmNoble = mConfirmPop.create();
-                        mConfirmNoble.show();
+                        showDetailDialog(R.string.noble, R.string.noble_class);
                         break;
                     case R.id.spear_radio:
                         mClassInformation = getResources().getString(R.string.spearman_class);
                         mClass = "Spearman";
-                        mConfirmPop.setMessage(mClassInformation);
-                        AlertDialog mConfirmSpearmen = mConfirmPop.create();
-                        mConfirmSpearmen.show();
+                        showDetailDialog(R.string.spearman, R.string.amazon_class);
                         break;
                 }
             }

@@ -26,7 +26,7 @@ import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.util.Util;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 /**
  * Created by jsmith on 9/15/17.
@@ -41,6 +41,8 @@ public class DetailDialogFragment extends DialogFragment {
     DetailDialogListener mListener;
 
     Classes mSelectedClass;
+    Weapon[] mChoiceWeps;
+    Weapon[] mStartWeps;
     // Ints cannot have a null value so this is a replacement for it.
     int mSelectedWeapon = -43762;
     int mSelectedChoiceWep = -43762;
@@ -67,6 +69,9 @@ public class DetailDialogFragment extends DialogFragment {
             }
         }
         mSelectedClass = selectedClass;
+        mChoiceWeps = getChoiceWeapons();
+        mStartWeps = getStartWeapons();
+
         // Populate choice weapons list.
         if (mSelectedClass.getJavaClass().getSuperclass() == Magician.class) {
             view.findViewById(R.id.choice_weapon_spinner).setEnabled(false);
@@ -86,10 +91,9 @@ public class DetailDialogFragment extends DialogFragment {
 
                 }
             });
-
-            Weapon[] choiceWeps = getChoiceWeapons();
-            if (choiceWeps.length > 0) {
-                spinItems.addAll(getWeaponNames(choiceWeps));
+            
+            if (mChoiceWeps.length > 0) {
+                spinItems.addAll(getWeaponNames(mChoiceWeps));
             } else {
                 spinItems.add(EMPTY_MSG);
                 choiceSpinner.setEnabled(false);
@@ -100,18 +104,6 @@ public class DetailDialogFragment extends DialogFragment {
         ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
                 R.layout.support_simple_spinner_dropdown_item);
         startSpinner.setAdapter(spinItems);
-
-        Weapon[] startWeps = getStartWeapons();
-        if (startWeps.length > 0) {
-            for (Weapon weapon: startWeps) {
-                System.out.println(String.format("Weapon name: %s", getContext().getString(weapon.getResId())));
-            }
-            spinItems.addAll(getWeaponNames(startWeps));
-        } else {
-            spinItems.add(EMPTY_MSG);
-            startSpinner.setEnabled(false);
-        }
-
         startSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -123,6 +115,14 @@ public class DetailDialogFragment extends DialogFragment {
 
             }
         });
+        
+        System.out.println(Arrays.toString(mStartWeps));
+        if (mStartWeps.length > 0) {
+            spinItems.addAll(getWeaponNames(mStartWeps));
+        } else {
+            spinItems.add(EMPTY_MSG);
+            startSpinner.setEnabled(false);
+        }
 
         Dialog dialog = new AlertDialog.Builder(getActivity())
                 .setPositiveButton(R.string.confirm_button, getOnConfirmListener())
@@ -194,9 +194,8 @@ public class DetailDialogFragment extends DialogFragment {
     }
 
     private void onChoiceWeaponChanged(int position) {
-        Weapon[] choiceWeps = getChoiceWeapons();
-        if (choiceWeps!= null && position > -1 && position < choiceWeps.length) {
-            mSelectedChoiceWep = choiceWeps[position].getResId();
+        if (mChoiceWeps!= null && position > -1 && position < mChoiceWeps.length) {
+            mSelectedChoiceWep = mChoiceWeps[position].getResId();
         }
     }
 
@@ -249,9 +248,8 @@ public class DetailDialogFragment extends DialogFragment {
     }
 
     private void onStartWeaponChanged(int position) {
-        Weapon[] startWeps = getStartWeapons();
-        if (startWeps != null && position > -1 && position < startWeps.length) {
-            mSelectedWeapon = getStartWeapons()[position].getResId();
+        if (mStartWeps != null && position > -1 && position < mStartWeps.length) {
+            mSelectedWeapon = mStartWeps[position].getResId();
         }
     }
 
