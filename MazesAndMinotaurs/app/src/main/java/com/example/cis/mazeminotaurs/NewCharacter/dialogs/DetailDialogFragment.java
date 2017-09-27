@@ -240,6 +240,8 @@ public class DetailDialogFragment extends DialogFragment {
                         }
                     }
                     instance.setCharacter(new PlayerCharacter());
+                    instance.getCharacter().setCharClass(instance);
+                    instance.getCharacter().initializeClass();
                     mListener.onDialogPositiveClick(instance);
                 }
             }
