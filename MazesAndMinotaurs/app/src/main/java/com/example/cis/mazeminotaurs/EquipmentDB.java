@@ -48,6 +48,7 @@ public class EquipmentDB {
         weapons.add(new Weapon(R.string.barb_sword, 2, 1, 60, "Large, Ugly, Heavy Sword!", 6, 1, 0, R.string.melee));
         weapons.add(new Weapon(R.string.barb_mace, 2, 1, 30, "Large, Ugly Mace!", 6, 1, 0, R.string.melee));
         weapons.add(new Weapon(R.string.dagger, 0, 1, 15, "Small Sinister dagger!", 3, 1, 0, R.string.melee));
+        weapons.add(new Weapon(R.string.throw_knife, 0, 1, 15, "A knife made for throwing!", 3, 1, 0, R.string.missile));
         weapons.add(new Weapon(R.string.axe, 1, 1, 30, "A Nasty, Wicked Axe!", 6, 1, 0, R.string.melee));
         weapons.add(new Weapon(R.string.sword, 1, 1, 60, "A Dangerous, Deadly Blade!", 6, 1, 0, R.string.melee));
         weapons.add(new Weapon(R.string.spear, 2, 1, 30, "Wicked, Deadly Spear!", 6, 1, 0, R.string.melee));
