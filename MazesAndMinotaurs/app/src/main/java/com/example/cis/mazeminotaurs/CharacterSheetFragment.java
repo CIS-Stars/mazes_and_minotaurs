@@ -76,6 +76,11 @@ public class CharacterSheetFragment extends Fragment
         super.onCreateView(li, vg, b);
         View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
 
+        if (getArguments().get("charIndex") != null) {
+            mCurrentCharacterIndex = getArguments().getInt("charIndex");
+        }
+
+        Log.wtf(TAG, Integer.toString(mCurrentCharacterIndex));
 
         mSheetPlayerCharacter = mPortfolio.getPlayerCharacter(mCurrentCharacterIndex);
         mCharacterLevelView = (TextView) rootView.findViewById(R.id.character_level_view);
