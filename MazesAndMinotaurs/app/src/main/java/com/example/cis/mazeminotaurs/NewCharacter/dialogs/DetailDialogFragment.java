@@ -108,6 +108,7 @@ public class DetailDialogFragment extends DialogFragment {
         });
 
         Dialog dialog = new AlertDialog.Builder(getActivity())
+                .setPositiveButton(R.string.confirm_button, getOnConfirmListener())
                 .setTitle("Character Details")
                 .setView(view)
                 .create();
@@ -185,10 +186,18 @@ public class DetailDialogFragment extends DialogFragment {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                BaseClass instance = null;
                 try {
-                    BaseClass instance = (BaseClass) mSelectedClass.getJavaClass().newInstance();
+                    instance = (BaseClass) mSelectedClass.getJavaClass().newInstance();
+                } catch (java.lang.InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
-                    // Safely removes the default weapon from default constructor
+                if (instance != null) {
+                    // Safely swaps the default weapon from default constructor
+                    //TODO: Add exception for null values aka Hunter.
                     instance.getStartGear().remove(instance.getPossibleStartWeapons()[0]);
                     Equipment oldAmmo = Util.getAmmo(instance.getPossibleStartWeapons()[0]);
                     if (oldAmmo!= null) {
@@ -200,13 +209,17 @@ public class DetailDialogFragment extends DialogFragment {
                     if (newAmmo != null) {
                         instance.getStartGear().add(newAmmo);
                     }
-                } catch (java.lang.InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+
+                    if (!(instance instanceof Magician)) {
+                        if (instance instanceof Warrior) {
+                            ((Warrior)instance).setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(mSelectedChoiceWep));
+                        } else {
+                            ((Specialist)instance).setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(mSelectedChoiceWep));
+                        }
+                    }
                 }
             }
-        }
+        };
     }
 
     private void onStartWeaponChanged(int position) {
