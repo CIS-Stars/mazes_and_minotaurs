@@ -217,6 +217,7 @@ public class DetailDialogFragment extends DialogFragment {
                             ((Specialist)instance).setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(mSelectedChoiceWep));
                         }
                     }
+                    instance.setCharacter(new PlayerCharacter());
                 }
             }
         };
