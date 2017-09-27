@@ -30,7 +30,6 @@ public class Amazon extends Warrior implements Level {
 
     public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
         setPossibleStartWeapons(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.mace),
                 EquipmentDB.getInstance().getWeapon(R.string.axe),
                 EquipmentDB.getInstance().getWeapon(R.string.spear),
                 EquipmentDB.getInstance().getWeapon(R.string.sword),
