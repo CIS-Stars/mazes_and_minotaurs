@@ -34,7 +34,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class DetailDialogFragment extends DialogFragment {
     public interface DetailDialogListener {
-        public void onDialogPositiveClick(PlayerCharacter playerCharacter);
+        public void onDialogPositiveClick(BaseClass instance);
     }
     DetailDialogListener mListener;
 
@@ -217,6 +217,7 @@ public class DetailDialogFragment extends DialogFragment {
                         }
                     }
                     instance.setCharacter(new PlayerCharacter());
+                    mListener.onDialogPositiveClick(instance);
                 }
             }
         };
@@ -229,4 +230,7 @@ public class DetailDialogFragment extends DialogFragment {
         }
     }
 
+    public void setListener(DetailDialogListener listener) {
+        mListener = listener;
+    }
 }

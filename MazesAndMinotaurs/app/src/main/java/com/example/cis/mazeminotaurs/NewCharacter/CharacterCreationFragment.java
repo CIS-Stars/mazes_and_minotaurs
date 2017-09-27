@@ -1,12 +1,9 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.NewCharacter.dialogs.DetailDialogFragment;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 
 /**
  * Created by Chaos on 4/4/2017.
@@ -237,23 +235,20 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         bundle.putInt("class", classRes);
         bundle.putInt("classInfo", descriptRes);
         dialog.setArguments(bundle);
+        dialog.setListener(this);
 
         dialog.show(getChildFragmentManager(), "DetailDialogFragment");
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialogFragment) {
+    public void onDialogPositiveClick(BaseClass instance) {
         CreateCharacter addedType = new CreateCharacter();
         Bundle classType = new Bundle();
         classType.putString("newClass", mClass);
+        classType.putSerializable("classInstance", instance);
         addedType.setArguments(classType);
 
         getFragmentManager().beginTransaction().add(R.id.content_frame, addedType)
                 .commit();
-    }
-
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialogFragment) {
-
     }
 }

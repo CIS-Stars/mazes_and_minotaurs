@@ -11,12 +11,19 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 
 /**
  * Created by ckling on 4/10/17.
  */
 
 public class CreateCharacter extends Fragment {
+
+    //TESTING
+    //TODO Clean ths up
+    BaseClass mBaseClass;
+    //TESTING
 
     String mCharaName;
     String mCharacterClass;
@@ -35,6 +42,8 @@ public class CreateCharacter extends Fragment {
         Log.i("Begin OnCreateView", "Start of onCreateView");
         View rootView = li.inflate(R.layout.fragment_create_character, vg, false);
 
+        mBaseClass = (BaseClass) getArguments().get("classInstance");
+
         mCharaClassTextView = (TextView) rootView.findViewById(R.id.character_class_view);
         mCharacterClass = getArguments().getString("newClass");
         mCharaClassTextView.setText(mCharacterClass);
@@ -44,7 +53,7 @@ public class CreateCharacter extends Fragment {
 
         mCharacterLevelTextView = (TextView) rootView.findViewById(R.id.character_level_view);
         mCharaLevel = 1;
-        mCharacterLevelTextView.setText(Integer.toString(mCharaLevel));
+        mCharacterLevelTextView.setText(Integer.toString(mBaseClass.getLevel()));
 
 
 
