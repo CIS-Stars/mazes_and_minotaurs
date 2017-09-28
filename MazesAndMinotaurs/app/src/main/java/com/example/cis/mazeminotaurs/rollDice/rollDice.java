@@ -4,6 +4,9 @@ import java.util.Random;
 
 /**
  * Created by jusmith on 3/31/17.
+ *
+ * modified by thorinSchmidt on 9/28/2017
+ *   refactored module to rollDice, added the d20() and d6() methods.
  */
 
 public class rollDice {
