@@ -22,6 +22,10 @@ import java.util.HashMap;
 public class Sorcerer extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Sorcerer() {
+        this(null,null);
+    }
+
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[] {
                 EquipmentDB.getInstance().getWeapon(R.string.dagger),

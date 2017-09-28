@@ -22,6 +22,10 @@ import java.util.HashMap;
 public class Priest extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Priest() {
+        this(null);
+    }
+
     public Priest(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
 

@@ -21,6 +21,10 @@ import java.util.HashMap;
 public class Spearman extends Warrior implements Level {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Spearman() {
+        this(null);
+    }
+
     public Spearman(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.spear)});

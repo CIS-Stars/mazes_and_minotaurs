@@ -398,7 +398,7 @@
                     <Button
                         android:layout_column="2"
                         android:id="@+id/confirm_character_button"
-                        android:text="Confirm"/>
+                        android:text="@string/confirm_button"/>
                 </TableRow>
             </TableLayout>
 

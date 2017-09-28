@@ -22,6 +22,10 @@ import java.util.HashMap;
 public class Centaur extends Warrior implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Centaur() {
+        this(null,null,null);
+    }
+
     public Centaur(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(R.string.bow),
@@ -44,8 +48,7 @@ public class Centaur extends Warrior implements Level{
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        setWeaponOfChoice(weaponOfChoice);
-        startGear.add(getWeaponOfChoice());
+        setWeaponOfChoice(weaponOfChoice);;
 
         Weapon finalStartingWeapon;
         if (Arrays.asList(getPossibleStartWeapons()).contains(startingWeapon)) {
@@ -54,19 +57,10 @@ public class Centaur extends Warrior implements Level{
             finalStartingWeapon = getPossibleStartWeapons()[0];
         }
 
-        switch (finalStartingWeapon.getResId()) {
-            case R.string.bow:
-                startGear.add(equipmentDB.getWeapon(R.string.bow));
-                startGear.add(equipmentDB.getWeapon(R.string.arrows));
-                break;
-            case R.string.javelin:
-                startGear.add(equipmentDB.getWeapon(R.string.javelin));
-                break;
-            case R.string.sling:
-                startGear.add(equipmentDB.getWeapon(R.string.sling));
-                startGear.add(equipmentDB.getWeapon(R.string.slingshot));
-                break;
-        }// Equipment done
+        startGear.add(finalStartingWeapon);
+        Equipment ammo = Util.getAmmo(finalStartingWeapon);
+        if (ammo != null) {startGear.add(ammo);}
+        // Equipment done
 
         int rolledGold = 0;
 

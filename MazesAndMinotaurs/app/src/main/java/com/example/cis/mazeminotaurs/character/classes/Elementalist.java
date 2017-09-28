@@ -21,6 +21,10 @@ import java.util.HashMap;
 public class Elementalist extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Elementalist() {
+        this(null);
+    }
+
     public Elementalist(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
         Score[] primAttrs = {Score.WITS, Score.WILL};
