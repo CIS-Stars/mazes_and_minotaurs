@@ -36,15 +36,12 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
     public String mClassInformation;
     public String mClass;
 
-    AlertDialog.Builder mConfirmPop;
+    DetailDialogFragment mDialog;
 
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
         View rootView = li.inflate(R.layout.fragment_character_creation, vg, false);
-
-        mConfirmPop = new AlertDialog.Builder(getActivity());
-        mConfirmPop.setTitle("Confirm Class");
 
         mWarriorButton = (ImageButton) rootView.findViewById(R.id.warrior_button);
         mMagicianButton = (ImageButton) rootView.findViewById(R.id.magician_button);
@@ -93,7 +90,6 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         mWarriorGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                AlertDialog mConfirmChoice = mConfirmPop.create();
                 switch (checkedId){
                     case R.id.amazon_radio:
                         mClassInformation = getResources().getString(R.string.amazon_class);
@@ -176,26 +172,31 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
             }
         });
 
-        mConfirmPop.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                CreateCharacter addedType = new CreateCharacter();
-                Bundle classType = new Bundle();
-                classType.putString("newClass", mClass);
-                addedType.setArguments(classType);
-
-                getFragmentManager().beginTransaction().add(R.id.content_frame, addedType)
-                        .commit();
-            }
-        });
-
-        mConfirmPop.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
         return rootView;
+    }
+
+    public void showDetailDialog(int classRes, int descriptRes) {
+        mDialog = new DetailDialogFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("class", classRes);
+        bundle.putInt("classInfo", descriptRes);
+        mDialog.setArguments(bundle);
+        mDialog.setListener(this);
+
+        mDialog.show(getChildFragmentManager(), "DetailDialogFragment");
+    }
+
+    @Override
+    public void onDialogPositiveClick(BaseClass instance) {
+        CreateCharacter addedType = new CreateCharacter();
+        Bundle classType = new Bundle();
+        classType.putString("newClass", mClass);
+        classType.putSerializable("classInstance", instance);
+        addedType.setArguments(classType);
+
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, addedType)
+                .commit();
     }
 
     public void showDetailDialog(int classRes, int descriptRes) {
