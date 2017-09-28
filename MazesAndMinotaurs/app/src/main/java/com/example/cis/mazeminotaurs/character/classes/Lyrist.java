@@ -8,7 +8,7 @@ import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +35,7 @@ public class Lyrist extends Magician implements Level{
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        int rolledGold = Util.roll(6, 3) * 5;
+        int rolledGold = rollDice.roll(6, 3) * 5;
 
         //TODO Add a 'lyre' item/weapon
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
@@ -51,7 +51,7 @@ public class Lyrist extends Magician implements Level{
 
     public void doLevelUp(){
         Score[] possibleScores = {Score.GRACE, Score.WITS, Score.WILL};
-        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
     public void doLevelUp(Score score) {
@@ -69,7 +69,7 @@ public class Lyrist extends Magician implements Level{
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
 
             if (possibleScores.size() > 0) {

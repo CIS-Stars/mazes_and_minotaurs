@@ -8,7 +8,7 @@ import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,7 +79,7 @@ public class Centaur extends Warrior implements Level{
     @Override
     public void doLevelUp() {
         Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
-        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Centaur extends Warrior implements Level{
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
 
             if (possibleScores.size() > 0) {
