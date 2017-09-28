@@ -24,9 +24,12 @@ public class Amazon extends Warrior implements Level {
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Amazon() {
+        this(null,null);
+    }
+
     public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
         setPossibleStartWeapons(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.mace),
                 EquipmentDB.getInstance().getWeapon(R.string.axe),
                 EquipmentDB.getInstance().getWeapon(R.string.spear),
                 EquipmentDB.getInstance().getWeapon(R.string.sword),

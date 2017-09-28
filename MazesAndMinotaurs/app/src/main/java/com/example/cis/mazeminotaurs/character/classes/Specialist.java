@@ -27,7 +27,6 @@ public abstract class Specialist extends BaseClass {
         if (Arrays.asList(this.mPossibleWeaponsOfChoice).contains(weaponOfChoice)) {
             this.mWeaponOfChoice = weaponOfChoice;
         } else {
-            System.out.println("Invalid assignment of weaponOfChoice. Assigning default.");
             this.mWeaponOfChoice = this.mPossibleWeaponsOfChoice[0];
         }
     }
