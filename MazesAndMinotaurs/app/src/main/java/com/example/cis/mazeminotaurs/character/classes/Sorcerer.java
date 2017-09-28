@@ -22,6 +22,10 @@ import java.util.HashMap;
 public class Sorcerer extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Sorcerer() {
+        this(null,null);
+    }
+
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[] {
                 EquipmentDB.getInstance().getWeapon(R.string.dagger),
@@ -136,12 +140,12 @@ public class Sorcerer extends Magician implements Level{
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         this.mScoreLevelChoice = scoreLevelChoice;
     }
-
-    public int getDefensiveFightingBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
+    public int getMysticalStrength(){
+        return 12 + getSpecialTalent();
     }
 
-    public int getMartialDisciplineBonus() {
-        return getCharacter().getScore(Score.WILL).getModifier();
+    public int getPowerPoints(){
+        return getCharacter().getScore(Score.GRACE).getModifier();
     }
-}
+    }
+

@@ -21,6 +21,10 @@ import java.util.HashMap;
 public class Lyrist extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Lyrist() {
+        this(null);
+    }
+
     public Lyrist(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
 
@@ -128,11 +132,11 @@ public class Lyrist extends Magician implements Level{
         this.mScoreLevelChoice = scoreLevelChoice;
     }
 
-    public int getDefensiveFightingBonus() {
-        return getCharacter().getScore(Score.SKILL).getModifier();
+    public int getMysticalStrength(){
+        return 12 + getSpecialTalent();
     }
 
-    public int getMartialDisciplineBonus() {
-        return getCharacter().getScore(Score.WILL).getModifier();
+    public int getPowerPoints(){
+        return getCharacter().getScore(Score.GRACE).getModifier();
     }
 }
