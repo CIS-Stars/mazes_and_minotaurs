@@ -6,6 +6,7 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  *      mEffectiveLevel = 3;
  */
 
-public abstract class BaseClass {
+public abstract class BaseClass implements Serializable{
     private int mAddedHits = 0;
     private int mBasicHits;
     private PlayerCharacter mPlayerCharacter;

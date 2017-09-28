@@ -21,6 +21,10 @@ import java.util.HashMap;
 public class Lyrist extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Lyrist() {
+        this(null);
+    }
+
     public Lyrist(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
 

@@ -21,6 +21,10 @@ import java.util.HashMap;
 public class Nymph extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    public Nymph() {
+        this(null);
+    }
+
     public Nymph(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
 
