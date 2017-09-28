@@ -117,7 +117,7 @@ public class CreateCharacter extends Fragment {
                 bundle.putInt("charIndex", Portfolio.get().getPortfolio().indexOf(mBaseClass.getCharacter()));
                 fragment.setArguments(bundle);
 
-                getFragmentManager().beginTransaction().add(R.id.content_frame, fragment)
+                getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)
                         .commit();
             }
         });
