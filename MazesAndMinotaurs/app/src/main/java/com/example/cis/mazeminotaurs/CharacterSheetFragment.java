@@ -65,8 +65,6 @@ public class CharacterSheetFragment extends Fragment
     Button mTotalPowerButton;
     Button mCurrentPowerButton;
 
-    Button mHitsButton;
-
     Button mSaveButton;
 
     public CharacterSheetFragment(){
