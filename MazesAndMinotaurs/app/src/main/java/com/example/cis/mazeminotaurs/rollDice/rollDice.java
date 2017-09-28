@@ -36,4 +36,31 @@ public class rollDice {
         }
         return sum;
     }
+
+    /**
+     * "Rolls a d20" once.
+     *
+     * @return the roll
+     */
+    public static int d20() {
+        if (sRandom == null) {
+            sRandom = new Random();
+        }
+
+        return sRandom.nextInt(20) + 1;
+    }
+
+    /**
+     * "Rolls a d6" once.
+     *
+     * @return the roll
+     */
+    public static int d6() {
+        if (sRandom == null) {
+            sRandom = new Random();
+        }
+
+        return sRandom.nextInt(6) + 1;
+    }
+
 }
