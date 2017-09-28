@@ -75,14 +75,12 @@ public class CharacterSheetFragment extends Fragment
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
         View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
-
+        setRetainInstance(true);
 
         if (getArguments() != null) {
-            Log.wtf(TAG, getArguments().toString());
             mCurrentCharacterIndex = getArguments().getInt("charIndex");
         }
         if (b != null) {
-            Log.wtf(TAG, b.toString());
             mCurrentCharacterIndex = b.getInt("charIndex");
         }
 
@@ -201,9 +199,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mEquippedWeaponButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
-        //Get equipped weapon from character Class
-        Weapon equippedWeapon = mSheetPlayerCharacter.getCurrentWeapon();
-        int equippedWeaponID = equippedWeapon.getResId();
         mEquippedWeaponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
