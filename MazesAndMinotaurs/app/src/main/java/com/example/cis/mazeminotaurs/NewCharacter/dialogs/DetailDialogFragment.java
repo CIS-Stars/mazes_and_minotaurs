@@ -116,8 +116,17 @@ public class DetailDialogFragment extends DialogFragment {
             }
         });
         
-        System.out.println(Arrays.toString(mStartWeps));
-        if (mStartWeps.length > 0) {
+        if (mStartWeps == null) {
+            spinItems.add(EMPTY_MSG);
+            String newText = String.format("%s/%s",
+                    getContext().getString(R.string.weapon_of_choice),
+                    getContext().getString(R.string.starting_weapon));
+
+            ((TextView) view.findViewById(R.id.choice_weapon_label)).setText(newText);
+            view.findViewById(R.id.start_weapon_label).setVisibility(View.GONE);
+            startSpinner.setVisibility(View.GONE);
+        }
+        else if (mStartWeps.length > 0) {
             spinItems.addAll(getWeaponNames(mStartWeps));
         } else {
             spinItems.add(EMPTY_MSG);
@@ -229,6 +238,8 @@ public class DetailDialogFragment extends DialogFragment {
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         // Pass silently, this should mean that the class has no starting weapon choices.
+                    } catch (NullPointerException e) {
+                        // Pass silently, this means Hunter was chosen.
                     }
 
                     if (!(instance instanceof Magician)) {
