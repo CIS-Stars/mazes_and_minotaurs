@@ -26,8 +26,6 @@ import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.util.Util;
 
-import java.util.Arrays;
-
 /**
  * Created by jsmith on 9/15/17.
  */
