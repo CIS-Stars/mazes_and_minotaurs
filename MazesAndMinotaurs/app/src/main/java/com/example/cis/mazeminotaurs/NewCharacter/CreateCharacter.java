@@ -111,10 +111,10 @@ public class CreateCharacter extends Fragment {
             @Override
             public void onClick(View view) {
                 Portfolio.get().addPlayerCharacter(mBaseClass.getCharacter());
+                Portfolio.get().setActiveCharacterIndex(Portfolio.get().getPortfolio().indexOf(mBaseClass.getCharacter()));
 
                 CharacterSheetFragment fragment = new CharacterSheetFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt("charIndex", Portfolio.get().getPortfolio().indexOf(mBaseClass.getCharacter()));
                 fragment.setArguments(bundle);
 
                 getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)

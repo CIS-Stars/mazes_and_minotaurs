@@ -31,7 +31,7 @@ public class CharacterSheetFragment extends Fragment
     public static final String ROLL_RESULT = "RollResult";
     public static final String TAG = "CharacterSheetFragment";
 
-    int mCurrentCharacterIndex = 0;
+    int mCurrentCharacterIndex;
     Portfolio mPortfolio;
     PlayerCharacter mSheetPlayerCharacter;
     TextView mCharacterNameView;
@@ -75,14 +75,8 @@ public class CharacterSheetFragment extends Fragment
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
         super.onCreateView(li, vg, b);
         View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
-        setRetainInstance(true);
 
-        if (getArguments() != null) {
-            mCurrentCharacterIndex = getArguments().getInt("charIndex");
-        }
-        if (b != null) {
-            mCurrentCharacterIndex = b.getInt("charIndex");
-        }
+        mCurrentCharacterIndex = mPortfolio.getActiveCharacterIndex();
 
         mSheetPlayerCharacter = mPortfolio.getPlayerCharacter(mCurrentCharacterIndex);
         mCharacterLevelView = (TextView) rootView.findViewById(R.id.character_level_view);
