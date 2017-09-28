@@ -13,14 +13,13 @@ import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
-import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.fragments.HitsChangeFragment;
 import com.example.cis.mazeminotaurs.fragments.StatChangeFragment;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 /**
  * Created by Thorin Schmidt on 4/1/2017.
@@ -328,7 +327,7 @@ public class CharacterSheetFragment extends Fragment
 
     public void onScoreClick(Score skill, String name){
         int modifier =  mSheetPlayerCharacter.getScore(skill).getModifier();
-        int dieRoll = Util.roll(20);
+        int dieRoll = rollDice.roll(20);
         FragmentManager fm = getFragmentManager();
         RollResultFragment dialog = RollResultFragment.newInstance(dieRoll, modifier, name);
         dialog.show(fm, ROLL_RESULT);
@@ -344,10 +343,10 @@ public class CharacterSheetFragment extends Fragment
 
     public void onAttackClick(int attackType, boolean wocEquipped){
         int modifier;
-        int attackRoll1 = Util.roll(20);
-        int attackRoll2 = Util.roll(20);
-        int damageRoll1 = Util.roll(6);
-        int damageRoll2 = Util.roll(6);
+        int attackRoll1 = rollDice.roll(20);
+        int attackRoll2 = rollDice.roll(20);
+        int damageRoll1 = rollDice.roll(6);
+        int damageRoll2 = rollDice.roll(6);
         if (attackType == R.string.melee){
             modifier = mSheetPlayerCharacter.getMeleeMod();
         }
@@ -364,7 +363,7 @@ public class CharacterSheetFragment extends Fragment
 
     void onSaveClick(int buttonID, String saveName){
         int modifier;
-        int saveRoll = Util.roll(20);
+        int saveRoll = rollDice.roll(20);
         FragmentManager fm = getFragmentManager();
         SaveResultFragment dialog = null;
         switch (buttonID){

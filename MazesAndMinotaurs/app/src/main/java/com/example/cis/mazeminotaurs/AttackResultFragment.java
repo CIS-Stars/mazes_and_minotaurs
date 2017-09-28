@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 /**
  * Created by Thorin Schmidt on 4/13/2017.
@@ -60,10 +60,10 @@ public class AttackResultFragment extends DialogFragment {
             mMod = -10;
         }
         mAttackType = getString(mCurrentCharacter.getCurrentWeapon().getWeaponType());
-        mAttackRoll1 = Util.roll(20);
-        mAttackRoll2 = Util.roll(20);
-        mDamage1 = Util.roll(6);
-        mDamage2 = Util.roll(6);
+        mAttackRoll1 = rollDice.roll(20);
+        mAttackRoll2 = rollDice.roll(20);
+        mDamage1 = rollDice.roll(6);
+        mDamage2 = rollDice.roll(6);
         mTotal1 = mAttackRoll1 + mMod;
         mTotal2 = mAttackRoll2 + mMod;
 
