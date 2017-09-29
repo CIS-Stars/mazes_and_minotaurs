@@ -8,7 +8,7 @@ import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +21,10 @@ import java.util.HashMap;
 
 public class Sorcerer extends Magician implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
+
+    public Sorcerer() {
+        this(null,null);
+    }
 
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[] {
@@ -35,7 +39,7 @@ public class Sorcerer extends Magician implements Level{
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        int rolledGold = Util.roll(6, 3) * 10;
+        int rolledGold = rollDice.roll(6, 3) * 10;
 
         //TODO add a wand weapon
 
@@ -56,7 +60,7 @@ public class Sorcerer extends Magician implements Level{
 
     public void doLevelUp(){
         Score[] possibleScores = {Score.WITS, Score.WILL};
-        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
     public void doLevelUp(Score score) {
@@ -74,7 +78,7 @@ public class Sorcerer extends Magician implements Level{
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
 
             if (possibleScores.size() > 0) {
@@ -143,5 +147,4 @@ public class Sorcerer extends Magician implements Level{
     public int getPowerPoints(){
         return getCharacter().getScore(Score.GRACE).getModifier();
     }
-    }
-
+}

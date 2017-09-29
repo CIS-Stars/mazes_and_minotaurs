@@ -5,9 +5,10 @@ import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ import java.util.HashMap;
 
 public class Barbarian extends Warrior implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
+
+    public Barbarian() {
+        this(null, null, null);
+    }
 
     public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
         setPossibleStartWeapons(new Weapon[]{
@@ -48,29 +53,15 @@ public class Barbarian extends Warrior implements Level{
         startGear.add(getWeaponOfChoice());
 
         if (Arrays.asList(getPossibleStartWeapons()).contains(startWeapon)){
-            switch (startWeapon.getResId()) {
-                case R.string.bow:
-                    startGear.add(equipDB.getWeapon(R.string.bow));
-                    startGear.add(equipDB.getWeapon(R.string.arrows));
-                    break;
-                case R.string.javelin:
-                    startGear.add(equipDB.getWeapon(R.string.javelin));
-                break;
-                case R.string.sling:
-                    startGear.add(equipDB.getWeapon(R.string.sling));
-                    startGear.add(equipDB.getWeapon(R.string.slingshot));
-                    break;
-                default:
-                    //PANIC
-                    System.out.println("PANIC in Barbarian Ranged Weapon Case");
-                    break;
-            }
+            startGear.add(startWeapon);
+            Equipment ammo = Util.getAmmo(startWeapon);
+            if (ammo != null) {startGear.add(ammo);}
         } else {
             startGear.add(equipDB.getWeapon(R.string.bow));
             startGear.add(equipDB.getWeapon(R.string.arrows));
         }
 
-        int rolledGold = Util.roll(6, 3) * 5;
+        int rolledGold = rollDice.roll(6, 3) * 5;
 
         //Add the rest of starting equipment
         startGear.add(equipDB.getWeapon(R.string.dagger));
@@ -87,7 +78,7 @@ public class Barbarian extends Warrior implements Level{
 
     public void doLevelUp(){
         Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT};
-        doLevelUp(possibleScores[Util.roll(3) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(3) - 1]);
     }
 
     public void doLevelUp(Score score) {
@@ -105,7 +96,7 @@ public class Barbarian extends Warrior implements Level{
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
 
             if (possibleScores.size() > 0) {

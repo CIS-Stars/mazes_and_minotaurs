@@ -14,8 +14,11 @@ public class Portfolio {
     private ArrayList<PlayerCharacter> portfolio;
     private static Portfolio sPortfolio;
 
+    private int activeCharacterIndex;
+
     private Portfolio(){
         portfolio = new ArrayList<>();
+        activeCharacterIndex = 0;
         //For Testing Only
         PlayerCharacter playerCharacter = new PlayerCharacter();
         Barbarian barbarian = new Barbarian(playerCharacter, EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
@@ -64,4 +67,11 @@ public class Portfolio {
         return portfolio.get(index);
     }
 
+    public int getActiveCharacterIndex() {
+        return activeCharacterIndex;
+    }
+
+    public void setActiveCharacterIndex(int activeCharacterIndex) {
+        this.activeCharacterIndex = activeCharacterIndex;
+    }
 }

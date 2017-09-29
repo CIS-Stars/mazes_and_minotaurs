@@ -8,10 +8,9 @@ import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -21,6 +20,10 @@ import java.util.HashMap;
 
 public class Thief extends Specialist implements Level{
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
+
+    public Thief() {
+        this(null,null);
+    }
 
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         setPossibleStartWeapons(new Weapon[]{});
@@ -52,7 +55,7 @@ public class Thief extends Specialist implements Level{
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
         // Equipment done
 
-        int rolledGold = Util.roll(6, 3) * 5;
+        int rolledGold = rollDice.roll(6, 3) * 5;
 
         setBasicHits(10);
         setCharacter(playerCharacter);
@@ -67,7 +70,7 @@ public class Thief extends Specialist implements Level{
     @Override
     public void doLevelUp() {
         Score[] possibleScores = {Score.SKILL, Score.WILL, Score.WITS};
-        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
     @Override
@@ -85,7 +88,7 @@ public class Thief extends Specialist implements Level{
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
 
             if (possibleScores.size() > 0) {

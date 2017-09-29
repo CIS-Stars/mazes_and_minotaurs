@@ -8,10 +8,9 @@ import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -22,7 +21,11 @@ import java.util.HashMap;
 public class Noble extends Warrior implements Level {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    public Noble(PlayerCharacter playerCharacter, Score martialHeritage, Score mentalHeritage, Weapon weaponOfChoice) {
+    public Noble() {
+        this(null,null,null,null);
+    }
+
+    public Noble(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Score martialHeritage, Score mentalHeritage) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(R.string.bow),
@@ -32,10 +35,20 @@ public class Noble extends Warrior implements Level {
         });
 
         Score martialScore;
-        if (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL)) {
+        if (martialHeritage != null && (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL))) {
             martialScore = martialHeritage;
         } else {
             martialScore = Score.MIGHT;
+        }
+        // Noble - Heroic Heritage
+        Score mentalScore;
+        if (mentalHeritage != null &&
+                (mentalHeritage.equals(Score.WITS) ||
+                        mentalHeritage.equals(Score.WILL) ||
+                        mentalHeritage.equals(Score.GRACE))) {
+            mentalScore = mentalHeritage;
+        } else {
+            mentalScore = Score.WITS;
         }
 
         Score[] primAttrs = {martialScore, Score.LUCK};
@@ -48,7 +61,7 @@ public class Noble extends Warrior implements Level {
         // Check if the weapon of choice is valid
         setWeaponOfChoice(weaponOfChoice);
 
-        int rolledGold = Util.roll(6, 3) * 100;
+        int rolledGold = rollDice.roll(6, 3) * 100;
 
         startGear.add(equipmentDB.getWeapon(R.string.sword));
         startGear.add(equipmentDB.getWeapon(R.string.dagger));
@@ -64,24 +77,21 @@ public class Noble extends Warrior implements Level {
         setStartMoney(rolledGold);
         setStartGear(startGear);
 
-        // Noble - Heroic Heritage
-        Score mentalScore;
-        if (mentalHeritage.equals(Score.WITS) ||
-                mentalHeritage.equals(Score.WILL) ||
-                mentalHeritage.equals(Score.GRACE)) {
-            mentalScore = mentalHeritage;
-        } else {
-            mentalScore = Score.WITS;
+        // TODO find a way to get around this hack-y method.
+        /* Explanation
+            If the Noble is chosen for the new character it will crash due to a lack of
+            Character. However, we still need access to the code of the constructor.
+         */
+        if (getCharacter() != null) {
+            getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
+            getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
         }
-
-        getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
-        getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
     }
 
     @Override
     public void doLevelUp() {
         Score[] possibleScores = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
-        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
     @Override
@@ -99,7 +109,7 @@ public class Noble extends Warrior implements Level {
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
             if (possibleScores.size() > 0) {
                 while (!getCharacter().canAddToScore(selectedScore)) {
@@ -150,6 +160,10 @@ public class Noble extends Warrior implements Level {
             lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
             setLevel(getLevel() - 1);
         }
+    }
+
+    public void doHeritage(Score physical, Score mental) {
+
     }
 
     public int getBattleFortuneBonus() {

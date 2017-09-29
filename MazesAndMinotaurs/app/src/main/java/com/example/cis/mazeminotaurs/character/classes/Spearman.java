@@ -8,10 +8,9 @@ import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
-import com.example.cis.mazeminotaurs.util.Util;
+import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -21,6 +20,10 @@ import java.util.HashMap;
 
 public class Spearman extends Warrior implements Level {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
+
+    public Spearman() {
+        this(null);
+    }
 
     public Spearman(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
@@ -34,7 +37,7 @@ public class Spearman extends Warrior implements Level {
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        int rolledGold = Util.roll(6, 3) * 10;
+        int rolledGold = rollDice.roll(6, 3) * 10;
 
         startGear.add(equipmentDB.getWeapon(R.string.spear));
         startGear.add(equipmentDB.getWeapon(R.string.sword));
@@ -55,7 +58,7 @@ public class Spearman extends Warrior implements Level {
 
     public void doLevelUp(){
         Score[] possibleScores = {Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
-        doLevelUp(possibleScores[Util.roll(possibleScores.length) - 1]);
+        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
     public void doLevelUp(Score score) {
@@ -73,7 +76,7 @@ public class Spearman extends Warrior implements Level {
             if (possibleScores.contains(score)) {
                 selectedScore = score;
             } else {
-                selectedScore = possibleScores.get(Util.roll(possibleScores.size()) - 1);
+                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
             }
 
             if (possibleScores.size() > 0) {
