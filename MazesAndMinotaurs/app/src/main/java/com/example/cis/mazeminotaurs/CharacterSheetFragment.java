@@ -184,10 +184,17 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mAttackType = (TextView) rootView.findViewById(R.id.attack_title_view);
-        mAttackType.setText(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType());
+        if (mSheetPlayerCharacter.getCurrentWeapon() != null) {
+            mAttackType.setText(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType());
+        } else {
+            mAttackType.setText("-");
+        }
 
         mAttackButton = (Button) rootView.findViewById(R.id.attack_button);
-        if(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
+        if (mSheetPlayerCharacter.getCurrentWeapon() == null) {
+            mAttackButton.setText("-");
+        }
+        else if(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
             mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
         }
         else{
@@ -197,14 +204,16 @@ public class CharacterSheetFragment extends Fragment
             @Override
             public void onClick(View v){
                 //just for testing, replace these with calls to character methods
-                int weaponType = mSheetPlayerCharacter.getCurrentWeapon().getWeaponType();
-                boolean woc = false;
-                if (mSheetPlayerCharacter.getCharClass() instanceof Warrior) {
-                    woc = ((Warrior) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
-                } else if (mSheetPlayerCharacter.getCharClass() instanceof Specialist) {
-                    woc = ((Specialist) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                if (mSheetPlayerCharacter.getCurrentWeapon() != null) {
+                    int weaponType = mSheetPlayerCharacter.getCurrentWeapon().getWeaponType();
+                    boolean woc = false;
+                    if (mSheetPlayerCharacter.getCharClass() instanceof Warrior) {
+                        woc = ((Warrior) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                    } else if (mSheetPlayerCharacter.getCharClass() instanceof Specialist) {
+                        woc = ((Specialist) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
+                    }
+                    onAttackClick(weaponType, woc);
                 }
-                onAttackClick(weaponType, woc);
             }
         });
 
@@ -212,9 +221,13 @@ public class CharacterSheetFragment extends Fragment
         //Get equipped weapon from character Class
         //int equippedWeaponID = R.string.barb_axe;
         Weapon equippedWeapon = mSheetPlayerCharacter.getCurrentWeapon();
-        Log.i(TAG, equippedWeapon.toString());
-        int equippedWeaponID = equippedWeapon.getResId();
-        mEquippedWeaponButton.setText(equippedWeaponID);
+        if (equippedWeapon != null) {
+            int equippedWeaponID = equippedWeapon.getResId();
+            mEquippedWeaponButton.setText(equippedWeaponID);
+        } else {
+            mEquippedWeaponButton.setText("-");
+        }
+
         mEquippedWeaponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -429,12 +442,15 @@ public class CharacterSheetFragment extends Fragment
             } else if (character.getWeapons() != null && character.getWeapons().size() > 0){
                 wepToDisplay = character.getWeapons().get(0);
             }
-            mEquippedWeaponButton.setText(wepToDisplay.getResId());
-            mAttackType.setText(wepToDisplay.getWeaponType());
-            if (wepToDisplay.getWeaponType() == R.string.melee) {
-                mAttackButton.setText(Integer.toString(character.getMeleeMod()));
-            } else {
-                mAttackButton.setText(Integer.toString(character.getMissileMod()));
+
+            if (wepToDisplay != null) {
+                mEquippedWeaponButton.setText(wepToDisplay.getResId());
+                mAttackType.setText(wepToDisplay.getWeaponType());
+                if (wepToDisplay.getWeaponType() == R.string.melee) {
+                    mAttackButton.setText(Integer.toString(character.getMeleeMod()));
+                } else {
+                    mAttackButton.setText(Integer.toString(character.getMissileMod()));
+                }
             }
 
             mMightButton.setText(Integer.toString(character.getScore(Score.MIGHT).getScore()));
@@ -456,10 +472,11 @@ public class CharacterSheetFragment extends Fragment
             if (!(character.getCharClass() instanceof Warrior)) {
                 mMagicTitleView.setVisibility(View.VISIBLE);
                 if (character.getCharClass() instanceof Magician) {
-                    mMagicStrengthButton.setText(((Magician) character.getCharClass()).getMysticalStrength());
-                    mTotalPowerButton.setText(((Magician) character.getCharClass()).getPowerPoints());
-                    mCurrentPowerButton.setText(((Magician) character.getCharClass()).getPowerPoints());
-                    mTalentBonusButton.setText(((Magician) character.getCharClass()).getSpecialTalent());
+                    Magician instance = (Magician) character.getCharClass();
+                    mMagicStrengthButton.setText(Integer.toString(instance.getMysticalStrength()));
+                    mTotalPowerButton.setText(Integer.toString(instance.getPowerPoints()));
+                    mCurrentPowerButton.setText(Integer.toString(instance.getPowerPoints()));
+                    mTalentBonusButton.setText(Integer.toString(instance.getSpecialTalent()));
 
                     mMagicStrengthTitleView.setVisibility(View.VISIBLE);
                     mTotalPowerTitleView.setVisibility(View.VISIBLE);
