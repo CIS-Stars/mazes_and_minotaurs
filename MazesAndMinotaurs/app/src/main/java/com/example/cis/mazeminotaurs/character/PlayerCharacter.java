@@ -475,7 +475,9 @@ public class PlayerCharacter{
     public void initializeClass(){
         getMoney().put(Money.SILVER, getCharClass().getStartMoney());
         getInventory().addAll(getCharClass().getStartGear());
-        setCurrentWeapon(getWeapons().get(0));
+        if (getWeapons().size() > 0) {
+            setCurrentWeapon(getWeapons().get(0));
+        }
         setCurHits(getHitTotal());
     }
 
