@@ -54,6 +54,19 @@ public class rollDice {
     }
 
     /**
+     * "Rolls a d20" 'rolls' number of times.
+     * @param rolls
+     * @return the sum of all rolls
+     */
+    public static int d20(int rolls) {
+        int sum = 0;
+        for (int i = 0; i < rolls; i++) {
+            sum += d20();
+        }
+        return sum;
+    }
+
+    /**
      * "Rolls a d6" once.
      *
      * @return the roll
@@ -64,6 +77,19 @@ public class rollDice {
         }
 
         return sRandom.nextInt(6) + 1;
+    }
+
+    /**
+     * "Rolls a d6" 'rolls' number of times.
+     * @param rolls
+     * @return the sum of all rolls
+     */
+    public static int d6(int rolls) {
+        int sum = 0;
+        for (int i = 0; i < rolls; i++) {
+            sum += d6();
+        }
+        return sum;
     }
 
 }

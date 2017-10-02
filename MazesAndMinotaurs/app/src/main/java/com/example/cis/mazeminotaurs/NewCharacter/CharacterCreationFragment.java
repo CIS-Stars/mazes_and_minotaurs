@@ -1,7 +1,5 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -14,14 +12,13 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.NewCharacter.dialogs.DetailDialogFragment;
 import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.character.classes.Amazon;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 
 /**
  * Created by Chaos on 4/4/2017.
  */
 
-public class CharacterCreationFragment extends Fragment implements DetailDialogFragment.DetailDialogListener{
+public class CharacterCreationFragment extends Fragment implements DetailDialogFragment.DetailDialogListener {
 
     public ImageButton mWarriorButton;
     public ImageButton mMagicianButton;
@@ -39,7 +36,7 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
     DetailDialogFragment mDialog;
 
     @Override
-    public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
+    public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b) {
         super.onCreateView(li, vg, b);
         View rootView = li.inflate(R.layout.fragment_character_creation, vg, false);
 
@@ -90,7 +87,7 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         mWarriorGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.amazon_radio:
                         mClassInformation = getResources().getString(R.string.amazon_class);
                         mClass = "Amazon";
@@ -200,15 +197,15 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
     }
 
     public void showDetailDialog(int classRes, int descriptRes) {
-        DetailDialogFragment dialog = new DetailDialogFragment();
+        mDialog = new DetailDialogFragment();
 
         Bundle bundle = new Bundle();
         bundle.putInt("class", classRes);
         bundle.putInt("classInfo", descriptRes);
-        dialog.setArguments(bundle);
-        dialog.setListener(this);
+        mDialog.setArguments(bundle);
+        mDialog.setListener(this);
 
-        dialog.show(getChildFragmentManager(), "DetailDialogFragment");
+        mDialog.show(getChildFragmentManager(), "DetailDialogFragment");
     }
 
     @Override
