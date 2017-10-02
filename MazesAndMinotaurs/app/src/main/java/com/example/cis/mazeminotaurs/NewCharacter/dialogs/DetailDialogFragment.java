@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,6 +71,13 @@ public class DetailDialogFragment extends DialogFragment {
         mChoiceWeps = getChoiceWeapons();
         mStartWeps = getStartWeapons();
 
+        if (mChoiceWeps != null) {
+            System.out.println(mChoiceWeps.toString());
+        }
+        if (mStartWeps != null) {
+            System.out.println(mStartWeps.toString());
+        }
+
         // Populate choice weapons list.
         if (mSelectedClass.getJavaClass().getSuperclass() == Magician.class) {
             view.findViewById(R.id.choice_weapon_spinner).setEnabled(false);
@@ -95,6 +103,9 @@ public class DetailDialogFragment extends DialogFragment {
             } else {
                 spinItems.add(EMPTY_MSG);
                 choiceSpinner.setEnabled(false);
+
+                view.findViewById(R.id.choice_weapon_label).setVisibility(View.GONE);
+                choiceSpinner.setVisibility(View.GONE);
             }
         }
 
@@ -114,13 +125,16 @@ public class DetailDialogFragment extends DialogFragment {
             }
         });
         
-        if (mStartWeps == null) {
+        if (selectedClass == Classes.HUNTER) {
             spinItems.add(EMPTY_MSG);
             String newText = String.format("%s/%s",
                     getContext().getString(R.string.weapon_of_choice),
                     getContext().getString(R.string.starting_weapon));
 
             ((TextView) view.findViewById(R.id.choice_weapon_label)).setText(newText);
+            view.findViewById(R.id.start_weapon_label).setVisibility(View.GONE);
+            startSpinner.setVisibility(View.GONE);
+        } else if (mStartWeps == null) {
             view.findViewById(R.id.start_weapon_label).setVisibility(View.GONE);
             startSpinner.setVisibility(View.GONE);
         }
@@ -157,7 +171,7 @@ public class DetailDialogFragment extends DialogFragment {
             if (mSelectedClass.getJavaClass().getSuperclass() == Warrior.class) {
                 Warrior wClass = (Warrior) instance;
                 return wClass.getPossibleWeaponsOfChoice();
-            } else {
+            } if (mSelectedClass.getJavaClass().getSuperclass() == Specialist.class) {
                 Specialist sClass = (Specialist) instance;
                 return sClass.getPossibleWeaponsOfChoice();
             }
@@ -175,7 +189,7 @@ public class DetailDialogFragment extends DialogFragment {
             if (mSelectedClass.getJavaClass().getSuperclass() == Warrior.class) {
                 Warrior wClass = (Warrior) instance;
                 return wClass.getPossibleStartWeapons();
-            } else {
+            } if (mSelectedClass.getJavaClass().getSuperclass() == Specialist.class) {
                 Specialist sClass = (Specialist) instance;
                 return sClass.getPossibleStartWeapons();
             }
