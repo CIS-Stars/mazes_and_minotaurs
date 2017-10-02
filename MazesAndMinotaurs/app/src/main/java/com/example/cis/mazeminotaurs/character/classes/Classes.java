@@ -19,7 +19,7 @@ public enum Classes {
     LYRIST(R.string.lyrist, Lyrist.class),
     NOBLE(R.string.noble, Noble.class),
     NYMPH(R.string.nymph, Nymph.class),
-    PRIEST,
+    PRIEST(R.string.priest, Priest.class),
     SHAPESHIFTER,
     SORCEROR(R.string.sorceror, Sorcerer.class),
     SPEARMAN(R.string.spearman, Spearman.class),
