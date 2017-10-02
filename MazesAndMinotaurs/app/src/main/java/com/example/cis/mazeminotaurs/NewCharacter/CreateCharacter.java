@@ -135,7 +135,13 @@ public class CreateCharacter extends Fragment {
         mMFButton.setText(Integer.toString(character.getMysticFortitude()));
         mPVButton.setText(Integer.toString(character.getPhysicalVigor()));
         mInitButton.setText(Integer.toString(character.getInitiative()));
-        mWeaponNameButton.setText(character.getWeapons().get(0).getResId());
-        mWeaponTypeButton.setText(character.getWeapons().get(0).getWeaponType());
+        if (character.getCurrentWeapon() != null) {
+            mWeaponNameButton.setText(character.getCurrentWeapon().getResId());
+            mWeaponTypeButton.setText(character.getCurrentWeapon().getWeaponType());
+        }
+        else {
+            mWeaponNameButton.setText("-");
+            mWeaponTypeButton.setText("-");
+        }
     }
 }
