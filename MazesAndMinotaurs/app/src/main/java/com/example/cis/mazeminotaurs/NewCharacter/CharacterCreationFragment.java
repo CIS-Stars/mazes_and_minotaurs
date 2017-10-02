@@ -195,28 +195,4 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         getFragmentManager().beginTransaction().replace(R.id.content_frame, addedType)
                 .commit();
     }
-
-    public void showDetailDialog(int classRes, int descriptRes) {
-        mDialog = new DetailDialogFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("class", classRes);
-        bundle.putInt("classInfo", descriptRes);
-        mDialog.setArguments(bundle);
-        mDialog.setListener(this);
-
-        mDialog.show(getChildFragmentManager(), "DetailDialogFragment");
-    }
-
-    @Override
-    public void onDialogPositiveClick(BaseClass instance) {
-        CreateCharacter addedType = new CreateCharacter();
-        Bundle classType = new Bundle();
-        classType.putString("newClass", mClass);
-        classType.putSerializable("classInstance", instance);
-        addedType.setArguments(classType);
-
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, addedType)
-                .commit();
-    }
 }
