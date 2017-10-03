@@ -11,4 +11,12 @@ public enum Score {
     WILL,
     WITS,
     LUCK;
+
+    public Score[] getMentalScores() {
+        return new Score[]{WILL, WITS, GRACE};
+    }
+
+    public Score[] getMartialScores() {
+        return new Score[]{MIGHT, SKILL};
+    }
 }
