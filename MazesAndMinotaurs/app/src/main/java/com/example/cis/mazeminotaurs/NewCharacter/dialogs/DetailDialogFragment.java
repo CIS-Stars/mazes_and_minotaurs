@@ -71,13 +71,6 @@ public class DetailDialogFragment extends DialogFragment {
         mChoiceWeps = getChoiceWeapons();
         mStartWeps = getStartWeapons();
 
-        if (mChoiceWeps != null) {
-            System.out.println(mChoiceWeps.toString());
-        }
-        if (mStartWeps != null) {
-            System.out.println(mStartWeps.toString());
-        }
-
         // Populate choice weapons list.
         if (mSelectedClass.getJavaClass().getSuperclass() == Magician.class) {
             view.findViewById(R.id.choice_weapon_spinner).setEnabled(false);
