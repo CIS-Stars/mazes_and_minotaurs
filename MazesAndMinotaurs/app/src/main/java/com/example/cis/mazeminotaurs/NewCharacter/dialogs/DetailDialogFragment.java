@@ -276,7 +276,6 @@ public class DetailDialogFragment extends DialogFragment {
 
                 if (instance != null) {
                     // Safely swaps the default weapon from default constructor
-                    //TODO: Add exception for null values aka Hunter.
                     try {
                         instance.getStartGear().remove(instance.getPossibleStartWeapons()[0]);
                         Equipment oldAmmo = Util.getAmmo(instance.getPossibleStartWeapons()[0]);
@@ -307,15 +306,8 @@ public class DetailDialogFragment extends DialogFragment {
                     instance.getCharacter().setCharClass(instance);
                     instance.getCharacter().initializeClass();
 
-                    // TODO:
-                    // Gotta do heritage manually.
                     if (instance instanceof Noble) {
-                        Log.d("DETAILS" ,String.format("%s: %d", mPhysicalHeritage, instance.getCharacter().getScore(mPhysicalHeritage).getScore()));
-                        instance.getCharacter().getScore(Score.MIGHT).setScore(instance.getCharacter().getScore(Score.MIGHT).getScore() - 2);
-                        instance.getCharacter().getScore(Score.WITS).setScore(instance.getCharacter().getScore(Score.WITS).getScore() - 2);
-                        instance.getCharacter().getScore(mPhysicalHeritage).setScore(instance.getCharacter().getScore(mPhysicalHeritage).getScore() + 2);
-                        instance.getCharacter().getScore(mOtherHeritage).setScore(instance.getCharacter().getScore(mOtherHeritage).getScore() + 2);
-                        Log.d("DETAILS" ,String.format("%s: %d", mPhysicalHeritage, instance.getCharacter().getScore(mPhysicalHeritage).getScore()));
+                        ((Noble) instance).doHeritage(mPhysicalHeritage, mOtherHeritage);
                     }
 
                     mListener.onDialogPositiveClick(instance);

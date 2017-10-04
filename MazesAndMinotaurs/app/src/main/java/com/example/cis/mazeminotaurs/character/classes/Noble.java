@@ -21,6 +21,10 @@ import java.util.HashMap;
 public class Noble extends Warrior implements Level {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
+    private Score mPhysicalHeritage = Score.MIGHT;
+    private Score mOtherHeritage = Score.WITS;
+    private boolean mHasHeritage = false;
+
     public Noble() {
         this(null,null,null,null);
     }
@@ -34,24 +38,19 @@ public class Noble extends Warrior implements Level {
                 EquipmentDB.getInstance().getWeapon(R.string.sword),
         });
 
-        Score martialScore;
         if (martialHeritage != null && (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL))) {
-            martialScore = martialHeritage;
-        } else {
-            martialScore = Score.MIGHT;
+            mPhysicalHeritage = martialHeritage;
         }
+
         // Noble - Heroic Heritage
-        Score mentalScore;
         if (mentalHeritage != null &&
                 (mentalHeritage.equals(Score.WITS) ||
                         mentalHeritage.equals(Score.WILL) ||
                         mentalHeritage.equals(Score.GRACE))) {
-            mentalScore = mentalHeritage;
-        } else {
-            mentalScore = Score.WITS;
+            mOtherHeritage = mentalHeritage;
         }
 
-        Score[] primAttrs = {martialScore, Score.LUCK};
+        Score[] primAttrs = {mPhysicalHeritage, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
@@ -83,8 +82,7 @@ public class Noble extends Warrior implements Level {
             Character. However, we still need access to the code of the constructor.
          */
         if (getCharacter() != null) {
-            getCharacter().getScore(martialScore).setScore(getCharacter().getScore(martialScore).getScore() + 2);
-            getCharacter().getScore(mentalScore).setScore(getCharacter().getScore(mentalScore).getScore() + 2);
+            doHeritage();
         }
     }
 
@@ -162,8 +160,20 @@ public class Noble extends Warrior implements Level {
         }
     }
 
-    public void doHeritage(Score physical, Score mental) {
+    private void doHeritage() {
+        doHeritage(mPhysicalHeritage, mOtherHeritage);
+    }
 
+    public void doHeritage(Score physical, Score other) {
+        if (!hasHeritage()) {
+            AttributeScore pScore = getCharacter().getScore(physical);
+            pScore.setScore(pScore.getScore() + 2);
+            setPhysicalHeritage(physical);
+
+            AttributeScore oScore = getCharacter().getScore(other);
+            oScore.setScore(oScore.getScore() + 2);
+            setOtherHeritage(other);
+        }
     }
 
     public int getBattleFortuneBonus() {
@@ -176,5 +186,29 @@ public class Noble extends Warrior implements Level {
 
     public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
         this.mScoreLevelChoice = scoreLevelChoice;
+    }
+
+    public Score getPhysicalHeritage() {
+        return mPhysicalHeritage;
+    }
+
+    public void setPhysicalHeritage(Score physicalHeritage) {
+        mPhysicalHeritage = physicalHeritage;
+    }
+
+    public Score getOtherHeritage() {
+        return mOtherHeritage;
+    }
+
+    public void setOtherHeritage(Score otherHeritage) {
+        mOtherHeritage = otherHeritage;
+    }
+
+    public boolean hasHeritage() {
+        return mHasHeritage;
+    }
+
+    public void setHasHeritage(boolean hasHeritage) {
+        mHasHeritage = hasHeritage;
     }
 }
