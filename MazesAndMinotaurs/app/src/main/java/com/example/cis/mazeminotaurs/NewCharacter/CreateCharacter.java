@@ -92,7 +92,7 @@ public class CreateCharacter extends Fragment {
         mWitsButton = (Button) rootView.findViewById(R.id.wits_score_button);
         mWitsButton.setText(Integer.toString(mBaseClass.getCharacter().getScore(Score.WITS).getScore()));
         mLuckButton = (Button) rootView.findViewById(R.id.luck_score_button);
-        mWitsButton.setText(Integer.toString(mBaseClass.getCharacter().getScore(Score.WITS).getScore()));
+        mLuckButton.setText(Integer.toString(mBaseClass.getCharacter().getScore(Score.LUCK).getScore()));
         mWillButton = (Button) rootView.findViewById(R.id.will_score_button);
         mWillButton.setText(Integer.toString(mBaseClass.getCharacter().getScore(Score.WILL).getScore()));
         mGraceButton = (Button) rootView.findViewById(R.id.grace_score_button);
