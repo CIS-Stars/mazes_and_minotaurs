@@ -38,17 +38,9 @@ public class Noble extends Warrior implements Level {
                 EquipmentDB.getInstance().getWeapon(R.string.sword),
         });
 
-        if (martialHeritage != null && (martialHeritage.equals(Score.MIGHT) || martialHeritage.equals(Score.SKILL))) {
-            mPhysicalHeritage = martialHeritage;
-        }
-
-        // Noble - Heroic Heritage
-        if (mentalHeritage != null &&
-                (mentalHeritage.equals(Score.WITS) ||
-                        mentalHeritage.equals(Score.WILL) ||
-                        mentalHeritage.equals(Score.GRACE))) {
-            mOtherHeritage = mentalHeritage;
-        }
+        // Noble-Specific things
+        mPhysicalHeritage = martialHeritage;
+        mOtherHeritage = mentalHeritage;
 
         Score[] primAttrs = {mPhysicalHeritage, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
@@ -76,11 +68,6 @@ public class Noble extends Warrior implements Level {
         setStartMoney(rolledGold);
         setStartGear(startGear);
 
-        // TODO find a way to get around this hack-y method.
-        /* Explanation
-            If the Noble is chosen for the new character it will crash due to a lack of
-            Character. However, we still need access to the code of the constructor.
-         */
         if (getCharacter() != null) {
             doHeritage();
         }
@@ -166,11 +153,25 @@ public class Noble extends Warrior implements Level {
 
     public void doHeritage(Score physical, Score other) {
         if (!hasHeritage()) {
-            AttributeScore pScore = getCharacter().getScore(physical);
+            Score realPhysical;
+            if (physical != null &&
+                    (physical.equals(Score.MIGHT) || physical.equals(Score.SKILL))) {
+                realPhysical = physical;
+            } else {
+                realPhysical = Score.MIGHT;
+            }
+            AttributeScore pScore = getCharacter().getScore(realPhysical);
             pScore.setScore(pScore.getScore() + 2);
             setPhysicalHeritage(physical);
 
-            AttributeScore oScore = getCharacter().getScore(other);
+            Score realOther;
+            if (other != null &&
+                    (other.equals(Score.WITS) || other.equals(Score.WILL) || other.equals(Score.GRACE))) {
+                realOther = other;
+            } else {
+                realOther = Score.WITS;
+            }
+            AttributeScore oScore = getCharacter().getScore(realOther);
             oScore.setScore(oScore.getScore() + 2);
             setOtherHeritage(other);
         }
