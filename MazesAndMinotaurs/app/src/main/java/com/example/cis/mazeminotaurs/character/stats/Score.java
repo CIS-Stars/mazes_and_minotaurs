@@ -24,11 +24,11 @@ public enum Score {
         return mResId;
     }
 
-    public Score[] getMentalScores() {
+    public static Score[] getMentalScores() {
         return new Score[]{WILL, WITS, GRACE};
     }
 
-    public Score[] getMartialScores() {
+    public static Score[] getMartialScores() {
         return new Score[]{MIGHT, SKILL};
     }
 }

@@ -23,8 +23,10 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.classes.Classes;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
+import com.example.cis.mazeminotaurs.character.classes.Noble;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
+import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
 /**
@@ -42,6 +44,11 @@ public class DetailDialogFragment extends DialogFragment {
     Classes mSelectedClass;
     Weapon[] mChoiceWeps;
     Weapon[] mStartWeps;
+
+    // Noble stuff
+    Score mPhysicalHeritage = Score.MIGHT;
+    Score mOtherHeritage = Score.WITS;
+
     // Ints cannot have a null value so this is a replacement for it.
     int mSelectedWeapon = -43762;
     int mSelectedChoiceWep = -43762;
@@ -70,6 +77,49 @@ public class DetailDialogFragment extends DialogFragment {
         mSelectedClass = selectedClass;
         mChoiceWeps = getChoiceWeapons();
         mStartWeps = getStartWeapons();
+
+        // Handling class-specific display options
+        if (mSelectedClass == Classes.NOBLE) {
+            Spinner pHeritageSpinner = (Spinner) view.findViewById(R.id.physical_heritage_spinner);
+            Spinner oHeritageSpinner = (Spinner) view.findViewById(R.id.other_heritage_spinner);
+
+            view.findViewById(R.id.physical_heritage_label).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.other_heritage_label).setVisibility(View.VISIBLE);
+            pHeritageSpinner.setVisibility(View.VISIBLE);
+            oHeritageSpinner.setVisibility(View.VISIBLE);
+
+            final ArrayAdapter<Score> pSpinItems = new ArrayAdapter<>(getContext(),
+                    R.layout.support_simple_spinner_dropdown_item);
+            pSpinItems.addAll(Score.getMartialScores());
+            pHeritageSpinner.setAdapter(pSpinItems);
+            pHeritageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    mPhysicalHeritage = pSpinItems.getItem(i);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            final ArrayAdapter<Score> oSpinItems = new ArrayAdapter<>(getContext(),
+                    R.layout.support_simple_spinner_dropdown_item);
+            oSpinItems.addAll(Score.getMentalScores());
+            oHeritageSpinner.setAdapter(oSpinItems);
+            oHeritageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    mOtherHeritage = oSpinItems.getItem(i);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        }
 
         // Populate choice weapons list.
         if (mSelectedClass.getJavaClass().getSuperclass() == Magician.class) {
@@ -100,7 +150,7 @@ public class DetailDialogFragment extends DialogFragment {
             }
         }
 
-        final Spinner startSpinner = (Spinner) view.findViewById(R.id.start_weapon_spinner);
+        Spinner startSpinner = (Spinner) view.findViewById(R.id.start_weapon_spinner);
         ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
                 R.layout.support_simple_spinner_dropdown_item);
         startSpinner.setAdapter(spinItems);
@@ -252,9 +302,22 @@ public class DetailDialogFragment extends DialogFragment {
                             ((Specialist)instance).setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(mSelectedChoiceWep));
                         }
                     }
+
                     instance.setCharacter(new PlayerCharacter());
                     instance.getCharacter().setCharClass(instance);
                     instance.getCharacter().initializeClass();
+
+                    // TODO:
+                    // Gotta do heritage manually.
+                    if (instance instanceof Noble) {
+                        Log.d("DETAILS" ,String.format("%s: %d", mPhysicalHeritage, instance.getCharacter().getScore(mPhysicalHeritage).getScore()));
+                        instance.getCharacter().getScore(Score.MIGHT).setScore(instance.getCharacter().getScore(Score.MIGHT).getScore() - 2);
+                        instance.getCharacter().getScore(Score.WITS).setScore(instance.getCharacter().getScore(Score.WITS).getScore() - 2);
+                        instance.getCharacter().getScore(mPhysicalHeritage).setScore(instance.getCharacter().getScore(mPhysicalHeritage).getScore() + 2);
+                        instance.getCharacter().getScore(mOtherHeritage).setScore(instance.getCharacter().getScore(mOtherHeritage).getScore() + 2);
+                        Log.d("DETAILS" ,String.format("%s: %d", mPhysicalHeritage, instance.getCharacter().getScore(mPhysicalHeritage).getScore()));
+                    }
+
                     mListener.onDialogPositiveClick(instance);
                 }
             }
