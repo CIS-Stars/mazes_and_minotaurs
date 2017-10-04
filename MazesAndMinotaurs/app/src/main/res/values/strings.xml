@@ -57,6 +57,8 @@
     <string name="class_word">Class: </string>
     <string name="weapon_of_choice">Weapon of Choice: </string>
     <string name="starting_weapon">Starting Weapon: </string>
+    <string name="physical_heritage">Physical Heritage: </string>
+    <string name="other_heritage">Other Heritage: </string>
 
 
     <!-- Attribute Edit Dialog -->
