@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -301,7 +300,6 @@ public class DetailDialogFragment extends DialogFragment {
                             ((Specialist)instance).setWeaponOfChoice(EquipmentDB.getInstance().getWeapon(mSelectedChoiceWep));
                         }
                     }
-
                     instance.setCharacter(new PlayerCharacter());
                     instance.getCharacter().setCharClass(instance);
                     instance.getCharacter().initializeClass();
