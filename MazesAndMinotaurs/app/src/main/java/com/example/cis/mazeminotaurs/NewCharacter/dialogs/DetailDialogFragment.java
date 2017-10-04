@@ -73,7 +73,8 @@ public class DetailDialogFragment extends DialogFragment {
 
         // Populate choice weapons list.
         if (mSelectedClass.getJavaClass().getSuperclass() == Magician.class) {
-            view.findViewById(R.id.choice_weapon_spinner).setEnabled(false);
+            view.findViewById(R.id.choice_weapon_label).setVisibility(View.GONE);
+            view.findViewById(R.id.choice_weapon_spinner).setVisibility(View.GONE);
         } else {
             Spinner choiceSpinner = (Spinner)view.findViewById(R.id.choice_weapon_spinner);
             ArrayAdapter<String> spinItems = new ArrayAdapter<>(getContext(),
@@ -96,9 +97,6 @@ public class DetailDialogFragment extends DialogFragment {
             } else {
                 spinItems.add(EMPTY_MSG);
                 choiceSpinner.setEnabled(false);
-
-                view.findViewById(R.id.choice_weapon_label).setVisibility(View.GONE);
-                choiceSpinner.setVisibility(View.GONE);
             }
         }
 
