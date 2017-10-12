@@ -52,8 +52,17 @@ public class DetailedWeaponAdapter extends BaseAdapter {
                     .inflate(R.layout.spinner_item_weapon_detailed, parent, false);
         }
 
-        ((TextView) convertView.findViewById(R.id.detail_weapon_name_view)).setText(mDataset.get(position).getResId());
-        ((TextView) convertView.findViewById(R.id.detail_weapon_encumberance_view)).setText(Integer.toString(mDataset.get(position).getEncumberance()));
+        Weapon curWep = mDataset.get(position);
+        TextView nameView = (TextView) convertView.findViewById(R.id.detail_weapon_name_view);
+        TextView encumbView = (TextView) convertView.findViewById(R.id.detail_weapon_encumberance_view);
+
+        if (curWep != null) {
+            nameView.setText(curWep.getResId());
+            encumbView.setText(Integer.toString(curWep.getEncumberance()));
+        } else {
+            nameView.setText("-");
+            encumbView.setText("-");
+        }
 
         return convertView;
     }
