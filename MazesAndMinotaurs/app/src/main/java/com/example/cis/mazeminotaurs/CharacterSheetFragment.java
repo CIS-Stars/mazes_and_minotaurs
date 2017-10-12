@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.SaveAndLoadDialog;
@@ -204,17 +203,7 @@ public class CharacterSheetFragment extends Fragment
         mAttackButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //just for testing, replace these with calls to character methods
-                if (mSheetPlayerCharacter.getCurrentWeapon() != null) {
-                    int weaponType = mSheetPlayerCharacter.getCurrentWeapon().getWeaponType();
-                    boolean woc = false;
-                    if (mSheetPlayerCharacter.getCharClass() instanceof Warrior) {
-                        woc = ((Warrior) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
-                    } else if (mSheetPlayerCharacter.getCharClass() instanceof Specialist) {
-                        woc = ((Specialist) mSheetPlayerCharacter.getCharClass()).getWeaponOfChoice() == mSheetPlayerCharacter.getCurrentWeapon();
-                    }
-                    onAttackClick(weaponType, woc);
-                }
+                    onAttackClick();
             }
         });
 
@@ -343,21 +332,7 @@ public class CharacterSheetFragment extends Fragment
         dialog.show(fm, ROLL_RESULT);
     }
 
-    public void onAttackClick(int attackType, boolean wocEquipped){
-        int modifier;
-        int attackRoll1 = rollDice.roll(20);
-        int attackRoll2 = rollDice.roll(20);
-        int damageRoll1 = rollDice.roll(6);
-        int damageRoll2 = rollDice.roll(6);
-        if (attackType == R.string.melee){
-            modifier = mSheetPlayerCharacter.getMeleeMod();
-        }
-        else if (attackType == R.string.missile){
-            modifier = mSheetPlayerCharacter.getMeleeMod();
-        }
-        else{
-            modifier = 0;
-        }
+    public void onAttackClick(){
         FragmentManager fm = getFragmentManager();
         AttackResultFragment dialog = AttackResultFragment.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
