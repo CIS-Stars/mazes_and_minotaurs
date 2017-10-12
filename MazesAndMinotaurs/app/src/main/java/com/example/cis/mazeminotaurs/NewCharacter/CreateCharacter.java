@@ -8,16 +8,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.CharacterSheetFragment;
+import com.example.cis.mazeminotaurs.DetailedWeaponAdapter;
+import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+
+import java.util.ArrayList;
 
 /**
  * Created by ckling on 4/10/17.
@@ -45,7 +54,7 @@ public class CreateCharacter extends Fragment {
     Button mPVButton;
     Button mInitButton;
 
-    Button mWeaponNameButton;
+    Spinner mWeaponNameSpinner;
     Button mWeaponTypeButton;
 
     public CreateCharacter() {
@@ -103,7 +112,29 @@ public class CreateCharacter extends Fragment {
         mMFButton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
         mPVButton = (Button) rootView.findViewById(R.id.physical_vigor_button);
         mInitButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
-        mWeaponNameButton = (Button) rootView.findViewById(R.id.equipped_weapon_spinner);
+        mWeaponNameSpinner = (Spinner) rootView.findViewById(R.id.equipped_weapon_spinner);
+
+        final ArrayList<Weapon> weps = new ArrayList<>();
+        for (Equipment equipment : mBaseClass.getStartGear()) {
+            if (equipment instanceof Weapon) {
+                weps.add((Weapon) equipment);
+            }
+        }
+        DetailedWeaponAdapter adapter = new DetailedWeaponAdapter(getContext(), weps);
+        mWeaponNameSpinner.setAdapter(adapter);
+
+        mWeaponNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mWeaponTypeButton.setText(weps.get(i).getWeaponType());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         mWeaponTypeButton = (Button) rootView.findViewById(R.id.attack_button);
 
         // Confirm button
@@ -136,11 +167,9 @@ public class CreateCharacter extends Fragment {
         mPVButton.setText(Integer.toString(character.getPhysicalVigor()));
         mInitButton.setText(Integer.toString(character.getInitiative()));
         if (character.getCurrentWeapon() != null) {
-            mWeaponNameButton.setText(character.getCurrentWeapon().getResId());
             mWeaponTypeButton.setText(character.getCurrentWeapon().getWeaponType());
         }
         else {
-            mWeaponNameButton.setText("-");
             mWeaponTypeButton.setText("-");
         }
     }
