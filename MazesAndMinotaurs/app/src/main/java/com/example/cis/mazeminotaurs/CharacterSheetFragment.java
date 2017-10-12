@@ -3,11 +3,12 @@ package com.example.cis.mazeminotaurs;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ public class CharacterSheetFragment extends Fragment
     Button mTotalHitsButton;
     Button mHitsButton;
     Button mAttackButton;
-    Button mEquippedWeaponButton;
+    Spinner mEquippedWeaponSpinner;
     Button mInitiativeButton;
     Button mAPbutton;
     Button mDEbutton;
@@ -217,22 +218,28 @@ public class CharacterSheetFragment extends Fragment
             }
         });
 
-        mEquippedWeaponButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
+        mEquippedWeaponSpinner = (Spinner) rootView.findViewById(R.id.equipped_weapon_spinner);
+        DetailedWeaponAdapter weaponAdapter = new DetailedWeaponAdapter(getContext(), mSheetPlayerCharacter.getWeapons());
+        mEquippedWeaponSpinner.setAdapter(weaponAdapter);
         //Get equipped weapon from character Class
         //int equippedWeaponID = R.string.barb_axe;
-        Weapon equippedWeapon = mSheetPlayerCharacter.getCurrentWeapon();
+        /*Weapon equippedWeapon = mSheetPlayerCharacter.getCurrentWeapon();
         if (equippedWeapon != null) {
             int equippedWeaponID = equippedWeapon.getResId();
-            mEquippedWeaponButton.setText(equippedWeaponID);
+            mEquippedWeaponSpinner.setText(equippedWeaponID);
         } else {
-            mEquippedWeaponButton.setText("-");
-        }
+            mEquippedWeaponSpinner.setText("-");
+        }*/
 
-        mEquippedWeaponButton.setOnClickListener(new View.OnClickListener() {
+        mEquippedWeaponSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),
-                        "Will soon open a listpicker", Toast.LENGTH_SHORT).show();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mSheetPlayerCharacter.setCurrentWeapon((Weapon) adapterView.getItemAtPosition(i));
+                populateSheet();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
 
@@ -444,7 +451,8 @@ public class CharacterSheetFragment extends Fragment
             }
 
             if (wepToDisplay != null) {
-                mEquippedWeaponButton.setText(wepToDisplay.getResId());
+                DetailedWeaponAdapter adapter = (DetailedWeaponAdapter) mEquippedWeaponSpinner.getAdapter();
+                mEquippedWeaponSpinner.setSelection(adapter.getDataset().indexOf(wepToDisplay));
                 mAttackType.setText(wepToDisplay.getWeaponType());
                 if (wepToDisplay.getWeaponType() == R.string.melee) {
                     mAttackButton.setText(Integer.toString(character.getMeleeMod()));

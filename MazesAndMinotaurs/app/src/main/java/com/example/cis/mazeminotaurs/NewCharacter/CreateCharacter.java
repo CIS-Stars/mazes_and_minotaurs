@@ -103,7 +103,7 @@ public class CreateCharacter extends Fragment {
         mMFButton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
         mPVButton = (Button) rootView.findViewById(R.id.physical_vigor_button);
         mInitButton = (Button) rootView.findViewById(R.id.initiative_modifier_button);
-        mWeaponNameButton = (Button) rootView.findViewById(R.id.equipped_weapon_button);
+        mWeaponNameButton = (Button) rootView.findViewById(R.id.equipped_weapon_spinner);
         mWeaponTypeButton = (Button) rootView.findViewById(R.id.attack_button);
 
         // Confirm button
