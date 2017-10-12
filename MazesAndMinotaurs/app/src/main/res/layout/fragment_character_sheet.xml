@@ -377,9 +377,9 @@
                         android:textAlignment="center"
                         android:textSize="24sp"/>
 
-                    <Button
-                        android:id="@+id/equipped_weapon_button"
-                        android:layout_width="63dp"
+                    <Spinner
+                        android:id="@+id/equipped_weapon_spinner"
+                        android:layout_width="60dp"
                         android:layout_column="2"
                         android:background="@drawable/character_sheet_box_white_no_top"
                         android:text="weapon name"
