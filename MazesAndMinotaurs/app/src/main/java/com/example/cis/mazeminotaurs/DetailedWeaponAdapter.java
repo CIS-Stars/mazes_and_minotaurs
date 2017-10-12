@@ -57,4 +57,12 @@ public class DetailedWeaponAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public ArrayList<Weapon> getDataset() {
+        return mDataset;
+    }
+
+    public void setDataset(ArrayList<Weapon> dataset) {
+        mDataset = dataset;
+    }
 }
