@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.R;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * Created by jsmith on 10/11/17.
  */
 
-public class DetailedWeaponAdapter extends ArrayAdapter<Weapon> {
+public class DetailedWeaponAdapter extends BaseAdapter {
     private ArrayList<Weapon> mDataset;
     private Context mContext;
 
@@ -27,11 +28,27 @@ public class DetailedWeaponAdapter extends ArrayAdapter<Weapon> {
         mDataset = weapons;
     }
 
+
+    @Override
+    public int getCount() {
+        return mDataset.size();
+    }
+
+    @Override
+    public Weapon getItem(int i) {
+        return mDataset.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return mDataset.get(i).getResId();
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext())
+            convertView = LayoutInflater.from(mContext)
                     .inflate(R.layout.spinner_item_weapon_detailed, parent, false);
         }
 
