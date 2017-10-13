@@ -62,8 +62,8 @@ public class AttackResultFragment extends DialogFragment {
         mAttackType = getString(mCurrentCharacter.getCurrentWeapon().getWeaponType());
         mAttackRoll1 = rollDice.roll(20);
         mAttackRoll2 = rollDice.roll(20);
-        mDamage1 = rollDice.roll(6);
-        mDamage2 = rollDice.roll(6);
+        mDamage1 = rollDice.roll(mCurrentCharacter.getCurrentWeapon().getDamageDie());
+        mDamage2 = rollDice.roll(mCurrentCharacter.getCurrentWeapon().getDamageDie());
         mTotal1 = mAttackRoll1 + mMod;
         mTotal2 = mAttackRoll2 + mMod;
 

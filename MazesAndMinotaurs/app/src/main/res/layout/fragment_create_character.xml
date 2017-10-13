@@ -378,7 +378,7 @@
                         android:textAlignment="center"
                         android:textSize="24sp"/>
 
-                    <Spinner
+                    <Button
                         android:id="@+id/equipped_weapon_spinner"
                         android:layout_width="63dp"
                         android:layout_column="2"
