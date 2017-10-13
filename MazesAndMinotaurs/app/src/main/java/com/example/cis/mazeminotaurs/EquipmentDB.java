@@ -42,22 +42,22 @@ public class EquipmentDB {
         equipment.add(new Equipment(R.string.rations, 0, 1, 2, "One Day's Worth Of Food"));
         equipment.add(new Equipment(R.string.waterskin, 1, 1, 2, "A Skin Full of Water"));
 
-        //(resID, encumbrance, qty, costInSilver, longDescription, dmgDie, numDice, dmgBonus, type)
-        weapons.add(new Weapon(R.string.barb_axe, 2, 1, 30, "Large, Ugly Axe!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.barb_club, 2, 1, 0, "Large, Heavy Club!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.barb_sword, 2, 1, 60, "Large, Ugly, Heavy Sword!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.barb_mace, 2, 1, 30, "Large, Ugly Mace!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.dagger, 0, 1, 15, "Small Sinister dagger!", 3, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.throw_knife, 0, 1, 15, "A knife made for throwing!", 3, 1, 0, R.string.missile));
-        weapons.add(new Weapon(R.string.axe, 1, 1, 30, "A Nasty, Wicked Axe!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.club, 1, 1, 0, "A not-so-heavy Club!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.sword, 1, 1, 60, "A Dangerous, Deadly Blade!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.spear, 2, 1, 30, "Wicked, Deadly Spear!", 6, 1, 0, R.string.melee));
-        weapons.add(new Weapon(R.string.bow, 1, 1, 40, "Standard Bow", 6, 1, 0, R.string.missile, 300));
-        weapons.add(new Weapon(R.string.sling, 0, 1, 5, "Standard Sling", 6, 1, 0, R.string.missile, 150));
-        weapons.add(new Weapon(R.string.javelin, 2, 1, 30, "A Deadly Javelin", 6, 1, 0, R.string.missile));
-        weapons.add(new Weapon(R.string.arrows, 1, 12, 12, "A quiver of Arrows", 0, 0, 0, R.string.missile));
-        weapons.add(new Weapon(R.string.slingshot, 1, 10, 2, "A Small Sack of Sling Stones", 0, 0, 0, R.string.missile));
+        //(resID, encumbrance, qty, costInSilver, longDescription, dmgDie, numDice, dmgBonus, type, size, range)
+        weapons.add(new Weapon(R.string.barb_axe, 2, 1, 30, "Large, Ugly Axe!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(R.string.barb_club, 2, 1, 0, "Large, Heavy Club!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(R.string.barb_sword, 2, 1, 60, "Large, Ugly, Heavy Sword!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(R.string.barb_mace, 2, 1, 30, "Large, Ugly Mace!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(R.string.dagger, 0, 1, 15, "Small Sinister dagger!", 3, 1, 0, R.string.melee, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.throw_knife, 0, 1, 15, "A knife made for throwing!", 3, 1, 0, R.string.missile, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.axe, 1, 1, 30, "A Nasty, Wicked Axe!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.club, 1, 1, 0, "A not-so-heavy Club!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.sword, 1, 1, 60, "A Dangerous, Deadly Blade!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.spear, 2, 1, 30, "Wicked, Deadly Spear!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.bow, 1, 1, 40, "Standard Bow", 6, 1, 0, R.string.missile, R.string.size_normal, 300));
+        weapons.add(new Weapon(R.string.sling, 0, 1, 5, "Standard Sling", 6, 1, 0, R.string.missile, R.string.size_normal, 150));
+        weapons.add(new Weapon(R.string.javelin, 2, 1, 30, "A Deadly Javelin", 6, 1, 0, R.string.missile, R.string.size_normal, 150));
+        weapons.add(new Weapon(R.string.arrows, 1, 12, 12, "A quiver of Arrows", 0, 0, 0, R.string.missile, R.string.size_normal, 0));
+        weapons.add(new Weapon(R.string.slingshot, 1, 10, 2, "A Small Sack of Sling Stones", 0, 0, 0, R.string.missile, R.string.size_normal, 0));
 
         //(resID, encumbrance, qty, costInSilver, longDescription, defenseBonus)
         armor.add(new Armor(R.string.breastplate, 3, 1, 150, "A Sturdy, Functional Breastplate", 2));
