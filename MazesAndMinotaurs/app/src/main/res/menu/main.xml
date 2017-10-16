@@ -6,4 +6,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_save_portfolio"
+        android:orderInCategory="200"
+        android:title="@string/save_portfolio"
+        app:showAsAction="never"/>
 </menu>

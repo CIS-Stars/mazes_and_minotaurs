@@ -8,6 +8,7 @@
     <string name="create_character">Create New Character</string>
     <string name="play_character">Play Existing Character</string>
     <string name="delete_character">Delete A Character</string>
+    <string name="save_portfolio">Save Portfolio</string>
     <string name="resources">Web Resources</string>
     <string name="mm_website"><![CDATA[M&M Website]]></string>
     <string name="player_companion"><![CDATA[M&M Companion pdf]]></string>
