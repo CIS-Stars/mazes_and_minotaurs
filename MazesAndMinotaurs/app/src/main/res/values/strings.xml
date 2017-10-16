@@ -66,4 +66,9 @@
     <string name="old_attribute_value" formatted="false">%s Old Value\n%2d</string>
     <string name="new_attribute_value">New Value</string>
     <string name="attribute_edit_hint">Enter a number</string>
+
+    <!-- Character Save/Load Fragment -->
+    <string name="name_view">Name: %s</string>
+    <string name="class_view">Class: %s</string>
+    <string name="level_view">Level: %s</string>
 </resources>
