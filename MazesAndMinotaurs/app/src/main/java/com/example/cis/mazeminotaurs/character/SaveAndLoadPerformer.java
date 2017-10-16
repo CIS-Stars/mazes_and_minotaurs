@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -50,5 +51,20 @@ public class SaveAndLoadPerformer {
      */
     public static PlayerCharacter load(String jsonString){
         return new Gson().fromJson(jsonString, PlayerCharacter.class);
+    }
+
+    public static String savePortfolio() {
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<PlayerCharacter>>() {
+        }.getType();
+        return gson.toJson(Portfolio.get(), listType);
+    }
+
+    public static void loadPortfolio(String jsonString) {
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<PlayerCharacter>>() {
+        }.getType();
+        Portfolio newPort = gson.fromJson(jsonString, listType);
+        Portfolio.get().setPortfolio(newPort.getPortfolio());
     }
 }

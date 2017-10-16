@@ -10,6 +10,8 @@ import java.util.ArrayList;
  */
 
 public class Portfolio {
+    public static final String FILENAME = "SavedPortfolio";
+
     private static final String TAG = Portfolio.class.getName();
     private ArrayList<PlayerCharacter> portfolio;
     private static Portfolio sPortfolio;
