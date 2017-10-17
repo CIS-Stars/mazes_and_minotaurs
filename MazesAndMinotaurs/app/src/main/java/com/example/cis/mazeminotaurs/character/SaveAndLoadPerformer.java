@@ -41,7 +41,9 @@ public class SaveAndLoadPerformer {
      * @return json string of playerCharacter
      */
     public static String save(int characterIndex) {
-        return new Gson().toJson(Portfolio.get().getPlayerCharacter(characterIndex));
+        GsonBuilder gson = new GsonBuilder();
+        gson.registerTypeAdapter(PlayerCharacter.class, new CharacterSerializer());
+        return gson.create().toJson(Portfolio.get().getPlayerCharacter(characterIndex));
     }
 
     /**
@@ -50,21 +52,71 @@ public class SaveAndLoadPerformer {
      * @return the generated playerCharacter
      */
     public static PlayerCharacter load(String jsonString){
-        return new Gson().fromJson(jsonString, PlayerCharacter.class);
+        PlayerCharacter returnCharacter = new PlayerCharacter();
+        JsonObject loadedData = (JsonObject) new Gson().fromJson(jsonString, JsonElement.class);
+
+        for (Score score : Score.values()) {
+            int loadedScore = loadedData.getAsJsonObject("mScores").getAsJsonObject(score.toString()).get("mScore").getAsInt();
+            returnCharacter.getScore(score).setScore(loadedScore);
+        }
+        Gson gson = new Gson();
+
+        returnCharacter.setAge(gson.fromJson(loadedData.get("mAge"), Integer.class));
+        returnCharacter.setBreastplate(gson.fromJson(loadedData.get("mBreastplate"), Armor.class));
+        returnCharacter.setCharClass(gson.fromJson(loadedData.get("mCharClass"), Barbarian.class));
+        returnCharacter.setCurrentWeapon(gson.fromJson(loadedData.get("mCurrentWeapon"), Weapon.class));
+        returnCharacter.setGender(gson.fromJson(loadedData.get("mGender"), Gender.class));
+        returnCharacter.setHelmet(gson.fromJson(loadedData.get("mHelmet"), Armor.class));
+        returnCharacter.setMoney(gson.fromJson(loadedData.get("mMoney"), HashMap.class));
+        returnCharacter.setName(loadedData.get("mName").getAsString());
+        returnCharacter.setInventory(gson.fromJson(loadedData.get("mInventory"), ArrayList.class));
+        returnCharacter.setShield(gson.fromJson(loadedData.get("mShield"), Armor.class));
+
+        return returnCharacter;
     }
 
     public static String savePortfolio() {
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<PlayerCharacter>>() {
         }.getType();
-        return gson.toJson(Portfolio.get(), listType);
+        return gson.toJson(Portfolio.get().getPortfolio(), listType);
     }
 
     public static void loadPortfolio(String jsonString) {
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<PlayerCharacter>>() {
         }.getType();
-        Portfolio newPort = gson.fromJson(jsonString, listType);
-        Portfolio.get().setPortfolio(newPort.getPortfolio());
+        ArrayList<PlayerCharacter> newPort = gson.fromJson(jsonString, listType);
+        Portfolio.get().setPortfolio(newPort);
+    }
+}
+
+/**
+ * Custom serializer for transforming the PlayerCharacter class into json.
+ */
+class CharacterSerializer implements JsonSerializer<PlayerCharacter> {
+    @Override
+    public JsonElement serialize(PlayerCharacter src, Type typeOfSrc, JsonSerializationContext context) {
+        BaseClass characterClass = src.getCharClass();
+        characterClass.setCharacter(null);
+
+        JsonObject rootObject = new JsonObject();
+        rootObject.add("mScores", context.serialize(src.getScores()));
+        rootObject.add("mCharClass", context.serialize(src.getCharClass()));
+        rootObject.add("mGender", context.serialize(src.getGender()));
+        rootObject.add("mMoney", context.serialize(src.getMoney()));
+        rootObject.add("mAge", context.serialize(src.getAge()));
+        rootObject.add("mName", context.serialize(src.getName()));
+        rootObject.add("mInventory", context.serialize(src.getInventory()));
+        rootObject.add("mCurrentWeapon", context.serialize(src.getCurrentWeapon()));
+        rootObject.add("mHelmet", context.serialize(src.getHelmet()));
+        rootObject.add("mBreastplate", context.serialize(src.getBreastplate()));
+        rootObject.add("mShield", context.serialize(src.getShield()));
+
+        JsonElement classJson = context.serialize(characterClass);
+        rootObject.add("mCharClass", classJson);
+
+        characterClass.setCharacter(src);
+        return rootObject;
     }
 }
