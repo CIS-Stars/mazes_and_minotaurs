@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 /**
+ * @deprecated
  * Created by jusmith on 4/26/17.
  */
 

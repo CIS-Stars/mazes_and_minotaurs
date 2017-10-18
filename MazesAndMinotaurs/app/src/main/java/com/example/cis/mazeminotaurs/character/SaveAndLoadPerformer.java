@@ -86,6 +86,7 @@ public class SaveAndLoadPerformer {
 
     /**
      * Returns a playerCharacter based on the json string given.
+     * @deprecated
      * @param jsonString the playerCharacter in json
      * @return the generated playerCharacter
      */
