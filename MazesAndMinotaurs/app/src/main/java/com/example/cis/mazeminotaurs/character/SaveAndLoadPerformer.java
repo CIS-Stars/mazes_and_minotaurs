@@ -37,31 +37,36 @@ import java.util.HashMap;
 
 public class SaveAndLoadPerformer {
 
+    private static Gson sGson = null;
+
     /**
      * Generates a gson that has all of the common features loaded in.
      * @return a gson object
      */
     private static Gson getGson() {
-        GsonBuilder builder = new GsonBuilder();
-        RuntimeTypeAdapterFactory<BaseClass> adapter = RuntimeTypeAdapterFactory
-                .of(BaseClass.class)
-                .registerSubtype(Amazon.class)
-                .registerSubtype(Barbarian.class)
-                .registerSubtype(Centaur.class)
-                .registerSubtype(Elementalist.class)
-                .registerSubtype(Hunter.class)
-                .registerSubtype(Lyrist.class)
-                .registerSubtype(Magician.class)
-                .registerSubtype(Noble.class)
-                .registerSubtype(Nymph.class)
-                .registerSubtype(Priest.class)
-                .registerSubtype(Sorcerer.class)
-                .registerSubtype(Spearman.class)
-                .registerSubtype(Thief.class);
-        builder.registerTypeAdapter(PlayerCharacter.class, new CharacterSerializer());
-        builder.registerTypeAdapterFactory(adapter);
-        builder.setPrettyPrinting();
-        return builder.create();
+        if (sGson == null) {
+            GsonBuilder builder = new GsonBuilder();
+            RuntimeTypeAdapterFactory<BaseClass> adapter = RuntimeTypeAdapterFactory
+                    .of(BaseClass.class)
+                    .registerSubtype(Amazon.class)
+                    .registerSubtype(Barbarian.class)
+                    .registerSubtype(Centaur.class)
+                    .registerSubtype(Elementalist.class)
+                    .registerSubtype(Hunter.class)
+                    .registerSubtype(Lyrist.class)
+                    .registerSubtype(Magician.class)
+                    .registerSubtype(Noble.class)
+                    .registerSubtype(Nymph.class)
+                    .registerSubtype(Priest.class)
+                    .registerSubtype(Sorcerer.class)
+                    .registerSubtype(Spearman.class)
+                    .registerSubtype(Thief.class);
+            builder.registerTypeAdapter(PlayerCharacter.class, new CharacterSerializer());
+            builder.registerTypeAdapterFactory(adapter);
+            builder.setPrettyPrinting();
+            sGson = builder.create();
+        }
+        return sGson;
     }
 
     /**

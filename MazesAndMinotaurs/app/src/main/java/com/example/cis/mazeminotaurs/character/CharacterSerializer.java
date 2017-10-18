@@ -34,17 +34,23 @@ import java.util.Map;
  * Custom serializer for transforming the PlayerCharacter class into json.
  */
 public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, JsonDeserializer<PlayerCharacter> {
+
+    private static Gson sGson = null;
+
     private static Gson getGson() {
-        GsonBuilder builder = new GsonBuilder();
-        RuntimeTypeAdapterFactory adapter = RuntimeTypeAdapterFactory
-                .of(Equipment.class)
-                .registerSubtype(Equipment.class)
-                .registerSubtype(Weapon.class)
-                .registerSubtype(Armor.class)
-                .registerSubtype(Mythics.class);
-        builder.registerTypeAdapterFactory(adapter);
-        builder.setPrettyPrinting();
-        return builder.create();
+        if (sGson == null) {
+            GsonBuilder builder = new GsonBuilder();
+            RuntimeTypeAdapterFactory adapter = RuntimeTypeAdapterFactory
+                    .of(Equipment.class)
+                    .registerSubtype(Equipment.class)
+                    .registerSubtype(Weapon.class)
+                    .registerSubtype(Armor.class)
+                    .registerSubtype(Mythics.class);
+            builder.registerTypeAdapterFactory(adapter);
+            builder.setPrettyPrinting();
+            sGson = builder.create();
+        }
+        return sGson;
     }
 
     @Override
