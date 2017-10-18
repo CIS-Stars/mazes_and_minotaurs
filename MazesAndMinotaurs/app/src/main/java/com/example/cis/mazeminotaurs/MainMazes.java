@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.SaveAndLoadPerformer;
+import com.example.cis.mazeminotaurs.util.Util;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -57,6 +58,10 @@ public class MainMazes extends AppCompatActivity
             }
 
             mPortfolio = Portfolio.get();
+            if (mPortfolio.getPortfolio() == null) {
+                mPortfolio.resetPortfolio();
+                mPortfolio.addPlayerCharacter(Util.createDummyCharacter());
+            }
             mEquipment = EquipmentDB.getInstance();
 
             try{
