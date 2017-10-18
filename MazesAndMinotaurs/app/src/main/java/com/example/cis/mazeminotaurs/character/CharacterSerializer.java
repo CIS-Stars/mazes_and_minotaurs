@@ -6,12 +6,15 @@ package com.example.cis.mazeminotaurs.character;
 
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.Mythics;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.Money;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -20,6 +23,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -30,6 +34,19 @@ import java.util.Map;
  * Custom serializer for transforming the PlayerCharacter class into json.
  */
 public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, JsonDeserializer<PlayerCharacter> {
+    private static Gson getGson() {
+        GsonBuilder builder = new GsonBuilder();
+        RuntimeTypeAdapterFactory adapter = RuntimeTypeAdapterFactory
+                .of(Equipment.class)
+                .registerSubtype(Equipment.class)
+                .registerSubtype(Weapon.class)
+                .registerSubtype(Armor.class)
+                .registerSubtype(Mythics.class);
+        builder.registerTypeAdapterFactory(adapter);
+        builder.setPrettyPrinting();
+        return builder.create();
+    }
+
     @Override
     public JsonElement serialize(PlayerCharacter src, Type typeOfSrc, JsonSerializationContext context) {
         BaseClass characterClass = src.getCharClass();
@@ -47,7 +64,8 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
         rootObject.add("mMoney", context.serialize(src.getMoney(), moneyMapType));
         rootObject.add("mAge", context.serialize(src.getAge()));
         rootObject.add("mName", context.serialize(src.getName()));
-        rootObject.add("mInventory", context.serialize(src.getInventory(), equipListType));
+        System.out.println(getGson().toJsonTree(src.getInventory(), equipListType));
+        rootObject.add("mInventory", getGson().toJsonTree(src.getInventory(), equipListType));
         rootObject.add("mCurrentWeapon", context.serialize(src.getCurrentWeapon()));
         rootObject.add("mHelmet", context.serialize(src.getHelmet()));
         rootObject.add("mBreastplate", context.serialize(src.getBreastplate()));
@@ -82,7 +100,7 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
         newCharacter.setHelmet((Armor) context.deserialize(loadedData.get("mHelmet"), Armor.class));
         newCharacter.setMoney((HashMap<Money, Integer>) context.deserialize(loadedData.get("mMoney"), moneyMapType));
         newCharacter.setName(loadedData.get("mName").getAsString());
-        newCharacter.setInventory((ArrayList<Equipment>) context.deserialize(loadedData.get("mInventory"), equipListType));
+        newCharacter.setInventory((ArrayList<Equipment>) getGson().fromJson(loadedData.get("mInventory"), equipListType));
         newCharacter.setShield((Armor) context.deserialize(loadedData.get("mShield"), Armor.class));
 
         return newCharacter;
