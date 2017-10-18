@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.Money;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
+import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -18,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -33,14 +35,19 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
         BaseClass characterClass = src.getCharClass();
         characterClass.setCharacter(null);
 
+        Type equipListType = new TypeToken<ArrayList<Equipment>>() {
+        }.getType();
+        Type moneyMapType = new TypeToken<HashMap<Money, Integer>>() {
+        }.getType();
+
         JsonObject rootObject = new JsonObject();
         rootObject.add("mScores", context.serialize(src.getScores()));
-        rootObject.add("mCharClass", context.serialize(src.getCharClass()));
+        rootObject.add("mCharClass", context.serialize(src.getCharClass(), BaseClass.class));
         rootObject.add("mGender", context.serialize(src.getGender()));
-        rootObject.add("mMoney", context.serialize(src.getMoney()));
+        rootObject.add("mMoney", context.serialize(src.getMoney(), moneyMapType));
         rootObject.add("mAge", context.serialize(src.getAge()));
         rootObject.add("mName", context.serialize(src.getName()));
-        rootObject.add("mInventory", context.serialize(src.getInventory()));
+        rootObject.add("mInventory", context.serialize(src.getInventory(), equipListType));
         rootObject.add("mCurrentWeapon", context.serialize(src.getCurrentWeapon()));
         rootObject.add("mHelmet", context.serialize(src.getHelmet()));
         rootObject.add("mBreastplate", context.serialize(src.getBreastplate()));
@@ -57,18 +64,25 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
     public PlayerCharacter deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final PlayerCharacter newCharacter = new PlayerCharacter();
         JsonObject loadedData = json.getAsJsonObject();
-        for (Map.Entry<String, JsonElement> e : loadedData.get("mCharClass").getAsJsonObject().entrySet()) {
-            System.out.println(e);
+        for (Score score : Score.values()) {
+            int loadedScore = loadedData.getAsJsonObject("mScores").getAsJsonObject(score.toString()).get("mScore").getAsInt();
+            newCharacter.getScore(score).setScore(loadedScore);
         }
+
+        Type equipListType = new TypeToken<ArrayList<Equipment>>() {
+        }.getType();
+        Type moneyMapType = new TypeToken<HashMap<Money, Integer>>() {
+        }.getType();
+
         newCharacter.setAge((int) context.deserialize(loadedData.get("mAge"), Integer.class));
         newCharacter.setBreastplate((Armor) context.deserialize(loadedData.get("mBreastplate"), Armor.class));
         newCharacter.setCharClass((BaseClass) context.deserialize(loadedData.get("mCharClass"), BaseClass.class));
         newCharacter.setCurrentWeapon((Weapon) context.deserialize(loadedData.get("mCurrentWeapon"), Weapon.class));
         newCharacter.setGender((Gender) context.deserialize(loadedData.get("mGender"), Gender.class));
         newCharacter.setHelmet((Armor) context.deserialize(loadedData.get("mHelmet"), Armor.class));
-        newCharacter.setMoney((HashMap<Money, Integer>) context.deserialize(loadedData.get("mMoney"), HashMap.class));
+        newCharacter.setMoney((HashMap<Money, Integer>) context.deserialize(loadedData.get("mMoney"), moneyMapType));
         newCharacter.setName(loadedData.get("mName").getAsString());
-        newCharacter.setInventory((ArrayList<Equipment>) context.deserialize(loadedData.get("mInventory"), ArrayList.class));
+        newCharacter.setInventory((ArrayList<Equipment>) context.deserialize(loadedData.get("mInventory"), equipListType));
         newCharacter.setShield((Armor) context.deserialize(loadedData.get("mShield"), Armor.class));
 
         return newCharacter;

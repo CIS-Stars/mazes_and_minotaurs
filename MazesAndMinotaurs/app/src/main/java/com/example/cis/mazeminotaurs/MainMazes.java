@@ -1,5 +1,6 @@
 package com.example.cis.mazeminotaurs;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,12 +13,23 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
+import com.example.cis.mazeminotaurs.character.SaveAndLoadPerformer;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +40,21 @@ public class MainMazes extends AppCompatActivity
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            try {
+                String basePath = getApplicationContext().getFilesDir().getPath() + "/";
+                FileInputStream fis = new FileInputStream(basePath + Portfolio.FILENAME);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new BufferedInputStream(fis)));
+
+                StringBuilder builder = new StringBuilder();
+                String line = bufferedReader.readLine();
+                while (line != null && !line.equals("")) {
+                    builder.append(line);
+                    line = bufferedReader.readLine();
+                }
+                SaveAndLoadPerformer.loadPortfolio(builder.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             mPortfolio = Portfolio.get();
             mEquipment = EquipmentDB.getInstance();
@@ -84,6 +111,17 @@ public class MainMazes extends AppCompatActivity
 
             //noinspection SimplifiableIfStatement
             if (id == R.id.action_settings) {
+                return true;
+            } else if (id == R.id.action_save_portfolio) {
+                try {
+                    FileOutputStream fos = getApplicationContext().openFileOutput(Portfolio.FILENAME, Context.MODE_PRIVATE);
+                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
+                    outputStreamWriter.write(SaveAndLoadPerformer.savePortfolio());
+                    outputStreamWriter.close();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return true;
             }
 

@@ -208,6 +208,7 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mEquippedWeaponSpinner = (Spinner) rootView.findViewById(R.id.equipped_weapon_spinner);
+        System.out.println(mSheetPlayerCharacter.getInventory());
         DetailedWeaponAdapter weaponAdapter = new DetailedWeaponAdapter(getContext(), mSheetPlayerCharacter.getWeapons());
         mEquippedWeaponSpinner.setAdapter(weaponAdapter);
         //Get equipped weapon from character Class
