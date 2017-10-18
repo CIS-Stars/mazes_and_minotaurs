@@ -3,6 +3,7 @@ package com.example.cis.mazeminotaurs;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,7 @@ public class CharacterSheetFragment extends Fragment
         View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
 
         mCurrentCharacterIndex = mPortfolio.getActiveCharacterIndex();
+        Log.d(TAG, String.valueOf(mPortfolio.getActiveCharacterIndex()));
 
         mSheetPlayerCharacter = mPortfolio.getPlayerCharacter(mCurrentCharacterIndex);
         mCharacterLevelView = (TextView) rootView.findViewById(R.id.character_level_view);

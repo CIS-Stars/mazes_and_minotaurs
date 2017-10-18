@@ -19,6 +19,11 @@ public class CharacterAdapter extends BaseAdapter {
     private ArrayList<PlayerCharacter> mDataset;
     private Context mContext;
 
+    public CharacterAdapter(Context context, ArrayList<PlayerCharacter> dataset) {
+        mContext = context;
+        mDataset = dataset;
+    }
+
     @Override
     public int getCount() {
         return mDataset.size();
@@ -47,7 +52,7 @@ public class CharacterAdapter extends BaseAdapter {
 
         nameView.setText(mDataset.get(i).getName());
         classView.setText(mDataset.get(i).getCharClass().getResId());
-        levelView.setText(mDataset.get(i).getCharClass().getLevel());
+        levelView.setText(String.valueOf(mDataset.get(i).getCharClass().getLevel()));
         return view;
     }
 }
