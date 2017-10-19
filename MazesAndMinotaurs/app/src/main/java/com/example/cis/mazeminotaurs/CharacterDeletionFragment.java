@@ -19,15 +19,14 @@ public class CharacterDeletionFragment extends Fragment {
         super.onCreateView(li, vg, b);
         View view = li.inflate(R.layout.fragment_character_selection, vg, false);
 
-        ListView charListView = (ListView) view.findViewById(R.id.character_list_view);
-        charListView.setAdapter(new CharacterAdapter(getContext(), Portfolio.get().getPortfolio()));
+        final ListView charListView = (ListView) view.findViewById(R.id.character_list_view);
+        charListView.setAdapter(new CharacterAdapter(getContext()));
 
         charListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Portfolio port = Portfolio.get();
-                if (port.getPortfolio().size() > 1) {
-                    port.deletePlayerCharacter(port.getPlayerCharacter(i));
+                if (charListView.getAdapter().getCount() > 1) {
+                    ((CharacterAdapter) charListView.getAdapter()).removeCharacter(i);
                 } else {
                     Toast.makeText(getContext(), R.string.error_delete_character, Toast.LENGTH_SHORT).show();
                 }

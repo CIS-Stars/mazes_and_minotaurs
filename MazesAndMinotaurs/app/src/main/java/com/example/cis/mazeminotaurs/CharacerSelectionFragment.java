@@ -19,7 +19,7 @@ public class CharacerSelectionFragment extends Fragment {
         View view = li.inflate(R.layout.fragment_character_selection, vg, false);
 
         ListView charListView = (ListView) view.findViewById(R.id.character_list_view);
-        charListView.setAdapter(new CharacterAdapter(getContext(), Portfolio.get().getPortfolio()));
+        charListView.setAdapter(new CharacterAdapter(getContext()));
 
         charListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

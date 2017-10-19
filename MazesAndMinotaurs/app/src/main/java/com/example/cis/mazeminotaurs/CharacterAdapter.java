@@ -16,27 +16,31 @@ import java.util.ArrayList;
  */
 
 public class CharacterAdapter extends BaseAdapter {
-    private ArrayList<PlayerCharacter> mDataset;
+    private Portfolio mPortfolio = Portfolio.get();
     private Context mContext;
 
-    public CharacterAdapter(Context context, ArrayList<PlayerCharacter> dataset) {
+    public CharacterAdapter(Context context) {
         mContext = context;
-        mDataset = dataset;
+    }
+
+    public void removeCharacter(int i) {
+        mPortfolio.deletePlayerCharacter(mPortfolio.getPlayerCharacter(i));
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return mDataset.size();
+        return mPortfolio.getPortfolio().size();
     }
 
     @Override
     public PlayerCharacter getItem(int i) {
-        return mDataset.get(i);
+        return mPortfolio.getPlayerCharacter(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return mDataset.get(i).getCharClass().getResId();
+        return getItem(i).getCharClass().getResId();
     }
 
     @Override
@@ -50,9 +54,9 @@ public class CharacterAdapter extends BaseAdapter {
         TextView classView = (TextView) view.findViewById(R.id.character_class_view);
         TextView levelView = (TextView) view.findViewById(R.id.character_level_view);
 
-        nameView.setText(mDataset.get(i).getName());
-        classView.setText(mDataset.get(i).getCharClass().getResId());
-        levelView.setText(String.valueOf(mDataset.get(i).getCharClass().getLevel()));
+        nameView.setText(getItem(i).getName());
+        classView.setText(getItem(i).getCharClass().getResId());
+        levelView.setText(String.valueOf(getItem(i).getCharClass().getLevel()));
         return view;
     }
 }
