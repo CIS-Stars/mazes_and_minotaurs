@@ -76,6 +76,7 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
         rootObject.add("mHelmet", context.serialize(src.getHelmet()));
         rootObject.add("mBreastplate", context.serialize(src.getBreastplate()));
         rootObject.add("mShield", context.serialize(src.getShield()));
+        rootObject.add("mPatron", context.serialize(src.getPatron()));
 
         JsonElement classJson = context.serialize(characterClass);
         rootObject.add("mCharClass", classJson);
@@ -108,6 +109,7 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
         newCharacter.setName(loadedData.get("mName").getAsString());
         newCharacter.setInventory((ArrayList<Equipment>) getGson().fromJson(loadedData.get("mInventory"), equipListType));
         newCharacter.setShield((Armor) context.deserialize(loadedData.get("mShield"), Armor.class));
+        newCharacter.setPatron((Patron) context.deserialize(loadedData.get("mPatron"), Patron.class));
 
         return newCharacter;
     }
