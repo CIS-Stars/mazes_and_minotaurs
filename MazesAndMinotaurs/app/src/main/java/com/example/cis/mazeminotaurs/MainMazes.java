@@ -151,7 +151,7 @@ public class MainMazes extends AppCompatActivity
             } else if (id == R.id.select_character) {
                 contentFragment = new CharacerSelectionFragment();
             } else if (id == R.id.delete_character) {
-
+                contentFragment = new CharacterDeletionFragment();
             } else if (id == R.id.player_manual) {
                 contentFragment = new PlayerManualFragment();
             } else if (id == R.id.player_comapanion) {
