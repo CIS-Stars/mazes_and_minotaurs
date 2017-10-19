@@ -1,14 +1,2 @@
-Oct 19, 2017 11:11:42 AM com.pytenlabs.instapk.helpers.LogHelper init
-INFO: Linux, 4.9.0-3-amd64, amd64, Android Studio AI-162.2228.14
-Oct 19, 2017 11:20:31 AM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: versionCode : 1
-Oct 19, 2017 11:20:31 AM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: versionName : 1.0
-Oct 19, 2017 11:20:31 AM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: packageName : com.example.cis.mazeminotaurs
-Oct 19, 2017 11:20:31 AM com.pytenlabs.instapk.helpers.ApiHelper uploadApk
-INFO: release_note : Prototype of character saving
-Oct 19, 2017 11:20:40 AM com.pytenlabs.instapk.helpers.ApiHelper$1 run
-INFO: RES CODE: 201
-Oct 19, 2017 11:20:40 AM com.pytenlabs.instapk.helpers.ApiHelper$1 run
-INFO: RES: {"id":3776,"release_note":"Prototype of character saving","created_time":"2017-10-19T16:22:26.845507Z"}
+Oct 13, 2017 1:32:17 PM com.pytenlabs.instapk.helpers.LogHelper init
+INFO: Windows 7, 6.1, amd64, Android Studio AI-162.2228.14

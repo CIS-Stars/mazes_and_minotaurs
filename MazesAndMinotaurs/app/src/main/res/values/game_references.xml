@@ -34,6 +34,12 @@
     <string name="hunter_talent">Hunting</string>
     <string name="thief_talent">Thievery</string>
 
+    <!-- Weapon Size Categories -->
+    <string name="size_normal">Normal</string>
+    <string name="size_barbarian">Barbarian</string>
+    <string name="size_large">Large</string>
+    <string name="size_enormous">Enormous</string>
+
     <!-- Deities -->
     <string name="aphrodite">Aphrodite</string>
     <string name="apollo">Apollo</string>
