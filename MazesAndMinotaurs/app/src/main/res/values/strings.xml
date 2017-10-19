@@ -8,6 +8,9 @@
     <string name="create_character">Create New Character</string>
     <string name="play_character">Play Existing Character</string>
     <string name="delete_character">Delete A Character</string>
+    <string name="error_delete_character">Must have one character at all times!</string>
+    <string name="select_character">Select Active Character</string>
+    <string name="save_portfolio">Save Portfolio</string>
     <string name="resources">Web Resources</string>
     <string name="mm_website"><![CDATA[M&M Website]]></string>
     <string name="player_companion"><![CDATA[M&M Companion pdf]]></string>
@@ -66,4 +69,9 @@
     <string name="old_attribute_value" formatted="false">%s Old Value\n%2d</string>
     <string name="new_attribute_value">New Value</string>
     <string name="attribute_edit_hint">Enter a number</string>
+
+    <!-- Character Save/Load Fragment -->
+    <string name="name_view">Name: %s</string>
+    <string name="class_view">Class: %s</string>
+    <string name="level_view">Level: %s</string>
 </resources>
