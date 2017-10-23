@@ -478,6 +478,21 @@ public class PlayerCharacter{
         if (getWeapons().size() > 0) {
             setCurrentWeapon(getWeapons().get(0));
         }
+
+        EquipmentDB db = EquipmentDB.getInstance();
+
+        if (getInventory().contains(db.getArmor(R.string.helmet))) {
+            setHelmet(db.getArmor(R.string.helmet));
+        }
+
+        if (getInventory().contains(db.getArmor(R.string.breastplate))) {
+            setBreastplate(db.getArmor(R.string.breastplate));
+        }
+
+        if (getInventory().contains(db.getArmor(R.string.shield))) {
+            setShield(db.getArmor(R.string.shield));
+        }
+
         setCurHits(getHitTotal());
     }
 
