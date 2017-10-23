@@ -2,6 +2,7 @@ package com.example.cis.mazeminotaurs.character;
 
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.Equipment;
+import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.classes.Amazon;
@@ -135,5 +136,18 @@ public class SaveAndLoadPerformer {
         }.getType();
         ArrayList<PlayerCharacter> newPort = getGson().fromJson(jsonString, listType);
         Portfolio.get().setPortfolio(newPort);
+    }
+
+    public static String saveEquipmentDB() {
+        return getGson().toJson(EquipmentDB.getInstance());
+    }
+
+    public static void loadEquipmentDB(String jsonString) {
+        EquipmentDB newInstance = getGson().fromJson(jsonString, EquipmentDB.class);
+        EquipmentDB curInstance = EquipmentDB.getInstance();
+
+        curInstance.setArmors(newInstance.getArmors());
+        curInstance.setEquipments(newInstance.getEquipments());
+        curInstance.setWeapons(newInstance.getWeapons());
     }
 }

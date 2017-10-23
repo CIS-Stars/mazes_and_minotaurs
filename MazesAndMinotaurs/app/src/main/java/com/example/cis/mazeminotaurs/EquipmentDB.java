@@ -101,4 +101,24 @@ public class EquipmentDB {
         }
         return null;
     }
+
+    public ArrayList<Equipment> getEquipments() {
+        return equipment;
+    }
+
+    public ArrayList<Armor> getArmors() {
+        return armor;
+    }
+
+    public void setEquipments(ArrayList<Equipment> equipment) {
+        this.equipment = equipment;
+    }
+
+    public void setWeapons(ArrayList<Weapon> weapons) {
+        this.weapons = weapons;
+    }
+
+    public void setArmors(ArrayList<Armor> armor) {
+        this.armor = armor;
+    }
 }
