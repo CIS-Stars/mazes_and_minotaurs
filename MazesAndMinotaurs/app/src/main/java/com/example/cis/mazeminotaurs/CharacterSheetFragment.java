@@ -19,6 +19,7 @@ import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.fragments.HitsChangeFragment;
+import com.example.cis.mazeminotaurs.fragments.InventoryFragment;
 import com.example.cis.mazeminotaurs.fragments.StatChangeFragment;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
@@ -288,13 +289,15 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mSaveButton = (Button) rootView.findViewById(R.id.save_button);
-//      Commented out to disable in production.
-//        mSaveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onSaveCharacterClick();
-//            }
-//        });
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction()
+                        .addToBackStack("sheet")
+                        .replace(R.id.content_frame, new InventoryFragment())
+                        .commit();
+            }
+        });
 
         // Magical and specialist section
         mMagicTitleView = (TextView) rootView.findViewById(R.id.magic_title_view);

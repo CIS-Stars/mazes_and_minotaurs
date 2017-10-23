@@ -76,4 +76,6 @@
     <string name="name_view">Name: %s</string>
     <string name="class_view">Class: %s</string>
     <string name="level_view">Level: %s</string>
+    <string name="add_equipment">Add Equipment</string>
+    <string name="cancel">Cancel</string>
 </resources>
