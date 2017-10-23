@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 
 public class EquipmentDB {
+    public static final String FILENAME = "EquipmentDB.json";
+
     private static final String TAG = Portfolio.class.getName();
     private ArrayList<Equipment> equipment;
     private ArrayList<Weapon> weapons;

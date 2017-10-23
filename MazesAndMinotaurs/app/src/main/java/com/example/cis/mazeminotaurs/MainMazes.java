@@ -41,29 +41,6 @@ public class MainMazes extends AppCompatActivity
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            try {
-                String basePath = getApplicationContext().getFilesDir().getPath() + "/";
-                FileInputStream fis = new FileInputStream(basePath + Portfolio.FILENAME);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new BufferedInputStream(fis)));
-
-                StringBuilder builder = new StringBuilder();
-                String line = bufferedReader.readLine();
-                while (line != null && !line.equals("")) {
-                    builder.append(line);
-                    line = bufferedReader.readLine();
-                }
-                SaveAndLoadPerformer.loadPortfolio(builder.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            mPortfolio = Portfolio.get();
-            if (mPortfolio.getPortfolio() == null) {
-                mPortfolio.resetPortfolio();
-                mPortfolio.addPlayerCharacter(Util.createDummyCharacter());
-            }
-            mEquipment = EquipmentDB.getInstance();
-
             try{
                 Log.i("Get Weapon", mEquipment.getWeapon(R.string.barb_axe).getLongDescription());
             }
@@ -168,4 +145,51 @@ public class MainMazes extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
+
+    /**
+     * Helper method for loading the portfolio on startup.
+     */
+    private void loadPortfolio() {
+        try {
+            String basePath = getApplicationContext().getFilesDir().getPath() + "/";
+            FileInputStream fis = new FileInputStream(basePath + Portfolio.FILENAME);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new BufferedInputStream(fis)));
+
+            StringBuilder builder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null && !line.equals("")) {
+                builder.append(line);
+                line = bufferedReader.readLine();
+            }
+            SaveAndLoadPerformer.loadPortfolio(builder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mPortfolio = Portfolio.get();
+        if (mPortfolio.getPortfolio() == null) {
+            mPortfolio.resetPortfolio();
+            mPortfolio.addPlayerCharacter(Util.createDummyCharacter());
+        }
+    }
+
+    private void loadEDB() {
+        try {
+            String basePath = getApplicationContext().getFilesDir().getPath() + "/";
+            FileInputStream fis = new FileInputStream(basePath + EquipmentDB.FILENAME);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new BufferedInputStream(fis)));
+
+            StringBuilder builder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null && !line.equals("")) {
+                builder.append(line);
+                line = bufferedReader.readLine();
+            }
+            SaveAndLoadPerformer.loadEquipmentDB(builder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mEquipment = EquipmentDB.getInstance();
+    }
 }
