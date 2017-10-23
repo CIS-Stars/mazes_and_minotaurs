@@ -11,6 +11,8 @@
     <string name="error_delete_character">Must have one character at all times!</string>
     <string name="select_character">Select Active Character</string>
     <string name="save_portfolio">Save Portfolio</string>
+    <string name="save_equipment">Save Equipment Database</string>
+    <string name="save_equipment_con">Save Equip</string>
     <string name="resources">Web Resources</string>
     <string name="mm_website"><![CDATA[M&M Website]]></string>
     <string name="player_companion"><![CDATA[M&M Companion pdf]]></string>

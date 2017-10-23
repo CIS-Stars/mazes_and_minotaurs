@@ -105,6 +105,17 @@ public class MainMazes extends AppCompatActivity
                     e.printStackTrace();
                 }
                 return true;
+            } else if (id == R.id.action_save_equipment) {
+                try {
+                    FileOutputStream fos = getApplicationContext().openFileOutput(EquipmentDB.FILENAME, Context.MODE_PRIVATE);
+                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
+                    outputStreamWriter.write(SaveAndLoadPerformer.saveEquipmentDB());
+                    outputStreamWriter.close();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return true;
             }
 
             return super.onOptionsItemSelected(item);
