@@ -126,7 +126,7 @@ public class PlayerCharacter{
      */
     public int getMeleeMod() {
         return getScore(Score.MIGHT).getModifier() +
-                getScore(Score.GRACE).getModifier() +
+                getScore(Score.SKILL).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
