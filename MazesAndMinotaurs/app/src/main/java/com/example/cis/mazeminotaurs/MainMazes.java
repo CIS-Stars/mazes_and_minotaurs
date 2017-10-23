@@ -41,6 +41,9 @@ public class MainMazes extends AppCompatActivity
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            loadPortfolio();
+            loadEDB();
+
             try{
                 Log.i("Get Weapon", mEquipment.getWeapon(R.string.barb_axe).getLongDescription());
             }
