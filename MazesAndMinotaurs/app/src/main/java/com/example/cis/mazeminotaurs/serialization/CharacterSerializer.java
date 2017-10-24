@@ -1,4 +1,4 @@
-package com.example.cis.mazeminotaurs.character;
+package com.example.cis.mazeminotaurs.serialization;
 
 /**
  * Created by jsmith on 10/17/17.
@@ -10,6 +10,7 @@ import com.example.cis.mazeminotaurs.Mythics;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.Money;
+import com.example.cis.mazeminotaurs.character.Patron;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
@@ -79,6 +80,7 @@ public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, Jso
         rootObject.add("mPatron", context.serialize(src.getPatron()));
 
         JsonElement classJson = context.serialize(characterClass);
+        classJson.getAsJsonObject().remove("mResId");
         rootObject.add("mCharClass", classJson);
 
         characterClass.setCharacter(src);

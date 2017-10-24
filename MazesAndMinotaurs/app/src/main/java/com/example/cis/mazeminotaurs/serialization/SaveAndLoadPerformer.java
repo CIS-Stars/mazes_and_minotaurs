@@ -1,10 +1,13 @@
-package com.example.cis.mazeminotaurs.character;
+package com.example.cis.mazeminotaurs.serialization;
 
 import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.Weapon;
+import com.example.cis.mazeminotaurs.character.Gender;
+import com.example.cis.mazeminotaurs.character.Money;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.Amazon;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
