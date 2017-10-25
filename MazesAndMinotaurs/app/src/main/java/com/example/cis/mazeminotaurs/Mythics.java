@@ -11,7 +11,7 @@ package com.example.cis.mazeminotaurs;
 public class Mythics extends Equipment {
 
 
-    public Mythics(int resId, int encumberance, int quantity, double costInSp, String longDescription) {
+    public Mythics(String resId, int encumberance, int quantity, double costInSp, String longDescription) {
         super(resId, encumberance, quantity, costInSp, longDescription);
     }
 }

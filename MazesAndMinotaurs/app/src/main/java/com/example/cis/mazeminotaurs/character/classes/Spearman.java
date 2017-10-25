@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +28,7 @@ public class Spearman extends Warrior implements Level {
 
     public Spearman(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
-        setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.spear)});
+        setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(CommonStrings.SPEAR.getValue())});
 
 
         Score[] primAttrs = {Score.SKILL, Score.WILL};
@@ -39,12 +40,12 @@ public class Spearman extends Warrior implements Level {
 
         int rolledGold = rollDice.roll(6, 3) * 10;
 
-        startGear.add(equipmentDB.getWeapon(R.string.spear));
-        startGear.add(equipmentDB.getWeapon(R.string.sword));
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getArmor(R.string.helmet));
-        startGear.add(equipmentDB.getArmor(R.string.breastplate));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.SPEAR.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.SWORD.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.SHIELD.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.HELMET.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.BREASTPLATE.getValue()));
 
         setBasicHits(12);
         setCharacter(playerCharacter);
@@ -53,7 +54,7 @@ public class Spearman extends Warrior implements Level {
         setResId(Classes.SPEARMAN.getResId());
         setStartMoney(rolledGold);
         setStartGear(startGear);
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.spear));
+        setWeaponOfChoice(equipmentDB.getWeapon(CommonStrings.SPEAR.getValue()));
     }
 
     public void doLevelUp(){

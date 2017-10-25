@@ -13,6 +13,7 @@ import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -481,16 +482,20 @@ public class PlayerCharacter{
 
         EquipmentDB db = EquipmentDB.getInstance();
 
-        if (getInventory().contains(db.getArmor(R.string.helmet))) {
-            setHelmet(db.getArmor(R.string.helmet));
+        Armor helm = db.getArmor(CommonStrings.HELMET.getValue());
+        Armor plate = db.getArmor(CommonStrings.BREASTPLATE.getValue());
+        Armor shield = db.getArmor(CommonStrings.SHIELD.getValue());
+
+        if (getInventory().contains(helm)) {
+            setHelmet(helm);
         }
 
-        if (getInventory().contains(db.getArmor(R.string.breastplate))) {
-            setBreastplate(db.getArmor(R.string.breastplate));
+        if (getInventory().contains(plate)) {
+            setBreastplate(plate);
         }
 
-        if (getInventory().contains(db.getArmor(R.string.shield))) {
-            setShield(db.getArmor(R.string.shield));
+        if (getInventory().contains(shield)) {
+            setShield(shield);
         }
 
         setCurHits(getHitTotal());

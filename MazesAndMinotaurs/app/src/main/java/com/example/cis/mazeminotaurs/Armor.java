@@ -9,7 +9,7 @@ public class Armor extends Equipment {
     //instance variables
     private int mDefenseBonus;
 
-    public Armor(int resId, int encumberance, int quantity, double costInSp, String longDescription, int defenseBonus) {
+    public Armor(String resId, int encumberance, int quantity, double costInSp, String longDescription, int defenseBonus) {
         super(resId, encumberance, quantity, costInSp, longDescription);
         mDefenseBonus = defenseBonus;
     }

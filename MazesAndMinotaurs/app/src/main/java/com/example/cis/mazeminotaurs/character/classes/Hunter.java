@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
@@ -30,9 +31,9 @@ public class Hunter extends Specialist implements Level{
         // Null for this value means that it is linked to weapon of choice.
         setPossibleStartWeapons(null);
         setPossibleWeaponsOfChoice(new Weapon[] {
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.javelin),
-                EquipmentDB.getInstance().getWeapon(R.string.sling),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.JAVELIN.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue()),
         });
 
         Score[] primAttrs = {Score.SKILL, Score.WITS};
@@ -48,8 +49,8 @@ public class Hunter extends Specialist implements Level{
         Equipment ammo = Util.getAmmo(getWeaponOfChoice());
         startGear.add(ammo);// Equipment done
 
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getWeapon(R.string.spear));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.SPEAR.getValue()));
 
         int rolledGold = rollDice.roll(6, 3) * 5;
 

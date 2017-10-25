@@ -41,7 +41,7 @@ public class DetailedWeaponAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return mDataset.get(i).getResId();
+        return mDataset.get(0).getResId().hashCode();
     }
 
     @NonNull
