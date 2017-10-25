@@ -41,13 +41,6 @@ public class MainMazes extends AppCompatActivity
             loadPortfolio();
             loadEDB();
 
-            try{
-                Log.i("Get Weapon", mEquipment.getWeapon(R.string.barb_axe).getLongDescription());
-            }
-            catch(NullPointerException e){
-                Log.e("Get Weapon", "Failed!");
-            }
-
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);

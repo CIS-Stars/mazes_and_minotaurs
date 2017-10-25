@@ -13,8 +13,8 @@ import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 public class Util {
     public static PlayerCharacter createDummyCharacter() {
         PlayerCharacter pc = new PlayerCharacter();
-        Barbarian barbarian = new Barbarian(pc, EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
-                EquipmentDB.getInstance().getWeapon(R.string.barb_axe));
+        Barbarian barbarian = new Barbarian(pc, EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()));
         pc.setCharClass(barbarian);
         pc.initializeClass();
 
@@ -25,8 +25,8 @@ public class Util {
      * Returns the ammo used for a specified missile weapon.
      */
     public static Weapon getAmmo(Weapon rangedWeapon){
-        Weapon[] possibleWeapons = new Weapon[]{EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.sling)};
+        Weapon[] possibleWeapons = new Weapon[]{EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue())};
         boolean valid = false;
 
         for (Weapon weapon: possibleWeapons) {
@@ -40,9 +40,9 @@ public class Util {
             return null;
         }
         if (rangedWeapon == possibleWeapons[0]) {
-            return EquipmentDB.getInstance().getWeapon(R.string.arrows);
+            return EquipmentDB.getInstance().getWeapon(CommonStrings.ARROWS.getValue());
         } else {
-            return EquipmentDB.getInstance().getWeapon(R.string.slingshot);
+            return EquipmentDB.getInstance().getWeapon(CommonStrings.SLINGSHOT.getValue());
         }
     }
 }

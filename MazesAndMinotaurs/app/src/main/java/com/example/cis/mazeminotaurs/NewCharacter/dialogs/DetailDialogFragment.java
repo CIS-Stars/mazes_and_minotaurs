@@ -48,9 +48,8 @@ public class DetailDialogFragment extends DialogFragment {
     Score mPhysicalHeritage = Score.MIGHT;
     Score mOtherHeritage = Score.WITS;
 
-    // Ints cannot have a null value so this is a replacement for it.
-    String mSelectedWeapon = -43762;
-    String mSelectedChoiceWep = -43762;
+    String mSelectedWeapon = null;
+    String mSelectedChoiceWep = null;
 
     @NonNull
     @Override
@@ -245,7 +244,7 @@ public class DetailDialogFragment extends DialogFragment {
         String[] result = new String[weapons.length];
         for (int i = 0; i < result.length; i++) {
             if (weapons[i] != null) {
-                result[i] = getContext().getString(weapons[i].getResId());
+                result[i] = weapons[i].getResId();
             }
             else {
                 result[i] = "";
