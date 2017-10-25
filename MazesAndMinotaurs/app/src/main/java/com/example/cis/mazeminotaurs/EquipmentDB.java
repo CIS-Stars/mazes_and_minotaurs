@@ -73,6 +73,69 @@ public class EquipmentDB {
 
     }
 
+    /**
+     * Attempts to add a weapon to the list if the resId is unique.
+     *
+     * @param weapon The weapon to add
+     * @return If the weapon was added to the database.
+     */
+    public boolean addWeapon(Weapon weapon) {
+        boolean isValid = true;
+        for (Weapon wep : getWeapons()) {
+            if (weapon.getResId().equals(wep.getResId())) {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (isValid) {
+            getWeapons().add(weapon);
+        }
+        return isValid;
+    }
+
+    /**
+     * Attempts to add a armor to the list if the resId is unique.
+     *
+     * @param armor The armor to add
+     * @return If the armor was added to the database.
+     */
+    public boolean addArmor(Armor armor) {
+        boolean isValid = true;
+        for (Armor arm : getArmors()) {
+            if (armor.getResId().equals(arm.getResId())) {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (isValid) {
+            getArmors().add(armor);
+        }
+        return isValid;
+    }
+
+    /**
+     * Attempts to add a equipment to the list if the resId is unique.
+     *
+     * @param equipment The equipment to add
+     * @return If the equipment was added to the database.
+     */
+    public boolean addEquipment(Equipment equipment) {
+        boolean isValid = true;
+        for (Equipment equip : getEquipments()) {
+            if (equipment.getResId().equals(equip.getResId())) {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (isValid) {
+            getEquipments().add(equipment);
+        }
+        return isValid;
+    }
+
     public Weapon getWeapon(String resId) {
         for (Weapon weapon : weapons){
             if (weapon.getResId().equals(resId)) {
@@ -80,10 +143,6 @@ public class EquipmentDB {
             }
         }
         return null;
-    }
-
-    public ArrayList<Weapon> getWeapons() {
-        return weapons;
     }
 
     public Armor getArmor(String resId) {
@@ -102,6 +161,10 @@ public class EquipmentDB {
             }
         }
         return null;
+    }
+
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
     }
 
     public ArrayList<Equipment> getEquipments() {
