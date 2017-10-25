@@ -39,7 +39,7 @@ public class Weapon extends Equipment {
      * @param weaponSize
      * @param range
      */
-    public Weapon(int resId, int encumberance, int quantity, double costInSp,
+    public Weapon(String resId, int encumberance, int quantity, double costInSp,
                   String longDescription, int damageDie, int numberOfDice, int damageBonus,
                   int weaponType, int weaponSize, int range) {
         super(resId, encumberance, quantity, costInSp, longDescription);

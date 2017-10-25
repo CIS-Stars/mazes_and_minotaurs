@@ -49,8 +49,8 @@ public class DetailDialogFragment extends DialogFragment {
     Score mOtherHeritage = Score.WITS;
 
     // Ints cannot have a null value so this is a replacement for it.
-    int mSelectedWeapon = -43762;
-    int mSelectedChoiceWep = -43762;
+    String mSelectedWeapon = -43762;
+    String mSelectedChoiceWep = -43762;
 
     @NonNull
     @Override
