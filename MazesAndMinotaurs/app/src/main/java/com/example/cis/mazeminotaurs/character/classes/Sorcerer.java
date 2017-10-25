@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,8 +29,8 @@ public class Sorcerer extends Magician implements Level{
 
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[] {
-                EquipmentDB.getInstance().getWeapon(R.string.dagger),
-                EquipmentDB.getInstance().getWeapon(R.string.staff),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.DAGGER.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.STAFF.getValue()),
         });
 
         Score[] primAttrs = {Score.WITS, Score.WILL};

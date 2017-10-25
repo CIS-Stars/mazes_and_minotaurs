@@ -13,11 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
-import com.example.cis.mazeminotaurs.character.SaveAndLoadPerformer;
+import com.example.cis.mazeminotaurs.serialization.SaveAndLoadPerformer;
 import com.example.cis.mazeminotaurs.util.Util;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
@@ -25,7 +23,6 @@ import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,13 +40,6 @@ public class MainMazes extends AppCompatActivity
             super.onCreate(savedInstanceState);
             loadPortfolio();
             loadEDB();
-
-            try{
-                Log.i("Get Weapon", mEquipment.getWeapon(R.string.barb_axe).getLongDescription());
-            }
-            catch(NullPointerException e){
-                Log.e("Get Weapon", "Failed!");
-            }
 
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
