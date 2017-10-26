@@ -22,6 +22,14 @@ public abstract class Magician extends BaseClass {
         return total;
     }
 
+    public int getSpecialTalentResId() {
+        return mSpecialTalentResId;
+    }
+
+    public void setSpecialTalentResId(int specialTalentResId) {
+        mSpecialTalentResId = specialTalentResId;
+    }
+
     @Override
     public int getLevelDescription() {
         updateLevel();

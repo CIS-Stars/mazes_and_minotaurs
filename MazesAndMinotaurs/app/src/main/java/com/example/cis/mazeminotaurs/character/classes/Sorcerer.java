@@ -55,6 +55,7 @@ public class Sorcerer extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.SORCEROR.getResId());
+        setSpecialTalentResId(R.string.sorceror_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
     }

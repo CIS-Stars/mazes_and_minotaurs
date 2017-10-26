@@ -46,6 +46,7 @@ public class Lyrist extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.LYRIST.getResId());
+        setSpecialTalentResId(R.string.lyrist_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
     }

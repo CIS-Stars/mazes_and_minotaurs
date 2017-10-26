@@ -3,6 +3,7 @@ package com.example.cis.mazeminotaurs.character.classes;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
+import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
@@ -41,6 +42,7 @@ public class Nymph extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.FEMALE);
         setResId(Classes.NYMPH.getResId());
+        setSpecialTalentResId(R.string.nymph_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
     }

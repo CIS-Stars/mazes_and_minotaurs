@@ -79,4 +79,9 @@
     <string name="add_equipment">Add Equipment</string>
     <string name="cancel">Cancel</string>
     <string name="delete_message">Are you sure you want to remove this item?</string>
+    <string name="lyrist_talent">Orphic Voice</string>
+    <string name="elementalist_talent">Elemental Mastery</string>
+    <string name="nymph_talent">Odylic Charm</string>
+    <string name="priest_talent">Spiritual Aura</string>
+    <string name="sorceror_talent">Psychic Gift</string>
 </resources>

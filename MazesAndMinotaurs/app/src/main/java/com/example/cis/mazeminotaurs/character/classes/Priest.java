@@ -48,6 +48,7 @@ public class Priest extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.PRIEST.getResId());
+        setSpecialTalentResId(R.string.priest_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
 
