@@ -40,6 +40,6 @@ public abstract class Magician extends BaseClass {
         return 12 + getSpecialTalent();
     }
 
-    public int getPowerPoints(){return 4*getLevel();}
+    public abstract int getPowerPoints();
 }
 
