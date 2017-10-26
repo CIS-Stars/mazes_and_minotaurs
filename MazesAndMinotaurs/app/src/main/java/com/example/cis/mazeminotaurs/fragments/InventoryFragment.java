@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.InventoryAdapter;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
@@ -37,7 +38,7 @@ public class InventoryFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final int equipmentIndex = i;
                 AlertDialog dialog = new AlertDialog.Builder(getContext())
-                        .setTitle((int) l)
+                        .setTitle(((Equipment) adapterView.getItemAtPosition(i)).getResId())
                         .setPositiveButton(R.string.confirm_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
