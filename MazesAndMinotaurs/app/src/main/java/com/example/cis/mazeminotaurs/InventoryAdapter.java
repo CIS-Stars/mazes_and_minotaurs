@@ -41,7 +41,7 @@ public class InventoryAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return mData.getInventory().get(i).getResId();
+        return mData.getInventory().get(i).getResId().hashCode();
     }
 
     @Override
