@@ -462,6 +462,7 @@ public class CharacterSheetFragment extends Fragment
                 mMagicTitleView.setVisibility(View.VISIBLE);
                 if (character.getCharClass() instanceof Magician) {
                     Magician instance = (Magician) character.getCharClass();
+                    mTalentBonusTitleView.setText(instance.getSpecialTalentResId());
                     mMagicStrengthButton.setText(Integer.toString(instance.getMysticalStrength()));
                     mTotalPowerButton.setText(Integer.toString(instance.getPowerPoints()));
                     mCurrentPowerButton.setText(Integer.toString(instance.getPowerPoints()));
