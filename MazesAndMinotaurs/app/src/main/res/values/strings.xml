@@ -78,4 +78,5 @@
     <string name="level_view">Level: %s</string>
     <string name="add_equipment">Add Equipment</string>
     <string name="cancel">Cancel</string>
+    <string name="delete_message">Are you sure you want to remove this item?</string>
 </resources>

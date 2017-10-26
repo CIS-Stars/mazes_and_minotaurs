@@ -39,6 +39,7 @@ public class InventoryFragment extends Fragment {
                 final int equipmentIndex = i;
                 AlertDialog dialog = new AlertDialog.Builder(getContext())
                         .setTitle(((Equipment) adapterView.getItemAtPosition(i)).getResId())
+                        .setMessage(R.string.delete_message)
                         .setPositiveButton(R.string.confirm_button, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
