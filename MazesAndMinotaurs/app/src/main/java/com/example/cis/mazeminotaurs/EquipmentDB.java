@@ -47,21 +47,21 @@ public class EquipmentDB {
         equipment.add(new Equipment(CommonStrings.WATERSKIN.getValue(), 1, 1, 2, "A Skin Full of Water"));
 
         //(resID, encumbrance, qty, costInSilver, longDescription, dmgDie, numDice, dmgBonus, type, size, range)
-        weapons.add(new Weapon(CommonStrings.BARB_AXE.getValue(), 2, 1, 30, "Large, Ugly Axe!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
-        weapons.add(new Weapon(CommonStrings.BARB_CLUB.getValue(), 2, 1, 0, "Large, Heavy Club!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
-        weapons.add(new Weapon(CommonStrings.BARB_SWORD.getValue(), 2, 1, 60, "Large, Ugly, Heavy Sword!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
-        weapons.add(new Weapon(CommonStrings.BARB_MACE.getValue(), 2, 1, 30, "Large, Ugly Mace!", 6, 1, 0, R.string.melee, R.string.size_barbarian, 0));
-        weapons.add(new Weapon(CommonStrings.DAGGER.getValue(), 0, 1, 15, "Small Sinister dagger!", 3, 1, 0, R.string.melee, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.THROW_KNIFE.getValue(), 0, 1, 15, "A knife made for throwing!", 3, 1, 0, R.string.missile, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.AXE.getValue(), 1, 1, 30, "A Nasty, Wicked Axe!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.CLUB.getValue(), 1, 1, 0, "A not-so-heavy Club!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.SWORD.getValue(), 1, 1, 60, "A Dangerous, Deadly Blade!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.SPEAR.getValue(), 2, 1, 30, "Wicked, Deadly Spear!", 6, 1, 0, R.string.melee, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.BOW.getValue(), 1, 1, 40, "Standard Bow", 6, 1, 0, R.string.missile, R.string.size_normal, 300));
-        weapons.add(new Weapon(CommonStrings.SLING.getValue(), 0, 1, 5, "Standard Sling", 6, 1, 0, R.string.missile, R.string.size_normal, 150));
-        weapons.add(new Weapon(CommonStrings.JAVELIN.getValue(), 2, 1, 30, "A Deadly Javelin", 6, 1, 0, R.string.missile, R.string.size_normal, 150));
-        weapons.add(new Weapon(CommonStrings.ARROWS.getValue(), 1, 12, 12, "A quiver of Arrows", 0, 0, 0, R.string.missile, R.string.size_normal, 0));
-        weapons.add(new Weapon(CommonStrings.SLINGSHOT.getValue(), 1, 10, 2, "A Small Sack of Sling Stones", 0, 0, 0, R.string.missile, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.BARB_AXE.getValue(), 2, 1, 30, "Large, Ugly Axe!", 6, 1, 0, true, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(CommonStrings.BARB_CLUB.getValue(), 2, 1, 0, "Large, Heavy Club!", 6, 1, 0, true, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(CommonStrings.BARB_SWORD.getValue(), 2, 1, 60, "Large, Ugly, Heavy Sword!", 6, 1, 0, true, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(CommonStrings.BARB_MACE.getValue(), 2, 1, 30, "Large, Ugly Mace!", 6, 1, 0, true, R.string.size_barbarian, 0));
+        weapons.add(new Weapon(CommonStrings.DAGGER.getValue(), 0, 1, 15, "Small Sinister dagger!", 3, 1, 0, true, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.THROW_KNIFE.getValue(), 0, 1, 15, "A knife made for throwing!", 3, 1, 0, false, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.AXE.getValue(), 1, 1, 30, "A Nasty, Wicked Axe!", 6, 1, 0, true, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.CLUB.getValue(), 1, 1, 0, "A not-so-heavy Club!", 6, 1, 0, true, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.SWORD.getValue(), 1, 1, 60, "A Dangerous, Deadly Blade!", 6, 1, 0, true, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.SPEAR.getValue(), 2, 1, 30, "Wicked, Deadly Spear!", 6, 1, 0, true, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.BOW.getValue(), 1, 1, 40, "Standard Bow", 6, 1, 0, false, R.string.size_normal, 300));
+        weapons.add(new Weapon(CommonStrings.SLING.getValue(), 0, 1, 5, "Standard Sling", 6, 1, 0, false, R.string.size_normal, 150));
+        weapons.add(new Weapon(CommonStrings.JAVELIN.getValue(), 2, 1, 30, "A Deadly Javelin", 6, 1, 0, false, R.string.size_normal, 150));
+        weapons.add(new Weapon(CommonStrings.ARROWS.getValue(), 1, 12, 12, "A quiver of Arrows", 0, 0, 0, false, R.string.size_normal, 0));
+        weapons.add(new Weapon(CommonStrings.SLINGSHOT.getValue(), 1, 10, 2, "A Small Sack of Sling Stones", 0, 0, 0, false, R.string.size_normal, 0));
 
         //(resID, encumbrance, qty, costInSilver, longDescription, defenseBonus)
         armor.add(new Armor(CommonStrings.BREASTPLATE.getValue(), 3, 1, 150, "A Sturdy, Functional Breastplate", 2));

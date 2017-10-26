@@ -10,7 +10,7 @@ public class Weapon extends Equipment {
     private int mDamageDie;
     private int mNumberOfDice;
     private int mDamageBonus;
-    private int mWeaponType; //uses string values melee and missile
+    private boolean mIsMelee; //uses string values melee and missile
     private int mWeaponSize; //uses string values from game_references.xml
     private int mRange;
 
@@ -35,18 +35,18 @@ public class Weapon extends Equipment {
      * @param damageDie
      * @param numberOfDice
      * @param damageBonus
-     * @param weaponType
+     * @param isMelee
      * @param weaponSize
      * @param range
      */
     public Weapon(String resId, int encumberance, int quantity, double costInSp,
                   String longDescription, int damageDie, int numberOfDice, int damageBonus,
-                  int weaponType, int weaponSize, int range) {
+                  boolean isMelee, int weaponSize, int range) {
         super(resId, encumberance, quantity, costInSp, longDescription);
         mDamageDie = damageDie;
         mNumberOfDice = numberOfDice;
         mDamageBonus = damageBonus;
-        mWeaponType = weaponType;
+        mIsMelee = isMelee;
         mRange = range;
     }
 
@@ -75,11 +75,15 @@ public class Weapon extends Equipment {
     }
 
     public int getWeaponType() {
-        return mWeaponType;
+        return (mIsMelee) ? R.string.melee : R.string.missile;
     }
 
-    public void setWeaponType(int weaponType) {
-        mWeaponType = weaponType;
+    public boolean isMelee() {
+        return mIsMelee;
+    }
+
+    public void setMelee(boolean melee) {
+        mIsMelee = melee;
     }
 
     public int getRange() {
