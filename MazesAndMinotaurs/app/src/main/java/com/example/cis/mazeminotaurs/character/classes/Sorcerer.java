@@ -147,6 +147,6 @@ public class Sorcerer extends Magician implements Level{
     }
 
     public int getPowerPoints(){
-        return getCharacter().getScore(Score.GRACE).getModifier();
+        return (4 * getLevel()) + getCharacter().getScore(Score.GRACE).getModifier();
     }
 }
