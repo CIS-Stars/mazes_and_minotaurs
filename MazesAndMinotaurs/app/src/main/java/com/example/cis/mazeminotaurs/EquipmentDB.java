@@ -29,6 +29,17 @@ public class EquipmentDB {
         weapons = new ArrayList<>();
         armor = new ArrayList<>();
 
+        resetDatabase();
+    }
+
+    /**
+     * Clears the lists, and adds the default equipment values that are added on instantiation.
+     */
+    public void resetDatabase() {
+        armor.clear();
+        equipment.clear();
+        weapons.clear();
+
         //for testing only, later this will be read in from a file.
         //(resID, encumbrance, qty, costInSilver, longDescription)
         equipment.add(new Equipment(CommonStrings.ROWBOAT.getValue(), 3, 1, 300, "A Sturdy Rowboat"));
@@ -70,7 +81,6 @@ public class EquipmentDB {
         armor.add(new Armor(CommonStrings.BOEOTIAN.getValue(), 1, 1, 40, "A Cheap Boeotian Helmet", 1));
         armor.add(new Armor(CommonStrings.PELTAST.getValue(), 1, 1, 35, "A Lightweight Peltast Shield", 1));
         armor.add(new Armor(CommonStrings.LINOTHORAX.getValue(), 2, 1, 75, "A Light Linothorax Breastplate", 1));
-
     }
 
     /**
