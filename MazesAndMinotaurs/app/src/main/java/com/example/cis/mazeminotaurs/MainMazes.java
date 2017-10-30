@@ -159,6 +159,13 @@ public class MainMazes extends AppCompatActivity
 
             if (contentFragment != null){
                 ft.replace(R.id.content_frame, contentFragment);
+
+                // Clears the back stack
+                int entryIndex = 0;
+                while (entryIndex < getFragmentManager().getBackStackEntryCount()) {
+                    getFragmentManager().popBackStack();
+                    entryIndex++;
+                }
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

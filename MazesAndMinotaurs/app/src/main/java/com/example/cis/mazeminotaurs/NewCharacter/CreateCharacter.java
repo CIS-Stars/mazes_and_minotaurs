@@ -117,6 +117,13 @@ public class CreateCharacter extends Fragment {
                 Bundle bundle = new Bundle();
                 fragment.setArguments(bundle);
 
+                // Clear the back stack
+                int entryIndex = 0;
+                while (entryIndex < getFragmentManager().getBackStackEntryCount()) {
+                    getFragmentManager().popBackStack();
+                    entryIndex++;
+                }
+
                 getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)
                         .commit();
             }

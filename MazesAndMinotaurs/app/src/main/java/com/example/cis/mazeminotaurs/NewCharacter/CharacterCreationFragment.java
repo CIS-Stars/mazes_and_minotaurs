@@ -192,7 +192,10 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         classType.putSerializable("classInstance", instance);
         addedType.setArguments(classType);
 
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, addedType)
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, addedType)
+                .addToBackStack(null)
                 .commit();
     }
 }
