@@ -23,7 +23,7 @@ public class Portfolio {
     private Portfolio(){
         portfolio = new ArrayList<>();
         activeCharacterIndex = 0;
-        portfolio.add(Util.createDummyCharacter());
+        resetPortfolio();
     }
 
     public static Portfolio get(){
@@ -34,7 +34,9 @@ public class Portfolio {
     }
 
     public void resetPortfolio(){
-        portfolio = new ArrayList<>();
+        portfolio.clear();
+        // Not having a single character in the portfolio causes errors. So we need a 'dummy' character.
+        portfolio.add(Util.createDummyCharacter());
     }
 
     public ArrayList<PlayerCharacter> getPortfolio() {
