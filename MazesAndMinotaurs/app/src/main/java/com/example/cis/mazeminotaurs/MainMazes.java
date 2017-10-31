@@ -2,7 +2,6 @@ package com.example.cis.mazeminotaurs;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,13 +12,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
 import com.example.cis.mazeminotaurs.serialization.SaveAndLoadPerformer;
-import com.example.cis.mazeminotaurs.util.Util;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -146,7 +143,7 @@ public class MainMazes extends AppCompatActivity
             } else if (id == R.id.play_character) {
                 contentFragment = new CharacterSheetFragment();
             } else if (id == R.id.select_character) {
-                contentFragment = new CharacerSelectionFragment();
+                contentFragment = new CharacterSelectionFragment();
             } else if (id == R.id.delete_character) {
                 contentFragment = new CharacterDeletionFragment();
             } else if (id == R.id.player_manual) {
