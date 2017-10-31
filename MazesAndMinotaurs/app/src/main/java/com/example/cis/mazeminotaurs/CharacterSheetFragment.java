@@ -67,7 +67,7 @@ public class CharacterSheetFragment extends Fragment
     Button mTotalPowerButton;
     Button mCurrentPowerButton;
 
-    Button mSaveButton;
+    Button mInventoryButton;
 
     public CharacterSheetFragment(){
         mPortfolio = Portfolio.get();
@@ -288,8 +288,8 @@ public class CharacterSheetFragment extends Fragment
            }
         });
 
-        mSaveButton = (Button) rootView.findViewById(R.id.save_button);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
+        mInventoryButton = (Button) rootView.findViewById(R.id.inventory_button);
+        mInventoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction()

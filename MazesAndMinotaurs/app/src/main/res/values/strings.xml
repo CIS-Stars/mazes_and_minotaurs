@@ -88,4 +88,6 @@
     <string name="reset_equipment">Reset Equipment Database</string>
     <string name="caution_alert">Are you sure?</string>
     <string name="reset_equip_msg">This will reset the EquipmentDB to default values and delete the saved file!</string>
+    <string name="inventory">Inventory</string>
+    <string name="inventory_btn">Open Inventory</string>
 </resources>
