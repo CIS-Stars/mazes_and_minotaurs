@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.example.cis.mazeminotaurs.NewCharacter.CharacterCreationFragment;
 import com.example.cis.mazeminotaurs.serialization.SaveAndLoadPerformer;
+import com.example.cis.mazeminotaurs.util.Util;
 import com.example.cis.mazeminotaurs.web_resources.CompanionFragment;
 import com.example.cis.mazeminotaurs.web_resources.PlayerManualFragment;
 import com.example.cis.mazeminotaurs.web_resources.WebsiteFragment;
@@ -158,11 +159,7 @@ public class MainMazes extends AppCompatActivity
                 ft.replace(R.id.content_frame, contentFragment);
 
                 // Clears the back stack
-                int entryIndex = 0;
-                while (entryIndex < getFragmentManager().getBackStackEntryCount()) {
-                    getFragmentManager().popBackStack();
-                    entryIndex++;
-                }
+                Util.clearBackStack(this);
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,7 +1,10 @@
 package com.example.cis.mazeminotaurs.util;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+
 import com.example.cis.mazeminotaurs.EquipmentDB;
-import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
@@ -43,6 +46,22 @@ public class Util {
             return EquipmentDB.getInstance().getWeapon(CommonStrings.ARROWS.getValue());
         } else {
             return EquipmentDB.getInstance().getWeapon(CommonStrings.SLINGSHOT.getValue());
+        }
+    }
+
+    public static void clearBackStack(FragmentActivity activity) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        clearBackStack(fm);
+    }
+
+    public static void clearBackStack(Fragment fragment) {
+        FragmentManager fm = fragment.getFragmentManager();
+        clearBackStack(fm);
+    }
+
+    public static void clearBackStack(FragmentManager fragmentManager) {
+        while (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
         }
     }
 }
