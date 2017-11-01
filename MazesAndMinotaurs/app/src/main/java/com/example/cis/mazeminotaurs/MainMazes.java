@@ -138,6 +138,9 @@ public class MainMazes extends AppCompatActivity
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, contentFragment);
             ft.commit();
+            
+            // Clears the back stack
+            Util.clearBackStack(this);
 
             if (id == R.id.create_character) {
                contentFragment = new CharacterCreationFragment();
@@ -157,9 +160,6 @@ public class MainMazes extends AppCompatActivity
 
             if (contentFragment != null){
                 ft.replace(R.id.content_frame, contentFragment);
-
-                // Clears the back stack
-                Util.clearBackStack(this);
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
