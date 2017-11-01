@@ -496,10 +496,11 @@
                         android:textAlignment="center"
                         android:textSize="24sp"/>
                 </TableRow>
-                <TableRow>
-                    <Button android:id="@+id/save_button"
-                        android:text="SAVE SINET"/>
-                </TableRow>
+                <!--TODO: Remove this comment. -->
+                <!-- TableRow -->
+                <!-- Button android:id="@+id/save_button"
+                    android:text="SAVE SINET"/ -->
+                <!-- /TableRow -->
             </TableLayout>
 
             <TextView
@@ -638,6 +639,25 @@
                         android:visibility="gone"/>
                 </TableRow>
             </TableLayout>
+
+            <TextView
+                android:id="@+id/inventory_title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/character_sheet_box_black"
+                android:text="@string/inventory"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"/>
+
+            <Button
+                android:id="@+id/inventory_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inventory_btn"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="24sp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

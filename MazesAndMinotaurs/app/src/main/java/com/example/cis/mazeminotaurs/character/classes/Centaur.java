@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
@@ -29,15 +30,15 @@ public class Centaur extends Warrior implements Level{
 
     public Centaur(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.javelin),
-                EquipmentDB.getInstance().getWeapon(R.string.sling),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.JAVELIN.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue()),
         });
         setPossibleWeaponsOfChoice(new Weapon[] {
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.club),
-                EquipmentDB.getInstance().getWeapon(R.string.javelin),
-                EquipmentDB.getInstance().getWeapon(R.string.spear),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.CLUB.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.JAVELIN.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SPEAR.getValue()),
         });
 
 
@@ -65,8 +66,8 @@ public class Centaur extends Warrior implements Level{
 
         int rolledGold = 0;
 
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getWeapon(R.string.spear));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.SPEAR.getValue()));
 
         setBasicHits(12);
         setCharacter(playerCharacter);

@@ -12,7 +12,7 @@ import android.widget.ListView;
  * Created by jsmith on 10/18/17.
  */
 
-public class CharacerSelectionFragment extends Fragment {
+public class CharacterSelectionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b) {
         super.onCreateView(li, vg, b);

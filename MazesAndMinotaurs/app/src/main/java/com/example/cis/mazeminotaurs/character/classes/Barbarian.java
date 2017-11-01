@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
@@ -29,16 +30,16 @@ public class Barbarian extends Warrior implements Level{
 
     public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
         setPossibleStartWeapons(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.javelin),
-                EquipmentDB.getInstance().getWeapon(R.string.sling),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.JAVELIN.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue()),
         });
 
         setPossibleWeaponsOfChoice(new Weapon[] {
-                EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
-                EquipmentDB.getInstance().getWeapon(R.string.barb_club),
-                EquipmentDB.getInstance().getWeapon(R.string.barb_mace),
-                EquipmentDB.getInstance().getWeapon(R.string.barb_sword),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_CLUB.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_MACE.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_SWORD.getValue()),
         });
 
         Score[] primAttrs = {Score.MIGHT, Score.WILL};
@@ -57,15 +58,15 @@ public class Barbarian extends Warrior implements Level{
             Equipment ammo = Util.getAmmo(startWeapon);
             if (ammo != null) {startGear.add(ammo);}
         } else {
-            startGear.add(equipDB.getWeapon(R.string.bow));
-            startGear.add(equipDB.getWeapon(R.string.arrows));
+            startGear.add(equipDB.getWeapon(CommonStrings.BOW.getValue()));
+            startGear.add(equipDB.getWeapon(CommonStrings.ARROWS.getValue()));
         }
 
         int rolledGold = rollDice.roll(6, 3) * 5;
 
         //Add the rest of starting equipment
-        startGear.add(equipDB.getWeapon(R.string.dagger));
-        startGear.add(equipDB.getArmor(R.string.shield));
+        startGear.add(equipDB.getWeapon(CommonStrings.DAGGER.getValue()));
+        startGear.add(equipDB.getArmor(CommonStrings.SHIELD.getValue()));
 
         setBasicHits(12);
         setCharacter(playerCharacter);

@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,10 +33,10 @@ public class Noble extends Warrior implements Level {
     public Noble(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Score martialHeritage, Score mentalHeritage) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.javelin),
-                EquipmentDB.getInstance().getWeapon(R.string.spear),
-                EquipmentDB.getInstance().getWeapon(R.string.sword),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.JAVELIN.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SPEAR.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SWORD.getValue()),
         });
 
         // Noble-Specific things
@@ -54,11 +55,11 @@ public class Noble extends Warrior implements Level {
 
         int rolledGold = rollDice.roll(6, 3) * 100;
 
-        startGear.add(equipmentDB.getWeapon(R.string.sword));
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getArmor(R.string.helmet));
-        startGear.add(equipmentDB.getArmor(R.string.breastplate));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.SWORD.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.SHIELD.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.HELMET.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.BREASTPLATE.getValue()));
 
         setBasicHits(12);
         setCharacter(playerCharacter);

@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,13 +39,14 @@ public class Lyrist extends Magician implements Level{
         int rolledGold = rollDice.roll(6, 3) * 5;
 
         //TODO Add a 'lyre' item/weapon
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
 
         setBasicHits(8);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.LYRIST.getResId());
+        setSpecialTalentResId(R.string.lyrist_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
     }
@@ -137,6 +139,6 @@ public class Lyrist extends Magician implements Level{
     }
 
     public int getPowerPoints(){
-        return getCharacter().getScore(Score.GRACE).getModifier();
+        return (4 * getLevel()) + getCharacter().getScore(Score.GRACE).getModifier();
     }
 }

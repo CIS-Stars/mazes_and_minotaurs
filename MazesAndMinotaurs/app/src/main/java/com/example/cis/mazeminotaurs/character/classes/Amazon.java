@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,13 +30,13 @@ public class Amazon extends Warrior implements Level {
 
     public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
         setPossibleStartWeapons(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.axe),
-                EquipmentDB.getInstance().getWeapon(R.string.spear),
-                EquipmentDB.getInstance().getWeapon(R.string.sword),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.AXE.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SPEAR.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SWORD.getValue()),
         });
 
         setPossibleWeaponsOfChoice(new Weapon[]{
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
         });
 
         Score[] primAttrs = {Score.SKILL, Score.GRACE};
@@ -52,13 +53,13 @@ public class Amazon extends Warrior implements Level {
         } else {
             startGear.add(getPossibleStartWeapons()[0]);
         }
-        setWeaponOfChoice(equipmentDB.getWeapon(R.string.bow));
+        setWeaponOfChoice(equipmentDB.getWeapon(CommonStrings.BOW.getValue()));
 
         // Adding the rest of the equipment
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
-        startGear.add(equipmentDB.getArmor(R.string.shield));
-        startGear.add(equipmentDB.getWeapon(R.string.bow));
-        startGear.add(equipmentDB.getWeapon(R.string.arrows));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
+        startGear.add(equipmentDB.getArmor(CommonStrings.SHIELD.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.BOW.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.ARROWS.getValue()));
 
         // Roll for gold
         int rolledGold = rollDice.roll(6, 3) * 5;

@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,8 +39,8 @@ public class Priest extends Magician implements Level{
 
         int rolledGold = rollDice.roll(6, 3) * 10;
 
-        startGear.add(equipmentDB.getWeapon(R.string.staff));
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.STAFF.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
         //TODO add ceremonial robes
 
         setBasicHits(8);
@@ -47,6 +48,7 @@ public class Priest extends Magician implements Level{
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.PRIEST.getResId());
+        setSpecialTalentResId(R.string.priest_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
 
@@ -142,7 +144,7 @@ public class Priest extends Magician implements Level{
     }
 
     public int getPowerPoints(){
-        return getCharacter().getScore(Score.WILL).getModifier();
+        return (4 * getLevel()) + getCharacter().getScore(Score.WILL).getModifier();
     }
 }
 

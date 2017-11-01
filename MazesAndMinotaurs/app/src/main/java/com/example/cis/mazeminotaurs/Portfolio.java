@@ -2,6 +2,8 @@ package com.example.cis.mazeminotaurs;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
+import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
 
@@ -21,14 +23,7 @@ public class Portfolio {
     private Portfolio(){
         portfolio = new ArrayList<>();
         activeCharacterIndex = 0;
-        //For Testing Only
-        PlayerCharacter playerCharacter = new PlayerCharacter();
-        Barbarian barbarian = new Barbarian(playerCharacter, EquipmentDB.getInstance().getWeapon(R.string.barb_axe),
-                                                             EquipmentDB.getInstance().getWeapon(R.string.barb_axe));
-        playerCharacter.setCharClass(barbarian);
-        playerCharacter.initializeClass();
-
-        portfolio.add(playerCharacter);
+        resetPortfolio();
     }
 
     public static Portfolio get(){
@@ -39,7 +34,9 @@ public class Portfolio {
     }
 
     public void resetPortfolio(){
-        portfolio = new ArrayList<>();
+        portfolio.clear();
+        // Not having a single character in the portfolio causes errors. So we need a 'dummy' character.
+        portfolio.add(Util.createDummyCharacter());
     }
 
     public ArrayList<PlayerCharacter> getPortfolio() {

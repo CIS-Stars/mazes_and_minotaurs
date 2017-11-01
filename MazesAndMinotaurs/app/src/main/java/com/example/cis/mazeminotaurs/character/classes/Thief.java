@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,9 +29,9 @@ public class Thief extends Specialist implements Level{
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[] {
-                EquipmentDB.getInstance().getWeapon(R.string.bow),
-                EquipmentDB.getInstance().getWeapon(R.string.sling),
-                EquipmentDB.getInstance().getWeapon(R.string.throw_knife),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.THROW_KNIFE.getValue()),
         });
 
         Score[] primAttrs = {Score.LUCK, Score.WITS};
@@ -42,7 +43,7 @@ public class Thief extends Specialist implements Level{
         ArrayList<Weapon> possibleWepsOfChoice = new ArrayList<>();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        for (int choiceId: new int[]{R.string.dagger, R.string.sling, R.string.throw_knife}) {
+        for (String choiceId : new String[]{CommonStrings.DAGGER.getValue(), CommonStrings.SLING.getValue(), CommonStrings.THROW_KNIFE.getValue()}) {
             possibleWepsOfChoice.add(equipmentDB.getWeapon(choiceId));
         }
 
@@ -52,7 +53,7 @@ public class Thief extends Specialist implements Level{
             setWeaponOfChoice(possibleWepsOfChoice.get(0));
         }
 
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
         // Equipment done
 
         int rolledGold = rollDice.roll(6, 3) * 5;

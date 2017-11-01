@@ -12,4 +12,18 @@
         android:orderInCategory="200"
         android:title="@string/save_portfolio"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_save_equipment"
+        android:orderInCategory="300"
+        android:title="@string/save_equipment"
+        android:titleCondensed="@string/save_equipment_con"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_reset_equipment"
+        android:orderInCategory="400"
+        android:title="@string/reset_equipment"
+        android:titleCondensed="@string/reset_equipment_con"
+        app:showAsAction="never"/>
 </menu>

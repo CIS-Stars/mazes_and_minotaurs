@@ -13,6 +13,7 @@ import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class PlayerCharacter{
      */
     public int getMeleeMod() {
         return getScore(Score.MIGHT).getModifier() +
-                getScore(Score.GRACE).getModifier() +
+                getScore(Score.SKILL).getModifier() +
                 getScore(Score.LUCK).getModifier();
     }
 
@@ -478,6 +479,25 @@ public class PlayerCharacter{
         if (getWeapons().size() > 0) {
             setCurrentWeapon(getWeapons().get(0));
         }
+
+        EquipmentDB db = EquipmentDB.getInstance();
+
+        Armor helm = db.getArmor(CommonStrings.HELMET.getValue());
+        Armor plate = db.getArmor(CommonStrings.BREASTPLATE.getValue());
+        Armor shield = db.getArmor(CommonStrings.SHIELD.getValue());
+
+        if (getInventory().contains(helm)) {
+            setHelmet(helm);
+        }
+
+        if (getInventory().contains(plate)) {
+            setBreastplate(plate);
+        }
+
+        if (getInventory().contains(shield)) {
+            setShield(shield);
+        }
+
         setCurHits(getHitTotal());
     }
 

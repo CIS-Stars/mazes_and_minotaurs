@@ -6,14 +6,14 @@ package com.example.cis.mazeminotaurs;
 
 public class Equipment {
     //instance variables
-    private int mResId;
+    private String mResId;
     private int mEncumberance;
     private int mQuantity;
     private double mCostInSp;
     private String mLongDescription;
     private boolean mEquipped;
 
-    public Equipment(int resId, int encumberance, int quantity,
+    public Equipment(String resId, int encumberance, int quantity,
                      double costInSp, String longDescription) {
         mResId = resId;
         mEncumberance = encumberance;
@@ -30,11 +30,11 @@ public class Equipment {
         mEquipped = equipped;
     }
 
-    public int getResId() {
+    public String getResId() {
         return mResId;
     }
 
-    public void setResId(int resId) {
+    public void setResId(String resId) {
         mResId = resId;
     }
 

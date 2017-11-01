@@ -9,6 +9,7 @@ import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,14 +37,15 @@ public class Elementalist extends Magician implements Level{
 
         int rolledGold = rollDice.roll(6, 3) * 5;
 
-        startGear.add(equipmentDB.getWeapon(R.string.staff));
-        startGear.add(equipmentDB.getWeapon(R.string.dagger));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.STAFF.getValue()));
+        startGear.add(equipmentDB.getWeapon(CommonStrings.DAGGER.getValue()));
 
         setBasicHits(8);
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
         setResId(Classes.ELEMENTALIST.getResId());
+        setSpecialTalentResId(R.string.elementalist_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
     }
@@ -137,6 +139,6 @@ public class Elementalist extends Magician implements Level{
     }
 
     public int getPowerPoints(){
-        return getCharacter().getScore(Score.WILL).getModifier();
+        return (4 * getLevel()) + getCharacter().getScore(Score.WILL).getModifier();
     }
 }
