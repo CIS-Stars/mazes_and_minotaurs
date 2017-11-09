@@ -76,18 +76,25 @@
     <string name="name_view">Name: %s</string>
     <string name="class_view">Class: %s</string>
     <string name="level_view">Level: %s</string>
-    <string name="add_equipment">Add Equipment</string>
     <string name="cancel">Cancel</string>
     <string name="delete_message">Are you sure you want to remove this item?</string>
-    <string name="lyrist_talent">Orphic Voice</string>
-    <string name="elementalist_talent">Elemental Mastery</string>
-    <string name="nymph_talent">Odylic Charm</string>
-    <string name="priest_talent">Spiritual Aura</string>
-    <string name="sorceror_talent">Psychic Gift</string>
     <string name="reset_equipment_con">Reset Equip</string>
     <string name="reset_equipment">Reset Equipment Database</string>
     <string name="caution_alert">Are you sure?</string>
     <string name="reset_equip_msg">This will reset the EquipmentDB to default values and delete the saved file!</string>
+
+    <!-- Inventory Screen -->
+    <string name="add_equipment">Add Equipment</string>
     <string name="inventory">Inventory</string>
     <string name="inventory_btn">Open Inventory</string>
+
+
+    <!-- Priority Dialog -->
+    <string name="primary_attributes">Primary Attributes</string>
+    <string name="first">First:</string>
+    <string name="second">Second:</string>
+    <string name="third">Third:</string>
+    <string name="fourth">Fourth:</string>
+    <string name="fifth">Fifth:</string>
+    <string name="sixth">Sixth:</string>
 </resources>
