@@ -46,7 +46,9 @@ public enum CommonStrings {
     MEAL("One Meal (with Wine)"),
     WINE_JUG("Jug of Wine"),
 
-    ATTR_PRIORITY_ARGS("ATTR_PRIORITY_ARGS");
+    // Bundle keys
+    ATTR_PRIORITY_ARGS("ATTR_PRIORITY_ARGS"),
+    CHARACTER_ARG("CHARACTER_ARG");
 
     String value;
 
