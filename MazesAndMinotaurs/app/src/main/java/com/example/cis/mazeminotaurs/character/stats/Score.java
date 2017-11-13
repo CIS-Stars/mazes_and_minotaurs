@@ -2,11 +2,13 @@ package com.example.cis.mazeminotaurs.character.stats;
 
 import com.example.cis.mazeminotaurs.R;
 
+import java.io.Serializable;
+
 /**
  * Created by jusmith on 3/30/17.
  */
 
-public enum Score {
+public enum Score implements Serializable {
     MIGHT(R.string.might),
     GRACE(R.string.grace),
     SKILL(R.string.skill),
