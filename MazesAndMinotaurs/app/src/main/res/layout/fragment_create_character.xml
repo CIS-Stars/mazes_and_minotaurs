@@ -57,15 +57,14 @@
             </LinearLayout>
 
 
-
             <TextView
                 android:id="@+id/attributes_title_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/character_sheet_box_black"
-                android:textColor="@color/white"
-                android:text="@string/attributes_title"
+                android:text="@string/create_attributes_title"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="24sp"
                 />
 
@@ -395,6 +394,11 @@
                     <Button
                         android:id="@+id/reroll_stats_button"
                         android:text="ReRoll"/>
+
+                    <Button
+                        android:layout_column="1"
+                        android:id="@+id/attribute_priority_button"
+                        android:text="@string/attribute_priority"/>
                     <Button
                         android:layout_column="2"
                         android:id="@+id/confirm_character_button"

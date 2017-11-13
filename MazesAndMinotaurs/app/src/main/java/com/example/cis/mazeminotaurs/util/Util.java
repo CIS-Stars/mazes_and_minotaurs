@@ -60,8 +60,6 @@ public class Util {
     }
 
     public static void clearBackStack(FragmentManager fragmentManager) {
-        while (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 }

@@ -44,7 +44,9 @@ public enum CommonStrings {
     WATERSKIN("Waterskin"),
     LODGING("Night\'s Lodging"),
     MEAL("One Meal (with Wine)"),
-    WINE_JUG("Jug of Wine");
+    WINE_JUG("Jug of Wine"),
+
+    ATTR_PRIORITY_ARGS("ATTR_PRIORITY_ARGS");
 
     String value;
 

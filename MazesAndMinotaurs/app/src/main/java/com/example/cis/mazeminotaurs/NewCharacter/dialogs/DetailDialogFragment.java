@@ -33,6 +33,7 @@ import com.example.cis.mazeminotaurs.util.Util;
  */
 
 public class DetailDialogFragment extends DialogFragment {
+    // TODO Move to strings.xml
     private static final String EMPTY_MSG = "Can't select anything.";
 
     public interface DetailDialogListener {

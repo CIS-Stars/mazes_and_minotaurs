@@ -64,6 +64,7 @@
     <string name="starting_weapon">Starting Weapon: </string>
     <string name="physical_heritage">Physical Heritage: </string>
     <string name="other_heritage">Other Heritage: </string>
+    <string name="create_attributes_title">Attributes</string>
 
 
     <!-- Attribute Edit Dialog -->
@@ -97,4 +98,5 @@
     <string name="fourth">Fourth:</string>
     <string name="fifth">Fifth:</string>
     <string name="sixth">Sixth:</string>
+    <string name="attribute_priority">Change Priority</string>
 </resources>
