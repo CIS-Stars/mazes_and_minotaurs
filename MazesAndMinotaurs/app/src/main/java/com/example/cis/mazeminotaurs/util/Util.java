@@ -14,16 +14,6 @@ import com.example.cis.mazeminotaurs.character.classes.Barbarian;
  */
 
 public class Util {
-    public static PlayerCharacter createDummyCharacter() {
-        PlayerCharacter pc = new PlayerCharacter();
-        Barbarian barbarian = new Barbarian(pc, EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()),
-                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()));
-        pc.setCharClass(barbarian);
-        pc.initializeClass();
-
-        return pc;
-    }
-
     /**
      * Returns the ammo used for a specified missile weapon.
      */
@@ -47,6 +37,32 @@ public class Util {
         } else {
             return EquipmentDB.getInstance().getWeapon(CommonStrings.SLINGSHOT.getValue());
         }
+    }
+
+    public static PlayerCharacter createDummyCharacter() {
+        PlayerCharacter pc = new PlayerCharacter();
+        Barbarian barbarian = new Barbarian(pc, EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()),
+                EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()));
+        pc.setCharClass(barbarian);
+        pc.initializeClass();
+
+        return pc;
+    }
+
+    /**
+     * Searches for a specified object in an array.
+     *
+     * @param array The array to search through
+     * @param obj   The object to search for
+     * @return If obj inside of array
+     */
+    public static boolean contains(Object[] array, Object obj) {
+        for (Object i : array) {
+            if (obj == i) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void clearBackStack(FragmentActivity activity) {
