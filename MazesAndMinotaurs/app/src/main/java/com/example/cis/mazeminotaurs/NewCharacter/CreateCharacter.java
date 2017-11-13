@@ -26,7 +26,6 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -133,6 +132,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
                 Bundle args = new Bundle();
 
                 args.putSerializable(CommonStrings.ATTR_PRIORITY_ARGS.getValue(), mPriorities);
+                args.putSerializable(CommonStrings.CHARACTER_ARG.getValue(), mBaseClass);
 
                 dialog.setArguments(args);
                 dialog.setListener(self);
@@ -216,8 +216,6 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
                 }
             }
         }
-
-        Log.wtf(TAG, String.format("%s : stat priority is valid?", valid));
 
         if (valid) {
             mPriorities = priorities;

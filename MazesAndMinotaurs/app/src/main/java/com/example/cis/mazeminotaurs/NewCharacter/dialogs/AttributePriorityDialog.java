@@ -12,10 +12,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.cis.mazeminotaurs.R;
+import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by JayTSmith on 11/9/17.
@@ -39,24 +41,42 @@ public class AttributePriorityDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Bundle args = getArguments();
-
         LayoutInflater li = LayoutInflater.from(getContext());
-
         View rootView = li.inflate(R.layout.dialog_attribute_priority, null);
-        Score[] priorities = (Score[]) args.get(CommonStrings.ATTR_PRIORITY_ARGS.getValue());
 
-        mSpinners = new Spinner[6];
-        ArrayAdapter<Score> adapter = new ArrayAdapter<>(getContext(),
+        Bundle args = getArguments();
+        BaseClass baseClass = (BaseClass) args.get(CommonStrings.CHARACTER_ARG.getValue());
+        List<Score> primPriorities = new ArrayList<>();
+        List<Score> otherPriorities = new ArrayList<>();
+
+        // Set up the list of the two priorities
+        for (Score score : (Score[]) args.get(CommonStrings.ATTR_PRIORITY_ARGS.getValue())) {
+            if (baseClass.getPrimaryAttributes().contains(score)) {
+                primPriorities.add(score);
+            } else {
+                otherPriorities.add(score);
+            }
+        }
+
+        // Set up two adapters: one for primary attributes and the other for the left over attributes.
+        ArrayAdapter<Score> primAdapter = new ArrayAdapter<>(getContext(),
                 R.layout.support_simple_spinner_dropdown_item);
-        adapter.addAll(Score.values());
+        ArrayAdapter<Score> otherAdapter = new ArrayAdapter<>(getContext(),
+                R.layout.support_simple_spinner_dropdown_item);
+
+        primAdapter.addAll(primPriorities);
+        otherAdapter.addAll(otherPriorities);
+        mSpinners = new Spinner[6];
 
         for (int i = 0; i < SPINNER_IDS.length; i++) {
             mSpinners[i] = (Spinner) rootView.findViewById(SPINNER_IDS[i]);
-            mSpinners[i].setAdapter(adapter);
-
-            // Setting up the priorities to display properly when loading in.
-            mSpinners[i].setSelection(Arrays.asList(Score.values()).indexOf(priorities[i]));
+            if (i < 2) {
+                mSpinners[i].setAdapter(primAdapter);
+                mSpinners[i].setSelection(i);
+            } else {
+                mSpinners[i].setAdapter(otherAdapter);
+                mSpinners[i].setSelection(i - 2);
+            }
         }
 
         Dialog dialog = new AlertDialog.Builder(getActivity())
