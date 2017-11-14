@@ -75,7 +75,8 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         View rootView = li.inflate(R.layout.fragment_create_character, vg, false);
 
         mBaseClass = (BaseClass) getArguments().get("classInstance");
-        mPriorities = Score.values();
+        mPriorities = generatePriority();
+
 
         mCharaClassTextView = (TextView) rootView.findViewById(R.id.character_class_view);
         mCharaClassTextView.setText(mBaseClass.getResId());
@@ -158,9 +159,22 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
             }
         });
 
+        reroll();
         updateStatButtons();
 
         return rootView;
+    }
+
+    private Score[] generatePriority() {
+        List<Score> result = new ArrayList<>();
+        Collections.addAll(result, Score.values());
+
+        // Swaps the class' primary attributes towards the front of the list
+        for (int i = 0; i < mBaseClass.getPrimaryAttributes().size(); i++) {
+            Collections.swap(result, i, result.indexOf(mBaseClass.getPrimaryAttributes().get(i)));
+        }
+
+        return result.toArray(new Score[]{});
     }
 
     private void reroll() {
