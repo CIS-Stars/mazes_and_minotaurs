@@ -1,5 +1,6 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -148,14 +149,10 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
                 Portfolio.get().addPlayerCharacter(mBaseClass.getCharacter());
                 Portfolio.get().setActiveCharacterIndex(Portfolio.get().getPortfolio().indexOf(mBaseClass.getCharacter()));
 
-                CharacterSheetFragment fragment = new CharacterSheetFragment();
-                Bundle bundle = new Bundle();
-                fragment.setArguments(bundle);
-
                 // Clear the backstack before replacing the screen
                 Util.clearBackStack(getFragmentManager());
-                getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)
-                        .commit();
+                Intent intent = new Intent(getContext(), CharacterSheetFragment.class);
+                startActivity(intent);
             }
         });
 
