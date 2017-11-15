@@ -36,6 +36,11 @@
             android:screenOrientation="portrait"
             android:label="CharacterCreation">
         </activity>
+        <activity
+            android:name=".CharacterSheetFragment"
+            android:screenOrientation="portrait"
+            android:label="Character Sheet"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
