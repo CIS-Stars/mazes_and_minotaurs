@@ -146,8 +146,7 @@ public class MainMazes extends AppCompatActivity
             if (id == R.id.create_character) {
                contentFragment = new CharacterCreationFragment();
             } else if (id == R.id.play_character) {
-                //contentFragment = new CharacterSheetFragment();
-                Intent intent = new Intent(this, CharacterSheetFragment.class);
+                Intent intent = new Intent(this, CharacterSheetActivity.class);
                 startActivity(intent);
                 return false;
             } else if (id == R.id.select_character) {

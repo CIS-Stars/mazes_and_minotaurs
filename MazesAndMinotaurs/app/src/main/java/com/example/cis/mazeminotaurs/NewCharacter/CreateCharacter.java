@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
-import com.example.cis.mazeminotaurs.CharacterSheetFragment;
+import com.example.cis.mazeminotaurs.CharacterSheetActivity;
 import com.example.cis.mazeminotaurs.NewCharacter.dialogs.AttributePriorityDialog;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
@@ -151,7 +151,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
 
                 // Clear the backstack before replacing the screen
                 Util.clearBackStack(getFragmentManager());
-                Intent intent = new Intent(getContext(), CharacterSheetFragment.class);
+                Intent intent = new Intent(getContext(), CharacterSheetActivity.class);
                 startActivity(intent);
             }
         });
