@@ -35,11 +35,7 @@
             android:label="CharacterCreation"
             android:screenOrientation="portrait">
         </activity>
-        <activity
-            android:name=".CharacterSheetFragment"
-            android:label="Character Sheet"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".CharacterManageActivity"
             android:label="@string/title_activity_character_manage"
@@ -48,6 +44,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.cis.mazeminotaurs.MainMazes"/>
+        </activity>
+        <activity
+            android:name=".CharacterSheetActivity"
+            android:label="Character Sheet"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
