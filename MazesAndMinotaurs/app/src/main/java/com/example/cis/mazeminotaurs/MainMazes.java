@@ -149,10 +149,7 @@ public class MainMazes extends AppCompatActivity
                 Intent intent = new Intent(this, CharacterSheetActivity.class);
                 startActivity(intent);
                 return false;
-            } else if (id == R.id.select_character) {
-                contentFragment = new CharacterSelectionFragment();
-            } else if (id == R.id.delete_character) {
-                //contentFragment = new CharacterDeletionFragment();
+            } else if (id == R.id.manage_characters) {
                 Intent intent = new Intent(this, CharacterManageActivity.class);
                 startActivity(intent);
                 return false;

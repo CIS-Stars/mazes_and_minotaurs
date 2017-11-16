@@ -8,16 +8,12 @@
             android:title="@string/create_character"/>
         <item
             android:id="@+id/play_character"
-            android:icon="@drawable/ic_people_black_24dp"
+            android:icon="@drawable/ic_person_black_24dp"
             android:title="@string/play_character"/>
         <item
-            android:id="@+id/select_character"
-            android:icon="@drawable/ic_person_black_24dp"
-            android:title="@string/select_character"/>
-        <item
-            android:id="@+id/delete_character"
-            android:icon="@drawable/ic_person_outline_black_24dp"
-            android:title="@string/delete_character"/>
+            android:id="@+id/manage_characters"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="@string/manage_characters"/>
 
     </group>
 
