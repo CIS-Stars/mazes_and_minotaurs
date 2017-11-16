@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
+ * @deprecated
  * Created by jsmith on 10/19/17.
  */
 
