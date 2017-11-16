@@ -5,9 +5,7 @@ import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
-import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
@@ -42,7 +40,7 @@ import java.util.HashMap;
  * @author Justin Smith
  */
 
-public class PlayerCharacter{
+public class PlayerCharacter implements Serializable {
     /**
      * The character's attribute scores.
      */
