@@ -29,11 +29,11 @@ import com.example.cis.mazeminotaurs.rollDice.rollDice;
  * Created by Thorin Schmidt on 4/1/2017.
  */
 
-public class CharacterSheetFragment extends AppCompatActivity
+public class CharacterSheetActivity extends AppCompatActivity
         implements StatChangeFragment.OnStatChangeListener, HitsChangeFragment.onHitsChangeListener{
 
     public static final String ROLL_RESULT = "RollResult";
-    public static final String TAG = "CharacterSheetFragment";
+    public static final String TAG = "CharacterSheetActivity";
 
     int mCurrentCharacterIndex;
     Portfolio mPortfolio;
@@ -71,7 +71,7 @@ public class CharacterSheetFragment extends AppCompatActivity
 
     Button mInventoryButton;
 
-    public CharacterSheetFragment(){
+    public CharacterSheetActivity() {
         mPortfolio = Portfolio.get();
     }
 
