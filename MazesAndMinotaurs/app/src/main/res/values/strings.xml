@@ -7,9 +7,9 @@
     <string name="action_settings">Settings</string>
     <string name="create_character">Create New Character</string>
     <string name="play_character">Play Existing Character</string>
-    <string name="delete_character">Delete A Character</string>
+    <string name="delete_character">Delete Character</string>
     <string name="error_delete_character">Must have one character at all times!</string>
-    <string name="select_character">Select Active Character</string>
+    <string name="select_character">Select as Active Character</string>
     <string name="save_portfolio">Save Portfolio</string>
     <string name="save_equipment">Save Equipment Database</string>
     <string name="save_equipment_con">Save Equip</string>
@@ -101,4 +101,5 @@
     <string name="sixth">Sixth:</string>
     <string name="attribute_priority">Change Priority</string>
     <string name="title_activity_character_manage">CharacterManageActivity</string>
+    <string name="manage_character">Manage Character</string>
 </resources>
