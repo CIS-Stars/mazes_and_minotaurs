@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cis.mazeminotaurs"
-    android:installLocation="auto">
+          package="com.example.cis.mazeminotaurs"
+          android:installLocation="auto">
 
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="true"
         android:smallScreens="true"
-        android:xlargeScreens="true" />
+        android:xlargeScreens="true"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -19,28 +18,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainMazes"
-            android:screenOrientation="portrait"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".NewCharacter.ClassConfirmationPopUp"
-            android:screenOrientation="portrait"
-            android:label="CharacterCreation">
+            android:label="CharacterCreation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CharacterSheetFragment"
-            android:screenOrientation="portrait"
             android:label="Character Sheet"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".CharacterManageActivity"
+            android:label="@string/title_activity_character_manage"
+            android:parentActivityName=".MainMazes"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cis.mazeminotaurs.MainMazes"/>
+        </activity>
     </application>
 
 </manifest>

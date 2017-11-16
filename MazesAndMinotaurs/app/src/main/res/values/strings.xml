@@ -100,4 +100,5 @@
     <string name="fifth">Fifth:</string>
     <string name="sixth">Sixth:</string>
     <string name="attribute_priority">Change Priority</string>
+    <string name="title_activity_character_manage">CharacterManageActivity</string>
 </resources>
