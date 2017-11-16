@@ -20,6 +20,7 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
  */
 
 public class CharManageFragment extends DialogFragment {
+    public static final String TAG = CharManageFragment.class.getName();
 
     public interface ManagementListener {
         void onSelect(int i);
@@ -33,11 +34,15 @@ public class CharManageFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater li = LayoutInflater.from(getContext());
-        View rootView = li.inflate(R.layout.dialog_attribute_priority, null);
+        View rootView = li.inflate(R.layout.dialog_manage_character, null);
 
         Bundle args = getArguments();
         final PlayerCharacter playerCharacter = (PlayerCharacter) args.get(CommonStrings.CHARACTER_ARG.getValue());
         final int charIndex = Portfolio.get().getPortfolio().indexOf(playerCharacter);
+
+        String nameString = getContext().getString(R.string.name_view, playerCharacter.getName());
+        String levelString = getContext().getString(R.string.level_view, playerCharacter.getCharClass().getLevel());
+        String classString = getContext().getString(R.string.class_view, getContext().getString(playerCharacter.getCharClass().getResId()));
 
         TextView charName = (TextView) rootView.findViewById(R.id.manage_name_view);
         TextView levelName = (TextView) rootView.findViewById(R.id.manage_level_view);
@@ -46,9 +51,9 @@ public class CharManageFragment extends DialogFragment {
         Button selectButton = (Button) rootView.findViewById(R.id.manage_select_button);
         Button deleteButton = (Button) rootView.findViewById(R.id.manage_delete_button);
 
-        charName.setText(playerCharacter.getName());
-        levelName.setText(String.valueOf(playerCharacter.getCharClass().getLevel()));
-        className.setText(playerCharacter.getCharClass().getResId());
+        charName.setText(nameString);
+        levelName.setText(levelString);
+        className.setText(classString);
 
         // Listeners
         selectButton.setOnClickListener(new View.OnClickListener() {
@@ -71,5 +76,13 @@ public class CharManageFragment extends DialogFragment {
                 .setTitle(R.string.manage_character)
                 .setView(rootView)
                 .create();
+    }
+
+    public ManagementListener getListener() {
+        return mListener;
+    }
+
+    public void setListener(ManagementListener listener) {
+        mListener = listener;
     }
 }

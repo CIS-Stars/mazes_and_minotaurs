@@ -74,9 +74,9 @@
     <string name="attribute_edit_hint">Enter a number</string>
 
     <!-- Character Save/Load Fragment -->
-    <string name="name_view">Name: %s</string>
-    <string name="class_view">Class: %s</string>
-    <string name="level_view">Level: %s</string>
+    <string name="name_view">Name: %1$s</string>
+    <string name="class_view">Class: %1$s</string>
+    <string name="level_view">Level: %1$d</string>
     <string name="cancel">Cancel</string>
     <string name="delete_message">Are you sure you want to remove this item?</string>
     <string name="reset_equipment_con">Reset Equip</string>
