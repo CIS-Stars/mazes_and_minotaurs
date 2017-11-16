@@ -9,4 +9,9 @@
     tools:context="com.example.cis.mazeminotaurs.CharacterManageActivity"
     tools:showIn="@layout/activity_character_manage">
 
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/character_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </android.support.constraint.ConstraintLayout>
