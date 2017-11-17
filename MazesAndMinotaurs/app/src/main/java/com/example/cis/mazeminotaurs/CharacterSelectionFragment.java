@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 /**
+ * @deprecated
  * Created by jsmith on 10/18/17.
  */
 

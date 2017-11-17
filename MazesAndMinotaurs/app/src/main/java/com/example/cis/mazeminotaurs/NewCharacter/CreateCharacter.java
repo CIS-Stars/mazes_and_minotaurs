@@ -1,5 +1,6 @@
 package com.example.cis.mazeminotaurs.NewCharacter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
-import com.example.cis.mazeminotaurs.CharacterSheetFragment;
+import com.example.cis.mazeminotaurs.CharacterPlayActivity;
 import com.example.cis.mazeminotaurs.NewCharacter.dialogs.AttributePriorityDialog;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
@@ -124,7 +125,13 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         mPriorityButton = (Button) rootView.findViewById(R.id.attribute_priority_button);
         mConfirmButton = (Button) rootView.findViewById(R.id.confirm_character_button);
 
-        final CreateCharacter self = this;
+        mRerollButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reroll();
+                updateStatButtons();
+            }
+        });
 
         mPriorityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +143,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
                 args.putSerializable(CommonStrings.CHARACTER_ARG.getValue(), mBaseClass);
 
                 dialog.setArguments(args);
-                dialog.setListener(self);
+                dialog.setListener(CreateCharacter.this);
                 dialog.show(getFragmentManager(), dialog.getTag());
             }
         });
@@ -148,17 +155,14 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
                 Portfolio.get().addPlayerCharacter(mBaseClass.getCharacter());
                 Portfolio.get().setActiveCharacterIndex(Portfolio.get().getPortfolio().indexOf(mBaseClass.getCharacter()));
 
-                CharacterSheetFragment fragment = new CharacterSheetFragment();
-                Bundle bundle = new Bundle();
-                fragment.setArguments(bundle);
-
                 // Clear the backstack before replacing the screen
                 Util.clearBackStack(getFragmentManager());
-                getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)
-                        .commit();
+                Intent intent = new Intent(getContext(), CharacterPlayActivity.class);
+                startActivity(intent);
             }
         });
 
+        // Just to force a valid set of stats according to the priorities.
         reroll();
         updateStatButtons();
 

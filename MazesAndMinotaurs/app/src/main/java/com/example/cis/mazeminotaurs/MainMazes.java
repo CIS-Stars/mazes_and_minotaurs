@@ -2,6 +2,7 @@ package com.example.cis.mazeminotaurs;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -133,6 +134,7 @@ public class MainMazes extends AppCompatActivity
         public boolean onNavigationItemSelected(MenuItem item) {
             // Handle navigation view item clicks here.
             int id = item.getItemId();
+            Intent actIntent = null;
             Fragment contentFragment = new SplashScreenFragment();
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -145,11 +147,9 @@ public class MainMazes extends AppCompatActivity
             if (id == R.id.create_character) {
                contentFragment = new CharacterCreationFragment();
             } else if (id == R.id.play_character) {
-                contentFragment = new CharacterSheetFragment();
-            } else if (id == R.id.select_character) {
-                contentFragment = new CharacterSelectionFragment();
-            } else if (id == R.id.delete_character) {
-                contentFragment = new CharacterDeletionFragment();
+                actIntent = new Intent(this, CharacterPlayActivity.class);
+            } else if (id == R.id.manage_characters) {
+                actIntent = new Intent(this, CharacterManageActivity.class);
             } else if (id == R.id.player_manual) {
                 contentFragment = new PlayerManualFragment();
             } else if (id == R.id.player_comapanion) {
@@ -158,8 +158,13 @@ public class MainMazes extends AppCompatActivity
                 contentFragment = new WebsiteFragment();
             }
 
-            if (contentFragment != null){
-                ft.replace(R.id.content_frame, contentFragment);
+            if (actIntent != null) {
+                startActivity(actIntent);
+            } else if (contentFragment != null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, contentFragment)
+                        .commit();
             }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
