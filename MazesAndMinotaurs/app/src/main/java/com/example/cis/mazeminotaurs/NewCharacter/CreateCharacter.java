@@ -129,6 +129,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
             @Override
             public void onClick(View view) {
                 reroll();
+                updateStatButtons();
             }
         });
 
