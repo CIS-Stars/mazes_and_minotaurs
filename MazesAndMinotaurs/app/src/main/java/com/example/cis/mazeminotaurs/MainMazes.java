@@ -134,6 +134,7 @@ public class MainMazes extends AppCompatActivity
         public boolean onNavigationItemSelected(MenuItem item) {
             // Handle navigation view item clicks here.
             int id = item.getItemId();
+            Intent actIntent = null;
             Fragment contentFragment = new SplashScreenFragment();
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -146,13 +147,9 @@ public class MainMazes extends AppCompatActivity
             if (id == R.id.create_character) {
                contentFragment = new CharacterCreationFragment();
             } else if (id == R.id.play_character) {
-                Intent intent = new Intent(this, CharacterPlayActivity.class);
-                startActivity(intent);
-                return false;
+                actIntent = new Intent(this, CharacterPlayActivity.class);
             } else if (id == R.id.manage_characters) {
-                Intent intent = new Intent(this, CharacterManageActivity.class);
-                startActivity(intent);
-                return false;
+                actIntent = new Intent(this, CharacterManageActivity.class);
             } else if (id == R.id.player_manual) {
                 contentFragment = new PlayerManualFragment();
             } else if (id == R.id.player_comapanion) {
@@ -161,7 +158,9 @@ public class MainMazes extends AppCompatActivity
                 contentFragment = new WebsiteFragment();
             }
 
-            if (contentFragment != null){
+            if (actIntent != null) {
+                startActivity(actIntent);
+            } else if (contentFragment != null) {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, contentFragment)
