@@ -125,7 +125,12 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         mPriorityButton = (Button) rootView.findViewById(R.id.attribute_priority_button);
         mConfirmButton = (Button) rootView.findViewById(R.id.confirm_character_button);
 
-        final CreateCharacter self = this;
+        mRerollButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reroll();
+            }
+        });
 
         mPriorityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +142,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
                 args.putSerializable(CommonStrings.CHARACTER_ARG.getValue(), mBaseClass);
 
                 dialog.setArguments(args);
-                dialog.setListener(self);
+                dialog.setListener(CreateCharacter.this);
                 dialog.show(getFragmentManager(), dialog.getTag());
             }
         });
@@ -156,6 +161,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
             }
         });
 
+        // Just to force a valid set of stats according to the priorities.
         reroll();
         updateStatButtons();
 
