@@ -21,6 +21,9 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
  */
 
 public class InventoryFragment extends Fragment {
+
+    public static final String TAG = InventoryFragment.class.getName();
+
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b) {
         super.onCreateView(li, vg, b);

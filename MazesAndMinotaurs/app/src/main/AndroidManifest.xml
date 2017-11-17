@@ -46,10 +46,14 @@
                 android:value="com.example.cis.mazeminotaurs.MainMazes"/>
         </activity>
         <activity
-            android:name=".CharacterSheetActivity"
-            android:label="Character Sheet"
+            android:name=".CharacterPlayActivity"
+            android:label="Character Play"
+            android:parentActivityName=".MainMazes"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.cis.mazeminotaurs.MainMazes"/>
         </activity>
     </application>
 

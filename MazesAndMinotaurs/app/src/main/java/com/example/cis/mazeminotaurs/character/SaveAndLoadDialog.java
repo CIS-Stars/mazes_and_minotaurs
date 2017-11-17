@@ -102,7 +102,7 @@ public class SaveAndLoadDialog extends DialogFragment {
 
                 // Thanks to @davidsnider for solving the issue of refreshing the fragment
 
-                /*Fragment contentFragment = new CharacterSheetActivity();
+                /*Fragment contentFragment = new CharacterSheetFragment();
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, contentFragment);
