@@ -308,6 +308,7 @@ public class DetailDialogFragment extends DialogFragment {
                         ((Noble) instance).doHeritage(mPhysicalHeritage, mOtherHeritage);
                     }
 
+                    DetailDialogFragment.this.dismiss();
                     mListener.onDialogPositiveClick(instance);
                 }
             }
