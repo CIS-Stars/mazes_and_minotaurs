@@ -26,6 +26,7 @@ public class Priest extends Magician {
 
     public Priest(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
+        // TODO Replace with their deity provided score.
         setPossibleLevelScores(new Score[]{Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS});
 
         Score[] primAttrs = {Score.LUCK, Score.WILL};
