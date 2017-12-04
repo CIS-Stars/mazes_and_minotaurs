@@ -394,6 +394,24 @@ public class PlayerCharacter implements Serializable {
     }
 
     /**
+     * Adds the value to the score.
+     * <p>
+     * If safely is true, then canAddToScore is called beforehand and the value is added
+     * if it returns true.
+     *
+     * @param score  The score to add value to
+     * @param value  The value to add to the score
+     * @param safely If canAddToScore should be called beforehand
+     */
+    public void addToScore(Score score, int value, boolean safely) {
+        if (safely && this.canAddToScore(score)) {
+            this.getScore(score).setScore(this.getScore(score).getScore() + value);
+        } else {
+            this.getScore(score).setScore(this.getScore(score).getScore() + value);
+        }
+    }
+
+    /**
      * Checks if a score is maxed out
      * @param   score The score to check
      * @return  If score is not maxed out, returns true. Otherwise, returns false.
