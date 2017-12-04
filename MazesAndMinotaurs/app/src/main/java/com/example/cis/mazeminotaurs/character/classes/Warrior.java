@@ -18,6 +18,14 @@ public abstract class Warrior extends BaseClass {
                                                      R.string.warrior_three, R.string.warrior_four,
                                                      R.string.warrior_five, R.string.warrior_six};
 
+    protected Warrior() {
+        setHitsImprove(4);
+    }
+
+    public static int[] getmLevelDescriptions() {
+        return mLevelDescriptions;
+    }
+
     public Weapon getWeaponOfChoice() {
         return this.mWeaponOfChoice;
     }

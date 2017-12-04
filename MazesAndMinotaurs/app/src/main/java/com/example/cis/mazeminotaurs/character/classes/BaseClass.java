@@ -2,8 +2,8 @@ package com.example.cis.mazeminotaurs.character.classes;
 
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
 import java.io.Serializable;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 public abstract class BaseClass implements Serializable{
     private int mAddedHits = 0;
     private int mBasicHits;
+    private int mHitsImprove = 2;
     private PlayerCharacter mPlayerCharacter;
     private int mExperience = 0;
     private int mLevel = 1;
@@ -44,6 +45,8 @@ public abstract class BaseClass implements Serializable{
     private int mStartMoney;
 
     private Weapon[] mPossibleStartWeapons;
+
+    private static final int LUCK_IMPROVE = 1;
 
     public void updateLevel(){
         if (getExperience() < 1000) {
@@ -152,6 +155,14 @@ public abstract class BaseClass implements Serializable{
 
     public void setEffectiveLevel(int effectiveLevel) {
         this.mEffectiveLevel = effectiveLevel;
+    }
+
+    public int getHitsImprove() {
+        return this.mHitsImprove;
+    }
+
+    protected void setHitsImprove(int hitsImprove) {
+        this.mHitsImprove = hitsImprove;
     }
 
     public Weapon[] getPossibleStartWeapons() {
