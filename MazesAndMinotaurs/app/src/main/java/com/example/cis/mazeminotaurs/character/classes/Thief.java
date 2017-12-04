@@ -19,7 +19,7 @@ import java.util.HashMap;
  * Created by jsmith on 9/11/17.
  */
 
-public class Thief extends Specialist implements Level{
+public class Thief extends Specialist {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Thief() {
@@ -68,13 +68,11 @@ public class Thief extends Specialist implements Level{
         setStartGear(startGear);
     }
 
-    @Override
     public void doLevelUp() {
         Score[] possibleScores = {Score.SKILL, Score.WILL, Score.WITS};
         doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
-    @Override
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()) {
             Score[] choices = {Score.SKILL, Score.WILL, Score.WITS};
@@ -122,7 +120,6 @@ public class Thief extends Specialist implements Level{
         }
     }
 
-    @Override
     public void doLevelDown() {
         if (getLevel() > 1) {
             HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);

@@ -18,7 +18,7 @@ import java.util.HashMap;
  * Created by zsteck on 9/12/17.
  */
 
-public class Nymph extends Magician implements Level{
+public class Nymph extends Magician {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Nymph() {

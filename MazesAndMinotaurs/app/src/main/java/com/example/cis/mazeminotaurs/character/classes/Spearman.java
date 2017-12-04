@@ -3,7 +3,6 @@ package com.example.cis.mazeminotaurs.character.classes;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
-import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
@@ -19,7 +18,7 @@ import java.util.HashMap;
  * Created by jusmith on 5/15/17.
  */
 
-public class Spearman extends Warrior implements Level {
+public class Spearman extends Warrior {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Spearman() {

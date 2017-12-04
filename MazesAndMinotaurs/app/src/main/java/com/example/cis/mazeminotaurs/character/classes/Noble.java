@@ -3,7 +3,6 @@ package com.example.cis.mazeminotaurs.character.classes;
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
-import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
@@ -19,7 +18,7 @@ import java.util.HashMap;
  * Created by jusmith on 5/15/17.
  */
 
-public class Noble extends Warrior implements Level {
+public class Noble extends Warrior {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     private Score mPhysicalHeritage = Score.MIGHT;
@@ -74,13 +73,11 @@ public class Noble extends Warrior implements Level {
         }
     }
 
-    @Override
     public void doLevelUp() {
         Score[] possibleScores = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
         doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
     }
 
-    @Override
     public void doLevelUp(Score score) {
         if (getLevel() < getEffectiveLevel()) {
             Score[] choices = {Score.GRACE, Score.SKILL, Score.WILL, Score.MIGHT, Score.WITS};
@@ -125,7 +122,6 @@ public class Noble extends Warrior implements Level {
         }
     }
 
-    @Override
     public void doLevelDown() {
         if (getLevel() > 1) {
             HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);

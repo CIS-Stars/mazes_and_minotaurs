@@ -5,8 +5,8 @@ import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.Gender;
+import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
@@ -20,7 +20,7 @@ import java.util.HashMap;
  * Created by jhiggs on 9/11/17.
  */
 
-public class Priest extends Magician implements Level{
+public class Priest extends Magician {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Priest() {

@@ -19,7 +19,7 @@ import java.util.HashMap;
  * Created by zsteck on 9/12/17.
  */
 
-public class Lyrist extends Magician implements Level{
+public class Lyrist extends Magician {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Lyrist() {

@@ -20,7 +20,7 @@ import java.util.HashMap;
  * Created by zsteck on 9/12/17.
  */
 
-public class Sorcerer extends Magician implements Level{
+public class Sorcerer extends Magician {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Sorcerer() {

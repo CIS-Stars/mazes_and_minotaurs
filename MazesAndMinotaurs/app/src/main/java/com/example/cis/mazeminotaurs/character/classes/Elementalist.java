@@ -19,7 +19,7 @@ import java.util.HashMap;
  * Created by zsteck on 9/11/17.
  */
 
-public class Elementalist extends Magician implements Level{
+public class Elementalist extends Magician {
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
     public Elementalist() {
