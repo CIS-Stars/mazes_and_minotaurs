@@ -1,5 +1,6 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
+import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.Weapon;
 import com.example.cis.mazeminotaurs.character.Gender;
@@ -8,6 +9,8 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Created by jusmith on 3/31/17.
@@ -44,9 +47,57 @@ public abstract class BaseClass implements Serializable{
     private ArrayList<Equipment> mStartGear;
     private int mStartMoney;
 
+    private Score[] mPossibleLevelScores;
     private Weapon[] mPossibleStartWeapons;
 
+    private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
+
     private static final int LUCK_IMPROVE = 1;
+
+    public void doLevelUp(Score score) {
+        if (getLevel() >= getEffectiveLevel() ||
+                !Arrays.asList(getPossibleLevelScores()).contains(score)) return;
+
+        // Initialization
+        HashMap<Score, Integer> levelData = new HashMap<>();
+        AttributeScore selectedScore = getCharacter().getScore(score);
+
+        // Save the scores' values into a hash map for reverting
+        levelData.put(Score.LUCK, getCharacter().getScore(Score.LUCK).getScore());
+        levelData.put(score, selectedScore.getScore());
+        getScoreLevelChoice().add(levelData);
+
+        // Improve the scores
+        getCharacter().addToScore(score, 2, true);
+        getCharacter().addToScore(Score.LUCK, LUCK_IMPROVE, true);
+        setAddedHits(getAddedHits() + getHitsImprove());
+
+        // Wrapping up
+        setLevel(getLevel() + 1);
+        getCharacter().validateScores();
+    }
+
+    public void doLevelDown() {
+        if (getLevel() > 1) {
+            HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
+            Score lastSelectedScore = null;
+            for (Object rawScore : levelData.keySet().toArray()) {
+                Score score = (Score) rawScore;
+                if (score != Score.LUCK) {
+                    lastSelectedScore = score;
+                    break;
+                }
+            }
+
+            AttributeScore luck = getCharacter().getScore(Score.LUCK);
+            AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
+
+            setAddedHits(getAddedHits() - getHitsImprove());
+            luck.setScore(levelData.get(Score.LUCK));
+            lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
+            setLevel(getLevel() - 1);
+        }
+    }
 
     public void updateLevel(){
         if (getExperience() < 1000) {
@@ -157,6 +208,14 @@ public abstract class BaseClass implements Serializable{
         this.mEffectiveLevel = effectiveLevel;
     }
 
+    public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
+        return mScoreLevelChoice;
+    }
+
+    public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
+        mScoreLevelChoice = scoreLevelChoice;
+    }
+
     public int getHitsImprove() {
         return this.mHitsImprove;
     }
@@ -171,6 +230,14 @@ public abstract class BaseClass implements Serializable{
 
     public void setPossibleStartWeapons(Weapon[] possibleStartWeapons) {
         this.mPossibleStartWeapons = possibleStartWeapons;
+    }
+
+    public Score[] getPossibleLevelScores() {
+        return mPossibleLevelScores;
+    }
+
+    public void setPossibleLevelScores(Score[] possibleLevelScores) {
+        mPossibleLevelScores = possibleLevelScores;
     }
 
     // Dummy Method

@@ -14,7 +14,7 @@ public abstract class Warrior extends BaseClass {
     private Weapon mWeaponOfChoice;
     private Weapon[] mPossibleWeaponsOfChoice;
 
-    private static final int[] mLevelDescriptions = {R.string.warrior_one, R.string.warrior_two,
+    private static final int[] sLevelDescriptions = {R.string.warrior_one, R.string.warrior_two,
                                                      R.string.warrior_three, R.string.warrior_four,
                                                      R.string.warrior_five, R.string.warrior_six};
 
@@ -22,9 +22,10 @@ public abstract class Warrior extends BaseClass {
         setHitsImprove(4);
     }
 
-    public static int[] getmLevelDescriptions() {
-        return mLevelDescriptions;
+    public static int[] getLevelDescriptions() {
+        return sLevelDescriptions;
     }
+
 
     public Weapon getWeaponOfChoice() {
         return this.mWeaponOfChoice;
@@ -49,6 +50,6 @@ public abstract class Warrior extends BaseClass {
     @Override
     public int getLevelDescription() {
         updateLevel();
-        return mLevelDescriptions[getLevel() - 1];
+        return sLevelDescriptions[getLevel() - 1];
     }
 }
