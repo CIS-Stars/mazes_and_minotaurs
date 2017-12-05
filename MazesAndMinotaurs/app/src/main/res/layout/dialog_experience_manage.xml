@@ -40,6 +40,7 @@
         android:text="Add Experience"/>
 
     <EditText
+        android:id="@+id/add_experience_edit_text"
         android:layout_row="3"
         android:layout_column="1"
         android:inputType="numberSigned"
@@ -47,6 +48,7 @@
         android:text="0"/>
 
     <Button
+        android:id="@+id/add_experience_button"
         android:layout_row="4"
         android:layout_column="0"
         android:layout_columnSpan="2"
@@ -60,6 +62,7 @@
         style="@style/Divider"/>
 
     <Button
+        android:id="@+id/level_up_experience_button"
         android:layout_row="6"
         android:layout_column="0"
         android:layout_columnSpan="2"
