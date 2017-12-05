@@ -18,10 +18,12 @@ import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
 import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
+import com.example.cis.mazeminotaurs.fragments.ExperienceDialogFragment;
 import com.example.cis.mazeminotaurs.fragments.HitsChangeFragment;
 import com.example.cis.mazeminotaurs.fragments.InventoryFragment;
 import com.example.cis.mazeminotaurs.fragments.StatChangeFragment;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
+import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
  * Created by Thorin Schmidt on 4/1/2017.
@@ -84,6 +86,12 @@ public class CharacterSheetFragment extends Fragment
 
         mSheetPlayerCharacter = mPortfolio.getPlayerCharacter(mCurrentCharacterIndex);
         mCharacterLevelView = (TextView) rootView.findViewById(R.id.character_level_view);
+        mCharacterLevelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onLevelClick();
+            }
+        });
         mCharacterNameView = (TextView) rootView.findViewById(R.id.character_name_view);
         mCharacterClassView = (TextView) rootView.findViewById(R.id.character_class_view);
 
@@ -103,8 +111,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mSkillButton = (Button) rootView.findViewById(R.id.skill_score_button);
-        mSkillButton.setText(Integer.toString(mSheetPlayerCharacter.
-                getScore(Score.SKILL).getScore()));
         mSkillButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -120,8 +126,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mWitsButton = (Button) rootView.findViewById(R.id.wits_score_button);
-        mWitsButton.setText(Integer.toString(mSheetPlayerCharacter.
-                getScore(Score.WITS).getScore()));
         mWitsButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -137,8 +141,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mLuckButton = (Button) rootView.findViewById(R.id.luck_score_button);
-        mLuckButton.setText(Integer.toString(mSheetPlayerCharacter.
-                getScore(Score.LUCK).getScore()));
         mLuckButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -154,8 +156,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mWillButton = (Button) rootView.findViewById(R.id.will_score_button);
-        mWillButton.setText(Integer.toString(mSheetPlayerCharacter.
-                getScore(Score.WILL).getScore()));
         mWillButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -171,8 +171,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mGraceButton = (Button) rootView.findViewById(R.id.grace_score_button);
-        mGraceButton.setText(Integer.toString(mSheetPlayerCharacter.
-                getScore(Score.GRACE).getScore()));
         mGraceButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -188,20 +186,8 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mAttackType = (TextView) rootView.findViewById(R.id.attack_title_view);
-        if (mSheetPlayerCharacter.getCurrentWeapon() != null) {
-            mAttackType.setText(mSheetPlayerCharacter.getCurrentWeapon().getWeaponType());
-        } else {
-            mAttackType.setText("-");
-        }
 
         mAttackButton = (Button) rootView.findViewById(R.id.attack_button);
-        if (mSheetPlayerCharacter.getCurrentWeapon() == null) {
-            mAttackButton.setText("-");
-        } else if (mSheetPlayerCharacter.getCurrentWeapon().getWeaponType() == R.string.melee) {
-            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMeleeMod()));
-        } else {
-            mAttackButton.setText(Integer.toString(mSheetPlayerCharacter.getMissileMod()));
-        }
         mAttackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +226,6 @@ public class CharacterSheetFragment extends Fragment
 
 
         mAPbutton = (Button) rootView.findViewById(R.id.athletic_prowess_button);
-        mAPbutton.setText(Integer.toString(mSheetPlayerCharacter.getAthleticProwess()));
         mAPbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -249,7 +234,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mDEbutton = (Button) rootView.findViewById(R.id.danger_evasion_button);
-        mDEbutton.setText(Integer.toString(mSheetPlayerCharacter.getDangerEvasion()));
         mDEbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,7 +242,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mMFbutton = (Button) rootView.findViewById(R.id.mystic_fortitude_button);
-        mMFbutton.setText(Integer.toString(mSheetPlayerCharacter.getMysticFortitude()));
         mMFbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,7 +250,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mPVbutton = (Button) rootView.findViewById(R.id.physical_vigor_button);
-        mPVbutton.setText(Integer.toString(mSheetPlayerCharacter.getPhysicalVigor()));
         mPVbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,7 +261,6 @@ public class CharacterSheetFragment extends Fragment
         mTotalHitsButton = (Button) rootView.findViewById(R.id.total_hits_button);
 
         mHitsButton = (Button) rootView.findViewById(R.id.current_hits_button);
-        mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getHitTotal()));
         mHitsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -318,6 +299,17 @@ public class CharacterSheetFragment extends Fragment
 
         populateSheet();
         return rootView;
+    }
+
+    public void onLevelClick() {
+        Bundle args = new Bundle();
+        args.putInt(CommonStrings.CHARACTER_ARG.getValue(), mCurrentCharacterIndex);
+
+        ExperienceDialogFragment dialog = new ExperienceDialogFragment();
+        dialog.setArguments(args);
+
+        FragmentManager fm = getFragmentManager();
+        dialog.show(fm, ExperienceDialogFragment.TAG);
     }
 
     public void onScoreClick(Score skill, String name){
@@ -438,6 +430,9 @@ public class CharacterSheetFragment extends Fragment
                 } else {
                     mAttackButton.setText(Integer.toString(character.getMissileMod()));
                 }
+            } else {
+                mAttackButton.setText("-");
+                mAttackType.setText("-");
             }
 
             mMightButton.setText(Integer.toString(character.getScore(Score.MIGHT).getScore()));
