@@ -102,20 +102,15 @@ public abstract class BaseClass implements Serializable{
     public void updateLevel(){
         if (getExperience() < 1000) {
             setEffectiveLevel(1);
-        }
-        if (getExperience() < 2000) {
+        } else if (getExperience() < 2000) {
             setEffectiveLevel(2);
-        }
-        if (getExperience() < 4000) {
+        } else if (getExperience() < 4000) {
             setEffectiveLevel(3);
-        }
-        if (getExperience() < 7000) {
+        } else if (getExperience() < 7000) {
             setEffectiveLevel(4);
-        }
-        if (getExperience() < 10000) {
+        } else if (getExperience() < 10000) {
             setEffectiveLevel(5);
-        }
-        if (getExperience() > 9999) {
+        } else if (getExperience() > 9999) {
             setEffectiveLevel(6);
         }
     }
