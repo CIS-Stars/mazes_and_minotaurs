@@ -105,4 +105,13 @@
     <string name="title_activity_character_manage">CharacterManageActivity</string>
     <string name="manage_character">Manage Character</string>
     <string name="manage_characters">Manage Characters</string>
+
+    <!-- Experience Management Related -->
+    <string name="actual_level">Actual Level:</string>
+    <string name="expected_level">Expected Level:</string>
+    <string name="current_experience">Current Experience:</string>
+    <string name="add_experience">Add Experience</string>
+    <string name="experience_to_add">Experience to add</string>
+    <string name="add">Add</string>
+    <string name="level_up">Level Up!</string>
 </resources>
