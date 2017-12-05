@@ -184,6 +184,10 @@ public abstract class BaseClass implements Serializable{
         this.mStartMoney = startMoney;
     }
 
+    public void addExperience(int experience) {
+        this.mExperience += experience;
+    }
+
     public int getExperience() {
         return this.mExperience;
     }
