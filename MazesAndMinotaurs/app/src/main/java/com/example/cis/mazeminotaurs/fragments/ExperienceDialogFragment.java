@@ -65,9 +65,8 @@ public class ExperienceDialogFragment extends DialogFragment {
         mLevelButton = (Button) rootView.findViewById(R.id.level_up_experience_button);
 
 
-        mCurrentExperience.setText(String.valueOf(mCharClass.getExperience()));
         mCurrentLevel.setText(String.valueOf(mCharClass.getLevel()));
-        mEffectiveLevel.setText(String.valueOf(mCharClass.getEffectiveLevel()));
+        updateGUI();
 
         // Adds the experience in the EditText widget into the class' experience.
         mAddButton.setOnClickListener(new View.OnClickListener() {
