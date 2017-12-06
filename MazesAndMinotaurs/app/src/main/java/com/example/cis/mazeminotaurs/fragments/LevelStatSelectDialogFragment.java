@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
@@ -29,7 +30,8 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
     private BaseClass mCharClass;
     private Score mSelectedScore;
 
-    private ListView mListView;
+    private ListView mScoreListView;
+    private TextView mSelectedScoreTextView;
 
     @NonNull
     @Override
@@ -43,14 +45,22 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
 
         mCharClass = playerCharacter.getCharClass();
 
-        mListView = (ListView) rootView.findViewById(R.id.select_stat_list_view);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mScoreListView = (ListView) rootView.findViewById(R.id.select_stat_list_view);
+        mSelectedScoreTextView = (TextView) rootView.findViewById(R.id.selected_stat_text_view);
+
+        // Because nothing is selected, display a hyphen for nothing.
+        mSelectedScoreTextView.setText("-");
+
+        // Updates the selected score and displays it
+        mScoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mSelectedScore = (Score) adapterView.getItemAtPosition(i);
+                mSelectedScoreTextView.setText(mSelectedScore.getResId());
             }
         });
 
+        // Instantiate a container for our items.
         ArrayAdapter<Score> adapter = new ArrayAdapter<>(getContext(),
                 R.layout.support_simple_spinner_dropdown_item);
 
@@ -62,7 +72,8 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
             }
         }
 
-        mListView.setAdapter(adapter);
+        // Add the items to the list view.
+        mScoreListView.setAdapter(adapter);
 
         return new AlertDialog.Builder(getContext())
                 .setTitle("Level Up - Select Stat")
