@@ -28,6 +28,8 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
 public class LevelStatSelectDialogFragment extends DialogFragment {
     public static final String TAG = LevelStatSelectDialogFragment.class.getName();
 
+    private ExperienceDialogFragment mRootDialog;
+
     private BaseClass mCharClass;
     private Score mSelectedScore;
 
@@ -91,8 +93,11 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
                 if (mSelectedScore != null) {
                     dismiss();
                     LevelResultDialogFragment dialog = new LevelResultDialogFragment();
+
                     Bundle args = getArguments();
                     args.putSerializable(CommonStrings.SCORE_ARG.getValue(), mSelectedScore);
+
+                    dialog.setRootDialog(getRootDialog());
                     dialog.setArguments(getArguments());
 
                     FragmentManager fm = getFragmentManager();
@@ -106,4 +111,11 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
         };
     }
 
+    public ExperienceDialogFragment getRootDialog() {
+        return mRootDialog;
+    }
+
+    public void setRootDialog(ExperienceDialogFragment rootDialog) {
+        mRootDialog = rootDialog;
+    }
 }

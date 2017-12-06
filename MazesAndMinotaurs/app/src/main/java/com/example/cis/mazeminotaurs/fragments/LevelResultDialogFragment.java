@@ -2,6 +2,7 @@ package com.example.cis.mazeminotaurs.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -24,6 +25,8 @@ import java.util.Locale;
 
 public class LevelResultDialogFragment extends DialogFragment {
     public static final String TAG = LevelStatSelectDialogFragment.class.getName();
+
+    private ExperienceDialogFragment mRootDialog;
 
     private BaseClass mCharClass;
     private Score mSelectedScore;
@@ -65,8 +68,25 @@ public class LevelResultDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getContext())
                 .setTitle("Level Up Results")
                 .setView(rootView)
-                .setPositiveButton(R.string.confirm_button, null) // TODO level up the character here.
+                .setPositiveButton(R.string.confirm_button, getOnPositiveListener()) // TODO level up the character here.
                 .setNegativeButton(R.string.cancel, null)
                 .create();
+    }
+
+    private DialogInterface.OnClickListener getOnPositiveListener() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mRootDialog.getListener().onLevelChange();
+            }
+        };
+    }
+
+    public ExperienceDialogFragment getRootDialog() {
+        return mRootDialog;
+    }
+
+    public void setRootDialog(ExperienceDialogFragment rootDialog) {
+        mRootDialog = rootDialog;
     }
 }
