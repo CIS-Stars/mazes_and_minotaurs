@@ -68,7 +68,7 @@ public class LevelResultDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getContext())
                 .setTitle("Level Up Results")
                 .setView(rootView)
-                .setPositiveButton(R.string.confirm_button, getOnPositiveListener()) // TODO level up the character here.
+                .setPositiveButton(R.string.confirm_button, getOnPositiveListener())
                 .setNegativeButton(R.string.cancel, null)
                 .create();
     }
@@ -77,7 +77,8 @@ public class LevelResultDialogFragment extends DialogFragment {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                mRootDialog.getListener().onLevelChange();
+                mCharClass.doLevelUp(mSelectedScore);
+                getRootDialog().getListener().onLevelChange();
             }
         };
     }
