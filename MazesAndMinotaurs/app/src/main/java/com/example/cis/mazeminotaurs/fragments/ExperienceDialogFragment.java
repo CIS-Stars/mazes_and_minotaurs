@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -41,37 +42,57 @@ public class ExperienceDialogFragment extends DialogFragment {
     private EditText mExperienceEdit;
     private Button mAddButton;
 
+    private Button mLevelButton;
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater li = LayoutInflater.from(getContext());
         View rootView = li.inflate(R.layout.dialog_experience_manage, null);
 
-        Bundle args = getArguments();
+        final Bundle args = getArguments();
         final PlayerCharacter playerCharacter = Portfolio.get()
                 .getPlayerCharacter(args.getInt(CommonStrings.CHARACTER_ARG.getValue()));
-
+        // Obtain the class of the character that has been selected.
         mCharClass = playerCharacter.getCharClass();
 
+        // Initialize the references for every widget.
         mAddButton = (Button) rootView.findViewById(R.id.add_experience_button);
         mCurrentExperience = (TextView) rootView.findViewById(R.id.experience_text_view);
         mCurrentLevel = (TextView) rootView.findViewById(R.id.actual_level_text_view);
         mEffectiveLevel = (TextView) rootView.findViewById(R.id.expected_level_text_view);
         mExperienceEdit = (EditText) rootView.findViewById(R.id.add_experience_edit_text);
+        mLevelButton = (Button) rootView.findViewById(R.id.level_up_experience_button);
 
 
         mCurrentExperience.setText(String.valueOf(mCharClass.getExperience()));
         mCurrentLevel.setText(String.valueOf(mCharClass.getLevel()));
         mEffectiveLevel.setText(String.valueOf(mCharClass.getEffectiveLevel()));
 
+        // Adds the experience in the EditText widget into the class' experience.
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String value = mExperienceEdit.getText().toString();
+                // Stops any empty value from crashing the program.
                 if (value != null && !value.equals("")) {
                     mCharClass.addExperience(Integer.valueOf(value));
                     updateGUI();
                 }
+            }
+        });
+
+        // Opens up the level up dialog.
+        mLevelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LevelStatSelectDialogFragment dialog = new LevelStatSelectDialogFragment();
+                dialog.setArguments(args);
+
+                FragmentManager fm = getFragmentManager();
+
+                dismiss();
+                dialog.show(fm, TAG);
             }
         });
 
@@ -83,10 +104,16 @@ public class ExperienceDialogFragment extends DialogFragment {
     }
 
     private void updateGUI() {
+        // Update the effective level of the character
         mCharClass.updateLevel();
+
+        // Update the text of the dialog.
         mCurrentExperience.setText(String.valueOf(mCharClass.getExperience()));
         mEffectiveLevel.setText(String.valueOf(mCharClass.getEffectiveLevel()));
         mExperienceEdit.setText(null);
+
+        // If the character is able to level, enable the button
+        mLevelButton.setEnabled(mCharClass.getLevel() < mCharClass.getEffectiveLevel());
     }
 
     public ChangeListener getListener() {
