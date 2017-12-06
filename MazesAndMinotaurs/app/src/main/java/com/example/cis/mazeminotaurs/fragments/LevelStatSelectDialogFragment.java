@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -89,6 +90,14 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (mSelectedScore != null) {
                     dismiss();
+                    LevelResultDialogFragment dialog = new LevelResultDialogFragment();
+                    Bundle args = getArguments();
+                    args.putSerializable(CommonStrings.SCORE_ARG.getValue(), mSelectedScore);
+                    dialog.setArguments(getArguments());
+
+                    FragmentManager fm = getFragmentManager();
+
+                    dialog.show(fm, LevelResultDialogFragment.TAG);
                 }
                 //TODO Implement next step.
                 // dialog = new AlertDialog.Builder(getContext())

@@ -52,7 +52,7 @@ public abstract class BaseClass implements Serializable{
 
     private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
 
-    private static final int LUCK_IMPROVE = 1;
+    public static final int LUCK_IMPROVE = 1;
 
     public void doLevelUp(Score score) {
         if (getLevel() >= getEffectiveLevel() ||

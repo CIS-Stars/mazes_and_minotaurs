@@ -114,4 +114,7 @@
     <string name="experience_to_add">Experience to add</string>
     <string name="add">Add</string>
     <string name="level_up">Level Up!</string>
+    <string name="caution_message">Is this okay?</string>
+    <string name="luck_head">Luck:</string>
+    <string name="hits_head">Hits:</string>
 </resources>
