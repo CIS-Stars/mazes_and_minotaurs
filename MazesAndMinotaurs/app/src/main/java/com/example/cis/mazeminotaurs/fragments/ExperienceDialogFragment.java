@@ -86,6 +86,7 @@ public class ExperienceDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 LevelStatSelectDialogFragment dialog = new LevelStatSelectDialogFragment();
+                dialog.setRootDialog(ExperienceDialogFragment.this);
                 dialog.setArguments(args);
 
                 FragmentManager fm = getFragmentManager();
