@@ -30,7 +30,8 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
  */
 
 public class CharacterSheetFragment extends Fragment
-        implements StatChangeFragment.OnStatChangeListener, HitsChangeFragment.onHitsChangeListener{
+        implements StatChangeFragment.OnStatChangeListener, HitsChangeFragment.onHitsChangeListener,
+        ExperienceDialogFragment.ChangeListener {
 
     public static final String ROLL_RESULT = "RollResult";
     public static final String TAG = "CharacterSheetFragment";
@@ -196,7 +197,6 @@ public class CharacterSheetFragment extends Fragment
         });
 
         mEquippedWeaponSpinner = (Spinner) rootView.findViewById(R.id.equipped_weapon_spinner);
-        System.out.println(mSheetPlayerCharacter.getInventory());
         DetailedWeaponAdapter weaponAdapter = new DetailedWeaponAdapter(getContext(), mSheetPlayerCharacter.getWeapons());
         mEquippedWeaponSpinner.setAdapter(weaponAdapter);
         //Get equipped weapon from character Class
@@ -290,7 +290,7 @@ public class CharacterSheetFragment extends Fragment
         mTalentBonusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO Put something here.
             }
         });
         mMagicStrengthButton = (Button) rootView.findViewById(R.id.magic_strength_button);
@@ -306,6 +306,7 @@ public class CharacterSheetFragment extends Fragment
         args.putInt(CommonStrings.CHARACTER_ARG.getValue(), mCurrentCharacterIndex);
 
         ExperienceDialogFragment dialog = new ExperienceDialogFragment();
+        dialog.setListener(this);
         dialog.setArguments(args);
 
         FragmentManager fm = getFragmentManager();
@@ -390,6 +391,14 @@ public class CharacterSheetFragment extends Fragment
             // Manually update since nothing else would change
             mHitsButton.setText(Integer.toString(mSheetPlayerCharacter.getCurHits()));
         }
+    }
+
+    public void onExperienceChange() {
+        return;
+    }
+
+    public void onLevelChange() {
+        populateSheet();
     }
 
     private void populateSheet() {
