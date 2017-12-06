@@ -56,7 +56,7 @@ public class ExperienceDialogFragment extends DialogFragment {
         // Obtain the class of the character that has been selected.
         mCharClass = playerCharacter.getCharClass();
 
-        // Initialize the references for every widget.
+        // Initialize the references for every widget. (Alphabetically in order)
         mAddButton = (Button) rootView.findViewById(R.id.add_experience_button);
         mCurrentExperience = (TextView) rootView.findViewById(R.id.experience_text_view);
         mCurrentLevel = (TextView) rootView.findViewById(R.id.actual_level_text_view);
@@ -111,7 +111,7 @@ public class ExperienceDialogFragment extends DialogFragment {
         mEffectiveLevel.setText(String.valueOf(mCharClass.getEffectiveLevel()));
         mExperienceEdit.setText(null);
 
-        // If the character is able to level, enable the button
+        // If the character is able to level up, enable the button
         mLevelButton.setEnabled(mCharClass.getLevel() < mCharClass.getEffectiveLevel());
     }
 
