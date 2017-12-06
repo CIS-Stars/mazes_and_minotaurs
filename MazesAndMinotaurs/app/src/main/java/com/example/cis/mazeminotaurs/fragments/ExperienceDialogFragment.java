@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
@@ -75,8 +76,12 @@ public class ExperienceDialogFragment extends DialogFragment {
                 String value = mExperienceEdit.getText().toString();
                 // Stops any empty value from crashing the program.
                 if (value != null && !value.equals("")) {
-                    mCharClass.addExperience(Integer.valueOf(value));
-                    updateGUI();
+                    try {
+                        mCharClass.addExperience(Integer.valueOf(value));
+                        updateGUI();
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getContext(), R.string.error_big_experience, Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
