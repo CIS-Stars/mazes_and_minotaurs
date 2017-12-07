@@ -15,15 +15,29 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Created by zsteck on 9/12/17.
+ * This class represents the Sorcerer class that is in the game.
+ *
+ * @author zsteck on 9/12/17.
  */
 
 public class Sorcerer extends Magician {
 
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Sorcerer() {
         this(null,null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance and a weapon.
+     * <p>If the starting weapon is invalid, it will automatically assign it an
+     * dagger.</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param startingWeapon  the user desired starting weapon
+     */
     public Sorcerer(PlayerCharacter playerCharacter, Weapon startingWeapon) {
         setPossibleStartWeapons(new Weapon[] {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.DAGGER.getValue()),
@@ -59,10 +73,19 @@ public class Sorcerer extends Magician {
         setStartGear(startGear);
     }
 
+    /**
+     * Calculated value of their mystical strength
+     *
+     * @return value of mystical strength.
+     */
     public int getMysticalStrength(){
         return 12 + getSpecialTalent();
     }
 
+    /**
+     * The available power points of the class
+     * @return number of power points available to the class
+     */
     public int getPowerPoints(){
         return (4 * getLevel()) + getCharacter().getScore(Score.GRACE).getModifier();
     }
