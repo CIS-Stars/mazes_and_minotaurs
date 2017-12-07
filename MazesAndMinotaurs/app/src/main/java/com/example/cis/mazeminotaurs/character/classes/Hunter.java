@@ -15,14 +15,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by jsmith on 9/11/17.
+ * This class represents the Hunter that is in the game.
+ *
+ * @author jsmith on 9/11/17.
  */
 
 public class Hunter extends Specialist {
+
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Hunter() {
         this(null,null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance and a weapon.
+     * <p>If weaponOfChoice is invalid, it will automatically assign it an bow.</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param weaponOfChoice  the user desired weapon of choice
+     */
     public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         // Null for this value means that it is linked to weapon of choice.
         setPossibleStartWeapons(null);
@@ -63,7 +77,14 @@ public class Hunter extends Specialist {
         setStartMoney(rolledGold);
         setStartGear(startGear);
     }
-    
+
+    /**
+     * The addition made to the damage roll when using any missile weapons on
+     * Beasts or Monsters.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Skill score.
+     */
     public int getDeadlyAimBonus() {
         return getCharacter().getScore(Score.SKILL).getScore();
     }
