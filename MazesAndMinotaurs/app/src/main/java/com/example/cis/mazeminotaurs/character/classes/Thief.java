@@ -14,15 +14,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by jsmith on 9/11/17.
+ * This class represents the Thief that is in the game.
+ *
+ * @author jsmith on 9/11/17.
  */
 
 public class Thief extends Specialist {
 
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Thief() {
         this(null, null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance and a weapon.
+     * <p>If weaponOfChoice is invalid, it will automatically assign it an bow.</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param weaponOfChoice  the user desired weapon of choice
+     */
     public Thief(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{
@@ -68,7 +81,12 @@ public class Thief extends Specialist {
         setStartGear(startGear);
     }
 
-
+    /**
+     * The addition made to the EDC of the character, unless surprised or wearing a
+     * breastplate. Only applies to melee attacks.
+     *
+     * @return Character's modifier of their Wits score.
+     */
     public int getEvasionBonus() {
         return getCharacter().getScore(Score.WITS).getScore();
     }
