@@ -34,6 +34,10 @@ public class Amazon extends Warrior {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
         });
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.GRACE, Score.MIGHT,
+                Score.SKILL, Score.WILL, Score.WITS});
+
         Score[] primAttrs = {Score.SKILL, Score.GRACE};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);

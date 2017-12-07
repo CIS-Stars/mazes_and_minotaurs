@@ -30,11 +30,13 @@ public class Sorcerer extends Magician {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.STAFF.getValue()),
         });
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.WILL, Score.WITS});
+
         Score[] primAttrs = {Score.WITS, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
 
-        EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
         int rolledGold = rollDice.roll(6, 3) * 10;

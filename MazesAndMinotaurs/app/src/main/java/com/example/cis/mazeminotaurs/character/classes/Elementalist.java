@@ -25,6 +25,10 @@ public class Elementalist extends Magician {
 
     public Elementalist(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
+
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.WILL, Score.WITS});
+
         Score[] primAttrs = {Score.WITS, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);

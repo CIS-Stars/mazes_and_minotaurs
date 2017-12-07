@@ -36,6 +36,9 @@ public class Centaur extends Warrior {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.SPEAR.getValue()),
         });
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.MIGHT, Score.SKILL,
+                Score.WILL, Score.WITS});
 
         Score[] primAttrs = {Score.MIGHT, Score.SKILL};
         ArrayList<Score> primAttributes = new ArrayList<>();
@@ -45,7 +48,7 @@ public class Centaur extends Warrior {
         EquipmentDB equipmentDB = EquipmentDB.getInstance();
         ArrayList<Equipment> startGear = new ArrayList<>();
 
-        setWeaponOfChoice(weaponOfChoice);;
+        setWeaponOfChoice(weaponOfChoice);
 
         Weapon finalStartingWeapon;
         if (Arrays.asList(getPossibleStartWeapons()).contains(startingWeapon)) {

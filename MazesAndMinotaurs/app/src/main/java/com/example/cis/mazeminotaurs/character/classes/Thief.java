@@ -31,6 +31,9 @@ public class Thief extends Specialist {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.THROW_KNIFE.getValue()),
         });
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.WILL, Score.WILL, Score.SKILL});
+
         Score[] primAttrs = {Score.LUCK, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
