@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
@@ -136,15 +137,7 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         mPriorityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AttributePriorityDialog dialog = new AttributePriorityDialog();
-                Bundle args = new Bundle();
-
-                args.putSerializable(CommonStrings.ATTR_PRIORITY_ARGS.getValue(), mPriorities);
-                args.putSerializable(CommonStrings.CHARACTER_ARG.getValue(), mBaseClass);
-
-                dialog.setArguments(args);
-                dialog.setListener(CreateCharacter.this);
-                dialog.show(getFragmentManager(), dialog.getTag());
+                showPriorityDialog(mPriorities);
             }
         });
 
@@ -179,6 +172,18 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         }
 
         return result.toArray(new Score[]{});
+    }
+
+    private void showPriorityDialog(Score[] priorities) {
+        AttributePriorityDialog dialog = new AttributePriorityDialog();
+        Bundle args = new Bundle();
+
+        args.putSerializable(CommonStrings.ATTR_PRIORITY_ARGS.getValue(), priorities);
+        args.putSerializable(CommonStrings.CHARACTER_ARG.getValue(), mBaseClass);
+
+        dialog.setArguments(args);
+        dialog.setListener(CreateCharacter.this);
+        dialog.show(getFragmentManager(), dialog.getTag());
     }
 
     private void reroll() {
@@ -239,6 +244,8 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
             mPriorities = priorities;
             reroll();
             updateStatButtons();
+        } else {
+            Toast.makeText(getContext(), R.string.error_multiple_priorities, Toast.LENGTH_LONG).show();
         }
     }
 }
