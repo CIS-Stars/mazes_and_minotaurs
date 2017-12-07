@@ -15,8 +15,7 @@ public class EquipmentDB {
     private ArrayList<Equipment> equipment;
     private ArrayList<Weapon> weapons;
     private ArrayList<Armor> armor;
-
-
+    private transient boolean mIsLoaded;
 
     private static final EquipmentDB ourInstance = new EquipmentDB();
 
@@ -28,6 +27,8 @@ public class EquipmentDB {
         equipment = new ArrayList<>();
         weapons = new ArrayList<>();
         armor = new ArrayList<>();
+
+        mIsLoaded = false;
 
         resetDatabase();
     }
@@ -195,5 +196,13 @@ public class EquipmentDB {
 
     public void setArmors(ArrayList<Armor> armor) {
         this.armor = armor;
+    }
+
+    public boolean isLoaded() {
+        return mIsLoaded;
+    }
+
+    public void setLoaded(boolean mIsLoaded) {
+        this.mIsLoaded = mIsLoaded;
     }
 }

@@ -1,8 +1,6 @@
 package com.example.cis.mazeminotaurs;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
-import com.example.cis.mazeminotaurs.character.classes.Barbarian;
-import com.example.cis.mazeminotaurs.util.CommonStrings;
 import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
@@ -19,9 +17,11 @@ public class Portfolio {
     private static Portfolio sPortfolio;
 
     private int activeCharacterIndex;
+    private transient boolean mIsLoaded;
 
     private Portfolio(){
         portfolio = new ArrayList<>();
+        mIsLoaded = false;
         activeCharacterIndex = 0;
         resetPortfolio();
     }
@@ -72,5 +72,13 @@ public class Portfolio {
 
     public void setActiveCharacterIndex(int activeCharacterIndex) {
         this.activeCharacterIndex = activeCharacterIndex;
+    }
+
+    public boolean isLoaded() {
+        return mIsLoaded;
+    }
+
+    public void setLoaded(boolean isLoaded) {
+        mIsLoaded = isLoaded;
     }
 }

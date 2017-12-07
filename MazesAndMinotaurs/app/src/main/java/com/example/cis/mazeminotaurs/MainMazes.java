@@ -34,14 +34,17 @@ import java.io.OutputStreamWriter;
 public class MainMazes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public Portfolio mPortfolio;
-    public EquipmentDB mEquipment;
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            loadPortfolio();
-            loadEDB();
+            if (!Portfolio.get().isLoaded()) {
+                loadPortfolio();
+                Portfolio.get().setLoaded(true);
+            }
+            if (!EquipmentDB.getInstance().isLoaded()) {
+                loadEDB();
+                EquipmentDB.getInstance().setLoaded(true);
+            }
 
             setContentView(R.layout.activity_main);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -192,9 +195,8 @@ public class MainMazes extends AppCompatActivity
             e.printStackTrace();
         }
 
-        mPortfolio = Portfolio.get();
-        if (mPortfolio.getPortfolio() == null) {
-            mPortfolio.resetPortfolio();
+        if (Portfolio.get().getPortfolio() == null) {
+            Portfolio.get().resetPortfolio();
         }
     }
 
@@ -214,7 +216,5 @@ public class MainMazes extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        mEquipment = EquipmentDB.getInstance();
     }
 }
