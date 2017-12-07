@@ -14,15 +14,28 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Created by jusmith on 4/13/17.
+ * This class represents the Amazon (Normal) that is in the game.
+ *
+ * @author jusmith on 4/13/17.
  */
 
 public class Amazon extends Warrior {
 
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Amazon() {
         this(null,null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance and a weapon.
+     * <p>If the starting weapon is invalid, it will automatically assign it an axe.</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param startingWeapon  the user desired starting weapon
+     */
     public Amazon(PlayerCharacter playerCharacter, Weapon startingWeapon){
         setPossibleStartWeapons(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(CommonStrings.AXE.getValue()),
@@ -73,10 +86,23 @@ public class Amazon extends Warrior {
 
     }
 
+    /**
+     * The addition made to the damage roll when attacking using a bow.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Skill score.
+     */
     public int getDeadlyShotBonus() {
         return getCharacter().getScore(Score.SKILL).getModifier();
     }
 
+    /**
+     * The addition made to the EDC of the character, unless surprised or wearing a
+     * breastplate. Only applies to melee attacks.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Grace score.
+     */
     public int getBattleGraceBonus() {
         return getCharacter().getScore(Score.GRACE).getModifier();
     }
