@@ -15,15 +15,31 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Created by jusmith on 3/31/17.
+ * This class represents the Barbarian that is in the game.
+ *
+ * @author jusmith on 3/31/17.
  */
 
 public class Barbarian extends Warrior {
 
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Barbarian() {
         this(null, null, null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance and two weapons.
+     * <p>If the starting weapon is invalid, it will automatically assign it an bow.</p>
+     * <p>If the selected weapon of choice is invalid, it will automatically assign it
+     * an barbarian axe</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param weaponOfChoice  the user desired weapon of choice
+     * @param startWeapon     the user desired starting weapon
+     */
     public Barbarian(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Weapon startWeapon) {
         setPossibleStartWeapons(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
@@ -76,10 +92,24 @@ public class Barbarian extends Warrior {
         setStartGear(startGear);
     }
 
+    /**
+     * The addition made to the damage roll when attacking using a barbarian melee
+     * weapon.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Might score.
+     */
     public int getBattleMightBonus(){
         return getCharacter().getScore(Score.MIGHT).getModifier();
     }
 
+    /**
+     * The addition made to the EDC of the character, unless surprised or wearing a
+     * breastplate. Only applies to melee attacks.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Will score.
+     */
     public int getBattleFuryBonus(){
         return getCharacter().getScore(Score.WILL).getModifier();
     }
