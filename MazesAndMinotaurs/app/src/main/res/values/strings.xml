@@ -118,4 +118,5 @@
     <string name="luck_head">Luck:</string>
     <string name="hits_head">Hits:</string>
     <string name="error_big_experience">The number in experience is too big.</string>
+    <string name="error_multiple_priorities">You can\'t have multiple of the same attribute selected!</string>
 </resources>
