@@ -168,6 +168,7 @@ public class Noble extends Warrior {
 
     /**
      * Setter for mPhysicalHeritage
+     * @param physicalHeritage the new value of mPhysicalHeritage
      */
     public void setPhysicalHeritage(Score physicalHeritage) {
         mPhysicalHeritage = physicalHeritage;
@@ -183,6 +184,7 @@ public class Noble extends Warrior {
 
     /**
      * Setter for mOtherHeritage
+     * @param otherHeritage the new value of the otherHeritage
      */
     public void setOtherHeritage(Score otherHeritage) {
         mOtherHeritage = otherHeritage;
@@ -198,6 +200,7 @@ public class Noble extends Warrior {
 
     /**
      * Setter for mHasHeritage
+     * @param hasHeritage the new value of mHasHeritage.
      */
     public void setHasHeritage(boolean hasHeritage) {
         mHasHeritage = hasHeritage;
