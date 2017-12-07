@@ -14,18 +14,50 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by jusmith on 5/15/17.
+ * This class represents the Noble that is in the game.
+ *
+ * @author jusmith on 5/15/17.
  */
 
 public class Noble extends Warrior {
+    /**
+     * A score that is given a bonus value when doHeritage is called.
+     */
     private Score mPhysicalHeritage = Score.MIGHT;
+
+    /**
+     * A score that is given a bonus value when doHeritage is called.
+     */
     private Score mOtherHeritage = Score.WITS;
+
+    /**
+     * One-way flag that checks if the class has called doHeritage.
+     */
     private boolean mHasHeritage = false;
 
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Noble() {
         this(null,null,null,null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance, a weapon, and
+     * 2 scores.
+     * <p>If the selected weapon of choice is invalid, it will automatically assign
+     * it an bow.</p>
+     * <p>If the selected score for martial heritage is invalid, it will automatically
+     * assign it Might.</p>
+     * <p>If the selected score for mental heritage, it will automatically
+     * assign it Wits.</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param weaponOfChoice  the user desired weapon of choice
+     * @param martialHeritage a score selected to be enhanced
+     * @param mentalHeritage  a score selected to be enhanced
+     */
     public Noble(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Score martialHeritage, Score mentalHeritage) {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{
@@ -40,6 +72,7 @@ public class Noble extends Warrior {
                 Score.WILL, Score.WITS, Score.SKILL});
 
         // Noble-Specific things
+        // TODO Verify the supplied heritage scores.
         mPhysicalHeritage = martialHeritage;
         mOtherHeritage = mentalHeritage;
 
@@ -74,10 +107,21 @@ public class Noble extends Warrior {
         }
     }
 
+    /**
+     * A helper shorthand of {@code doHeritage}.
+     */
     private void doHeritage() {
         doHeritage(mPhysicalHeritage, mOtherHeritage);
     }
 
+    /**
+     * Adds two points to the provided scores. The supplied scores are assigned to
+     * mPhysicalHeritage and mOtherHeritage, respectively. If either physical or other
+     * are invalid, they will be corrected to Might and Wits respectively.
+     *
+     * @param physical a score to be enhanced
+     * @param other    a score to be enhanced
+     */
     public void doHeritage(Score physical, Score other) {
         if (!hasHeritage()) {
             Score realPhysical;
@@ -104,30 +148,57 @@ public class Noble extends Warrior {
         }
     }
 
+    /**
+     * The addition made to the Initiative of the character. Always applies.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Luck score.
+     */
     public int getBattleFortuneBonus() {
         return getCharacter().getScore(Score.LUCK).getModifier();
     }
 
+    /**
+     * Getter for mPhysicalHeritage
+     * @return the value of mPhysicalHeritage
+     */
     public Score getPhysicalHeritage() {
         return mPhysicalHeritage;
     }
 
+    /**
+     * Setter for mPhysicalHeritage
+     */
     public void setPhysicalHeritage(Score physicalHeritage) {
         mPhysicalHeritage = physicalHeritage;
     }
 
+    /**
+     * Getter for mOtherHeritage
+     * @return the value of mOtherHeritage
+     */
     public Score getOtherHeritage() {
         return mOtherHeritage;
     }
 
+    /**
+     * Setter for mOtherHeritage
+     */
     public void setOtherHeritage(Score otherHeritage) {
         mOtherHeritage = otherHeritage;
     }
 
+    /**
+     * Getter for mHasHeritage
+     * @return the value of mHasHeritage
+     */
     public boolean hasHeritage() {
         return mHasHeritage;
     }
 
+    /**
+     * Setter for mHasHeritage
+     */
     public void setHasHeritage(boolean hasHeritage) {
         mHasHeritage = hasHeritage;
     }
