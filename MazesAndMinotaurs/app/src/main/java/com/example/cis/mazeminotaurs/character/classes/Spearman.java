@@ -25,6 +25,9 @@ public class Spearman extends Warrior {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{EquipmentDB.getInstance().getWeapon(CommonStrings.SPEAR.getValue())});
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.MIGHT, Score.WITS,
+                Score.WILL, Score.SKILL});
 
         Score[] primAttrs = {Score.SKILL, Score.WILL};
         ArrayList<Score> primAttributes = new ArrayList<>();

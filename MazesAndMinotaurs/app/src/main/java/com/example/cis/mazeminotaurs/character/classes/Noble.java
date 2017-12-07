@@ -35,6 +35,10 @@ public class Noble extends Warrior {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.SWORD.getValue()),
         });
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.MIGHT, Score.GRACE,
+                Score.WILL, Score.WITS, Score.SKILL});
+
         // Noble-Specific things
         mPhysicalHeritage = martialHeritage;
         mOtherHeritage = mentalHeritage;

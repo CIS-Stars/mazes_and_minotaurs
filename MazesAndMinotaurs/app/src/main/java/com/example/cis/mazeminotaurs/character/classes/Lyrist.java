@@ -26,6 +26,11 @@ public class Lyrist extends Magician {
     public Lyrist(PlayerCharacter playerCharacter) {
         setPossibleStartWeapons(new Weapon[]{});
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.GRACE, Score.WITS,
+
+                Score.WILL});
+
         Score[] primAttrs = {Score.GRACE, Score.LUCK};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);

@@ -32,6 +32,10 @@ public class Hunter extends Specialist {
                 EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue()),
         });
 
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.WITS, Score.WILL,
+                Score.SKILL});
+
         Score[] primAttrs = {Score.SKILL, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
         Collections.addAll(primAttributes, primAttrs);
