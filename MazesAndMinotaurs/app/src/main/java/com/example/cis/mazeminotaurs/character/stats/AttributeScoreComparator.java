@@ -7,7 +7,7 @@ import java.util.Comparator;
 /**
  * Compares AttributeScores based on their score fields.
  * <p>
- * Created by JayTSmith on 11/9/17.
+ * @author jsmith on 11/9/17.
  */
 
 public class AttributeScoreComparator implements Comparator<AttributeScore> {
