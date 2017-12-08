@@ -104,9 +104,6 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
 
                     dialog.show(fm, LevelResultDialogFragment.TAG);
                 }
-                //TODO Implement next step.
-                // dialog = new AlertDialog.Builder(getContext())
-                //             .create();
             }
         };
     }
