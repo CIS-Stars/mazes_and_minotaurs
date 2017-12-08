@@ -8,9 +8,6 @@ import com.example.cis.mazeminotaurs.Armor;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.Mythics;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.Gender;
-import com.example.cis.mazeminotaurs.character.Money;
-import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.google.gson.Gson;
@@ -28,15 +25,24 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Custom serializer for transforming the PlayerCharacter class into json.
  */
 public class CharacterSerializer implements JsonSerializer<PlayerCharacter>, JsonDeserializer<PlayerCharacter> {
 
+    /**
+     * A GSON instance that is custom built for handling the Equipment serialization
+     * within in the character.
+     */
     private static Gson sGson = null;
 
+    /**
+     * Returns a GSON instance for handling serialization.
+     * If sGson is null, it builds one and stores it inside of sGson.
+     *
+     * @return a GSON instance ready to serialize.
+     */
     private static Gson getGson() {
         if (sGson == null) {
             GsonBuilder builder = new GsonBuilder();
