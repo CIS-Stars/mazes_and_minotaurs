@@ -22,8 +22,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 /**
+ * This dialog served as a proof of concept for serialization of characters.
+ * It shouldn't be used at all.
  * @deprecated
- * Created by jusmith on 4/26/17.
+ * @author jusmith on 4/26/17.
  */
 
 public class SaveAndLoadDialog extends DialogFragment {
