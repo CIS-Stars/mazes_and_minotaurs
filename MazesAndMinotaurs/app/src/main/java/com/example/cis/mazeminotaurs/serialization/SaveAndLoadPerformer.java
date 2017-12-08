@@ -41,6 +41,9 @@ import java.util.HashMap;
 
 public class SaveAndLoadPerformer {
 
+    /**
+     * A GSON instance that can handle subclasses of BaseClass.
+     */
     private static Gson sGson = null;
 
     /**
@@ -75,6 +78,7 @@ public class SaveAndLoadPerformer {
 
     /**
      * Takes the player character parameter and transforms it into a json string.
+     * @deprecated No longer used, use savePortfolio instead.
      * @param playerCharacter the player character that needs to be serialized.
      * @return json string of playerCharacter
      */
@@ -86,6 +90,7 @@ public class SaveAndLoadPerformer {
 
     /**
      * Takes the character index parameter and transforms it into a json string.
+     * @deprecated No longer used, use savePortfolio instead.
      * @param characterIndex the index of the player character inside of the Portfoilo singleton to save.
      * @return json string of playerCharacter
      */
@@ -95,7 +100,7 @@ public class SaveAndLoadPerformer {
 
     /**
      * Returns a playerCharacter based on the json string given.
-     * @deprecated
+     * @deprecated No longer used, use loadPortfolio.
      * @param jsonString the playerCharacter in json
      * @return the generated playerCharacter
      */
@@ -128,12 +133,23 @@ public class SaveAndLoadPerformer {
         return returnCharacter;
     }
 
+    /**
+     * Serializes the Portfolio field in the Portfolio singleton and returns
+     * it as a json string.
+     *
+     * @return a json string version of portfolio.
+     */
     public static String savePortfolio() {
         Type listType = new TypeToken<ArrayList<PlayerCharacter>>() {
         }.getType();
         return getGson().toJson(Portfolio.get().getPortfolio(), listType);
     }
 
+    /**
+     * De-serializes a json string into an arrayList of PlayerCharacters and updates
+     * the portfolio field of the Portfolio singleton.
+     * @param jsonString the json string version of an array list of PlayerCharacters.
+     */
     public static void loadPortfolio(String jsonString) {
         Type listType = new TypeToken<ArrayList<PlayerCharacter>>() {
         }.getType();
@@ -141,10 +157,19 @@ public class SaveAndLoadPerformer {
         Portfolio.get().setPortfolio(newPort);
     }
 
+    /**
+     * Serializes the EquipmentDB singleton and returns it as a json string.
+     * @return json string version of EquipmentDB singleton.
+     */
     public static String saveEquipmentDB() {
         return getGson().toJson(EquipmentDB.getInstance());
     }
 
+    /**
+     * De-serializes a json string into an EquipmentDB instance and replaces
+     * the old one.
+     * @param jsonString json string version of an equipmentDB instance.
+     */
     public static void loadEquipmentDB(String jsonString) {
         EquipmentDB newInstance = getGson().fromJson(jsonString, EquipmentDB.class);
         EquipmentDB curInstance = EquipmentDB.getInstance();
