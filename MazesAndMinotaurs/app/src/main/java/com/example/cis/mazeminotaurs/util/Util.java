@@ -10,12 +10,13 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 
 /**
- * Created by jusmith on 9/28/2017.
+ * @author jusmith on 9/28/2017.
  */
 
 public class Util {
     /**
      * Returns the ammo used for a specified missile weapon.
+     * @return A weapon instance of the ammo or null.
      */
     public static Weapon getAmmo(Weapon rangedWeapon){
         Weapon[] possibleWeapons = new Weapon[]{EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
@@ -39,6 +40,12 @@ public class Util {
         }
     }
 
+    /**
+     * Creates a PlayerCharacter instance for testing purposes. Will always be
+     * barbarian class.
+     *
+     * @return a PlayerCharacter instance.
+     */
     public static PlayerCharacter createDummyCharacter() {
         PlayerCharacter pc = new PlayerCharacter();
         Barbarian barbarian = new Barbarian(pc, EquipmentDB.getInstance().getWeapon(CommonStrings.BARB_AXE.getValue()),
@@ -65,16 +72,28 @@ public class Util {
         return false;
     }
 
+    /**
+     * A helper method for clearing the backstack.
+     * @param activity the activity to get the fragment manager from.
+     */
     public static void clearBackStack(FragmentActivity activity) {
         FragmentManager fm = activity.getSupportFragmentManager();
         clearBackStack(fm);
     }
 
+    /**
+     * A helper method for clearing the backstack.
+     * @param fragment the fragment to get the fragment manager from.
+     */
     public static void clearBackStack(Fragment fragment) {
         FragmentManager fm = fragment.getFragmentManager();
         clearBackStack(fm);
     }
 
+    /**
+     * Pops the backstack, aka goes back to the home activity, clearing all fragments.
+     * @param fragmentManager fragment manager instance to clear.
+     */
     public static void clearBackStack(FragmentManager fragmentManager) {
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
