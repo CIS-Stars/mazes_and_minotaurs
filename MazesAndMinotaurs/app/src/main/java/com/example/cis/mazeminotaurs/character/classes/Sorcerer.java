@@ -67,7 +67,7 @@ public class Sorcerer extends Magician {
         setCharacter(playerCharacter);
         setPrimaryAttributes(primAttributes);
         setRequiredGender(Gender.EITHER);
-        setResId(Classes.SORCEROR.getResId());
+        setResId(Classes.SORCERER.getResId());
         setSpecialTalentResId(R.string.sorcerer_talent);
         setStartMoney(rolledGold);
         setStartGear(startGear);
