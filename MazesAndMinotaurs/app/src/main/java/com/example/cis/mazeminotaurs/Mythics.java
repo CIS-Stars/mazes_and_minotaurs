@@ -1,7 +1,7 @@
 package com.example.cis.mazeminotaurs;
 
 /**
- * Created by Thorin Schmidt on 3/20/2017.
+ * @author Thorin Schmidt on 3/20/2017.
  *
  * Probably the most complicated of equipment.  THese items can do lots of things,
  * and modify all sorts of attributes and scores.  not sure what to do with these in terms of the
