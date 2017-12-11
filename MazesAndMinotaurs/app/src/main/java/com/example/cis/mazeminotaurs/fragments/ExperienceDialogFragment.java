@@ -20,22 +20,59 @@ import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
- * Created by JayTSmith on 12/5/17.
+ * This fragment displays the active character's experience and level information.
+ * The user can add experience and trigger character level ups from this dialog.
+ *
+ * When leveling up, the user will go through a series of dialogs. The root
+ * dialog(this) is passed along to every dialog in this cycle.
+ *
+ * Current level up cycle:
+ * <li>ExperienceDialogFragment</li>
+ * <li>LevelStatSelectDialogFragment</li>
+ * <li>LevelResultDialogFragment</li>
+ *
+ * @author jsmith on 12/5/17.
  */
 
 public class ExperienceDialogFragment extends DialogFragment {
+    /**
+     * This interface is intended to implemented by the parent of this dialog.
+     */
     public interface ChangeListener {
+        /**
+         * This is fired when the experience value is modified.
+         * As of 12/11/17, unused in the code.
+         */
         void onExperienceChange();
 
+        /**
+         * This is fired when the level up cycle is finished.
+         * This is currently called by the last dialog in the level up cycle.
+         *
+         * @see LevelResultDialogFragment
+         */
         void onLevelChange();
     }
 
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
     public static final String TAG = ExperienceDialogFragment.class.getName();
 
+    /**
+     * This is intended to be the parent that created the dialog. The parent must
+     * call the setter for this field with itself as the argument.
+     */
     private ChangeListener mListener;
 
+    /**
+     * This is the class of the character that is being leveled up.
+     */
     private BaseClass mCharClass;
 
+    /*
+     * These are the widgets found in the layout.
+     */
     private TextView mCurrentExperience;
     private TextView mCurrentLevel;
     private TextView mEffectiveLevel;
@@ -108,6 +145,9 @@ public class ExperienceDialogFragment extends DialogFragment {
                 .create();
     }
 
+    /**
+     * This method updates the text of every widget found in the layout.
+     */
     private void updateGUI() {
         // Update the effective level of the character
         mCharClass.updateLevel();
@@ -121,10 +161,18 @@ public class ExperienceDialogFragment extends DialogFragment {
         mLevelButton.setEnabled(mCharClass.getLevel() < mCharClass.getEffectiveLevel());
     }
 
+    /**
+     * Getter for the mListener property.
+     * @return the value of mListener.
+     */
     public ChangeListener getListener() {
         return mListener;
     }
 
+    /**
+     * Setter for the mListener property.
+     * @param listener the new listener value for mListener.
+     */
     public void setListener(ChangeListener listener) {
         mListener = listener;
     }
