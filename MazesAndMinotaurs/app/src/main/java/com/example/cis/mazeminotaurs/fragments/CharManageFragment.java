@@ -16,18 +16,41 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
- * Created by JayTSmith on 11/16/17.
+ * This fragments displays a list of all of the created player characters. The user
+ * can select these characters with a click and choose to make them the active
+ * character or delete them.
+ *
+ * @author jsmith on 11/16/17.
  */
 
 public class CharManageFragment extends DialogFragment {
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
     public static final String TAG = CharManageFragment.class.getName();
 
+    /**
+     * This is meant to be implemented by the parent that opened the dialog.
+     */
     public interface ManagementListener {
+        /**
+         * This is fired when a character is chosen to be the active character.
+         *
+         * @param i the character's index in the portfolio
+         */
         void onSelect(int i);
 
+        /**
+         * This is fired when a character is chosen to be deleted.
+         * @param i the character's index in the portfolio
+         */
         void onDelete(int i);
     }
 
+    /**
+     * This is intended to be the parent that created the dialog. The parent must
+     * call the setter for this field with itself as the argument.
+     */
     public ManagementListener mListener;
 
     @NonNull
@@ -78,10 +101,18 @@ public class CharManageFragment extends DialogFragment {
                 .create();
     }
 
+    /**
+     * Getter for the mListener property.
+     * @return the value of mListener.
+     */
     public ManagementListener getListener() {
         return mListener;
     }
 
+    /**
+     * Setter for the mListener property.
+     * @param listener the new listener value for mListener.
+     */
     public void setListener(ManagementListener listener) {
         mListener = listener;
     }
