@@ -14,10 +14,24 @@ import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 
 /**
- * Created by Chaos on 4/4/2017.
+ * This fragment displays all of the playable classes for players in the app.
+ * The user can select a class and start a new character.
+ *
+ * Cycle:
+ * <ol>
+ *     <li>CharacterCreationFragment</li>
+ *     <li>DetailDialogFragment</li>
+ *     <li>CreateCharacter</li>
+ * </ol>
+ *
+ * @author Chaos on 4/4/2017.
  */
 
 public class CharacterCreationFragment extends Fragment implements DetailDialogFragment.DetailDialogListener {
+
+    /*
+     * These are the widgets found in the layout.
+     */
 
     public ImageButton mWarriorButton;
     public ImageButton mMagicianButton;
@@ -30,6 +44,9 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
     public TextView mSelectClass;
     public String mClass;
 
+    /**
+     * This is the dialog instance that is called on class select.
+     */
     DetailDialogFragment mDialog;
 
     @Override
@@ -99,6 +116,13 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         return rootView;
     }
 
+    /**
+     * Helper method that shows the detail dialog on button click.
+     *
+     * @param classRes    the resource id of the class' name
+     * @param descriptRes the resource id of the class' description.
+     * @return the onclick listener.
+     */
     private View.OnClickListener createButtonClickListener(final int classRes, final int descriptRes) {
         return new View.OnClickListener() {
             @Override
@@ -108,6 +132,13 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         };
     }
 
+    /**
+     * Helper method for showing the detail dialog.
+     * Automatically adds the arguments and attaches the listener. Uses hardcoded
+     * TAG value.
+     * @param classRes the resource id of the class' name.
+     * @param descriptRes the resource id of the class' description.
+     */
     public void showDetailDialog(int classRes, int descriptRes) {
         mDialog = new DetailDialogFragment();
 
@@ -120,6 +151,13 @@ public class CharacterCreationFragment extends Fragment implements DetailDialogF
         mDialog.show(getChildFragmentManager(), "DetailDialogFragment");
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * From here, the third step of the cycle is started. The arguments for selected class and
+     * the instance of said class are passed on as well.
+     * @param instance a new instance of the user selected class.
+     */
     @Override
     public void onDialogPositiveClick(BaseClass instance) {
         CreateCharacter addedType = new CreateCharacter();
