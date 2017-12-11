@@ -36,7 +36,7 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
     public static final String TAG = LevelStatSelectDialogFragment.class.getName();
 
     /**
-     * The root dialog.
+     * The root dialog instance.
      *
      * @see ExperienceDialogFragment
      */
@@ -113,7 +113,7 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
      * button. The listener will make sure that mSelectedScore has a value and pass
      * it onto the next dialog along with mRootDialog.
      *
-     * @return The onclick listener for positive button.
+     * @return The onclick listener for the positive button.
      */
     private DialogInterface.OnClickListener getOnPositiveClick() {
         return new DialogInterface.OnClickListener() {
