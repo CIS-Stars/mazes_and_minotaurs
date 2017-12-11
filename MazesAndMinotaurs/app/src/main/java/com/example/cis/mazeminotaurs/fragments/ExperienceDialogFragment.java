@@ -27,11 +27,9 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
  * dialog(this) is passed along to every dialog in this cycle.
  *
  * Current level up cycle:
- * <ol>
  * <li>ExperienceDialogFragment</li>
  * <li>LevelStatSelectDialogFragment</li>
  * <li>LevelResultDialogFragment</li>
- * </ol>
  *
  * @author jsmith on 12/5/17.
  */
