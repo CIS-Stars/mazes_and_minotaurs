@@ -17,23 +17,49 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
- * Created by JayTSmith on 11/9/17.
+ * This fragment displays the character's primary and secondary attributes in two
+ * different lists.
+ * The user can set the priority of each attribute for score generation.
+ *
+ * @author jsmith on 11/9/17.
  */
 
 public class AttributePriorityDialog extends DialogFragment {
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
     private static final String TAG = AttributePriorityDialog.class.getName();
 
-    Spinner[] mSpinners;
+    /**
+     * The resource ids of every spinner in the layout.
+     */
     private static final int[] SPINNER_IDS = new int[]{R.id.first_attribute_spinner,
             R.id.second_attribute_spinner, R.id.third_attribute_spinner,
             R.id.fourth_attribute_spinner, R.id.fifth_attribute_spinner,
             R.id.sixth_attribute_spinner};
 
+    /**
+     * This is meant to be implemented by the parent that opened the dialog.
+     */
     public interface PriorityListener {
+        /**
+         * This is fired when the user clicks on the confirm button.
+         *
+         * @param priorities the new score priorities.
+         */
         void onDialogPositiveClick(Score[] priorities);
     }
 
+    /**
+     * This is intended to be the parent that created the dialog. The parent must
+     * call the setter for this field with itself as the argument.
+     */
     PriorityListener mListener;
+
+    /*
+     * These are the widgets found in the layout
+     */
+    Spinner[] mSpinners;
 
     @NonNull
     @Override
@@ -81,6 +107,10 @@ public class AttributePriorityDialog extends DialogFragment {
         return dialog;
     }
 
+    /**
+     * This is a helper method that builds the score array of the spinners' current values.
+     * @return a score array of the spinners' value.
+     */
     private Score[] getPriorities() {
         Score[] priorities = new Score[6];
         for (int i = 0; i < 6; i++) {
@@ -89,6 +119,12 @@ public class AttributePriorityDialog extends DialogFragment {
         return priorities;
     }
 
+    /**
+     * This is a helper method for created the onclick listener for the positive
+     * button. The listener calls mListener's onDialogPositiveClick method.
+     *
+     * @return the onclick listener for the positive button
+     */
     private DialogInterface.OnClickListener getOnClickPositiveButton() {
         return new DialogInterface.OnClickListener() {
             @Override
@@ -98,10 +134,18 @@ public class AttributePriorityDialog extends DialogFragment {
         };
     }
 
+    /**
+     * Getter for the mListener property.
+     * @return the value of mListener.
+     */
     public PriorityListener getListener() {
         return mListener;
     }
 
+    /**
+     * Setter for the mListener property.
+     * @param listener the new listener value for mListener.
+     */
     public void setListener(PriorityListener listener) {
         mListener = listener;
     }
