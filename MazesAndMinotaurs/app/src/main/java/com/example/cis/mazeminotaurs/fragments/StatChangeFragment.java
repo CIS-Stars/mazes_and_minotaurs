@@ -12,22 +12,54 @@ import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 
 /**
- * Created by jsmith on 9/19/17.
+ * This fragment displays the new and old value of a character's score.
+ * The user can set the new value of that score in this dialog.
  *
  * Variant of Thorin Schmidt's RollResultFragment
+ * @author jsmith on 9/19/17.
  */
 
 public class StatChangeFragment extends DialogFragment {
+    /**
+     * This is meant to be implemented by the parent that opened the dialog.
+     */
     public interface OnStatChangeListener {
+        /**
+         * This is fired when the user inputs in a value into the dialog.
+         *
+         * @param score    The score to change.
+         * @param newValue The new value of the score.
+         */
         void onStatChange(Score score, int newValue);
     }
+
+    /**
+     * This is intended to be the parent that created the dialog. The parent must
+     * call the setter for this field with itself as the argument.
+     */
     OnStatChangeListener mStatChangeListener;
 
+    /**
+     * The string version of the score. Used to find the value of mScore through
+     * comparison.
+     */
     String mStringScore;
+
+    /**
+     * The score that is being modified.
+     */
     Score mScore;
+
+    /**
+     * The value of the score that is being modified.
+     */
     int mOldValue;
 
+    /*
+     * These are the widgets found in the layout.
+     */
     EditText mNewValue;
+
     /**
      * Create a new instance of StatChangeFragment, providing "score"
      * and "value" as arguments.
@@ -96,10 +128,18 @@ public class StatChangeFragment extends DialogFragment {
 
     }
 
+    /**
+     * Getter for the mStatChangeListener property.
+     * @return the value of mStatChangeListener.
+     */
     public OnStatChangeListener getStatChangeListener() {
         return this.mStatChangeListener;
     }
 
+    /**
+     * Setter for the mStatChangeListener property.
+     * @param statChangeListener the new value of mStatChangeListener.
+     */
     public void setStatChangeListener(OnStatChangeListener statChangeListener) {
         this.mStatChangeListener = statChangeListener;
     }
