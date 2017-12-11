@@ -120,7 +120,7 @@ public class AttributePriorityDialog extends DialogFragment {
     }
 
     /**
-     * This is a helper method for creating the onclick listener for the positive
+     * This is a helper method for created the onclick listener for the positive
      * button. The listener calls mListener's onDialogPositiveClick method.
      *
      * @return the onclick listener for the positive button
