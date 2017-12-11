@@ -96,7 +96,7 @@ public class LevelResultDialogFragment extends DialogFragment {
     }
 
     /**
-     * This is a helper method for created the onclick listener for the positive
+     * This is a helper method for creating the onclick listener for the positive
      * button. The listener will do the level up and calls the root dialog's
      * listener.
      *
