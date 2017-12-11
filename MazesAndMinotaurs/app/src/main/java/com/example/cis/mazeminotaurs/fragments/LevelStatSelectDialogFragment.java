@@ -22,17 +22,39 @@ import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
- * Created by JayTSmith on 12/6/17.
+ * This fragment displays a list of scores that can be selected on level up.
+ * The user can select one of the scores and continue onto the next dialog in the cycle.
+ *
+ * @see ExperienceDialogFragment
+ * @author jsmith on 12/6/17.
  */
 
 public class LevelStatSelectDialogFragment extends DialogFragment {
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
     public static final String TAG = LevelStatSelectDialogFragment.class.getName();
 
+    /**
+     * The root dialog.
+     *
+     * @see ExperienceDialogFragment
+     */
     private ExperienceDialogFragment mRootDialog;
 
+    /**
+     * This is the class of the character that is being leveled up.
+     */
     private BaseClass mCharClass;
+
+    /**
+     * The score selected to improve on level up.
+     */
     private Score mSelectedScore;
 
+    /*
+     * These are the widgets found in the layout.
+     */
     private ListView mScoreListView;
     private TextView mSelectedScoreTextView;
 
@@ -86,6 +108,13 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
                 .create();
     }
 
+    /**
+     * This is a helper method for creating the onclick listener for the positive
+     * button. The listener will make sure that mSelectedScore has a value and pass
+     * it onto the next dialog along with mRootDialog.
+     *
+     * @return The onclick listener for positive button.
+     */
     private DialogInterface.OnClickListener getOnPositiveClick() {
         return new DialogInterface.OnClickListener() {
             @Override
@@ -108,10 +137,18 @@ public class LevelStatSelectDialogFragment extends DialogFragment {
         };
     }
 
+    /**
+     * Getter for the mRootDialog property.
+     * @return the value of mRootDialog.
+     */
     public ExperienceDialogFragment getRootDialog() {
         return mRootDialog;
     }
 
+    /**
+     * Setter for the mRootDialog property.
+     * @param rootDialog the new value of mRootDialog.
+     */
     public void setRootDialog(ExperienceDialogFragment rootDialog) {
         mRootDialog = rootDialog;
     }
