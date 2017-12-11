@@ -32,16 +32,32 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by ckling on 4/10/17.
+ * This fragment displays the stats of the newly character.
+ * The user can re-roll the scores and change their priority.
+ *
+ * @author ckling on 4/10/17.
  */
 
 public class CreateCharacter extends Fragment implements AttributePriorityDialog.PriorityListener {
 
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
     private static final String TAG = CreateCharacter.class.getName();
 
-    //TODO Clean ths up
+    /**
+     * The instance of the class that the user wants to be..
+     */
     BaseClass mBaseClass;
+
+    /**
+     * The priorities of the user's scores, in order of greatest to least.
+     */
     Score[] mPriorities;
+
+    /*
+     * The widgets found in the layout.
+     */
 
     TextView mCharaClassTextView;
     EditText mCharaNameEditText;
@@ -67,6 +83,9 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
     Button mRerollButton;
     Button mConfirmButton;
 
+    /**
+     * Blank constructor.
+     */
     public CreateCharacter() {
     }
 
@@ -162,6 +181,11 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         return rootView;
     }
 
+    /**
+     * Generates an array of score priorities based on mBaseClass' value.
+     *
+     * @return a valid set of score priorities.
+     */
     private Score[] generatePriority() {
         List<Score> result = new ArrayList<>();
         Collections.addAll(result, Score.values());
@@ -174,6 +198,11 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         return result.toArray(new Score[]{});
     }
 
+    /**
+     * A helper method to show an instance of {@code AttributePriorityDialog}.
+     * Automatically inserts the arguments, and attaches this as an listener.
+     * @param priorities the score priorities.
+     */
     private void showPriorityDialog(Score[] priorities) {
         AttributePriorityDialog dialog = new AttributePriorityDialog();
         Bundle args = new Bundle();
@@ -186,6 +215,10 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         dialog.show(getFragmentManager(), dialog.getTag());
     }
 
+    /**
+     * Generates a new set of attribute scores and assigns them based on their value
+     * and the score's priority.
+     */
     private void reroll() {
         PlayerCharacter character = mBaseClass.getCharacter();
 
@@ -198,6 +231,9 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         }
     }
 
+    /**
+     * Updates the values of every score-related button in the layout.
+     */
     private void updateStatButtons() {
         PlayerCharacter character = mBaseClass.getCharacter();
 
@@ -220,13 +256,19 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
         if (character.getCurrentWeapon() != null) {
             mWeaponNameButton.setText(character.getCurrentWeapon().getResId());
             mWeaponTypeButton.setText(character.getCurrentWeapon().getWeaponType());
-        }
-        else {
+        } else {
             mWeaponNameButton.setText("-");
             mWeaponTypeButton.setText("-");
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * Will verify that each score only shows once; if a score shows multiple times,
+     * display an error message to the user.
+     *
+     * @param priorities the new score priorities.
+     */
     @Override
     public void onDialogPositiveClick(Score[] priorities) {
         boolean valid = true;
