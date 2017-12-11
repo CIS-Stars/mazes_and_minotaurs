@@ -16,7 +16,7 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
- * This fragments displays a list of all of the created player characters. The user
+ * This fragment displays a list of all of the created player characters. The user
  * can select these characters with a click and choose to make them the active
  * character or delete them.
  *
