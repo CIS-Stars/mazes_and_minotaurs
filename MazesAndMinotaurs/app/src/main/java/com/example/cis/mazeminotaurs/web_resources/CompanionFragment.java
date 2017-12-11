@@ -22,7 +22,6 @@ public class CompanionFragment extends Fragment {
 
     /**
      * This is a web link to the companion manual.
-     * As of 12/11/17, this is unused in the code.
      */
     String mManualUrl = "mazesandminotaurs.free.fr/RMM4.pdf";
 
