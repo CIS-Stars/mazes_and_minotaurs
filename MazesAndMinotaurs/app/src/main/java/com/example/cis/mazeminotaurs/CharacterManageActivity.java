@@ -15,6 +15,7 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
 /**
  * This activity displays a list of characters found in the portfolio.
  * The user can select one of the characters to make them active or to delete them.
+ * @author jsmith
  */
 public class CharacterManageActivity extends AppCompatActivity implements CharManageFragment.ManagementListener {
 
