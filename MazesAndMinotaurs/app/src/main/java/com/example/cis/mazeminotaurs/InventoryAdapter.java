@@ -9,21 +9,38 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 
-import java.util.ArrayList;
-
 /**
- * Created by JayTSmith on 10/23/17.
+ * This displays the inventory of a character.
+ * @author jsmith on 10/23/17.
  */
 
 public class InventoryAdapter extends BaseAdapter {
+    /**
+     * The character whose inventory will be displayed.
+     */
     private PlayerCharacter mData;
+
+    /**
+     * A context to get the layout from.
+     */
     private Context mContext;
 
+    /**
+     * Default constructor.
+     *
+     * @param playerCharacter a character with items in inventory.
+     * @param context         a context from a fragment or activity.
+     */
     public InventoryAdapter(PlayerCharacter playerCharacter, Context context) {
         mData = playerCharacter;
         mContext = context;
     }
 
+    /**
+     * Helper method to remove an item from the dataset. Calls notifyDataSetChanged
+     * when called.
+     * @param i index of item within inventory.
+     */
     public void removeItem(int i) {
         mData.getInventory().remove(i);
         notifyDataSetChanged();
