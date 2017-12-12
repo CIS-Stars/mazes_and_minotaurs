@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 /**
- * Created by JayTSmith on 11/17/17.
+ * This fragment serves as a container for the character sheet and related fragments.
+ * The user does nothing to interact with this.
+ * @author jsmith on 11/17/17.
  */
 
 public class CharacterPlayActivity extends AppCompatActivity {
