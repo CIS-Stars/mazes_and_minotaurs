@@ -12,9 +12,21 @@ import android.widget.Toast;
 import com.example.cis.mazeminotaurs.fragments.CharManageFragment;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
+/**
+ * This activity displays a list of characters found in the portfolio.
+ * The user can select one of the characters to make them active or to delete them.
+ */
 public class CharacterManageActivity extends AppCompatActivity implements CharManageFragment.ManagementListener {
 
+    /*
+     * These are the widgets found in the layout.
+     */
     ListViewCompat mListView;
+
+    /**
+     * This adapters fetches the characters from the portfolio to display in
+     * the list view.
+     */
     CharacterAdapter mAdapter;
 
     @Override
@@ -31,8 +43,10 @@ public class CharacterManageActivity extends AppCompatActivity implements CharMa
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Opens a manage dialog where the user can select or delete.
                 CharManageFragment dialog = new CharManageFragment();
                 Bundle args = new Bundle();
+                // Grabs the character to use as an argument.
                 args.putSerializable(CommonStrings.CHARACTER_ARG.getValue(), mAdapter.getItem(i));
                 dialog.setListener(CharacterManageActivity.this);
                 dialog.setArguments(args);
