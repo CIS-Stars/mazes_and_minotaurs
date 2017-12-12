@@ -26,19 +26,44 @@ import com.example.cis.mazeminotaurs.rollDice.rollDice;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 /**
- * Created by Thorin Schmidt on 4/1/2017.
+ * This fragment displays a majority of character information regarding stats.
+ * The user can perform rolls, display inventory, and level up on this
+ * fragment.
+ * @author Thorin Schmidt on 4/1/2017.
  */
 
 public class CharacterSheetFragment extends Fragment
         implements StatChangeFragment.OnStatChangeListener, HitsChangeFragment.onHitsChangeListener,
         ExperienceDialogFragment.ChangeListener {
-
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     * Used by most of the dialogs in this fragment.
+     */
     public static final String ROLL_RESULT = "RollResult";
+
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
     public static final String TAG = "CharacterSheetFragment";
 
+    /**
+     * The current character's index in the portfolio.
+     */
     int mCurrentCharacterIndex;
+
+    /**
+     * A reference to the Portfolio singleton instance.
+     */
     Portfolio mPortfolio;
+
+    /**
+     * The character found at the index specified by mCurrentCharacterIndex.
+     */
     PlayerCharacter mSheetPlayerCharacter;
+
+    /*
+     * These are widgets found in the layout.
+     */
     TextView mCharacterNameView;
     TextView mCharacterLevelView;
     TextView mCharacterClassView;
@@ -81,7 +106,7 @@ public class CharacterSheetFragment extends Fragment
         super.onCreateView(li, vg, b);
 
         View rootView = li.inflate(R.layout.fragment_character_sheet, vg, false);
-        
+
         mCurrentCharacterIndex = mPortfolio.getActiveCharacterIndex();
         Log.d(TAG, String.valueOf(mPortfolio.getActiveCharacterIndex()));
 
@@ -301,6 +326,11 @@ public class CharacterSheetFragment extends Fragment
         return rootView;
     }
 
+    /**
+     * Shows the experience management dialog.
+     *
+     * @see ExperienceDialogFragment
+     */
     public void onLevelClick() {
         Bundle args = new Bundle();
         args.putInt(CommonStrings.CHARACTER_ARG.getValue(), mCurrentCharacterIndex);
@@ -313,6 +343,12 @@ public class CharacterSheetFragment extends Fragment
         dialog.show(fm, ExperienceDialogFragment.TAG);
     }
 
+    /**
+     * Allows the user to make a roll with a score.
+     * @param skill a Score of the character.
+     * @param name the name of the score.
+     * @see RollResultFragment
+     */
     public void onScoreClick(Score skill, String name){
         int modifier =  mSheetPlayerCharacter.getScore(skill).getModifier();
         int dieRoll = rollDice.roll(20);
@@ -321,6 +357,12 @@ public class CharacterSheetFragment extends Fragment
         dialog.show(fm, ROLL_RESULT);
     }
 
+    /**
+     * Allows the user to modify the value of a score.
+     * @param skill a Score of the character.
+     * @param name the name of the score.
+     * @see StatChangeFragment
+     */
     public void onScoreLongClick(Score skill, String name) {
         FragmentManager fm = getFragmentManager();
         StatChangeFragment dialog = StatChangeFragment.newInstance(name,
@@ -329,12 +371,22 @@ public class CharacterSheetFragment extends Fragment
         dialog.show(fm, ROLL_RESULT);
     }
 
+    /**
+     * Allows the user to make an attacking roll with current weapon equipped.
+     * @see AttackResultFragment
+     */
     public void onAttackClick(){
         FragmentManager fm = getFragmentManager();
         AttackResultFragment dialog = AttackResultFragment.newInstance(mCurrentCharacterIndex);
         dialog.show(fm, ROLL_RESULT);
     }
 
+    /**
+     * Allows the user to make a saving throw.
+     * @param buttonID The button that was clicked
+     * @param saveName the name of the save being rolled.
+     * @see SaveResultFragment
+     */
     void onSaveClick(int buttonID, String saveName){
         int modifier;
         int saveRoll = rollDice.roll(20);
@@ -361,6 +413,10 @@ public class CharacterSheetFragment extends Fragment
         dialog.show(fm, ROLL_RESULT);
     }
 
+    /**
+     * Allows the user to modify how many hits their character has.
+     * @see HitsChangeFragment
+     */
     void onHitsClick() {
         int curHits = mSheetPlayerCharacter.getCurHits();
         HitsChangeFragment dialog = HitsChangeFragment.newInstance(curHits);
@@ -369,6 +425,11 @@ public class CharacterSheetFragment extends Fragment
         dialog.show(fm, ROLL_RESULT);
     }
 
+    /**
+     * Saves the current character.
+     * @deprecated
+     * @see SaveAndLoadDialog
+     */
     public void onSaveCharacterClick(){
         FragmentManager fm = getFragmentManager();
         SaveAndLoadDialog dialog = SaveAndLoadDialog.newInstance(mCurrentCharacterIndex);
@@ -393,18 +454,28 @@ public class CharacterSheetFragment extends Fragment
         }
     }
 
+    @Override
     public void onExperienceChange() {
         return;
     }
 
+    @Override
     public void onLevelChange() {
         populateSheet();
     }
 
+    /**
+     * Helping shorthand to update the text in the character sheet with
+     * mSheetPlayerCharacter's values.
+     */
     private void populateSheet() {
         populateSheet(mSheetPlayerCharacter);
     }
 
+    /**
+     * Updates the text in the fragment with the character supplied.
+     * @param character a character to display
+     */
     private void populateSheet(PlayerCharacter character) {
         // Hides specific sections(Magician and Specialist) by default
         mMagicTitleView.setVisibility(View.GONE);
