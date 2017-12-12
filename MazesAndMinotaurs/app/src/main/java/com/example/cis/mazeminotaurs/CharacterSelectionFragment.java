@@ -9,8 +9,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 /**
+ * This is the old fragment for selecting the active character.
+ * @see CharacterManageActivity
  * @deprecated
- * Created by jsmith on 10/18/17.
+ *
+ * @author jsmith on 10/18/17.
  */
 
 public class CharacterSelectionFragment extends Fragment {

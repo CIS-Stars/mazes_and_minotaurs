@@ -1,7 +1,5 @@
 package com.example.cis.mazeminotaurs.web_resources;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,12 +10,20 @@ import android.webkit.WebView;
 import com.example.cis.mazeminotaurs.R;
 
 /**
- * Created by Devin on 4/4/17.
+ * This fragment opens a pdf containing the M&M player's manual.
+ * @author Devin on 4/4/17.
  */
 
 public class PlayerManualFragment extends Fragment {
 
+    /*
+     * These are widgets found in the layout.
+     */
     WebView mPlayerManualWeb;
+
+    /**
+     * This is a web link to the M&M player's manual.
+     */
     String mManualUrl = "mazesandminotaurs.free.fr/RMM1.pdf";
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){

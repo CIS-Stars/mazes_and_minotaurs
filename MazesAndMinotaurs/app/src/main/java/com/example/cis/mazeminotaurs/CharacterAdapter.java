@@ -9,20 +9,36 @@ import android.widget.TextView;
 
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 
-import java.util.ArrayList;
-
 /**
- * Created by jsmith on 10/18/17.
+ * This adapter is meant to display every character present in portfolio.
+ * @author jsmith on 10/18/17.
  */
 
 public class CharacterAdapter extends BaseAdapter {
+    /**
+     * A reference to the Portfolio singleton.
+     */
     private Portfolio mPortfolio = Portfolio.get();
+
+    /**
+     * The context that we use to create our layout.
+     */
     private Context mContext;
 
+    /**
+     * Default constructor
+     *
+     * @param context the context to create the layout.
+     */
     public CharacterAdapter(Context context) {
         mContext = context;
     }
 
+    /**
+     * A helper method to remove a character based on index within the portfolio.
+     * This also calls {@code notifyDataSetChanged}.
+     * @param i the index of the character to remove
+     */
     public void removeCharacter(int i) {
         mPortfolio.deletePlayerCharacter(mPortfolio.getPlayerCharacter(i));
         notifyDataSetChanged();

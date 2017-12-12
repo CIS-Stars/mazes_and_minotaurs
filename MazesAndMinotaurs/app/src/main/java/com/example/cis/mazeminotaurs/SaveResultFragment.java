@@ -8,14 +8,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by Thorin Schmidt on 4/13/2017.
+ * This fragment displays the value of a saving roll.
+ * The user can do nothing else on this screen.
+ * @author Thorin Schmidt on 4/13/2017.
  */
 
 public class SaveResultFragment extends DialogFragment {
 
+    /**
+     * The modifier from the save score.
+     */
     int mMod;
+
+    /**
+     * The value rolled, treated as a D20.)
+     */
     int mRoll;
+
+    /**
+     * The name of the save being rolled.
+     */
     String mSaveName;
+
+    /**
+     * The calculated total of mMod + mRoll.
+     */
     int mTotal;
 
     static SaveResultFragment newInstance(int roll, int mod, String nameID) {

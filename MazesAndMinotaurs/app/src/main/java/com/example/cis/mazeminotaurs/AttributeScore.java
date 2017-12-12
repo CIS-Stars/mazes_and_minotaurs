@@ -1,14 +1,26 @@
 package com.example.cis.mazeminotaurs;
 
 /**
+ * This serves as a container for a player's scores.
  * Created by Thorin Schmidt on 3/18/2017.
  */
 
 public class AttributeScore {
 
     //instance variables
+    /**
+     * The score's value.
+     */
     int mScore;
+
+    /**
+     * The modifier of the score, based on the score's value.
+     */
     int mModifier;
+
+    /**
+     * The description of the score's value.
+     */
     String mDescription;
 
     //private methods
@@ -81,20 +93,37 @@ public class AttributeScore {
 
     //public methods
 
+    /**
+     * Default constructor
+     *
+     * @param score the value of the score.
+     */
     public AttributeScore(int score) {
         this.mScore = score;
         this.updateModifier();
     }
 
+    /**
+     * Getter for the mScore property.
+     * @return the value of mScore.
+     */
     public int getScore() {
         return mScore;
     }
 
+    /**
+     * Setter for the mScore property.
+     * @param score the new value of mScore.
+     */
     public void setScore(int score) {
         this.mScore = score;
         this.updateModifier();
     }
 
+    /**
+     * Getter for the mModifier property.
+     * @return the value of mModifier.
+     */
     public int getModifier() {
         return mModifier;
     }
@@ -104,6 +133,10 @@ public class AttributeScore {
         this.modifier = modifier;
     }*/
 
+    /**
+     * Getter for the mDescription property.
+     * @return the value of mDescription.
+     */
     public String getDescription() {
         return mDescription;
     }

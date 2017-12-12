@@ -8,14 +8,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by Thorin Schmidt on 4/13/2017.
+ * This fragment displays a single score roll.
+ * The user can do nothing else on this fragment.
+ * @author Thorin Schmidt on 4/13/2017.
  */
 
 public class RollResultFragment extends DialogFragment {
 
+    /**
+     * Modifier of the score.
+     */
     int mMod;
+
+    /**
+     * The value rolled, treated as D20.
+     */
     int mRoll;
+
+    /**
+     * The name of the score that was rolled.
+     */
     String mAttributeName;
+
+    /**
+     * Calculated total from mMod + mRoll.
+     */
     int mTotal;
 
     /**

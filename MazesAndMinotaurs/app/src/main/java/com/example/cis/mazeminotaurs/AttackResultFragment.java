@@ -12,23 +12,73 @@ import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.rollDice.rollDice;
 
 /**
- * Created by Thorin Schmidt on 4/13/2017.
+ * This fragment displays the results of an attack roll and damage roll of the
+ * equipped weapon.
+ * The user can also click to get a second damage roll for critical damage.
+ * @author Thorin Schmidt on 4/13/2017.
  */
 
 public class AttackResultFragment extends DialogFragment {
 
+    /**
+     * The index of the character in the Portfolio singleton.
+     */
     int mCurrentCharacterIndex;
+
+    /**
+     * The list of all of the player's characters.
+     */
     Portfolio mPortfolio;
+
+    /**
+     * The character that is currently being used.
+     */
     PlayerCharacter mCurrentCharacter;
+
+    /**
+     * The score modifier being used, based on weapon type.
+     */
     int mMod;
+
+    /**
+     * The first attack roll, based on D20 values.
+     */
     int mAttackRoll1;
+
+    /**
+     * The second attack roll, based on D20 values. Used for special situations.
+     */
     int mAttackRoll2;
+
+    /**
+     * The first damage roll, based on the weapon's damageDie.
+     */
     int mDamage1;
+
+    /**
+     * The second damgage roll, based on the weapon's damageDie. Used for special
+     * situations.
+     */
     int mDamage2;
+
+    /**
+     * The type of attack being done. (Melee or Ranged)
+     */
     String mAttackType;
+
+    /**
+     * The sum of the attack roll and modifier. (mAttack1 and mMod)
+     */
     int mTotal1;
+
+    /**
+     * The sum of the attack roll and modifier. (mAttack2 and mMod)
+     */
     int mTotal2;
 
+    /*
+     * These are widgets found in the layout.
+     */
     Button mCritButton;
 
     static AttackResultFragment newInstance(int characterIndex) {

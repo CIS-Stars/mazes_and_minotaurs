@@ -6,23 +6,33 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import com.example.cis.mazeminotaurs.R;
-import com.example.cis.mazeminotaurs.Weapon;
 
 import java.util.ArrayList;
 
 /**
- * Created by jsmith on 10/11/17.
+ * An adapter that displays Weapons with their name and encumberance values.
+ * @author jsmith on 10/11/17.
  */
 
 public class DetailedWeaponAdapter extends BaseAdapter {
+    /**
+     * The list of weapons to display.
+     */
     private ArrayList<Weapon> mDataset;
+
+    /**
+     * The context to get the layout from.
+     */
     private Context mContext;
 
+    /**
+     * Default constructor.
+     *
+     * @param context a context from a fragment or activity.
+     * @param weapons a list of weapons.
+     */
     public DetailedWeaponAdapter(Context context, ArrayList<Weapon> weapons) {
         mContext = context;
         mDataset = weapons;
@@ -67,10 +77,18 @@ public class DetailedWeaponAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /**
+     * Getter for the mDataset property.
+     * @return the value of mDataset.
+     */
     public ArrayList<Weapon> getDataset() {
         return mDataset;
     }
 
+    /**
+     * Setter for the mDataset property.
+     * @param dataset the new value of mDataset.
+     */
     public void setDataset(ArrayList<Weapon> dataset) {
         mDataset = dataset;
     }

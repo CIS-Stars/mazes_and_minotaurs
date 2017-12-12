@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Thorin Schmidt on 3/31/2017.
+ * This fragment displays a single image.
+ * The user can do nothing on this fragment.
+ * @author Thorin Schmidt on 3/31/2017.
  */
 
 public class SplashScreenFragment extends Fragment {

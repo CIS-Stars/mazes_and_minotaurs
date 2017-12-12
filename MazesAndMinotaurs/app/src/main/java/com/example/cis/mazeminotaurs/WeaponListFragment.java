@@ -3,16 +3,13 @@ package com.example.cis.mazeminotaurs;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
 
 /**
- * Created by Thorin Schmidt on 5/4/2017.
+ * @deprecated
+ * @author Thorin Schmidt on 5/4/2017.
  */
 
 public class WeaponListFragment extends DialogFragment {
