@@ -15,7 +15,7 @@ public class Armor extends Equipment {
     private int mDefenseBonus;
 
     /**
-     * {@inheritDoc}
+     * Default Constructor.
      *
      * @param resId           The name of the armor.
      * @param encumberance    The encumberance value of the armor.
