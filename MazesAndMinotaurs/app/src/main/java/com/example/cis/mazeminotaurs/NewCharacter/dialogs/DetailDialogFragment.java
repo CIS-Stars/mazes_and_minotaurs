@@ -240,7 +240,7 @@ public class DetailDialogFragment extends DialogFragment {
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * Unused in the code. Was an old solution that didn't work.
      */
     @Override
