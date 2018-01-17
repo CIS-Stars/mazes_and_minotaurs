@@ -11,6 +11,7 @@ import com.example.cis.mazeminotaurs.rollDice.rollDice;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -40,7 +41,7 @@ public class Noble extends Warrior {
      * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
      */
     public Noble() {
-        this(null,null,null,null);
+        this(null, null, Score.MIGHT, Score.GRACE);
     }
 
     /**
@@ -72,7 +73,11 @@ public class Noble extends Warrior {
                 Score.WILL, Score.WITS, Score.SKILL});
 
         // Noble-Specific things
-        // TODO Verify the supplied heritage scores.
+        if (!Arrays.asList(Score.MIGHT, Score.SKILL).contains(martialHeritage) ||
+                !Arrays.asList(Score.GRACE, Score.WILL, Score.WITS).contains(mentalHeritage)) {
+            throw new IllegalArgumentException("Invalid arguments supplied for Noble heritage.");
+        }
+
         mPhysicalHeritage = martialHeritage;
         mOtherHeritage = mentalHeritage;
 
