@@ -110,7 +110,7 @@ public class Noble extends Warrior {
     /**
      * A helper shorthand of {@code doHeritage}.
      */
-    private void doHeritage() {
+    public void doHeritage() {
         doHeritage(mPhysicalHeritage, mOtherHeritage);
     }
 

@@ -28,6 +28,9 @@ import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * This fragment displays the class' name and description and gives the user options
  * on starting weapon and weapon of choice, depending on the class.
@@ -379,8 +382,24 @@ public class DetailDialogFragment extends DialogFragment {
                     instance.getCharacter().setCharClass(instance);
                     instance.getCharacter().initializeClass();
 
+                    // Noble has some special setup we need done.
                     if (instance instanceof Noble) {
-                        ((Noble) instance).doHeritage(mPhysicalHeritage, mOtherHeritage);
+                        // THIS PART IS NEEDED OR THE APP WILL CRASH
+                        Noble nobleInstance = (Noble) instance;
+
+                        // Setup the noble's heritage.
+                        nobleInstance.setPhysicalHeritage(mPhysicalHeritage);
+                        nobleInstance.setOtherHeritage(mOtherHeritage);
+                        // Don't do heritage here.
+                        // Do it after the character score order has been finalized.
+                        // nobleInstance.doHeritage(mPhysicalHeritage, mOtherHeritage);
+
+                        // Setup the noble's primary attributes.
+                        nobleInstance.setPrimaryAttributes(new ArrayList<Score>());
+                        Collections.addAll(nobleInstance.getPrimaryAttributes(),
+                                Score.LUCK,
+                                mPhysicalHeritage);
+
                     }
 
                     DetailDialogFragment.this.dismiss();

@@ -22,6 +22,7 @@ import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
+import com.example.cis.mazeminotaurs.character.classes.Noble;
 import com.example.cis.mazeminotaurs.character.stats.AttributeScoreComparator;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.CommonStrings;
@@ -166,6 +167,11 @@ public class CreateCharacter extends Fragment implements AttributePriorityDialog
             public void onClick(View view) {
                 Portfolio.get().addPlayerCharacter(mBaseClass.getCharacter());
                 Portfolio.get().setActiveCharacterIndex(Portfolio.get().getPortfolio().indexOf(mBaseClass.getCharacter()));
+
+                // Noble special case
+                if (mBaseClass instanceof Noble) {
+                    ((Noble) mBaseClass).doHeritage();
+                }
 
                 // Clear the backstack before replacing the screen
                 Util.clearBackStack(getFragmentManager());
