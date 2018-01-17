@@ -59,7 +59,7 @@ public class Noble extends Warrior {
      * @param martialHeritage a score selected to be enhanced
      * @param mentalHeritage  a score selected to be enhanced
      */
-    public Noble(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Score martialHeritage, Score mentalHeritage) {
+    public Noble(PlayerCharacter playerCharacter, Weapon weaponOfChoice, Score martialHeritage, Score mentalHeritage) throws IllegalArgumentException {
         setPossibleStartWeapons(new Weapon[]{});
         setPossibleWeaponsOfChoice(new Weapon[]{
                 EquipmentDB.getInstance().getWeapon(CommonStrings.BOW.getValue()),
