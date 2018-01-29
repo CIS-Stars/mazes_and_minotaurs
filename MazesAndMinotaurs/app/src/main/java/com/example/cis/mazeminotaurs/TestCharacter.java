@@ -1,7 +1,8 @@
 package com.example.cis.mazeminotaurs;
 
 /**
- * Created by Thorin Schmidt on 3/19/2017.
+ * @deprecated
+ * @author Thorin Schmidt on 3/19/2017.
  */
 
 public class TestCharacter {
@@ -15,7 +16,7 @@ public class TestCharacter {
 
     enum Class {
         AMAZON, AMAZON_B, ARCHER, BARBARIAN, BEASTMASTER, CAVALRYMAN, CENTAUR, ELEMENTALIST, HUNTER,
-        LYRIST, NOBLE, NYMPH, PRIEST, SHAPESHIFTER, SORCEROR, SPEARMAN, THIEF
+     LYRIST, NOBLE, NYMPH, PRIEST, SHAPESHIFTER, SORCERER, SPEARMAN, THIEF
     }
 
     enum Patron {

@@ -5,9 +5,7 @@ import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.AttributeScoreGenerator;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
-import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.Weapon;
-import com.example.cis.mazeminotaurs.character.classes.Barbarian;
 import com.example.cis.mazeminotaurs.character.classes.BaseClass;
 import com.example.cis.mazeminotaurs.character.classes.Magician;
 import com.example.cis.mazeminotaurs.character.classes.Specialist;
@@ -23,18 +21,20 @@ import java.util.HashMap;
  * Used to hold the data of a player's character.
  *
  * <h1>Steps to use a player character</h1>
- * <ul>
- *  <li>1: Create a new PlayerCharacter instance</li>
- *  <li>2: Create a new subclass of BaseClass instance using the PlayerCharacter instance i.e. Barbarian</li>
- *  <li>3: Assign the class to the PlayerCharacter using setCharClass</li>
- *  <li>4: Call the PlayerCharacter's initializeClass method</li>
- *  <li>5: Your PlayerCharacter is now working!</li>
- * </ul>
+ * <ol>
+ *  <li>Create a new PlayerCharacter instance</li>
+ *  <li>Create a new subclass of BaseClass instance using the PlayerCharacter
+ *  instance i.e. Barbarian</li>
+ *  <li>Assign the class to the PlayerCharacter using setCharClass</li>
+ *  <li>Call the PlayerCharacter's initializeClass method</li>
+ *  <li>Your PlayerCharacter is now working!</li>
+ * </ol>
  *
  * <h1>Example:</h1>
  * <ul>
  *     <li>PlayerCharacter character = new PlayerCharacter();</li>
- *     <li>Barbarian barb = new Barbarian(character, [weapon of choice], [ranged weapon]);</li>
+ *     <li>Barbarian barb = new Barbarian(character, [weapon of choice],
+ *     [ranged weapon]);</li>
  *     <li>character.setCharClass(barb);</li>
  *     <li>character.initializeClass();</li>
  * </ul>
@@ -42,7 +42,7 @@ import java.util.HashMap;
  * @author Justin Smith
  */
 
-public class PlayerCharacter{
+public class PlayerCharacter implements Serializable {
     /**
      * The character's attribute scores.
      */
@@ -396,6 +396,24 @@ public class PlayerCharacter{
     }
 
     /**
+     * Adds the value to the score.
+     * <p>
+     * If safely is true, then canAddToScore is called beforehand and the value is added
+     * if it returns true.
+     *
+     * @param score  The score to add value to
+     * @param value  The value to add to the score
+     * @param safely If canAddToScore should be called beforehand
+     */
+    public void addToScore(Score score, int value, boolean safely) {
+        if (safely && this.canAddToScore(score)) {
+            this.getScore(score).setScore(this.getScore(score).getScore() + value);
+        } else {
+            this.getScore(score).setScore(this.getScore(score).getScore() + value);
+        }
+    }
+
+    /**
      * Checks if a score is maxed out
      * @param   score The score to check
      * @return  If score is not maxed out, returns true. Otherwise, returns false.
@@ -582,10 +600,22 @@ public class PlayerCharacter{
     }
 
 
+    /**
+     * Getter of the mCurHits attribute.
+     *
+     * @return the value of mCurHits.
+     */
     public int getCurHits() {
         return mCurHits;
     }
 
+    /**
+     * Setter of the mCurHits attribute.
+     * If the new value is less than 0, mCurHits is set to 0.
+     * If the value is greater than the value returned from {@code getHitTotal}, then
+     * mCurHits is set to the value returned from getHitTotal.
+     * @param curHits the new value of mCurHits.
+     */
     public void setCurHits(int curHits) {
         this.mCurHits = curHits;
         if (curHits < 0) {

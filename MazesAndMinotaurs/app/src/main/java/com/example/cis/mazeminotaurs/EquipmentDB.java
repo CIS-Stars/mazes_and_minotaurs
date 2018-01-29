@@ -5,29 +5,65 @@ import com.example.cis.mazeminotaurs.util.CommonStrings;
 import java.util.ArrayList;
 
 /**
- * Created by Thorin Schmidt on 4/18/2017.
+ * A singleton that holds all of the equipment data for the application.
+ * @author Thorin Schmidt on 4/18/2017.
  */
 
 public class EquipmentDB {
+    /**
+     * The name of the filename that this data is saved under.
+     */
     public static final String FILENAME = "EquipmentDB.json";
 
+    /**
+     *
+     */
     private static final String TAG = Portfolio.class.getName();
+
+    /**
+     * A list of equipment available to the user.
+     */
     private ArrayList<Equipment> equipment;
+
+    /**
+     * A list of weapons available to the user.
+     */
     private ArrayList<Weapon> weapons;
+
+    /**
+     * A list of armors available to the user.
+     */
     private ArrayList<Armor> armor;
 
+    /**
+     * A one-way flag that tells if data has already been loaded in. Shouldn't be
+     * put in with the save file.
+     */
+    private transient boolean mIsLoaded;
 
-
+    /**
+     * The single instance of EquipmentDB.
+     */
     private static final EquipmentDB ourInstance = new EquipmentDB();
 
+    /**
+     * Getter for ourInstance property.
+     *
+     * @return an instance of EquipmentDB.
+     */
     public static EquipmentDB getInstance() {
         return ourInstance;
     }
 
+    /**
+     * Blank constructor.
+     */
     private EquipmentDB() {
         equipment = new ArrayList<>();
         weapons = new ArrayList<>();
         armor = new ArrayList<>();
+
+        mIsLoaded = false;
 
         resetDatabase();
     }
@@ -146,6 +182,12 @@ public class EquipmentDB {
         return isValid;
     }
 
+    /**
+     * Searches weapons for a weapon that matches the supplied id. If one is found,
+     * it is returned; otherwise, returns null.
+     * @param resId the id of the desired weapon.
+     * @return weapon instance or null
+     */
     public Weapon getWeapon(String resId) {
         for (Weapon weapon : weapons){
             if (weapon.getResId().equals(resId)) {
@@ -155,6 +197,12 @@ public class EquipmentDB {
         return null;
     }
 
+    /**
+     * Searches armors for a armor that matches the supplied id. If one is found,
+     * it is returned; otherwise, returns null.
+     * @param resId the id of the desired armor.
+     * @return armor instance or null
+     */
     public Armor getArmor(String resId) {
         for (Armor item : armor){
             if (item.getResId().equals(resId)) {
@@ -164,6 +212,12 @@ public class EquipmentDB {
         return null;
     }
 
+    /**
+     * Searches equipment for a piece of equipment that matches the supplied id.
+     * If one is found, it is returned; otherwise, returns null.
+     * @param resId the id of the desired equipment.
+     * @return equipment instance or null
+     */
     public Equipment getEquipment(String resId) {
         for (Equipment item : equipment){
             if (item.getResId().equals(resId)) {
@@ -173,27 +227,68 @@ public class EquipmentDB {
         return null;
     }
 
+    /**
+     * Getter for the weapons property.
+     * @return the value of weapons.
+     */
     public ArrayList<Weapon> getWeapons() {
         return weapons;
     }
 
+    /**
+     * Getter for the equipment property.
+     * @return the value of equipment.
+     */
     public ArrayList<Equipment> getEquipments() {
         return equipment;
     }
 
+    /**
+     * Getter for the armor property.
+     * @return the value of armor.
+     */
     public ArrayList<Armor> getArmors() {
         return armor;
     }
 
+
+    /**
+     * Setter for the equipment property.
+     * @param equipment the new value of equipment.
+     */
     public void setEquipments(ArrayList<Equipment> equipment) {
         this.equipment = equipment;
     }
 
+    /**
+     * Setter for the weapons property.
+     * @param weapons the new value of weapons.
+     */
     public void setWeapons(ArrayList<Weapon> weapons) {
         this.weapons = weapons;
     }
 
+    /**
+     * Setter for the armor property.
+     * @param armor the new value of armor.
+     */
     public void setArmors(ArrayList<Armor> armor) {
         this.armor = armor;
+    }
+
+    /**
+     * Getter for the mIsLoaded property.
+     * @return the value of mIsLoaded.
+     */
+    public boolean isLoaded() {
+        return mIsLoaded;
+    }
+
+    /**
+     * Setter for the mIsLoaded property.
+     * @param mIsLoaded the new value of mIsLoaded.
+     */
+    public void setLoaded(boolean mIsLoaded) {
+        this.mIsLoaded = mIsLoaded;
     }
 }

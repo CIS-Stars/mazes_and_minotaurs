@@ -62,6 +62,12 @@
         Circe the Witch and Queen Medea are good examples of Sorceresses.
     </string>
 
+    <!-- Magician Talents -->
+    <string name="lyrist_talent">Orphic Voice</string>
+    <string name="elementalist_talent">Elemental Mastery</string>
+    <string name="nymph_talent">Odylic Charm</string>
+    <string name="priest_talent">Spiritual Aura</string>
+    <string name="sorcerer_talent">Psychic Gift</string>
 
     <!-- Specialist Classes -->
     <string name="hunter_class">

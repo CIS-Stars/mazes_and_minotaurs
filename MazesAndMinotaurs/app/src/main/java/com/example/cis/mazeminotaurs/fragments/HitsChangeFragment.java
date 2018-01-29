@@ -11,18 +11,42 @@ import android.widget.TextView;
 import com.example.cis.mazeminotaurs.R;
 
 /**
- * Created by jsmith on 9/21/17.
+ * This fragment displays the old and new value of a character's hits.
+ * The user can change the value of the character's hits.
+ *
+ * @author jsmith on 9/21/17.
  */
 
 public class HitsChangeFragment extends DialogFragment {
+    /**
+     * This is meant to be implemented by the parent that opened the dialog.
+     */
     public interface onHitsChangeListener {
+        /**
+         * This is fired when a new value is submitted for hits.
+         *
+         * @param newValue the new value of hits.
+         */
         void onHitsChange(int newValue);
     }
+
+    /**
+     * This is intended to be the parent that created the dialog. The parent must
+     * call the setter for this field with itself as the argument.
+     */
     onHitsChangeListener mHitsChangeListener;
 
+    /**
+     * The old value of hits. Supplied as an argument in a bundle under the key
+     * "value".
+     */
     int mOldValue;
 
+    /*
+     * The widgets found in the layout.
+     */
     EditText mNewValue;
+
     /**
      * Create a new instance of HitsChangeFragment, providing "value"
      * as an argument.
@@ -67,10 +91,18 @@ public class HitsChangeFragment extends DialogFragment {
         return v;
     }
 
+    /**
+     * Getter for the mHitsChangeListener property.
+     * @return the value of mHitsChangeListener.
+     */
     public onHitsChangeListener getHitsChangeListener() {
         return mHitsChangeListener;
     }
 
+    /**
+     * Setter for the mHitsChangeListener property.
+     * @param hitsChangeListener the new listener for mHitsChangeListener.
+     */
     public void setHitsChangeListener(onHitsChangeListener hitsChangeListener) {
         mHitsChangeListener = hitsChangeListener;
     }

@@ -1,6 +1,5 @@
 package com.example.cis.mazeminotaurs.character.classes;
 
-import com.example.cis.mazeminotaurs.AttributeScore;
 import com.example.cis.mazeminotaurs.Equipment;
 import com.example.cis.mazeminotaurs.EquipmentDB;
 import com.example.cis.mazeminotaurs.R;
@@ -14,19 +13,30 @@ import com.example.cis.mazeminotaurs.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 
 /**
- * Created by jsmith on 9/11/17.
+ * This class represents the Hunter that is in the game.
+ *
+ * @author jsmith on 9/11/17.
  */
 
-public class Hunter extends Specialist implements Level{
-    private ArrayList<HashMap<Score, Integer>> mScoreLevelChoice = new ArrayList<>();
+public class Hunter extends Specialist {
 
+    /**
+     * Blank constructor. Used primarily for reflection purposes.
+     * <b>DO NOT USE THIS FOR UI DISPLAYS.</b>
+     */
     public Hunter() {
         this(null,null);
     }
 
+    /**
+     * Constructor that requires a {@link PlayerCharacter} instance and a weapon.
+     * <p>If weaponOfChoice is invalid, it will automatically assign it an bow.</p>
+     *
+     * @param playerCharacter the character using this class
+     * @param weaponOfChoice  the user desired weapon of choice
+     */
     public Hunter(PlayerCharacter playerCharacter, Weapon weaponOfChoice) {
         // Null for this value means that it is linked to weapon of choice.
         setPossibleStartWeapons(null);
@@ -35,6 +45,10 @@ public class Hunter extends Specialist implements Level{
                 EquipmentDB.getInstance().getWeapon(CommonStrings.JAVELIN.getValue()),
                 EquipmentDB.getInstance().getWeapon(CommonStrings.SLING.getValue()),
         });
+
+        // The scores that can be used for level ups.
+        setPossibleLevelScores(new Score[]{Score.WITS, Score.WILL,
+                Score.SKILL});
 
         Score[] primAttrs = {Score.SKILL, Score.WITS};
         ArrayList<Score> primAttributes = new ArrayList<>();
@@ -64,93 +78,14 @@ public class Hunter extends Specialist implements Level{
         setStartGear(startGear);
     }
 
-    @Override
-    public void doLevelUp() {
-        Score[] possibleScores = {Score.SKILL, Score.WILL, Score.WITS};
-        doLevelUp(possibleScores[rollDice.roll(possibleScores.length) - 1]);
-    }
-
-    @Override
-    public void doLevelUp(Score score) {
-        if (getLevel() < getEffectiveLevel()) {
-            Score[] choices = {Score.SKILL, Score.WILL, Score.WITS};
-            ArrayList<Score> possibleScores = new ArrayList<>();
-            for (Score selectScore: choices) {
-                if(getCharacter().canAddToScore(selectScore)) {
-                    possibleScores.add(selectScore);
-                }
-            }
-
-            Score selectedScore;
-            if (possibleScores.contains(score)) {
-                selectedScore = score;
-            } else {
-                selectedScore = possibleScores.get(rollDice.roll(possibleScores.size()) - 1);
-            }
-
-            if (possibleScores.size() > 0) {
-                while (!getCharacter().canAddToScore(selectedScore)) {
-                    selectedScore = possibleScores.get((possibleScores.indexOf(selectedScore) + 1) % possibleScores.size());
-                }
-            }
-
-            // Contains information about changed scores
-            HashMap<Score, Integer> levelData = new HashMap<>();
-
-            if (getCharacter().canAddToScore(Score.LUCK)) {
-                AttributeScore luck = getCharacter().getScore(Score.LUCK);
-                levelData.put(Score.LUCK, luck.getScore());
-                luck.setScore(luck.getScore() + 1);
-            } else {
-                levelData.put(Score.LUCK, 20);
-            }
-
-            AttributeScore selectedAttrScore = getCharacter().getScore(selectedScore);
-
-            levelData.put(selectedScore, selectedAttrScore.getScore());
-            getScoreLevelChoice().add(levelData);
-
-            selectedAttrScore.setScore(selectedAttrScore.getScore() + 2);
-            setAddedHits(getAddedHits() + 2);
-
-            setLevel(getLevel() + 1);
-            getCharacter().validateScores();
-        }
-    }
-
-    @Override
-    public void doLevelDown() {
-        if (getLevel() > 1) {
-            HashMap<Score, Integer> levelData = getScoreLevelChoice().remove(getScoreLevelChoice().size() - 1);
-            Score lastSelectedScore = null;
-            for (Object rawScore: levelData.keySet().toArray()) {
-                Score score = (Score) rawScore;
-                if (score != Score.LUCK) {
-                    lastSelectedScore = score;
-                    break;
-                }
-            }
-
-            AttributeScore luck = getCharacter().getScore(Score.LUCK);
-            AttributeScore lastScoreLeveled = getCharacter().getScore(lastSelectedScore);
-
-            setAddedHits(getAddedHits() - 2);
-            luck.setScore(levelData.get(Score.LUCK));
-            lastScoreLeveled.setScore(levelData.get(lastSelectedScore));
-            setLevel(getLevel() - 1);
-        }
-    }
-    
+    /**
+     * The addition made to the damage roll when using any missile weapons on
+     * Beasts or Monsters.
+     * <i>As of 12/7/17, this is not used in the code.</i>
+     *
+     * @return Character's modifier of their Skill score.
+     */
     public int getDeadlyAimBonus() {
         return getCharacter().getScore(Score.SKILL).getScore();
     }
-
-    public ArrayList<HashMap<Score, Integer>> getScoreLevelChoice() {
-        return this.mScoreLevelChoice;
-    }
-
-    public void setScoreLevelChoice(ArrayList<HashMap<Score, Integer>> scoreLevelChoice) {
-        this.mScoreLevelChoice = scoreLevelChoice;
-    }
-
 }

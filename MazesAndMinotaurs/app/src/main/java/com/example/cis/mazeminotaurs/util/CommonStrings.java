@@ -1,7 +1,9 @@
 package com.example.cis.mazeminotaurs.util;
 
 /**
- * Created by JayTSmith on 10/25/17.
+ * An Enumeration of default equipment values.
+ * Also, contains the arguments used for keys in bundle arguments.
+ * @author jsmith on 10/25/17.
  */
 
 public enum CommonStrings {
@@ -44,14 +46,31 @@ public enum CommonStrings {
     WATERSKIN("Waterskin"),
     LODGING("Night\'s Lodging"),
     MEAL("One Meal (with Wine)"),
-    WINE_JUG("Jug of Wine");
+    WINE_JUG("Jug of Wine"),
 
+    // Bundle keys
+    ATTR_PRIORITY_ARGS("ATTR_PRIORITY_ARGS"),
+    CHARACTER_ARG("CHARACTER_ARG"),
+    SCORE_ARG("SCORE_ARG");
+
+    /**
+     * The string value of the enum's value name.
+     */
     String value;
 
+    /**
+     * Default constructor.
+     *
+     * @param value Arbitrary value.
+     */
     CommonStrings(String value) {
         this.value = value;
     }
 
+    /**
+     * The string value of the enum.
+     * @return a string.
+     */
     public String getValue() {
         return value;
     }

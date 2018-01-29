@@ -28,27 +28,78 @@ import com.example.cis.mazeminotaurs.character.classes.Warrior;
 import com.example.cis.mazeminotaurs.character.stats.Score;
 import com.example.cis.mazeminotaurs.util.Util;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
- * Created by jsmith on 9/15/17.
+ * This fragment displays the class' name and description and gives the user options
+ * on starting weapon and weapon of choice, depending on the class.
+ * The user can choose starting weapon and weapon of choice, depending on the class.
+ *
+ * @author jsmith on 9/15/17.
  */
 
 public class DetailDialogFragment extends DialogFragment {
+    // TODO Move to strings.xml
+    /**
+     * A static message to display if the class doesn't have any options here.
+     */
     private static final String EMPTY_MSG = "Can't select anything.";
 
+    /**
+     * This is meant to be implemented by the parent that opened the dialog.
+     */
     public interface DetailDialogListener {
+        /**
+         * This is fired when the user clicks on the confirm button.
+         *
+         * @param instance a new instance of the user selected class.
+         */
         public void onDialogPositiveClick(BaseClass instance);
     }
+
+    /**
+     * This is intended to be the parent that created the dialog.
+     */
     DetailDialogListener mListener;
 
+    /**
+     * Contains the class that was selected by the user.
+     */
     Classes mSelectedClass;
+
+    /**
+     * The weapons of choice available to the user.
+     */
     Weapon[] mChoiceWeps;
+
+    /**
+     * The staring weapons available to the user.
+     */
     Weapon[] mStartWeps;
 
     // Noble stuff
+    /**
+     * The user's selected physical heritage.
+     *
+     * @see Noble
+     */
     Score mPhysicalHeritage = Score.MIGHT;
+
+    /**
+     * The user's selected other heritage.
+     * @see Noble
+     */
     Score mOtherHeritage = Score.WITS;
 
+    /**
+     * The user's selected weapon id.
+     */
     String mSelectedWeapon = null;
+
+    /**
+     * The user's selected weapon of choice id.
+     */
     String mSelectedChoiceWep = null;
 
     @NonNull
@@ -139,7 +190,7 @@ public class DetailDialogFragment extends DialogFragment {
 
                 }
             });
-            
+
             if (mChoiceWeps.length > 0) {
                 spinItems.addAll(getWeaponNames(mChoiceWeps));
             } else {
@@ -163,7 +214,7 @@ public class DetailDialogFragment extends DialogFragment {
 
             }
         });
-        
+
         if (selectedClass == Classes.HUNTER) {
             spinItems.add(EMPTY_MSG);
             String newText = String.format("%s/%s",
@@ -176,8 +227,7 @@ public class DetailDialogFragment extends DialogFragment {
         } else if (mStartWeps == null) {
             view.findViewById(R.id.start_weapon_label).setVisibility(View.GONE);
             startSpinner.setVisibility(View.GONE);
-        }
-        else if (mStartWeps.length > 0) {
+        } else if (mStartWeps.length > 0) {
             spinItems.addAll(getWeaponNames(mStartWeps));
         } else {
             spinItems.add(EMPTY_MSG);
@@ -192,6 +242,10 @@ public class DetailDialogFragment extends DialogFragment {
         return dialog;
     }
 
+    /**
+     * {@inheritDoc}
+     * Unused in the code. Was an old solution that didn't work.
+     */
     @Override
     // Thanks to @kuffs (https://stackoverflow.com/questions/32083053/android-fragment-onattach-deprecated)
     public void onAttach(Context context) {
@@ -204,6 +258,11 @@ public class DetailDialogFragment extends DialogFragment {
         }
     }
 
+    /**
+     * Returns the possible weapons of choice of the selected class.
+     * Tries to do this through Reflection.
+     * @return array of possible weapons of choice.
+     */
     private Weapon[] getChoiceWeapons() {
         try {
             Object instance = mSelectedClass.getJavaClass().newInstance();
@@ -222,6 +281,11 @@ public class DetailDialogFragment extends DialogFragment {
         return null;
     }
 
+    /**
+     * Returns the possible starting weapons of the selected class.
+     * Tries to do this through Reflection.
+     * @return array of possible starting weapons.
+     */
     private Weapon[] getStartWeapons(){
         try {
             Object instance = mSelectedClass.getJavaClass().newInstance();
@@ -240,25 +304,40 @@ public class DetailDialogFragment extends DialogFragment {
         return null;
     }
 
+    /**
+     * Returns the name(s) of the supplied weapon(s).
+     * @param weapons a bunch of weapon instances.
+     * @return an array of weapon name(s)
+     */
     private String[] getWeaponNames(Weapon... weapons) {
         String[] result = new String[weapons.length];
         for (int i = 0; i < result.length; i++) {
             if (weapons[i] != null) {
                 result[i] = weapons[i].getResId();
-            }
-            else {
+            } else {
                 result[i] = "";
             }
         }
         return result;
     }
 
+    /**
+     * Updates the value of mSelectedChoiceWep on spinner selection.
+     * @param position the index of the selected weapon
+     */
     private void onChoiceWeaponChanged(int position) {
         if (mChoiceWeps!= null && position > -1 && position < mChoiceWeps.length) {
             mSelectedChoiceWep = mChoiceWeps[position].getResId();
         }
     }
 
+    /**
+     * This is a helper method for creating the onclick listener for the confirm
+     * button. The listener will setup a new playerCharacter instance with the
+     * selected class. It does so through Reflection.
+     *
+     * @return the onclick listener for the confirm button
+     */
     private DialogInterface.OnClickListener getOnConfirmListener() {
         return new DialogInterface.OnClickListener() {
             @Override
@@ -303,22 +382,47 @@ public class DetailDialogFragment extends DialogFragment {
                     instance.getCharacter().setCharClass(instance);
                     instance.getCharacter().initializeClass();
 
+                    // Noble has some special setup we need done.
                     if (instance instanceof Noble) {
-                        ((Noble) instance).doHeritage(mPhysicalHeritage, mOtherHeritage);
+                        // THIS PART IS NEEDED OR THE APP WILL CRASH
+                        Noble nobleInstance = (Noble) instance;
+
+                        // Setup the noble's heritage.
+                        nobleInstance.setPhysicalHeritage(mPhysicalHeritage);
+                        nobleInstance.setOtherHeritage(mOtherHeritage);
+                        // Don't do heritage here.
+                        // Do it after the character score order has been finalized.
+                        // nobleInstance.doHeritage(mPhysicalHeritage, mOtherHeritage);
+
+                        // Setup the noble's primary attributes.
+                        nobleInstance.setPrimaryAttributes(new ArrayList<Score>());
+                        Collections.addAll(nobleInstance.getPrimaryAttributes(),
+                                Score.LUCK,
+                                mPhysicalHeritage);
+
                     }
 
+                    DetailDialogFragment.this.dismiss();
                     mListener.onDialogPositiveClick(instance);
                 }
             }
         };
     }
 
+    /**
+     * Updates the value of mSelectedWeapon on spinner selection.
+     * @param position the index of the selected weapon
+     */
     private void onStartWeaponChanged(int position) {
         if (mStartWeps != null && position > -1 && position < mStartWeps.length) {
             mSelectedWeapon = mStartWeps[position].getResId();
         }
     }
 
+    /**
+     * Setter for the mListener property.
+     * @param listener the new listener for mListener.
+     */
     public void setListener(DetailDialogListener listener) {
         mListener = listener;
     }

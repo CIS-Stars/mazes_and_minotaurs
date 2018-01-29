@@ -10,7 +10,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * Created by jsmith on 10/19/17.
+ * This is the old fragment used for deleting characters.
+ * @see CharacterManageActivity
+ * @deprecated
+ *
+ * @author jsmith on 10/19/17.
  */
 
 public class CharacterDeletionFragment extends Fragment {

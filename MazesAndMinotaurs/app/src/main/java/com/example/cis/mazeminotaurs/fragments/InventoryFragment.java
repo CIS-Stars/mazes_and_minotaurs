@@ -17,10 +17,20 @@ import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.character.PlayerCharacter;
 
 /**
- * Created by JayTSmith on 10/23/17.
+ * This fragment displays the list of equipment found in the active character's
+ * inventory.
+ * The user can do nothing on this screen.
+ * <i>This fragment is unfinished.</i>
+ * @author jsmith on 10/23/17.
  */
 
 public class InventoryFragment extends Fragment {
+
+    /**
+     * Serves as the TAG in certain functions. e.g. dialog.show() and logging.
+     */
+    public static final String TAG = InventoryFragment.class.getName();
+
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b) {
         super.onCreateView(li, vg, b);

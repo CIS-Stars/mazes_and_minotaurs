@@ -4,14 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.cis.mazeminotaurs.CharacterSheetFragment;
 import com.example.cis.mazeminotaurs.Portfolio;
 import com.example.cis.mazeminotaurs.R;
 import com.example.cis.mazeminotaurs.serialization.SaveAndLoadPerformer;
@@ -25,8 +22,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 /**
+ * This dialog served as a proof of concept for serialization of characters.
+ * It shouldn't be used at all.
  * @deprecated
- * Created by jusmith on 4/26/17.
+ * @author jusmith on 4/26/17.
  */
 
 public class SaveAndLoadDialog extends DialogFragment {
@@ -105,11 +104,11 @@ public class SaveAndLoadDialog extends DialogFragment {
 
                 // Thanks to @davidsnider for solving the issue of refreshing the fragment
 
-                Fragment contentFragment = new CharacterSheetFragment();
+                /*Fragment contentFragment = new CharacterSheetFragment();
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, contentFragment);
-                ft.commit();
+                ft.commit();*/
 
             }
         });
